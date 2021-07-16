@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -7,9 +8,16 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+  }
+
+  onClickStart()
+  {
+    var formData = new FormData();
+    formData.set("customerid","10058");
+    this.http.post( 'https://takeoff-pavan123.herokuapp.com/details.jsp', formData ).subscribe((res) => { alert(res)});
   }
 
 }
