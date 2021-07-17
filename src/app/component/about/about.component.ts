@@ -15,9 +15,8 @@ export class AboutComponent implements OnInit {
 
   onClickStart()
   {
-    var formData = new FormData();
-    formData.set("customerid","10058");
-    this.http.post( 'https://takeoff-pavan123.herokuapp.com/details.jsp', formData ).subscribe((res) => { alert(res)});
+    
+    this.http.get( 'https://takeoff-pavan.herokuapp.com/' ).subscribe((res:any) => { alert(res.demo)});
   }
 
 }
