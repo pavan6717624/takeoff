@@ -19,4 +19,14 @@ export class AboutComponent implements OnInit {
     this.http.get( 'https://takeoff-pavan.herokuapp.com/' ).subscribe((res:any) => { alert(res.demo)});
   }
 
+  visible = false;
+
+  open(): void {
+    this.visible = true;
+  }
+
+  close(): void {
+    this.visible = false;
+  }
+
 }

@@ -12,7 +12,10 @@ import { PortfolioComponent } from './component/portfolio/portfolio.component';
 import { CallComponent } from './component/call/call.component';
 import { ContactComponent } from './component/contact/contact.component';
 import { FooterComponent } from './component/footer/footer.component';
-
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,11 @@ import { FooterComponent } from './component/footer/footer.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NzButtonModule,
+    NzDrawerModule,
+    NzFormModule,
+    NzInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
