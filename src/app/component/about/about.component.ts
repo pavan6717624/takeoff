@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-about',
@@ -8,25 +7,9 @@ import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 })
 export class AboutComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  onClickStart()
-  {
-    
-    this.http.get( 'https://takeoff-pavan.herokuapp.com/' ).subscribe((res:any) => { alert(res.demo)});
-  }
-
-  visible = false;
-
-  open(): void {
-    this.visible = true;
-  }
-
-  close(): void {
-    this.visible = false;
   }
 
 }

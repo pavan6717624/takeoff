@@ -3,31 +3,38 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './component/home/home.component';
-import { NavigationComponent } from './component/navigation/navigation.component';
+
 import { MastheadComponent } from './component/masthead/masthead.component';
-import { AboutComponent } from './component/about/about.component';
-import { ServicesComponent } from './component/services/services.component';
-import { PortfolioComponent } from './component/portfolio/portfolio.component';
-import { CallComponent } from './component/call/call.component';
-import { ContactComponent } from './component/contact/contact.component';
-import { FooterComponent } from './component/footer/footer.component';
+
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import {FormsModule} from '@angular/forms';
+import { HeroComponent } from './component/hero/hero.component';
+import { ClientsComponent } from './component/clients/clients.component';
+import { AboutComponent } from './component/about/about.component';
+import { WhyusComponent } from './component/whyus/whyus.component';
+import { ServicesComponent } from './component/services/services.component';
+import { CtaComponent } from './component/cta/cta.component';
+import { PricingComponent } from './component/pricing/pricing.component';
+
+import { ContactComponent } from './component/contact/contact.component';
+import { FooterComponent } from './component/footer/footer.component'
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    NavigationComponent,
     MastheadComponent,
+    HeroComponent,
+    ClientsComponent,
     AboutComponent,
+    WhyusComponent,
     ServicesComponent,
-    PortfolioComponent,
-    CallComponent,
+    CtaComponent,
+    PricingComponent,
+
     ContactComponent,
-    FooterComponent
+     FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +44,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzDrawerModule,
     NzFormModule,
     NzInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
