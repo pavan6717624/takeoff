@@ -14,4 +14,10 @@ export class SubscriptionService {
     return this.http.get( 'http://localhost:8081/getOrderId' );
   }
 
+  checkRefererId(formData: FormData): Observable<any>
+  {
+    return this.http.post( 'http://localhost:8081/checkRefererId',formData );
+  }
+
+
 }

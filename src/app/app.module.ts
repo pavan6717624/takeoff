@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { MastheadComponent } from './component/masthead/masthead.component';
-
+import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -26,6 +26,7 @@ import { SubscriptionComponent } from './component/subscription/subscription.com
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { PaymentStatusComponent } from './component/payment-status/payment-status.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     ContactComponent,
      FooterComponent,
      MainComponent,
-     SubscriptionComponent
+     SubscriptionComponent,
+     PaymentStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzIconModule,
     NzSelectModule,
     BrowserAnimationsModule,
-    NzMessageModule
+    NzMessageModule,
+    NzResultModule
   ],
   providers: [],
   bootstrap: [AppComponent]
