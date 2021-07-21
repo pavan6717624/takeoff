@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './component/about/about.component';
 import { HeroComponent } from './component/hero/hero.component';
 import { MainComponent } from './component/main/main.component';
+import { SubscriptionComponent } from './component/subscription/subscription.component';
 
 const routes: Routes = [
   {path:'',component: MainComponent},
-  { path: 'first', component: AboutComponent },
+  { path: 'subscribe', component: SubscriptionComponent },
   { path: 'second', component: HeroComponent },
+ 
 
 ];
 

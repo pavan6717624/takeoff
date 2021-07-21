@@ -18,10 +18,13 @@ import { WhyusComponent } from './component/whyus/whyus.component';
 import { ServicesComponent } from './component/services/services.component';
 import { CtaComponent } from './component/cta/cta.component';
 import { PricingComponent } from './component/pricing/pricing.component';
-
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { ContactComponent } from './component/contact/contact.component';
 import { FooterComponent } from './component/footer/footer.component';
-import { MainComponent } from './component/main/main.component'
+import { MainComponent } from './component/main/main.component';
+import { SubscriptionComponent } from './component/subscription/subscription.component'
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,8 @@ import { MainComponent } from './component/main/main.component'
 
     ContactComponent,
      FooterComponent,
-     MainComponent
+     MainComponent,
+     SubscriptionComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,10 @@ import { MainComponent } from './component/main/main.component'
     NzDrawerModule,
     NzFormModule,
     NzInputModule,
-    FormsModule
+    FormsModule,
+    NzIconModule,
+    NzSelectModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
