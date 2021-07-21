@@ -25,6 +25,7 @@ import { MainComponent } from './component/main/main.component';
 import { SubscriptionComponent } from './component/subscription/subscription.component'
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     NzIconModule,
     NzSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NzMessageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
