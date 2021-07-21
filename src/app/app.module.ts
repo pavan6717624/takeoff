@@ -20,7 +20,8 @@ import { CtaComponent } from './component/cta/cta.component';
 import { PricingComponent } from './component/pricing/pricing.component';
 
 import { ContactComponent } from './component/contact/contact.component';
-import { FooterComponent } from './component/footer/footer.component'
+import { FooterComponent } from './component/footer/footer.component';
+import { MainComponent } from './component/main/main.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { FooterComponent } from './component/footer/footer.component'
     PricingComponent,
 
     ContactComponent,
-     FooterComponent
+     FooterComponent,
+     MainComponent
   ],
   imports: [
     BrowserModule,
