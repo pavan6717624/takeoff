@@ -62,7 +62,7 @@ payment()
     "description": "Subscription to TAKEOFF",
     "image": "https://thetakeoff.in/assets/images/logo-white1.png",
     //"callback_url": "http://localhost:8081/callBackUrl",
-    "callback_url": "http://https://takeoff-pavan.herokuapp.com//callBackUrl",
+    "callback_url": "https://takeoff-pavan.herokuapp.com/callBackUrl",
    "order_id": this.orderid,
    
     "prefill": {
