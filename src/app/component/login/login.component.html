@@ -1,0 +1,49 @@
+<br /><br /><br /><br /><br />
+
+
+
+
+<h3> ---- Login to TAKEOFF</h3>
+
+
+<ng-container *ngIf="logginStatus">
+    <div id="preloader"></div>
+    Please Wait...Processing....
+</ng-container>
+<ng-container *ngIf="!logginStatus">
+
+<div nz-row>
+    <div nz-col nzSpan="6" style='text-align: left'>&nbsp;</div>
+    <div nz-col nzSpan="6" style='text-align: left'>Enter User ID</div>
+    <div nz-col nzSpan="12" style='text-align: left'>
+       
+        <input type="text" nz-input [(ngModel)]="userid" placeholder="Enter User ID" style='width:50%'/>
+       
+    </div>
+
+</div>
+
+<div nz-row>
+    <div nz-col nzSpan="12" style='text-align: left'>&nbsp;</div>
+    <div nz-col nzSpan="12" style='text-align: left'> &nbsp;</div>
+</div>
+
+        <div nz-row>
+            <div nz-col nzSpan="6" style='text-align: left'>&nbsp;</div>
+            <div nz-col nzSpan="6" style='text-align: left'>Enter Password </div>
+            <div nz-col nzSpan="12" style='text-align: left'>
+               
+                   
+                <input type="password" [(ngModel)]="password" nz-input placeholder="Enter Password" style='width:50%' />
+            </div>
+        </div>
+
+
+        <div nz-row>
+            <div nz-col nzSpan="24" style='text-align: center' nz-result-extra> 
+                <button nz-button nzType="primary" (click)=login()>Login to TakeOff</button>
+                <button nz-button (click)='home()'>Back Home</button>
+            </div>
+
+        </div>
+</ng-container>

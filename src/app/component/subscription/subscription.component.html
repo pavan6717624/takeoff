@@ -1,5 +1,15 @@
 <br /><br /><br /><br />
+
+
+
+
 <h3> ---- Subscribe to TAKEOFF</h3>
+
+<ng-container *ngIf="paying">
+    <div id="preloader"></div>
+    Please Wait...Processing....
+</ng-container>
+<ng-container *ngIf="!paying">
 <div nz-row>
     <div nz-col nzSpan="6" style='text-align: left'>&nbsp;</div>
     <div nz-col nzSpan="6" style='text-align: left'>Referer ID</div>
@@ -188,10 +198,11 @@
                 (email.trim().indexOf('@')==-1 || email.trim().indexOf('@') != email.trim().lastIndexOf('@') || email.trim().lastIndexOf('@') > email.trim().lastIndexOf('.')  || email.trim().endsWith('.') || email.trim().startsWith('@')  || email.trim().endsWith('@') || email.trim().startsWith('.') || email.trim().indexOf('.')==-1) ||
                 !(profession.trim().length > 0) ||
                 !(gender.trim().length > 0) || 
-                !(city.trim().length > 0)" 
+                !(city.trim().length > 0) || this.paying" 
                 nzDanger (click)='payment()'>Pay Rs. 1199</button>
             </div>
 
         </div>
+    </ng-container>
         <br /><br />
         
