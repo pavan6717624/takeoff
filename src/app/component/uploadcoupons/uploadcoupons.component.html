@@ -1,0 +1,94 @@
+<div nz-row>
+    <div nz-col nzSpan="6" style='text-align: right'> Upload Coupon
+
+   
+
+    </div>
+
+    <div nz-col nzSpan="18" style='text-align: center'>
+
+      <nz-upload nz-Accept="image/png, image/jpeg" [nzBeforeUpload]="beforeUpload"
+        [nzDisabled]="loading || imageSrc.length > 0">
+        <button nz-button [nzLoading]="loading"><span nz-icon nzType="upload"></span>Select Coupon Image</button>
+      </nz-upload>
+
+
+
+
+    </div>
+  </div>
+
+
+  <ng-container *ngIf='imageSrc.length > 0'>
+
+    <div nz-row>
+
+        &nbsp;
+      </div>
+  
+    <div nz-row>
+      <div nz-col nzSpan="24" style='text-align: center'>
+      Click on Cancel to Upload another New Coupon
+    </div>
+  </div>
+  </ng-container>
+  <ng-container *ngIf='loading'>
+    <div nz-row>
+
+      &nbsp;
+    </div>
+
+    <div nz-row>
+      <div nz-col nzSpan="24" style='text-align: center'>
+        <nz-spin nzTip="Please wait...." nzSimple [nzSize]="'large'"></nz-spin>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf='imageSrc.length > 0'>
+
+    <div nz-row>
+
+      &nbsp;
+    </div>
+
+    <div nz-row>
+      <div nz-col nzSpan="24" style='text-align: center;'>
+
+        <img id="image" [src]="imageSrc" style=' max-width: 100%;
+      max-height: 100%;'>
+
+      </div>
+    </div>
+
+
+    <div nz-row>
+      <div nz-col nzSpan="24" nz-result-extra style='text-align: center'>
+        <button nz-button [disabled]="loading" nzType="primary" (click)='upload()'>Upload</button>
+        <button nz-button [disabled]="loading" (click)='cancelUpload()'>Cancel</button>
+      </div>
+    </div>
+    <div nz-row>
+
+      &nbsp;
+    </div>
+
+  </ng-container>
+
+
+  <ng-container *ngIf="imageStatus && imageStatus.status  && imageStatus.message.length > 0">
+    <nz-result nzStatus="success" [nzTitle]="imageStatus.message"
+      nzSubTitle="Enjoy the Experience of Digital Coupons">
+
+
+
+
+    </nz-result>
+  </ng-container>
+
+
+  <ng-container *ngIf="imageStatus && !imageStatus.status && imageStatus.message.length > 0">
+    <nz-result nzStatus="500" [nzTitle]="imageStatus.message"
+      nzSubTitle="Please check the Connectivity and Try again">
+
+    </nz-result>
+  </ng-container>

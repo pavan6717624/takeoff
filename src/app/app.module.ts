@@ -36,7 +36,17 @@ import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { IconDefinition } from '@ant-design/icons-angular';
 // Import all. NOT RECOMMENDED. ❌
 import * as AllIcons from '@ant-design/icons-angular/icons';
-
+import { VendorComponent } from './component/vendor/vendor.component';
+import { UserComponent } from './component/user/user.component';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { UploadcouponsComponent } from './component/uploadcoupons/uploadcoupons.component';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { EditcouponsComponent } from './component/editcoupons/editcoupons.component';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { ReplaceNewLinePipe } from './component/replace-new-line.pipe';
 const antDesignIcons = AllIcons as {
  [key: string]: IconDefinition;
  };
@@ -62,7 +72,12 @@ const antDesignIcons = AllIcons as {
      PaymentFailedComponent,
      PaymentSuccessComponent,
      LoginComponent,
-     DisplayComponent
+     DisplayComponent,
+     VendorComponent,
+     UserComponent,
+     UploadcouponsComponent,
+     EditcouponsComponent,
+     ReplaceNewLinePipe
   ],
   imports: [
     BrowserModule,
@@ -80,7 +95,12 @@ const antDesignIcons = AllIcons as {
     NzResultModule,
     NzSpinModule,
     NzSwitchModule,
-    NzTreeModule, NzIconModule.forRoot(icons),
+    NzTreeModule, NzIconModule.forRoot(icons),NzMenuModule,
+    NzTabsModule,
+    NzModalModule,
+    NzUploadModule,
+    NzInputNumberModule,
+    NzSpaceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

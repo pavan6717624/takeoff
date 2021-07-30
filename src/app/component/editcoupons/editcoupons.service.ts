@@ -4,14 +4,17 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class EditcouponsService {
 
   constructor(private http: HttpClient) { }
 
-login(formData: FormData): Observable<any>
-{
- // return this.http.post( 'https://takeoff-pavan.herokuapp.com/login',formData );
-  return this.http.post('https://takeoff-pavan.herokuapp.com/login',formData)
-}
 
+
+  getImages(formData: FormData) : Observable<any> {
+
+
+
+ return this.http.post('https://takeoff-pavan.herokuapp.com/getImages',formData);
+   
+  }
 }

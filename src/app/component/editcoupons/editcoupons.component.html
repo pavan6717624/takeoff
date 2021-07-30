@@ -1,0 +1,295 @@
+<ng-container *ngIf='loading'>
+    <div nz-row>
+
+        &nbsp;
+    </div>
+
+    <div nz-row>
+        <div nz-col nzSpan="24" style='text-align: center'>
+            <nz-spin nzTip="Please wait....Loading Images" nzSimple [nzSize]="'large'"></nz-spin>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf='!loading'>
+    <div nz-row>
+        <div nz-col *ngFor="let item of images">
+            <div class="container">
+                <img id="image" class="img-fluid img-thumbnail" [src]="item.image"
+                    (click)="header='';footer='';body='';previewImage = item.image;previewVisible = true">
+
+                <div class="bottom-left">Bottom Left</div>
+                <div class="top-left">Top Left</div>
+                <div class="top-right">Top Right</div>
+                <div class="bottom-right">Bottom Right</div>
+                <div class="centered">Centered</div>
+                <div class="centered-left">Centered Left</div>
+                <div class="centered-right">Centered Right</div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+</ng-container>
+
+
+<nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+    (nzOnCancel)="previewVisible = false">
+    <ng-template #modalContent>
+        <h3> Edit Coupon </h3>
+        <div class="container">
+            <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+            <div [class]="footer_align" [style.font-family]='footer_font' [style.color]='footer_color'
+                [style.text-decoration]='footer_decoration' [style.font-weight]='footer_bold'
+                [style.font-style]='footer_style' [style.font-size.px]='footer_size'
+                [innerHTML]="footer | replaceNewLine"></div>
+
+
+
+
+
+
+            <div [class]="header_align" [style.font-family]='header_font' [style.color]='header_color'
+                [style.text-decoration]='header_decoration' [style.font-weight]='header_bold'
+                [style.font-style]='header_style' [style.font-size.px]='header_size'
+                [innerHTML]="header | replaceNewLine"></div>
+
+
+
+            <div [class]="body_align" [style.font-family]='body_font' [style.color]='body_color'
+                [style.text-decoration]='body_decoration' [style.font-weight]='body_bold'
+                [style.font-style]='body_style' [style.font-size.px]='body_size' [innerHTML]="body | replaceNewLine">
+            </div>
+
+        </div>
+        <nz-tabset nzTabPosition="top" nzSize="large">
+            <nz-tab nzTitle="Header">
+
+                <div nz-row>
+                    <div nz-col nzSpan="24" style='text-align: center'>
+                        <input type="color" [(ngModel)]="header_color"> &nbsp;&nbsp;
+                        <button nz-button [nzType]="header_align ==='top-left'? 'dashed' : 'text'"
+                            (click)="header_align='top-left'"> <i nz-icon nzType="align-left"
+                                nzTheme="outline"></i></button>
+                        <button nz-button [nzType]="header_align ==='top-center'? 'dashed' : 'text'"
+                            (click)="header_align='top-center'"><i nz-icon nzType="align-center"
+                                nzTheme="outline"></i></button>
+                        <button nz-button [nzType]="header_align ==='top-right'? 'dashed' : 'text'"
+                            (click)="header_align='top-right'"><i nz-icon nzType="align-right"
+                                nzTheme="outline"></i></button>
+                        <button nz-button [nzType]="header_bold ==='bold'? 'dashed' : 'text'"
+                            (click)="header_bold === 'bold'? header_bold = 'normal': header_bold = 'bold'"><i nz-icon
+                                nzType="bold" nzTheme="outline"></i></button>
+                        <button nz-button [nzType]="header_style ==='italic'? 'dashed' : 'text'"
+                            (click)="header_style === 'italic'? header_style = 'normal': header_style = 'italic'"><i
+                                nz-icon nzType="italic" nzTheme="outline"></i></button>
+
+
+                        <button nz-button [nzType]="header_decoration ==='underline'? 'dashed' : 'text'"
+                            (click)="header_decoration === 'underline'? header_style = '': header_decoration = 'underline'"><i
+                                nz-icon nzType="underline" nzTheme="outline"></i></button>
+
+                        <button nz-button [nzType]="header_decoration ==='line-through'? 'dashed' : 'text'"
+                            (click)="header_decoration === 'line-through'? header_style = '': header_decoration = 'line-through'"><i
+                                nz-icon nzType="strikethrough" nzTheme="outline"></i></button>
+
+                    </div>
+                </div>
+                <div nz-row>
+
+                    &nbsp;
+                </div>
+                <div nz-row>
+                    <div nz-col nzSpan="24" style='text-align: center'>
+                        <nz-input-number [(ngModel)]="header_size" [nzMin]="1" [nzMax]="50" [nzStep]="1">
+                        </nz-input-number>&nbsp;&nbsp;
+                        <nz-select [(ngModel)]="header_font">
+                            <nz-option nzValue="Times New Roman" nzLabel="Times New Roman"></nz-option>
+                            <nz-option nzValue="Georgia" nzLabel="Georgia"></nz-option>
+                            <nz-option nzValue="Garamond" nzLabel="Garamond"></nz-option>
+                            <nz-option nzValue="Arial" nzLabel="Arial"></nz-option>
+                            <nz-option nzValue="Verdana" nzLabel="Verdana"></nz-option>
+                            <nz-option nzValue="Helvetica" nzLabel="Helvetica"></nz-option>
+                            <nz-option nzValue="Courier New" nzLabel="Courier New"></nz-option>
+                            <nz-option nzValue="Lucida Console" nzLabel="Lucida Console"></nz-option>
+                            <nz-option nzValue="Monaco" nzLabel="Monaco"></nz-option>
+                            <nz-option nzValue="Brush Script MT" nzLabel="Brush Script MT"></nz-option>
+                            <nz-option nzValue="Lucida Handwriting" nzLabel="Lucida Handwriting"></nz-option>
+                            <nz-option nzValue="Copperplate" nzLabel="Copperplate"></nz-option>
+                            <nz-option nzValue="Papyrus" nzLabel="Papyrus"></nz-option>
+
+
+                        </nz-select>
+                    </div>
+                </div>
+                <div nz-row>
+
+                    &nbsp;
+                </div>
+                <div nz-row>
+                    <div nz-col nzSpan="24" style='text-align: center'>
+                        <textarea rows="4" nz-input [(ngModel)]='header'></textarea>
+                    </div>
+                </div>
+
+
+            </nz-tab>
+
+            <nz-tab nzTitle="Body">
+
+                <div nz-row>
+                    <div nz-col nzSpan="24" style='text-align: center'>
+                        <input type="color" [(ngModel)]="body_color"> &nbsp;&nbsp;
+                        <button nz-button [nzType]="body_align ==='centered-left'? 'dashed' : 'text'"
+                            (click)="body_align='centered-left'"> <i nz-icon nzType="align-left"
+                                nzTheme="outline"></i></button>
+                        <button nz-button [nzType]="body_align ==='centered'? 'dashed' : 'text'"
+                            (click)="body_align='centered'"><i nz-icon nzType="align-center"
+                                nzTheme="outline"></i></button>
+                        <button nz-button [nzType]="body_align ==='centered-right'? 'dashed' : 'text'"
+                            (click)="body_align='centered-right'"><i nz-icon nzType="align-right"
+                                nzTheme="outline"></i></button>
+                        <button nz-button [nzType]="body_bold ==='bold'? 'dashed' : 'text'"
+                            (click)="body_bold === 'bold'? body_bold = 'normal': body_bold = 'bold'"><i nz-icon
+                                nzType="bold" nzTheme="outline"></i></button>
+                        <button nz-button [nzType]="body_style ==='italic'? 'dashed' : 'text'"
+                            (click)="body_style === 'italic'? body_style = 'normal': body_style = 'italic'"><i nz-icon
+                                nzType="italic" nzTheme="outline"></i></button>
+
+
+                        <button nz-button [nzType]="body_decoration ==='underline'? 'dashed' : 'text'"
+                            (click)="body_decoration === 'underline'? body_style = '': body_decoration = 'underline'"><i
+                                nz-icon nzType="underline" nzTheme="outline"></i></button>
+
+                        <button nz-button [nzType]="body_decoration ==='line-through'? 'dashed' : 'text'"
+                            (click)="body_decoration === 'line-through'? body_style = '': body_decoration = 'line-through'"><i
+                                nz-icon nzType="strikethrough" nzTheme="outline"></i></button>
+
+                    </div>
+                </div>
+                <div nz-row>
+
+                    &nbsp;
+                </div>
+                <div nz-row>
+                    <div nz-col nzSpan="24" style='text-align: center'>
+                        <nz-input-number [(ngModel)]="body_size" [nzMin]="1" [nzMax]="50" [nzStep]="1">
+                        </nz-input-number>&nbsp;&nbsp;
+                        <nz-select [(ngModel)]="body_font">
+                            <nz-option nzValue="Times New Roman" nzLabel="Times New Roman"></nz-option>
+                            <nz-option nzValue="Georgia" nzLabel="Georgia"></nz-option>
+                            <nz-option nzValue="Garamond" nzLabel="Garamond"></nz-option>
+                            <nz-option nzValue="Arial" nzLabel="Arial"></nz-option>
+                            <nz-option nzValue="Verdana" nzLabel="Verdana"></nz-option>
+                            <nz-option nzValue="Helvetica" nzLabel="Helvetica"></nz-option>
+                            <nz-option nzValue="Courier New" nzLabel="Courier New"></nz-option>
+                            <nz-option nzValue="Lucida Console" nzLabel="Lucida Console"></nz-option>
+                            <nz-option nzValue="Monaco" nzLabel="Monaco"></nz-option>
+                            <nz-option nzValue="Brush Script MT" nzLabel="Brush Script MT"></nz-option>
+                            <nz-option nzValue="Lucida Handwriting" nzLabel="Lucida Handwriting"></nz-option>
+                            <nz-option nzValue="Copperplate" nzLabel="Copperplate"></nz-option>
+                            <nz-option nzValue="Papyrus" nzLabel="Papyrus"></nz-option>
+
+
+                        </nz-select>
+                    </div>
+                </div>
+                <div nz-row>
+
+                    &nbsp;
+                </div>
+                <div nz-row>
+                    <div nz-col nzSpan="24" style='text-align: center'>
+                        <textarea rows="4" nz-input [(ngModel)]='body'></textarea>
+                    </div>
+                </div>
+
+
+
+
+            </nz-tab>
+            <nz-tab nzTitle="Footer">
+
+
+
+                <div nz-row>
+                    <div nz-col nzSpan="24" style='text-align: center'>
+                        <input type="color" [(ngModel)]="footer_color"> &nbsp;&nbsp;
+                        <button nz-button [nzType]="footer_align ==='bottom-left'? 'dashed' : 'text'"
+                            (click)="footer_align='bottom-left'"> <i nz-icon nzType="align-left"
+                                nzTheme="outline"></i></button>
+                        <button nz-button [nzType]="footer_align ==='bottom-center'? 'dashed' : 'text'"
+                            (click)="footer_align='bottom-center'"><i nz-icon nzType="align-center"
+                                nzTheme="outline"></i></button>
+                        <button nz-button [nzType]="footer_align ==='bottom-right'? 'dashed' : 'text'"
+                            (click)="footer_align='bottom-right'"><i nz-icon nzType="align-right"
+                                nzTheme="outline"></i></button>
+                        <button nz-button [nzType]="footer_bold ==='bold'? 'dashed' : 'text'"
+                            (click)="footer_bold === 'bold'? footer_bold = 'normal': footer_bold = 'bold'"><i nz-icon
+                                nzType="bold" nzTheme="outline"></i></button>
+                        <button nz-button [nzType]="footer_style ==='italic'? 'dashed' : 'text'"
+                            (click)="footer_style === 'italic'? footer_style = 'normal': footer_style = 'italic'"><i
+                                nz-icon nzType="italic" nzTheme="outline"></i></button>
+
+
+                        <button nz-button [nzType]="footer_decoration ==='underline'? 'dashed' : 'text'"
+                            (click)="footer_decoration === 'underline'? footer_style = '': footer_decoration = 'underline'"><i
+                                nz-icon nzType="underline" nzTheme="outline"></i></button>
+
+                        <button nz-button [nzType]="footer_decoration ==='line-through'? 'dashed' : 'text'"
+                            (click)="footer_decoration === 'line-through'? footer_style = '': footer_decoration = 'line-through'"><i
+                                nz-icon nzType="strikethrough" nzTheme="outline"></i></button>
+
+                    </div>
+                </div>
+                <div nz-row>
+
+                    &nbsp;
+                </div>
+                <div nz-row>
+                    <div nz-col nzSpan="24" style='text-align: center'>
+                        <nz-input-number [(ngModel)]="footer_size" [nzMin]="1" [nzMax]="50" [nzStep]="1">
+                        </nz-input-number>&nbsp;&nbsp;
+                        <nz-select [(ngModel)]="footer_font">
+                            <nz-option nzValue="Times New Roman" nzLabel="Times New Roman"></nz-option>
+                            <nz-option nzValue="Georgia" nzLabel="Georgia"></nz-option>
+                            <nz-option nzValue="Garamond" nzLabel="Garamond"></nz-option>
+                            <nz-option nzValue="Arial" nzLabel="Arial"></nz-option>
+                            <nz-option nzValue="Verdana" nzLabel="Verdana"></nz-option>
+                            <nz-option nzValue="Helvetica" nzLabel="Helvetica"></nz-option>
+                            <nz-option nzValue="Courier New" nzLabel="Courier New"></nz-option>
+                            <nz-option nzValue="Lucida Console" nzLabel="Lucida Console"></nz-option>
+                            <nz-option nzValue="Monaco" nzLabel="Monaco"></nz-option>
+                            <nz-option nzValue="Brush Script MT" nzLabel="Brush Script MT"></nz-option>
+                            <nz-option nzValue="Lucida Handwriting" nzLabel="Lucida Handwriting"></nz-option>
+                            <nz-option nzValue="Copperplate" nzLabel="Copperplate"></nz-option>
+                            <nz-option nzValue="Papyrus" nzLabel="Papyrus"></nz-option>
+
+
+                        </nz-select>
+                    </div>
+                </div>
+                <div nz-row>
+
+                    &nbsp;
+                </div>
+                <div nz-row>
+                    <div nz-col nzSpan="24" style='text-align: center'>
+                        <textarea rows="4" nz-input [(ngModel)]='footer'></textarea>
+                    </div>
+                </div>
+
+
+
+            </nz-tab>
+
+
+
+        </nz-tabset>
+
+
+    </ng-template>
+</nz-modal>

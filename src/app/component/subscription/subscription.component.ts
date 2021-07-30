@@ -50,12 +50,12 @@ export class SubscriptionComponent implements OnInit {
   }
 
 
-  checkRefererId()
+  async checkRefererId()
   {
     this.refererStatus = "loading";
     var formData = new FormData();
     formData.set("refererid",this.refererid)
-    this.subscriptionService.checkRefererId(formData).subscribe(
+    await this.subscriptionService.checkRefererId(formData).then(
       (res) => {  this.refererIdStatus = res.status; 
 
        if( this.refererIdStatus)
@@ -72,7 +72,12 @@ export class SubscriptionComponent implements OnInit {
 
 payment()
 {
-  
+ 
+  if(this.orderid == undefined || null || '')
+  {
+    this.msg.create("error","No Server Connection ..Please try again...");
+    return;
+  }
  this.paying=true;
   var options = {
     "key": "rzp_test_tqgJ9eimxluVhi", // Enter the Key ID generated from the Dashboard
@@ -91,7 +96,7 @@ payment()
       );    
       window.dispatchEvent(event);
   },
-    //"callback_url": "https://takeoff-pavan.herokuapp.com/callBackUrl",
+  
    "order_id": this.orderid,
    
     "prefill": {
