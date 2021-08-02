@@ -15,16 +15,9 @@
     <div nz-row>
         <div nz-col *ngFor="let item of images">
             <div class="container">
-                <img id="image" class="img-fluid img-thumbnail" [src]="item.image"
+                <img style=' width:200px;
+                height:200px;  object-fit:scale-down; ' id="image" class="img-fluid img-thumbnail" [src]="item.image"
                     (click)="header='';footer='';body='';previewImage = item.image;previewVisible = true">
-
-                <div class="bottom-left">Bottom Left</div>
-                <div class="top-left">Top Left</div>
-                <div class="top-right">Top Right</div>
-                <div class="bottom-right">Bottom Right</div>
-                <div class="centered">Centered</div>
-                <div class="centered-left">Centered Left</div>
-                <div class="centered-right">Centered Right</div>
             </div>
         </div>
 
@@ -40,8 +33,13 @@
     (nzOnCancel)="previewVisible = false">
     <ng-template #modalContent>
         <h3> Edit Coupon </h3>
-        <div class="container">
-            <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+        <div class="container" style='overflow:hidden;'>
+            <img [src]="previewImage" [ngStyle]="{ width: '100%'}" style='border: 2px solid #555;' />
+
+            <img class="top-left" id="image" [src]="logo"
+                style='max-width: 20%; max-height: 20%;border: 2px solid blue;'>
+
+
             <div [class]="footer_align" [style.font-family]='footer_font' [style.color]='footer_color'
                 [style.text-decoration]='footer_decoration' [style.font-weight]='footer_bold'
                 [style.font-style]='footer_style' [style.font-size.px]='footer_size'
@@ -52,10 +50,15 @@
 
 
 
+
             <div [class]="header_align" [style.font-family]='header_font' [style.color]='header_color'
                 [style.text-decoration]='header_decoration' [style.font-weight]='header_bold'
                 [style.font-style]='header_style' [style.font-size.px]='header_size'
-                [innerHTML]="header | replaceNewLine"></div>
+                [innerHTML]="header | replaceNewLine">
+
+
+
+            </div>
 
 
 
@@ -72,7 +75,7 @@
                     <div nz-col nzSpan="24" style='text-align: center'>
                         <input type="color" [(ngModel)]="header_color"> &nbsp;&nbsp;
                         <button nz-button [nzType]="header_align ==='top-left'? 'dashed' : 'text'"
-                            (click)="header_align='top-left'"> <i nz-icon nzType="align-left"
+                            (click)="header_align='top-left'" disabled='true'> <i nz-icon nzType="align-left"
                                 nzTheme="outline"></i></button>
                         <button nz-button [nzType]="header_align ==='top-center'? 'dashed' : 'text'"
                             (click)="header_align='top-center'"><i nz-icon nzType="align-center"
@@ -89,11 +92,11 @@
 
 
                         <button nz-button [nzType]="header_decoration ==='underline'? 'dashed' : 'text'"
-                            (click)="header_decoration === 'underline'? header_style = '': header_decoration = 'underline'"><i
+                            (click)="header_decoration === 'underline'? header_decoration = 'none': header_decoration = 'underline'"><i
                                 nz-icon nzType="underline" nzTheme="outline"></i></button>
 
                         <button nz-button [nzType]="header_decoration ==='line-through'? 'dashed' : 'text'"
-                            (click)="header_decoration === 'line-through'? header_style = '': header_decoration = 'line-through'"><i
+                            (click)="header_decoration === 'line-through'? header_decoration = 'none': header_decoration = 'line-through'"><i
                                 nz-icon nzType="strikethrough" nzTheme="outline"></i></button>
 
                     </div>
@@ -161,11 +164,11 @@
 
 
                         <button nz-button [nzType]="body_decoration ==='underline'? 'dashed' : 'text'"
-                            (click)="body_decoration === 'underline'? body_style = '': body_decoration = 'underline'"><i
+                            (click)="body_decoration === 'underline'? body_decoration  = 'none': body_decoration = 'underline'"><i
                                 nz-icon nzType="underline" nzTheme="outline"></i></button>
 
                         <button nz-button [nzType]="body_decoration ==='line-through'? 'dashed' : 'text'"
-                            (click)="body_decoration === 'line-through'? body_style = '': body_decoration = 'line-through'"><i
+                            (click)="body_decoration === 'line-through'? body_decoration  = 'none': body_decoration = 'line-through'"><i
                                 nz-icon nzType="strikethrough" nzTheme="outline"></i></button>
 
                     </div>
@@ -236,11 +239,11 @@
 
 
                         <button nz-button [nzType]="footer_decoration ==='underline'? 'dashed' : 'text'"
-                            (click)="footer_decoration === 'underline'? footer_style = '': footer_decoration = 'underline'"><i
+                            (click)="footer_decoration === 'underline'? footer_decoration = 'none': footer_decoration = 'underline'"><i
                                 nz-icon nzType="underline" nzTheme="outline"></i></button>
 
                         <button nz-button [nzType]="footer_decoration ==='line-through'? 'dashed' : 'text'"
-                            (click)="footer_decoration === 'line-through'? footer_style = '': footer_decoration = 'line-through'"><i
+                            (click)="footer_decoration === 'line-through'? footer_decoration = 'none': footer_decoration = 'line-through'"><i
                                 nz-icon nzType="strikethrough" nzTheme="outline"></i></button>
 
                     </div>
@@ -287,9 +290,14 @@
             </nz-tab>
 
 
+            <nz-tab nzTitle="Details">
+                Details
+            </nz-tab>
+    
 
         </nz-tabset>
 
 
+     
     </ng-template>
 </nz-modal>

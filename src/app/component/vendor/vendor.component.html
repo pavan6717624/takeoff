@@ -5,17 +5,21 @@
 
     <nz-tabset [nzTabPosition]="talign" nzSize="large">
       <nz-tab nzTitle="Upload">
-        <app-uploadcoupons></app-uploadcoupons>
+        <app-uploadcoupons (onUpload)="uploadFun($event)" [loginStatus]="loginStatus"></app-uploadcoupons>
 
 
 
       </nz-tab>
       <nz-tab nzTitle="Edit">
 
-        <app-editcoupons></app-editcoupons>
+        <app-editcoupons [logo]='logo' [addImage]='addImage' [loginStatus]="loginStatus"></app-editcoupons>
 
       </nz-tab>
-      <nz-tab nzTitle="View">Content of Tab Pane 3</nz-tab>
+      <nz-tab nzTitle="Account">
+
+        <app-vendoraccount (onLogoChange)='onLogoChange($event)' [loginStatus]="loginStatus"></app-vendoraccount>
+
+      </nz-tab>
     </nz-tabset>
   </div>
 </div>

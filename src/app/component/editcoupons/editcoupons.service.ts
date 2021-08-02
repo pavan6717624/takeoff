@@ -11,10 +11,12 @@ export class EditcouponsService {
 
 
   getImages(formData: FormData) : Observable<any> {
-
-
-
- return this.http.post('https://takeoff-pavan.herokuapp.com/getImages',formData);
+ return this.http.post('https://takeoff-pavan.herokuapp.com//getImages',formData);
    
   }
+
+  getLogo(formData: FormData) : Observable<any> {
+    return this.http.post('https://takeoff-pavan.herokuapp.com//getLogo',formData);
+      
+     }
 }

@@ -19,13 +19,6 @@ export class UserComponent implements OnInit {
     const navigation = this.router.getCurrentNavigation();
     this.loginStatus =  (navigation?.extras?.state?.loginStatus); 
 
-   // alert(this.loginStatus.userType+" ("+this.loginStatus.userId+") succesfully loggged in");
-
-    if(this.loginStatus.userType === 'Vendor')
-    {
-      this.router.navigate(['vendor'],  { state: {loginStatus: this.loginStatus }}); 
-    }
-
     var loginButton = window.document.getElementById("loginButton")
     
     if(loginButton)
@@ -33,6 +26,15 @@ export class UserComponent implements OnInit {
       loginButton.innerHTML="Logout";
       loginButton.setAttribute('href','/logout');
     }
+
+   // alert(this.loginStatus.userType+" ("+this.loginStatus.userId+") succesfully loggged in");
+
+    if(this.loginStatus.userType === 'Vendor')
+    {
+     this.router.navigate(['vendor'],  { state: {loginStatus: this.loginStatus }}); 
+    }
+
+    
   }
 
   ngOnInit(): void {

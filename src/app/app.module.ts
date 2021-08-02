@@ -47,6 +47,9 @@ import { EditcouponsComponent } from './component/editcoupons/editcoupons.compon
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { ReplaceNewLinePipe } from './component/replace-new-line.pipe';
+import { VendoraccountComponent } from './component/vendoraccount/vendoraccount.component';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzTableModule } from 'ng-zorro-antd/table';
 const antDesignIcons = AllIcons as {
  [key: string]: IconDefinition;
  };
@@ -77,7 +80,8 @@ const antDesignIcons = AllIcons as {
      UserComponent,
      UploadcouponsComponent,
      EditcouponsComponent,
-     ReplaceNewLinePipe
+     ReplaceNewLinePipe,
+     VendoraccountComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +104,9 @@ const antDesignIcons = AllIcons as {
     NzModalModule,
     NzUploadModule,
     NzInputNumberModule,
-    NzSpaceModule
+    NzSpaceModule,
+    NzDescriptionsModule,
+    NzTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 
-import { NzTabPosition } from 'ng-zorro-antd/tabs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { VendorService } from '../vendor/vendor.service';
+import { LoginStatus } from '../login/login.component';
+import { Router } from '@angular/router';
 
 
 
@@ -20,8 +21,8 @@ export class ImageStatusDTO
 export class UploadcouponsComponent implements OnInit {
 
 
- 
-
+  @Input() loginStatus: LoginStatus | undefined;
+  @Output() onUpload:EventEmitter<string>= new EventEmitter();  
 
   ngOnInit(): void {
 
@@ -38,7 +39,7 @@ export class UploadcouponsComponent implements OnInit {
   
 imageStatus : ImageStatusDTO = new ImageStatusDTO();
 
-  constructor(private msg: NzMessageService, private vendorService:VendorService) {}
+  constructor( private router: Router, private msg: NzMessageService, private vendorService:VendorService) {}
 
   beforeUpload = (file:  any) =>
   {
@@ -73,10 +74,17 @@ imageStatus : ImageStatusDTO = new ImageStatusDTO();
     this.loading=true;
     var formData = new FormData();
     formData.set("file",this.file);
+    if(this.loginStatus)
+    formData.set("vendorId",this.loginStatus.userId)
+    else {
+      this.msg.create('error', 'Session Expired. Please Login');
+      this.router.navigate(['login']);
+    }
+
     this.vendorService.upload(formData).subscribe(
 
-      (res) => {console.log(res); this.imageStatus = res ; this.imageSrc=''; this.file=null;this.loading=false;},
-      (err) => {console.log(err); this.imageStatus = new ImageStatusDTO(); this.file = null; this.imageSrc='';this.loading=false;}
+      (res) => {console.log(res); this.imageStatus = res ; this.onUpload.emit(this.imageSrc); this.imageSrc=''; this.file=null;this.loading=false;},
+      (err) => {console.log(err); this.msg.create('error','Error Occured while uploading..');this.imageStatus = new ImageStatusDTO(); this.file = null; this.imageSrc='';this.loading=false;}
     );
   }
 
