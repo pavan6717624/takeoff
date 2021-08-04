@@ -23,6 +23,7 @@ export class ViewcouponsComponent implements OnInit {
     if(this.addCoupon)
    { 
      this.ngOnInit();
+     this.addCoupon=false;
     }
   
 
