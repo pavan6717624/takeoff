@@ -10,7 +10,7 @@ export class VendoraccountService {
  
  
   uploadLogo(formData: FormData): Observable<any> {
-    return this.http.post("https://takeoff-angular.herokuapp.com/uploadLogo",formData);
+    return this.http.post("https://takeoff-pavan.herokuapp.com/uploadLogo",formData);
   }
 
 
@@ -18,12 +18,12 @@ export class VendoraccountService {
 
   getVendorDetails(formData: FormData): Observable<any>
   {
-    return this.http.post("https://takeoff-angular.herokuapp.com/getVendorDetails",formData);
+    return this.http.post("https://takeoff-pavan.herokuapp.com/getVendorDetails",formData);
   }
 
   getDesignerDetails(formData: FormData): Observable<any>
   {
-    return this.http.post("https://takeoff-angular.herokuapp.com/getDesignerDetails",formData);
+    return this.http.post("https://takeoff-pavan.herokuapp.com/getDesignerDetails",formData);
   }
 
 }
