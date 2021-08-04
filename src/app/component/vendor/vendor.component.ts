@@ -7,6 +7,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { NzTabPosition } from 'ng-zorro-antd/tabs';
 import { Router } from '@angular/router';
 import { LoginStatus } from '../login/login.component';
+import { Coupon } from '../editcoupons/editcoupons.component';
 
 @Component({
   selector: 'app-vendor',
@@ -21,22 +22,29 @@ export class VendorComponent implements OnInit {
   uploaded: Boolean = false;
   logo: string = "";
   addImage: string = "";
-
+  isMobile: Boolean = false;
+  userType: string ='';
+  addCoupon: Boolean = false;
   constructor(private router: Router, private msg: NzMessageService, private vendorService:VendorService,  private deviceService: DeviceDetectorService) 
   {
     const navigation = this.router.getCurrentNavigation();
     this.loginStatus =  (navigation?.extras?.state?.loginStatus); 
+
+    if(this.loginStatus)
+    {
+      this.userType=this.loginStatus.userType;
+    }
     console.log("Vendor login Status :: "+this.loginStatus);
   }
 
   ngOnInit(): void {
 
     this.deviceInfo = this.deviceService.getDeviceInfo();
-    const isMobile = this.deviceService.isMobile();
+    this.isMobile = this.deviceService.isMobile();
     const isTablet = this.deviceService.isTablet();
     const isDesktopDevice = this.deviceService.isDesktop();
     
-    if(isMobile)
+    if(this.isMobile)
     this.talign='top';
   
 
@@ -46,6 +54,12 @@ export class VendorComponent implements OnInit {
   {
     console.log("came to adding image..."+addImage);
    this.addImage=addImage;
+  }
+
+  uploadCoupon(coupon: Coupon)
+  {
+    console.log("came to adding coupon..."+coupon);
+   this.addCoupon=true;
   }
 
   onLogoChange(logo: string)

@@ -29,6 +29,8 @@ export class VendoraccountComponent implements OnInit {
 
   @Input() loginStatus: LoginStatus | undefined;
 
+ 
+  logoStyle: string='';
 
   @Output() onLogoChange:EventEmitter<string>= new EventEmitter();  
 
@@ -37,13 +39,48 @@ export class VendoraccountComponent implements OnInit {
   constructor(private router: Router, private vendorService: VendorService, private vendoraccountService: VendoraccountService, private msg: NzMessageService) { }
 
   vendorDetails: VendorDetails = new VendorDetails();
+
+  userType: string ='';
  
 
   ngOnInit(): void {
 
     console.log("login status :: " + this.loginStatus);
-    this.getVendorDetails();
 
+    if(this.loginStatus)
+{
+  this.userType=this.loginStatus.userType;
+    if(this.loginStatus.userType ==='Vendor')
+    this.getVendorDetails();
+    else  if(this.loginStatus.userType ==='Designer')
+    this.getDesignerDetails();
+}
+
+else
+{
+  this.msg.create('error', 'Session Expired. Please Login');
+  this.router.navigate(['login']);
+}
+    
+
+  }
+
+
+  getDesignerDetails() {
+    this.loading=true;
+    var formData = new FormData();
+    if(this.loginStatus)
+    formData.set("vendorId", this.loginStatus.userId);
+    else
+    {
+      this.msg.create('error', 'Session Expired. Please Login');
+      this.router.navigate(['login']);
+    }
+    this.vendoraccountService.getDesignerDetails(formData).subscribe(
+      (res) => { this.loading=false; this.vendorDetails = res; console.log(this.vendorDetails); },
+      (err) => { this.loading=false; console.log(err); }
+
+    );
   }
 
   getVendorDetails() {

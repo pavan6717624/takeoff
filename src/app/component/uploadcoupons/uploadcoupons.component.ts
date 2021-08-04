@@ -4,7 +4,20 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { VendorService } from '../vendor/vendor.service';
 import { LoginStatus } from '../login/login.component';
 import { Router } from '@angular/router';
+import { UploadcouponsService } from './uploadcoupons.service';
 
+export class Category
+{
+  id: number = 0;
+  categoryName: string = "";
+}
+
+export class SubCategory
+{
+  id: number = 0;
+  subCategoryName: string = "";
+  category: Category = new Category();
+}
 
 
 export class ImageStatusDTO
@@ -12,6 +25,7 @@ export class ImageStatusDTO
   status: boolean=false;
   image: string="";
   message: string = "";
+  id: number = 0;
 }
 @Component({
   selector: 'app-uploadcoupons',
@@ -24,13 +38,38 @@ export class UploadcouponsComponent implements OnInit {
   @Input() loginStatus: LoginStatus | undefined;
   @Output() onUpload:EventEmitter<string>= new EventEmitter();  
 
+  category: string = '';
+  subCategory: string = '';
+  categories: Category[]=[];
+  subCategories: SubCategory[]=[];
+  keywords="";
+
   ngOnInit(): void {
 
+    this.getCategories();
+
    
-  
   }
 
+  getCategories()
+  {
+    this.uploadcouponsService.getCategories().subscribe(
+      (res) => {console.log(res);this.categories =res;},
+      (err) => {console.log(err);this.msg.create('error','Error while loading categories...')}
+     );
+    
+  }
 
+  getSubCategories()
+  {
+    this.loading=true;
+    var formData = new FormData();
+    formData.set("category",this.category)
+    this.uploadcouponsService.getSubCategories(formData).subscribe(
+      (res) => {console.log(res); this.loading=false;this.subCategory='';this.subCategories =res;},
+      (err) => {console.log(err); this.loading=false;this.msg.create('error','Error while loading subCategories...');}
+     );
+  }
   loading : boolean = false;
   
   imageSrc: string = "";
@@ -39,7 +78,7 @@ export class UploadcouponsComponent implements OnInit {
   
 imageStatus : ImageStatusDTO = new ImageStatusDTO();
 
-  constructor( private router: Router, private msg: NzMessageService, private vendorService:VendorService) {}
+  constructor( private uploadcouponsService :  UploadcouponsService,private router: Router, private msg: NzMessageService, private vendorService:VendorService) {}
 
   beforeUpload = (file:  any) =>
   {
@@ -71,6 +110,19 @@ imageStatus : ImageStatusDTO = new ImageStatusDTO();
 
   upload()
   {
+
+    if(this.category === '' || !this.category)
+    {
+      this.msg.create('error', 'Please Select Category');
+      return;
+    }
+
+    if(this.subCategory === ''|| !this.subCategory)
+    {
+      this.msg.create('error', 'Please Select SubCategory');
+      return;
+    }
+
     this.loading=true;
     var formData = new FormData();
     formData.set("file",this.file);
@@ -79,18 +131,23 @@ imageStatus : ImageStatusDTO = new ImageStatusDTO();
     else {
       this.msg.create('error', 'Session Expired. Please Login');
       this.router.navigate(['login']);
+      this.loading=false;
     }
 
+  
+formData.set("subCategory",this.subCategory);
+formData.set("keywords",this.keywords);
     this.vendorService.upload(formData).subscribe(
 
-      (res) => {console.log(res); this.imageStatus = res ; this.onUpload.emit(this.imageSrc); this.imageSrc=''; this.file=null;this.loading=false;},
-      (err) => {console.log(err); this.msg.create('error','Error Occured while uploading..');this.imageStatus = new ImageStatusDTO(); this.file = null; this.imageSrc='';this.loading=false;}
+      (res) => {console.log(res); this.imageStatus = res ; this.category=''; this.subCategory = '' ; this.keywords=''; this.onUpload.emit(this.imageSrc); this.imageSrc=''; this.file=null;this.loading=false;},
+      (err) => {console.log(err); this.category=''; this.subCategory = '' ;this.keywords=''; this.msg.create('error','Error Occured while uploading..');this.imageStatus = new ImageStatusDTO(); this.file = null; this.imageSrc='';this.loading=false;}
     );
   }
 
   cancelUpload()
   {
     this.imageSrc = "";
+    this.category='';this.keywords=''; 
   }
  
 

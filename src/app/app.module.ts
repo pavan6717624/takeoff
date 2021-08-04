@@ -50,6 +50,17 @@ import { ReplaceNewLinePipe } from './component/replace-new-line.pipe';
 import { VendoraccountComponent } from './component/vendoraccount/vendoraccount.component';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { AdminComponent } from './component/admin/admin.component';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
+
+import en from '@angular/common/locales/en-IN';
+import { registerLocaleData } from '@angular/common';
+import { ViewcouponsComponent } from './component/viewcoupons/viewcoupons.component';
+registerLocaleData(en);
+
+const LANG_PROVIDERS = [{ provide: NZ_I18N, useValue: en_US }];
+
 const antDesignIcons = AllIcons as {
  [key: string]: IconDefinition;
  };
@@ -81,7 +92,9 @@ const antDesignIcons = AllIcons as {
      UploadcouponsComponent,
      EditcouponsComponent,
      ReplaceNewLinePipe,
-     VendoraccountComponent
+     VendoraccountComponent,
+     AdminComponent,
+     ViewcouponsComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,9 +119,10 @@ const antDesignIcons = AllIcons as {
     NzInputNumberModule,
     NzSpaceModule,
     NzDescriptionsModule,
-    NzTableModule
+    NzTableModule,
+    NzDatePickerModule
   ],
-  providers: [],
+  providers: [LANG_PROVIDERS,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

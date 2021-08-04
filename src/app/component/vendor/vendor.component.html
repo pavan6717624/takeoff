@@ -10,16 +10,27 @@
 
 
       </nz-tab>
-      <nz-tab nzTitle="Edit">
+      <nz-tab [nzTitle]="userType==='Vendor'?'Edit' : 'View'">
 
-        <app-editcoupons [logo]='logo' [addImage]='addImage' [loginStatus]="loginStatus"></app-editcoupons>
+        <app-editcoupons [logo]='logo' (onUploadCoupon)='uploadCoupon($event)' [addImage]='addImage' [loginStatus]="loginStatus"></app-editcoupons>
 
       </nz-tab>
+
+
+      <nz-tab nzTitle="View">
+
+        <app-viewcoupons [addCoupon]='addCoupon' [loginStatus]="loginStatus"></app-viewcoupons>
+
+      </nz-tab>
+
       <nz-tab nzTitle="Account">
 
         <app-vendoraccount (onLogoChange)='onLogoChange($event)' [loginStatus]="loginStatus"></app-vendoraccount>
 
       </nz-tab>
+
+    
+
     </nz-tabset>
   </div>
 </div>

@@ -24,7 +24,7 @@ export class UserComponent implements OnInit {
     if(loginButton)
     {
       loginButton.innerHTML="Logout";
-      loginButton.setAttribute('href','/logout');
+      loginButton.setAttribute('href','/login');
     }
 
    // alert(this.loginStatus.userType+" ("+this.loginStatus.userId+") succesfully loggged in");
@@ -33,6 +33,12 @@ export class UserComponent implements OnInit {
     {
      this.router.navigate(['vendor'],  { state: {loginStatus: this.loginStatus }}); 
     }
+
+    else if(this.loginStatus.userType === 'Designer')
+    {
+     this.router.navigate(['designer'],  { state: {loginStatus: this.loginStatus }}); 
+    }
+
 
     
   }

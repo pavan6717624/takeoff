@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'display', component: DisplayComponent },
   { path: 'user', component: UserComponent },
   { path: 'vendor', component: VendorComponent },
+  { path: 'designer', component: VendorComponent },
   
 
  

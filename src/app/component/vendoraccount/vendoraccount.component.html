@@ -13,8 +13,10 @@
 
  <ng-container *ngIf='!loading'>
 
-<nz-descriptions nzTitle="Account Details" [nzColumn]='2' nzBordered>
+<nz-descriptions nzTitle="Account Details" [nzColumn]='2' nzBordered  nzLayout="vertical">
     <nz-descriptions-item nzTitle="Vendor Id">{{vendorDetails.vendorId}}</nz-descriptions-item>
+    
+    <ng-container *ngIf="userType==='Vendor'">
     <nz-descriptions-item nzTitle="Logo">
 
         <nz-upload nz-Accept="image/png, image/jpeg" [nzBeforeUpload]="beforeUpload">
@@ -22,9 +24,9 @@
         </nz-upload>
 
         <ng-container *ngIf='vendorDetails.logo.length > 30'>
-
-            <div class="container" style='width:50%;text-align:center'>
-                <img class="img-fluid img-thumbnail" [src]='vendorDetails.logo' style='width:100%;height:100%'>
+            <br/>
+            <div style='width:100%;text-align:left'>
+                <img class="img-fluid img-thumbnail" [src]='vendorDetails.logo'> 
                 <ng-container *ngIf='imgSourceChange'>
                     <div nz-row>
                         &nbsp;
@@ -39,13 +41,18 @@
         </ng-container>
 
     </nz-descriptions-item>
+    </ng-container>
 
     <nz-descriptions-item nzTitle="Name">{{vendorDetails.name}}</nz-descriptions-item>
     <nz-descriptions-item nzTitle="Details">{{vendorDetails.details}}</nz-descriptions-item>
+    <ng-container *ngIf="userType==='Vendor'">
+
     <nz-descriptions-item nzTitle="Address">{{vendorDetails.address}}</nz-descriptions-item>
+    </ng-container>
     <nz-descriptions-item nzTitle="City">{{vendorDetails.city}}</nz-descriptions-item>
     <nz-descriptions-item nzTitle="Email">{{vendorDetails.email}}</nz-descriptions-item>
     <nz-descriptions-item nzTitle="Contact">{{vendorDetails.contact}}</nz-descriptions-item>
 
 </nz-descriptions>
+
 </ng-container>

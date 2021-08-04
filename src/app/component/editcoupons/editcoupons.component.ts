@@ -1,11 +1,85 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { EditcouponsService } from './editcoupons.service';
-import { ImageStatusDTO } from '../uploadcoupons/uploadcoupons.component';
+import { ImageStatusDTO, Category } from '../uploadcoupons/uploadcoupons.component';
 import { VendorService } from '../vendor/vendor.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { LoginStatus } from '../login/login.component';
 import { Router } from '@angular/router';
 import { VendoraccountService } from '../vendoraccount/vendoraccount.service';
+import { UploadcouponsService } from '../uploadcoupons/uploadcoupons.service';
+import { DatePipe } from '@angular/common';
+
+export class Coupon
+{
+
+  header: string = "";
+  body: string = "";
+  footer: string = "";
+
+  header_color: string = '';
+  body_color: string = '';
+  footer_color: string = '';
+
+  header_align: string = "top-center";
+  body_align: string = "centered-left";
+  footer_align: string = "bottom-left";
+
+
+  header_size: number = 10;
+  body_size: number = 10;
+  footer_size: number = 10;
+
+
+  footer_font: string = "Times New Roman";
+  header_font: string = "Times New Roman";
+  body_font: string = "Times New Roman";
+
+  footer_bold: string = "normal";
+  header_bold: string = "normal";
+  body_bold: string = "normal";
+
+
+  footer_style: string = "normal";
+  header_style: string = "normal";
+  body_style: string = "normal";
+
+  image_align: string = 'top-left';
+
+
+  footer_decoration: string = "";
+  header_decoration: string = "";
+  body_decoration: string = "";
+
+  
+
+  profession: string='';
+  gender: string='';
+
+  
+  couponType: string = '';
+  keywords: string = '';
+
+ 
+
+  imageId: number =0;
+  image: string='';
+
+  
+  fromDate: string = '';
+  toDate: string = '';
+
+  logo: string = '';
+
+  vendorId: number=0;
+
+}
+
+export class CouponType
+{
+id: number = 0;
+couponType: string = '';
+
+}
 
 @Component({
   selector: 'app-editcoupons',
@@ -19,6 +93,9 @@ export class EditcouponsComponent implements OnInit {
   @Input() uploaded: Boolean | undefined;
   @Input() logo: string | undefined;
   @Input() addImage: string | undefined;
+  @Output() onUploadCoupon:EventEmitter<Coupon>= new EventEmitter();  
+
+  userType: string = '';
 
 
   ngOnChanges(changes: SimpleChanges) {
@@ -42,15 +119,15 @@ export class EditcouponsComponent implements OnInit {
     
 }
 
-  constructor(private vendoraccountService: VendoraccountService, private router: Router, private msg: NzMessageService, private vendorService: VendorService, private editcouponsService: EditcouponsService) { }
+  constructor( private uploadcouponsService :  UploadcouponsService, private vendoraccountService: VendoraccountService, private router: Router, private msg: NzMessageService, private vendorService: VendorService, private editcouponsService: EditcouponsService) { }
 
   loading: boolean = false;
   loading1: boolean = false;
 
 
-  header: string = "&nbsp;";
-  body: string = "&nbsp;";
-  footer: string = "&nbsp;";
+  header: string = "";
+  body: string = "";
+  footer: string = "";
 
   header_color: string = '';
   body_color: string = '';
@@ -89,11 +166,39 @@ export class EditcouponsComponent implements OnInit {
   previewImage: string | undefined ;
   previewVisible = false;
 
+  profession: string='';
+  gender: string='';
+
+  couponTypes: CouponType[]=[];
+  couponType: string = '';
+  keywords: string = '';
+
+  result: Array<Date | null> = [];
+
+  imageId: number =0;
+
   ngOnInit(): void {
 
     this.getImages();
+    this.getCouponTypes();
+    
   }
   images: ImageStatusDTO[] = [];
+
+  getCouponTypes()
+  {
+    this.editcouponsService.getCouponTypes().subscribe(
+
+      (res) => { this.loading=false;  console.log(res); this.couponTypes = res; this.loading = false; },
+      (err) => {  this.loading=false; console.log(err); this.couponTypes = []; this.loading = false; }
+    );
+  }
+
+  saveId(id: number)
+  {
+    this.imageId=id;
+  
+  }
   getImages() {
 
 
@@ -101,12 +206,17 @@ export class EditcouponsComponent implements OnInit {
     this.loading = true;
     var formData = new FormData();
     if (this.loginStatus)
-      formData.set("vendorId", this.loginStatus.userId);
+      {
+        formData.set("vendorId", this.loginStatus.userId);
+        this.userType = this.loginStatus.userType;
+      }
     else {
       this.msg.create('error', 'Session Expired. Please Login');
       this.router.navigate(['login']);
     }
 
+    if(this.userType==='Vendor')
+    {
     this.vendoraccountService.getVendorDetails(formData).subscribe(
       (res) => { 
        
@@ -120,13 +230,188 @@ export class EditcouponsComponent implements OnInit {
       (err) => { this.loading=false; console.log(err); }
 
     );
+      }
+      else if(this.userType==='Designer')
+      {
+        this.editcouponsService.getImages(formData).subscribe(
 
+          (res) => { this.loading=false;  console.log(res); this.images = res; this.loading = false; },
+          (err) => {  this.loading=false; console.log(err); this.images = []; this.loading = false; }
+        );
+      }
     
   }
 
 
 
+  onChange(result: Date): void {
+    console.log('Selected Time: ', result);
+  }
+
+  onOk(result: Date | Date[] | null): void {
+    console.log('onOk', result);
+  }
+
+  onCalendarChange(result: Array<Date | null>): void {
+    console.log('onCalendarChange', result);
+  }
+
+createCoupon()
+{
+ 
+  if(!this.result || this.result.length!=2 || this.result[0]==null || this.result[1] == null)
+  {
+    this.msg.create('error','Please Select Publish Dates (From & To)');
+     return;
+  }
+  
+  if(!this.profession || this.profession==='')
+ {
+   this.msg.create('error','Please Select Target Profession');
+   return;
+ }
+
+ if(!this.gender || this.gender==='')
+ {
+   this.msg.create('error','Please Select Target Gender');
+   return;
+ }
+
+ if(!this.couponType || this.couponType==='')
+ {
+   this.msg.create('error','Please Select Coupon Type');
+   return;
+ }
+
+ var datePipe = new DatePipe('en-US');
+    let from = datePipe.transform(this.result[0], 'yyyy-MM-dd HH:mm');
+    let to = datePipe.transform(this.result[1], 'yyyy-MM-dd HH:mm');
+
+var coupon =new Coupon();
+
+  coupon. header=  this. header ;
+coupon.  body=this.  body ;
+coupon.  footer=this.  footer ;
+	
+coupon.  header_color=this.  header_color ;
+coupon.  body_color=this.  body_color ;
+coupon.  footer_color=this.  footer_color ;
+	
+coupon.  header_align=this.  header_align ;
+  coupon. body_align=this.  body_align ;
+coupon.  footer_align=this.  footer_align ;
+	
+coupon.  header_size=this.  header_size;
+coupon.  body_size=this.  body_size ;
+coupon.  footer_size=this.  footer_size ;
+		
+coupon.  footer_font=this.  footer_font ;
+coupon.  header_font=this.  header_font ;
+coupon.  body_font=this.  body_font ;
+
+coupon.  footer_bold=this.  footer_bold ;
+coupon.  header_bold=this.  header_bold ;
+coupon.  body_bold=this.  body_bold ;
+	
+coupon.  footer_style=this.  footer_style ;
+coupon.  header_style=this.  header_style ;
+coupon.  body_style=this.  body_style ;
+		
+coupon.  image_align=this.  image_align ;
+
+coupon.  footer_decoration=this.  footer_decoration ;
+coupon.  header_decoration=this.  header_decoration ;
+coupon.  body_decoration=this.  body_decoration ;
+		
+coupon.  profession=this.  profession;
+coupon.  gender=this.  gender;
+		
+coupon.  couponType=this.couponType ;
+coupon.  keywords=this.  keywords ;
+
+if(from)
+coupon.fromDate=from;
+else
+{
+this.msg.create('error','Publish From Date not Found.');
+return;
+}
+
+if(to)
+coupon.toDate=to;
+else
+{
+  this.msg.create('error','Publish To Date not Found.');
+  return;
+}
+
+coupon.imageId = this.imageId;
+if(this.loginStatus && this.loginStatus.userId)
+coupon.vendorId=Number(this.loginStatus.userId);
+else
+{
+  this.msg.create('error','Session Expired. Please Login.');
+  this.router.navigate(['login']);
+  return;
+}
+this.loading1=true;
+
+console.log(coupon);
+
+this.editcouponsService.saveCoupon(coupon).subscribe(
+
+  (res) => { this.loading1=false;  console.log(res);  if(res){ this.msg.create('success','Coupon Saved Succesfully'); this.onUploadCoupon.emit(coupon); }else this.msg.create('error','Error while Saving Coupon. Please try Again.'); },
+  (err) => {  this.loading1=false; this.msg.create('error','Error while Saving Coupon. Please try Again.'); console.log(err); }
+);
+
+}
 
 
+resetImageParams()
+{
+  this. header = "";
+this.  body = "";
+this.  footer = "";
 
+this.  header_color = '';
+this.  body_color = '';
+this.  footer_color = '';
+
+this.  header_align = "top-center";
+this.  body_align = "centered-left";
+this.  footer_align = "bottom-left";
+
+this.  header_size= 10;
+this.  body_size = 10;
+this.  footer_size = 10;
+
+this.  footer_font = "Times New Roman";
+this.  header_font = "Times New Roman";
+this.  body_font = "Times New Roman";
+
+this.  footer_bold = "normal";
+this.  header_bold = "normal";
+this.  body_bold = "normal";
+
+this.  footer_style = "normal";
+this.  header_style = "normal";
+this.  body_style = "normal";
+
+this.  image_align = 'top-left';
+
+this.  footer_decoration = "";
+this.  header_decoration = "";
+this.  body_decoration = "";
+
+
+this.  profession='';
+this.  gender='';
+
+
+this.  couponType = '';
+this.  keywords = '';
+
+this.result=[];
+ 
+}
 }
