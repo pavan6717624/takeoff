@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'vendor', component: VendorComponent },
   { path: 'designer', component: VendorComponent },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   
 
  

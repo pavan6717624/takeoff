@@ -1,3 +1,4 @@
+<div class="container">
 <ng-container *ngIf='loading'>
     <div nz-row>
 
@@ -11,48 +12,143 @@
     </div>
 </ng-container>
 
- <ng-container *ngIf='!loading'>
+<!-- <ng-container *ngIf='!loading'>
 
-<nz-descriptions nzTitle="Account Details" [nzColumn]='2' nzBordered  nzLayout="vertical">
-    <nz-descriptions-item nzTitle="Vendor Id">{{vendorDetails.vendorId}}</nz-descriptions-item>
-    
-    <ng-container *ngIf="userType==='Vendor'">
-    <nz-descriptions-item nzTitle="Logo">
 
-        <nz-upload nz-Accept="image/png, image/jpeg" [nzBeforeUpload]="beforeUpload">
-            <button nz-button [disabled]="loading"><span nz-icon nzType="upload"></span></button>
-        </nz-upload>
 
-        <ng-container *ngIf='vendorDetails.logo.length > 30'>
-            <br/>
-            <div style='width:100%;text-align:left'>
-                <img class="img-fluid img-thumbnail" [src]='vendorDetails.logo'> 
-                <ng-container *ngIf='imgSourceChange'>
-                    <div nz-row>
-                        &nbsp;
-                    </div>
-                    <button nz-button [disabled]="uploading || loading" (click)="logoUpload()"><span nz-icon
-                            [nzType]="uploading?'loading':'check'" nzTheme="outline"></span></button> &nbsp;
-                    <button nz-button [disabled]="uploading || loading" (click)="getVendorDetails()"><span nz-icon
-                            nzType="close"></span></button>
-                </ng-container>
-            </div>
+    <div>
+        <div nz-row>
+            <div nz-col>Vendor Id</div>
+            <div nz-col> {{vendorDetails.vendorId}}</div>
+        </div>
+        <div nz-row>
+            <ng-container *ngIf="userType==='Vendor'">
+                <div nz-col>Logo</div>
 
+                <div nz-col>
+                    <nz-upload nz-Accept="image/png, image/jpeg" [nzBeforeUpload]="beforeUpload">
+                        <button nz-button [disabled]="loading"><span nz-icon nzType="upload"></span></button>
+                    </nz-upload>
+
+                    <ng-container *ngIf='vendorDetails.logo.length > 30'>
+                        <br />
+                        <div style='width:20%;text-align:left'>
+                            <img class="img-fluid img-thumbnail" [src]='vendorDetails.logo'>
+                            <ng-container *ngIf='imgSourceChange'>
+                                <div nz-row>
+                                    &nbsp;
+                                </div>
+                                <button nz-button [disabled]="uploading || loading" (click)="logoUpload()"><span nz-icon
+                                        [nzType]="uploading?'loading':'check'" nzTheme="outline"></span></button> &nbsp;
+                                <button nz-button [disabled]="uploading || loading" (click)="getVendorDetails()"><span
+                                        nz-icon nzType="close"></span></button>
+                            </ng-container>
+                        </div>
+
+                    </ng-container>
+
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+
+    <nz-descriptions nzTitle="" [nzColumn]='2' nzBordered>
+
+        <nz-descriptions-item nzTitle="Name">{{vendorDetails.name}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Details">{{vendorDetails.details}}</nz-descriptions-item>
+        <ng-container *ngIf="userType==='Vendor'">
+
+            <nz-descriptions-item nzTitle="Address">{{vendorDetails.address}}</nz-descriptions-item>
         </ng-container>
+        <nz-descriptions-item nzTitle="City">{{vendorDetails.city}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Email">{{vendorDetails.email}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Contact">{{vendorDetails.contact}}</nz-descriptions-item>
 
-    </nz-descriptions-item>
-    </ng-container>
-
-    <nz-descriptions-item nzTitle="Name">{{vendorDetails.name}}</nz-descriptions-item>
-    <nz-descriptions-item nzTitle="Details">{{vendorDetails.details}}</nz-descriptions-item>
-    <ng-container *ngIf="userType==='Vendor'">
-
-    <nz-descriptions-item nzTitle="Address">{{vendorDetails.address}}</nz-descriptions-item>
-    </ng-container>
-    <nz-descriptions-item nzTitle="City">{{vendorDetails.city}}</nz-descriptions-item>
-    <nz-descriptions-item nzTitle="Email">{{vendorDetails.email}}</nz-descriptions-item>
-    <nz-descriptions-item nzTitle="Contact">{{vendorDetails.contact}}</nz-descriptions-item>
-
-</nz-descriptions>
+    </nz-descriptions>
 
 </ng-container>
+<br />
+<br /> -->
+<ng-container *ngIf='!loading'>
+    <div class="row" >
+        <div class="col-lg-3" >
+
+            <h4>Vendor Id</h4>
+            <p>{{vendorDetails.vendorId}}</p>
+        </div>
+        <ng-container *ngIf="userType==='Vendor'">
+            <div class="col-lg-3" >
+
+                <h4>Logo</h4>
+                <p>
+                    <nz-upload nz-Accept="image/png, image/jpeg" [nzBeforeUpload]="beforeUpload">
+                        <button nz-button [disabled]="loading"><span nz-icon nzType="upload"></span></button>
+                    </nz-upload>
+
+                    <ng-container *ngIf='vendorDetails.logo.length > 30'>
+                        <br />
+                        <div style='max-width:50%; max-height:20%;text-align:left'>
+                            <img class="img-fluid img-thumbnail" [src]='vendorDetails.logo'>
+                            <ng-container *ngIf='imgSourceChange'>
+                                <div nz-row>
+                                    &nbsp;
+                                </div>
+                                <button nz-button [disabled]="uploading || loading" (click)="logoUpload()"><span nz-icon
+                                        [nzType]="uploading?'loading':'check'" nzTheme="outline"></span></button> &nbsp;
+                                <button nz-button [disabled]="uploading || loading" (click)="getVendorDetails()"><span
+                                        nz-icon nzType="close"></span></button>
+                            </ng-container>
+                        </div>
+
+                    </ng-container>
+                </p>
+            </div>
+        </ng-container>
+
+
+
+        <div class="col-lg-3">
+
+            <h4>Name</h4>
+            <p>{{vendorDetails.name}}</p>
+        </div>
+     
+            <div class="col-lg-3">
+
+                <h4>Details</h4>
+                <p>{{vendorDetails.details}}</p>
+
+            </div>
+       
+
+    </div>
+
+
+    <div class="row">
+
+        <ng-container *ngIf="userType==='Vendor'">
+        <div class="col-lg-3">
+            <h4>Address</h4>
+            <p>{{vendorDetails.address}}</p>
+        </div>
+    </ng-container>
+
+
+        <div class="col-lg-3">
+            <h4>City</h4>
+            <p>{{vendorDetails.city}}</p>
+        </div>
+        <div class="col-lg-3">
+            <h4>Email</h4>
+            <p>{{vendorDetails.email}}</p>
+        </div>
+        <div class="col-lg-3">
+            <h4>Contact</h4>
+            <p>{{vendorDetails.contact}}</p>
+        </div>
+    </div>
+</ng-container>
+<br />
+<br />
+</div>

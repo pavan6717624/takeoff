@@ -37,7 +37,7 @@
 <ng-container *ngIf="userType==='Designer'">
 
     <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
-        (nzOnCancel)="previewVisible = false">
+        (nzOnCancel)="previewVisible = false" nzWidth='80%'>
         <ng-template #modalContent>
             <h3> View Coupon </h3>
             <div class="container" style='overflow:hidden;'>
@@ -55,7 +55,7 @@
 
 <ng-container *ngIf="userType==='Vendor'">
     <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
-        (nzOnCancel)="previewVisible = false">
+        (nzOnCancel)="previewVisible = false"  nzWidth='80%'>
         <ng-template #modalContent>
             <h3> Edit Coupon </h3>
             <div class="container" style='overflow:hidden;'>

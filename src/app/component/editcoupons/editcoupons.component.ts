@@ -78,6 +78,7 @@ export class CouponType
 {
 id: number = 0;
 couponType: string = '';
+couponTypeVisibility: Boolean = true;
 
 }
 
@@ -180,7 +181,7 @@ export class EditcouponsComponent implements OnInit {
   ngOnInit(): void {
 
     this.getImages();
-    this.getCouponTypes();
+   
     
   }
   images: ImageStatusDTO[] = [];
@@ -223,8 +224,8 @@ export class EditcouponsComponent implements OnInit {
          this.logo = res.logo;
          this.editcouponsService.getImages(formData).subscribe(
 
-          (res) => { this.loading=false;  console.log(res); this.images = res; this.loading = false; },
-          (err) => {  this.loading=false; console.log(err); this.images = []; this.loading = false; }
+          (res) => {  this.getCouponTypes();  console.log(res); this.images = res; this.loading = false; },
+          (err) => {   this.getCouponTypes(); console.log(err); this.images = []; this.loading = false; }
         );
         },
       (err) => { this.loading=false; console.log(err); }
