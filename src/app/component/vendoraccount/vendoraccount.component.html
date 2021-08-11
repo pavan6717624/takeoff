@@ -149,6 +149,67 @@
         </div>
     </div>
 </ng-container>
-<br />
-<br />
 </div>
+
+
+<div class="row" >
+    <div class="col-lg-12" >
+        <h4>Password</h4>
+        <button nz-button nzType="primary" (click)="password='';conpassword='';editVisible=true;">Change Password</button>
+    </div>
+
+
+    <nz-modal [nzVisible]="editVisible" [nzContent]="modalContentEdit" [nzFooter]="null" (nzOnCancel)="editVisible = false">
+        <ng-template #modalContentEdit>
+      
+          <h3> Change Password </h3>
+          <div nz-row class="container">
+            <div nz-col nzSpan="8" style='text-align: left'>Current Password</div>
+            <div nz-col nzSpan="4" style='text-align: right'>
+                <ng-container *ngIf="password.trim().length > 0">
+                    <i nz-icon [nzType]="password.trim().length> 8 ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
+                   </ng-container>
+            </div>
+            <div nz-col nzSpan="12" style='text-align: left'>
+                  <input type="password" nz-input placeholder="Enter password" style='width:100%' [(ngModel)]='password' />
+            </div>
+          </div>
+          <div nz-row> &nbsp; </div>
+          
+          <div nz-row class="container">
+            <div nz-col nzSpan="8" style='text-align: left'>Enter New Password</div>
+            <div nz-col nzSpan="4" style='text-align: right'>
+                <ng-container *ngIf="newpassword.trim().length > 0">
+                    <i nz-icon [nzType]="newpassword.trim().length> 8 ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
+                   </ng-container>
+            </div>
+            <div nz-col nzSpan="12" style='text-align: left'>
+                  <input type="password" nz-input placeholder="Enter password" style='width:100%' [(ngModel)]='newpassword' />
+            </div>
+          </div>
+          <div nz-row> &nbsp; </div>
+          <div nz-row class="container">
+            <div nz-col nzSpan="8" style='text-align: left'>Confirm Password</div>
+
+            <div nz-col nzSpan="4" style='text-align: right'>
+
+                <ng-container *ngIf="conpassword.trim().length > 0">
+                    <i nz-icon [nzType]="conpassword==newpassword ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
+                   </ng-container>
+                </div>
+
+            <div nz-col nzSpan="12" style='text-align: left'>
+               
+
+              <input type="password" nz-input placeholder="Confirm password" style='width:100%' [(ngModel)]='conpassword' />
+            </div>
+          </div>
+      
+          <div nz-row> &nbsp; </div>
+          <div nz-row class="container">
+            <div nz-col nzSpan="24" style='text-align: right'>
+              <button nz-button nzType="primary" (click)='changePassword()'>Change</button>
+            </div>
+          </div>
+        </ng-template>
+      </nz-modal>

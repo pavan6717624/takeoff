@@ -23,7 +23,7 @@
                         (click)="showConfirm(data.couponTypeVisibility?'Hide':'UnHide',data.id)"></i>
                     &nbsp;
                     <i nz-icon nzType="edit" nzTheme="outline"
-                        (click)="editId=data.id; editValue=data.couponType; editVisible=true"></i>
+                        (click)="editId=data.id; editValue=data.couponType; editVisible=true; previewCouponTypeVisible=true;"></i>
                     &nbsp;
                     <i nz-icon nzType="delete" nzTheme="outline"
                         (click)="showConfirm('Delete',data.id )"></i>
@@ -34,22 +34,38 @@
 </div>
 
 <nz-modal [nzVisible]="previewCouponTypeVisible" [nzContent]="modalContent" [nzFooter]="null"
-    (nzOnCancel)="previewCouponTypeVisible = false;">
+    (nzOnCancel)="previewCouponTypeVisible = false; editVisible=false;">
     <ng-template #modalContent>
         <h3> Coupon Type </h3>
         <div nz-row class="container">
             <div nz-col nzSpan="12" style='text-align: left'>Enter Coupon Type</div>
             <div nz-col nzSpan="12" style='text-align: left'>
+                <ng-container *ngIf='!editVisible'>
                 <input type="text" nz-input placeholder="Enter Coupon Type" style='width:100%'
                     [(ngModel)]='couponTypeName' />
+                </ng-container>
+
+                <ng-container *ngIf='editVisible'>
+                    <input type="text" nz-input placeholder="Enter Coupon Type" style='width:100%'
+                        [(ngModel)]='editValue' />
+                    </ng-container>
+
             </div>
         </div>
 
         <div nz-row> &nbsp; </div>
         <div nz-row class="container">
             <div nz-col nzSpan="24" style='text-align: right'>
+                <ng-container *ngIf='!editVisible'>
                 <button nz-button nzType="primary" (click)='addCouponType()'>Add</button>
+                </ng-container>
+
+                <ng-container *ngIf='editVisible'>
+                    <button nz-button nzType="primary" (click)='editCouponType()'>Edit</button>
+                    </ng-container>
+
             </div>
         </div>
     </ng-template>
 </nz-modal>
+

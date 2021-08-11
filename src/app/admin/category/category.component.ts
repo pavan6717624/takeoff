@@ -113,6 +113,7 @@ export class CategoryComponent implements OnInit {
       nzCancelText: 'No',
       nzOnCancel: () => console.log('Cancel')
     });
+
   }
 
 

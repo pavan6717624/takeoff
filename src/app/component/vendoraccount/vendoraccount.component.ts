@@ -5,10 +5,10 @@ import { VendorService } from '../vendor/vendor.service';
 import { LoginStatus } from '../login/login.component';
 import { ImageStatusDTO } from '../uploadcoupons/uploadcoupons.component';
 import { Router } from '@angular/router';
-
+import * as shajs from 'sha.js';
 export class VendorDetails {
 
-  vendorId: string = "";
+  vendorId: number = 0;
   name: string = "";
   contact: string = "";
   email: string = "";
@@ -16,7 +16,7 @@ export class VendorDetails {
   details: string = "";
   city: string = "";
   logo: string = "";
-
+  isDisabled: Boolean=false;
 }
 
 @Component({
@@ -65,7 +65,42 @@ else
 
   }
 
+  editVisible=false;
+  password='';
+  newpassword='';
+  conpassword='';
 
+changePassword()
+{
+ if(!this.loginStatus)
+  {
+    this.msg.create('error', 'Session Expired. Please Login');
+    this.router.navigate(['login']);
+    return;
+  }
+  if(this.password.length > 8 && this.newpassword.length > 8 && this.conpassword == this.newpassword && this.loginStatus)
+  {
+    this.password = (shajs('sha256').update(this.password).digest('hex'));
+    this.newpassword = (shajs('sha256').update(this.newpassword).digest('hex'));
+    this.conpassword = (shajs('sha256').update(this.conpassword).digest('hex'));
+
+    var formData = new FormData();
+    formData.set("password",this.password);
+    formData.set("newpassword",this.newpassword);
+    formData.set("userId",this.loginStatus.userId);
+    this.loading=true;
+    this.vendoraccountService.changePassword(formData).subscribe(
+      (res) => { this.loading=false; console.log(res); },
+      (err) => { this.loading=false; console.log(err); }
+
+    );
+
+  }
+  else
+  {
+    this.msg.create('error', 'Invalid Password....');
+  }
+}
   getDesignerDetails() {
     this.loading=true;
     var formData = new FormData();

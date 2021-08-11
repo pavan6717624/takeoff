@@ -6,6 +6,9 @@ import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 export class VendoraccountService {
+  changePassword(formData: FormData) {
+    return this.http.post("https://takeoff-pavan.herokuapp.com/changePassword",formData);
+  }
  
  
  

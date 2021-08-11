@@ -98,13 +98,25 @@ export class CoupontypesComponent implements OnInit {
 
   deleteCouponType(couponTypeId: number)
   {
-
+    this.loading = true;
+    var formData = new FormData();
+    formData.set("couponTypeId", couponTypeId + "");
+    this.adminServie.deleteCouponType(formData).subscribe(
+      (res) => { console.log(res); this.loading = false; if (res) { this.msg.create('success', 'Coupon Type Deleted.'); this.ngOnInit(); } },
+      (err) => { console.log(err); this.loading = false; this.msg.create('error', 'Error Occured while Deleting Coupon Type'); }
+    );
   }
 
   
   visibleCouponType(couponTypeId: number)
   {
-    
+    this.loading = true;
+    var formData = new FormData();
+    formData.set("couponTypeId", couponTypeId + "");
+    this.adminServie.visibleCouponType(formData).subscribe(
+      (res) => { console.log(res); this.loading = false; if (res) { this.msg.create('success', 'Coupon Type Visibility Modified.'); this.ngOnInit(); } },
+      (err) => { console.log(err); this.loading = false; this.msg.create('error', 'Error Occured while Modifing Coupon Type Visibility'); }
+    );
   }
 
   addCouponTypeView()
@@ -115,9 +127,49 @@ export class CoupontypesComponent implements OnInit {
   }
   addCouponType()
   {
+    if (this.couponTypeName.trim().length < 3) {
+      this.msg.create("error", "Coupon Type Name should be minimum of 3 Characters");
+      return;
+    }
+
+    this.loading = true;
+    this.previewCouponTypeVisible = false;
+    var formData = new FormData();
+    formData.set("couponTypeName", this.couponTypeName);
+    this.adminServie.addCouponType(formData).subscribe(
+      (res) => { console.log(res); this.loading = false; if (res) { this.msg.create('success', 'Coupon Type Created.'); this.ngOnInit(); } },
+      (err) => { console.log(err); this.loading = false; this.msg.create('error', 'Error Occured while creating Coupon Type'); }
+    )
+
+
 
   }
 
+  editCouponType()
+{
+  this.loading = true;
+    var formData = new FormData();
+    formData.set("couponTypeId", this.editId + "");
+    formData.set("couponTypeName", this.editValue);
+    this.editVisible = false;
+    this.previewCouponTypeVisible=false;
+    this.adminServie.editCouponType(formData).subscribe(
+
+      (res) => {
+        console.log(res); this.loading = false;
+
+        if (res) {
+          this.msg.create('success', 'Coupon Type Edited Successfully.'); this.ngOnInit();
+        }
+        else {
+          this.msg.create('error', 'Cannot Edit Coupon Type ' + this.editValue); this.ngOnInit();
+        }
+
+      },
+      (err) => { console.log(err); this.loading = false; this.msg.create('error', 'Error Occured while editing Coupon Type'); }
+
+    );
+}
 
 
 }

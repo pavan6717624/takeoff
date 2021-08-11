@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
-
+import * as shajs from 'sha.js';
 export class LoginStatus {
   userId: string = "";
   userType: string = "";
@@ -39,6 +39,9 @@ export class LoginComponent implements OnInit {
     this.logginStatus = true;
     var formData = new FormData();
     formData.set("userid", this.userid);
+
+   this.password = (shajs('sha256').update(this.password).digest('hex'));
+
     formData.set("password", this.password);
     this.loginService.login(formData).subscribe(
       (res) => {
