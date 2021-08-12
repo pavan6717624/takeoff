@@ -11,7 +11,7 @@ export class ViewcouponsService {
 
 
   getCoupons(formData: FormData): Observable<any> {
-    return this.http.post('http://localhost:8081/getCoupons', formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getCoupons', formData);
 
   }
 }
