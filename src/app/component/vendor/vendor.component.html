@@ -16,12 +16,13 @@
 
       </nz-tab>
 
-
+<ng-container *ngIf="userType==='Vendor'">
       <nz-tab nzTitle="View">
 
         <app-viewcoupons [addCoupon]='addCoupon' [loginStatus]="loginStatus"></app-viewcoupons>
 
       </nz-tab>
+    </ng-container>
 
       <nz-tab nzTitle="Account">
 

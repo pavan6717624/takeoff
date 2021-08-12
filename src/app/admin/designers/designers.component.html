@@ -41,7 +41,12 @@
     <ng-template #modalContent>
         <h3> Designer </h3>
         <div nz-row class="container">
-            <div nz-col nzSpan="12" style='text-align: left'>Name</div>
+            <div nz-col nzSpan="8" style='text-align: left'>Name</div>
+            <div nz-col nzSpan="4" style='text-align: right'>
+            <ng-container *ngIf="name.trim().length > 0">
+                <i nz-icon [nzType]="name.trim().length> 5 ? 'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
+               </ng-container>
+            </div>
             <div nz-col nzSpan="12" style='text-align: left'>
                 <input type="text" nz-input placeholder="Enter Name" style='width:100%'
                 [(ngModel)]='name' />
@@ -51,7 +56,13 @@
         <div nz-row> &nbsp; </div>
 
         <div nz-row class="container">
-            <div nz-col nzSpan="12" style='text-align: left'>Contact Number</div>
+            <div nz-col nzSpan="8" style='text-align: left'>Contact Number</div>
+            <div nz-col nzSpan="4" style='text-align: right'>
+            <ng-container *ngIf="contact.trim().length > 0">
+                <i nz-icon [nzType]="isContactNumber(contact) ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
+               </ng-container>
+            </div>
+
             <div nz-col nzSpan="12" style='text-align: left'>
                 <input type="text" nz-input placeholder="Enter Contact Number" style='width:100%'
                 [(ngModel)]='contact' />
@@ -61,7 +72,13 @@
         <div nz-row> &nbsp; </div>
 
         <div nz-row class="container">
-            <div nz-col nzSpan="12" style='text-align: left'>Email Address</div>
+            <div nz-col nzSpan="8" style='text-align: left'>Email Address</div>
+            <div nz-col nzSpan="4" style='text-align: right'>
+            <ng-container *ngIf="email.trim().length > 0">
+                <i nz-icon [nzType]="email.trim().indexOf('@')==-1 || email.trim().indexOf('@') != email.trim().lastIndexOf('@') || email.trim().lastIndexOf('@') > email.trim().lastIndexOf('.')  || email.trim().endsWith('.') || email.trim().startsWith('@')  || email.trim().endsWith('@') || email.trim().startsWith('.') || email.trim().indexOf('.')==-1 ?'close' : 'check'" nzTheme="outline"></i> &nbsp;&nbsp;
+               </ng-container>
+            </div>
+
             <div nz-col nzSpan="12" style='text-align: left'>
                 <input type="text" nz-input placeholder="Enter Email Address" style='width:100%'
                 [(ngModel)]='email' />
@@ -71,7 +88,12 @@
         <div nz-row> &nbsp; </div>
 
         <div nz-row class="container">
-            <div nz-col nzSpan="12" style='text-align: left'>City</div>
+            <div nz-col nzSpan="8" style='text-align: left'>City</div>
+            <div nz-col nzSpan="4" style='text-align: right'>
+            <ng-container *ngIf="city.trim().length > 0">
+                <i nz-icon [nzType]="city.trim().length > 0 ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
+               </ng-container>
+            </div>
             <div nz-col nzSpan="12" style='text-align: left'>
                 <nz-select  [(ngModel)]="city" nzPlaceHolder="Select City" style='width:100%'>
                     <nz-option nzValue="Tirupati" nzLabel="Tirupati"></nz-option>

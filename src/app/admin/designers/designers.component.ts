@@ -32,6 +32,13 @@ export class DesignersComponent implements OnInit {
   city: string = '';
   editId: number = 0;
   
+isContactNumber(value: string): Boolean
+{
+  
+   return ((value != null) &&
+           (value !== '') &&
+           !isNaN(Number(value.toString())) && (value.trim().length == 10));
+}
 
   getDesigners()
   {
@@ -51,10 +58,17 @@ export class DesignersComponent implements OnInit {
       return;
     }
 
-    else if (this.contact.trim().length !=10) {
-      this.msg.create("error", "Contact Number should be 10 Characters");
+    else if (!this.isContactNumber(this.contact)) {
+      this.msg.create("error", "Contact Number should be 10 Digits");
       return;
     }
+
+    else if(this.email.trim().indexOf('@')==-1 || this.email.trim().indexOf('@') != this.email.trim().lastIndexOf('@') || this.email.trim().lastIndexOf('@') > this.email.trim().lastIndexOf('.')  || this.email.trim().endsWith('.') || this.email.trim().startsWith('@')  || this.email.trim().endsWith('@') || this.email.trim().startsWith('.') || this.email.trim().indexOf('.')==-1 )
+    {
+      this.msg.create("error", "Invalid Email Address..");
+      return;
+    }
+
 
     else if (this.city === '' || !this.city) {
       this.msg.create("error", "Please Select City");
@@ -158,15 +172,23 @@ export class DesignersComponent implements OnInit {
       return;
     }
 
-    else if (this.contact.trim().length !=10) {
-      this.msg.create("error", "Contact Number should be 10 Characters");
+    else if (!this.isContactNumber(this.contact)) {
+      this.msg.create("error", "Contact Number should be 10 Digits");
       return;
     }
+
+    else if(this.email.trim().indexOf('@')==-1 || this.email.trim().indexOf('@') != this.email.trim().lastIndexOf('@') || this.email.trim().lastIndexOf('@') > this.email.trim().lastIndexOf('.')  || this.email.trim().endsWith('.') || this.email.trim().startsWith('@')  || this.email.trim().endsWith('@') || this.email.trim().startsWith('.') || this.email.trim().indexOf('.')==-1 )
+    {
+      this.msg.create("error", "Invalid Email Address..");
+      return;
+    }
+
 
     else if (this.city === '' || !this.city) {
       this.msg.create("error", "Please Select City");
       return;
     }
+
 
     this.loading = true;
     this.previewDesignerVisible = false;
