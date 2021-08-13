@@ -3,6 +3,7 @@ import { WindowRefService } from './window-ref.service';
 import { SubscriptionService } from './subscription.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Router } from '@angular/router';
+import * as shajs from 'sha.js';
 declare var Razorpay: any;
 
 export class SubscriptionDTO
@@ -80,8 +81,8 @@ payment()
   }
  this.paying=true;
   var options = {
-    "key": "rzp_test_tqgJ9eimxluVhi", // Enter the Key ID generated from the Dashboard
-    "amount": "119900", 
+    "key": "rzp_live_nWA6UVrzTQFr9W", // Enter the Key ID generated from the Dashboard
+    "amount": "100", 
     "currency": "INR",
     "name": "TAKEOFF",
     "description": "Subscription to TAKEOFF",
