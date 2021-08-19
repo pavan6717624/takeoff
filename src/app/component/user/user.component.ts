@@ -46,7 +46,7 @@ export class UserComponent implements OnInit {
 
     else if(this.loginStatus.userType === 'Customer')
     {
-     this.router.navigate(['display'],  { state: {loginStatus: this.loginStatus }}); 
+     this.router.navigate(['customer'],  { state: {loginStatus: this.loginStatus }}); 
     }
 
 

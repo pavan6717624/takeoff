@@ -52,4 +52,6 @@ import { ProfessionComponent } from './profession/profession.component';
     
   ]
 })
-export class AdminModule { }
+export class AdminModule {
+
+ }

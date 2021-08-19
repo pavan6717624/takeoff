@@ -11,7 +11,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class DesignersComponent implements OnInit {
 
-  constructor(private adminService:AdminService,private modal: NzModalService, private msg: NzMessageService) { }
+  constructor(public adminService:AdminService,private modal: NzModalService, private msg: NzMessageService) { }
 
 
   sortDId = (a: VendorDetails, b: VendorDetails) => a.vendorId - b.vendorId;
@@ -32,13 +32,7 @@ export class DesignersComponent implements OnInit {
   city: string = '';
   editId: number = 0;
   
-isContactNumber(value: string): Boolean
-{
-  
-   return ((value != null) &&
-           (value !== '') &&
-           !isNaN(Number(value.toString())) && (value.trim().length == 10));
-}
+
 
   getDesigners()
   {
@@ -58,7 +52,7 @@ isContactNumber(value: string): Boolean
       return;
     }
 
-    else if (!this.isContactNumber(this.contact)) {
+    else if (!this.adminService.isContactNumber(this.contact)) {
       this.msg.create("error", "Contact Number should be 10 Digits");
       return;
     }
@@ -161,7 +155,7 @@ isContactNumber(value: string): Boolean
     this.email='';
     this.city='';
     this.editVisible=false;
-      this.previewDesignerVisible = true;
+    this.previewDesignerVisible = true;
 
   }
 
@@ -172,7 +166,7 @@ isContactNumber(value: string): Boolean
       return;
     }
 
-    else if (!this.isContactNumber(this.contact)) {
+    else if (!this.adminService.isContactNumber(this.contact)) {
       this.msg.create("error", "Contact Number should be 10 Digits");
       return;
     }

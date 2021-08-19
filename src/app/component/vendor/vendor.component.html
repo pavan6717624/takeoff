@@ -10,16 +10,16 @@
 
 
       </nz-tab>
-      <nz-tab [nzTitle]="userType==='Vendor'?'Edit' : 'View'">
+      <nz-tab nzTitle="Images">
 
-        <app-editcoupons [logo]='logo' (onUploadCoupon)='uploadCoupon($event)' [addImage]='addImage' [loginStatus]="loginStatus"></app-editcoupons>
+        <app-editcoupons [logo]='logo' (onCouponTypes)='onCouponTypes($event)' (onUploadCoupon)='uploadCoupon($event)' [addImage]='addImage' [loginStatus]="loginStatus"></app-editcoupons>
 
       </nz-tab>
 
 <ng-container *ngIf="userType==='Vendor'">
-      <nz-tab nzTitle="View">
+      <nz-tab nzTitle="Coupons">
 
-        <app-viewcoupons [addCoupon]='addCoupon' [loginStatus]="loginStatus"></app-viewcoupons>
+        <app-viewcoupons [logo]='logo' [couponTypes]='couponTypes' [addCoupon]='addCoupon' [loginStatus]="loginStatus"></app-viewcoupons>
 
       </nz-tab>
     </ng-container>

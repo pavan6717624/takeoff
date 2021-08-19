@@ -72,7 +72,7 @@
     <div nz-col nzSpan="24" nz-result-extra style='text-align: center'>
       <nz-select nzShowSearch nzPlaceHolder="Select SubCategory" [(ngModel)]="subCategory" style='width: 200px ;'>
 
-        <nz-option *ngFor="let cat of subCategories" [nzValue]="cat.subCategoryName" [nzLabel]="cat.subCategoryName"></nz-option>
+        <nz-option *ngFor="let cat of subCategories" [nzValue]="cat.id" [nzLabel]="cat.subCategoryName"></nz-option>
 
       </nz-select>
     </div>

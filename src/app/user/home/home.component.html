@@ -1,0 +1,45 @@
+<nz-layout style='height: 90%;'> 
+
+    <nz-header>
+      
+      </nz-header>
+  
+    <nz-sider nzCollapsible nzBreakpoint="lg" [nzCollapsedWidth]="collapseWidth" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+       
+        
+     
+  <br/>
+  
+      <ul nz-menu nzTheme="dark" nzMode="inline">
+              <li nz-menu-item nzSelected> <i nz-icon nzType="home"> </i><span> <a [routerLink]="['/customer']"> TakeOff Recommends </a>
+        </span> </li>
+  
+        <li nz-submenu nzTitle="Coupons" nzIcon="user">
+          <ul>
+            <li nz-menu-item><a [routerLink]="['complimentary']">Complimentary</a></li>
+            <li nz-menu-item><a [routerLink]="['free']">Free</a></li>
+            <li nz-menu-item><a [routerLink]="['daily']">Daily</a></li>
+     
+            
+          </ul>
+        </li>
+        
+      </ul>
+    </nz-sider>
+    <nz-layout >
+      <nz-header>
+
+        <div id='couponsheader' style=' align-items: center; text-align: center;'> </div>
+      </nz-header>
+      <nz-content>
+   
+        <div  class="inner-content" style='overflow:auto;width:100%;height: 100%;'>
+  
+            <router-outlet>
+            </router-outlet>
+  
+        </div>
+      </nz-content>
+  
+    </nz-layout>
+  </nz-layout>

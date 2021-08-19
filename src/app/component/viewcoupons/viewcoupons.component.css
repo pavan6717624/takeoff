@@ -72,3 +72,11 @@
     right: 7%;
   
   }
+
+  .coupon {
+    border: 5px dotted #bbb;
+    width: 100%;
+    border-radius: 15px;
+    margin: 0 auto;
+    max-width: 400px;
+  }

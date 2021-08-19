@@ -23,7 +23,7 @@
             <div class="container">
                 <img style=' width:200px;
                 height:200px;  object-fit:scale-down; ' id="image" class="img-fluid img-thumbnail" [src]="item.image"
-                    (click)="resetImageParams(); saveId(item.id); previewImage = item.image;  previewVisible = true;">
+                    (click)="click(item)">
             </div>
         </div>
 
@@ -59,7 +59,7 @@
         <ng-template #modalContent>
             <h3> Edit Coupon </h3>
             <div class="container" style='overflow:hidden;'>
-                <img [src]="previewImage" [ngStyle]="{ width: '100%'}" style='border: 2px solid #555;' />
+                <img [src]="previewImage" style='width:100%; max-height:400px;border: 2px solid #555;' />
 
                 <img class="top-left" id="image" [src]="logo"
                     style='max-width: 20%; max-height: 20%;border: 2px solid blue;'>
@@ -316,6 +316,21 @@
 
 
                 </nz-tab>
+
+
+                
+                <nz-tab nzTitle="Description">
+
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <textarea rows="9" nz-input [(ngModel)]='description'></textarea>
+                        </div>
+                    </div>
+               
+                </nz-tab>
+
+
+
 
 
                 <nz-tab nzTitle="Details">

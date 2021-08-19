@@ -57,6 +57,7 @@ import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import en from '@angular/common/locales/en-IN';
 import { registerLocaleData } from '@angular/common';
 import { ViewcouponsComponent } from './component/viewcoupons/viewcoupons.component';
+import { UserModule } from './user/user.module';
 registerLocaleData(en);
 
 const LANG_PROVIDERS = [{ provide: NZ_I18N, useValue: en_US }];
@@ -120,7 +121,8 @@ const antDesignIcons = AllIcons as {
     NzSpaceModule,
     NzDescriptionsModule,
     NzTableModule,
-    NzDatePickerModule
+    NzDatePickerModule,
+    UserModule
   ],
   providers: [LANG_PROVIDERS,],
   bootstrap: [AppComponent]

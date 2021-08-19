@@ -7,7 +7,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { NzTabPosition } from 'ng-zorro-antd/tabs';
 import { Router } from '@angular/router';
 import { LoginStatus } from '../login/login.component';
-import { Coupon } from '../editcoupons/editcoupons.component';
+import { Coupon, CouponType } from '../editcoupons/editcoupons.component';
 
 @Component({
   selector: 'app-vendor',
@@ -25,6 +25,7 @@ export class VendorComponent implements OnInit {
   isMobile: Boolean = false;
   userType: string ='';
   addCoupon: Boolean = false;
+  couponTypes: CouponType[]=[];
   constructor(private router: Router, private msg: NzMessageService, private vendorService:VendorService,  private deviceService: DeviceDetectorService) 
   {
     const navigation = this.router.getCurrentNavigation();
@@ -65,6 +66,10 @@ export class VendorComponent implements OnInit {
   onLogoChange(logo: string)
   {
     this.logo=logo;
+  }
+  onCouponTypes(couponTypes:CouponType[])
+  {
+  this.couponTypes=couponTypes;
   }
  
 }

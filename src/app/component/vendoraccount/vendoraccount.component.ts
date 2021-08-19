@@ -89,8 +89,9 @@ changePassword()
     formData.set("newpassword",this.newpassword);
     formData.set("userId",this.loginStatus.userId);
     this.loading=true;
+    this.editVisible=false;
     this.vendoraccountService.changePassword(formData).subscribe(
-      (res) => { this.loading=false; console.log(res); },
+      (res) => { this.loading=false; if(res) this.msg.create('success','Password Changed.'); console.log(res); },
       (err) => { this.loading=false; console.log(err); }
 
     );

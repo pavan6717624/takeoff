@@ -81,7 +81,7 @@ payment()
   }
  this.paying=true;
   var options = {
-    "key": "rzp_live_nWA6UVrzTQFr9W", // Enter the Key ID generated from the Dashboard
+    "key": "rzp_test_WJFhmfMmFRxETB", // Enter the Key ID generated from the Dashboard
     "amount": "100", 
     "currency": "INR",
     "name": "TAKEOFF",

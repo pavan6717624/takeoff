@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'vendor', component: VendorComponent },
   { path: 'designer', component: VendorComponent },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
-  
+  { path: 'customer', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
 
  
 

@@ -23,8 +23,8 @@
                 <td>{{ data.email }}</td>
                 <td>{{ data.city }}</td>
                 <td>
-                    <i nz-icon [nzType]="data.isDisabled?'eye': 'eye-invisible'" nzTheme="outline"
-                      (click)="showConfirm(data.isDisabled?'Disable':'Enable',data.vendorId )"></i> &nbsp;
+                    <i nz-icon [nzType]="data.isDisabled?'eye-invisible': 'eye'" nzTheme="outline"
+                (click)="showConfirm(data.isDisabled?'Enable':'Disable',data.vendorId )"></i> &nbsp;
                     <i nz-icon nzType="edit" nzTheme="outline"
                       (click)="edit(data);previewDesignerVisible=true;editVisible=true"></i>
                     &nbsp;
@@ -59,7 +59,7 @@
             <div nz-col nzSpan="8" style='text-align: left'>Contact Number</div>
             <div nz-col nzSpan="4" style='text-align: right'>
             <ng-container *ngIf="contact.trim().length > 0">
-                <i nz-icon [nzType]="isContactNumber(contact) ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
+                <i nz-icon [nzType]="adminService.isContactNumber(contact) ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
                </ng-container>
             </div>
 

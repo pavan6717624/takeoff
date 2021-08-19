@@ -72,6 +72,11 @@ export class Coupon
 
   vendorId: number=0;
 
+  description: string ='';
+
+  id:number=0;
+  vendorName: string = '';
+
 }
 
 export class CouponType
@@ -95,6 +100,9 @@ export class EditcouponsComponent implements OnInit {
   @Input() logo: string | undefined;
   @Input() addImage: string | undefined;
   @Output() onUploadCoupon:EventEmitter<Coupon>= new EventEmitter();  
+  @Output() onCouponTypes:EventEmitter<CouponType[]>= new EventEmitter();  
+
+  couponTypes: CouponType[]=[];
 
   userType: string = '';
 
@@ -170,11 +178,12 @@ export class EditcouponsComponent implements OnInit {
   profession: string='';
   gender: string='';
 
-  couponTypes: CouponType[]=[];
+
   couponType: string = '';
   keywords: string = '';
 
   result: Array<Date | null> = [];
+  description: string ='';
 
   imageId: number =0;
 
@@ -190,7 +199,7 @@ export class EditcouponsComponent implements OnInit {
   {
     this.editcouponsService.getCouponTypes().subscribe(
 
-      (res) => { this.loading=false;  console.log(res); this.couponTypes = res; this.loading = false; },
+      (res) => { this.loading=false;  console.log(res); this.couponTypes = res; this.onCouponTypes.emit(this.couponTypes); this.loading = false; },
       (err) => {  this.loading=false; console.log(err); this.couponTypes = []; this.loading = false; }
     );
   }
@@ -255,6 +264,14 @@ export class EditcouponsComponent implements OnInit {
 
   onCalendarChange(result: Array<Date | null>): void {
     console.log('onCalendarChange', result);
+  }
+
+  click(item: ImageStatusDTO)
+  {
+    this.resetImageParams(); 
+    this.imageId=item.id; 
+    this.previewImage = item.image; 
+    this.previewVisible = true;
   }
 
 createCoupon()
@@ -329,6 +346,7 @@ coupon.  gender=this.  gender;
 		
 coupon.  couponType=this.couponType ;
 coupon.  keywords=this.  keywords ;
+coupon.description = this.description;
 
 if(from)
 coupon.fromDate=from;
@@ -361,7 +379,7 @@ console.log(coupon);
 
 this.editcouponsService.saveCoupon(coupon).subscribe(
 
-  (res) => { this.loading1=false;  console.log(res);  if(res){ this.msg.create('success','Coupon Saved Succesfully'); this.onUploadCoupon.emit(coupon); }else this.msg.create('error','Error while Saving Coupon. Please try Again.'); },
+  (res) => { this.loading1=false;  console.log(res);  if(res){ this.previewVisible = false; this.msg.create('success','Coupon Saved Succesfully'); this.onUploadCoupon.emit(coupon); }else this.msg.create('error','Error while Saving Coupon. Please try Again.'); },
   (err) => {  this.loading1=false; this.msg.create('error','Error while Saving Coupon. Please try Again.'); console.log(err); }
 );
 
@@ -410,6 +428,7 @@ this.  gender='';
 
 
 this.  couponType = '';
+this.description = '';
 this.  keywords = '';
 
 this.result=[];
