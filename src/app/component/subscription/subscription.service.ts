@@ -12,20 +12,20 @@ export class SubscriptionService {
 
   getOrderId(): Observable<any>
   {
-    //return this.http.get( 'http://localhost:8081/getOrderId' );
-    return this.http.get( 'http://localhost:8081/getOrderId' );
+    //return this.http.get( 'https://takeoff-pavan.herokuapp.com/getOrderId' );
+    return this.http.get( 'https://takeoff-pavan.herokuapp.com/getOrderId' );
   }
 
   async checkRefererId(formData: FormData): Promise<any>
   {
-    // return await this.http.post( 'http://localhost:8081/checkRefererId',formData ).toPromise();
-    return await this.http.post( 'http://localhost:8081/checkRefererId',formData ).toPromise();
+    // return await this.http.post( 'https://takeoff-pavan.herokuapp.com/checkRefererId',formData ).toPromise();
+    return await this.http.post( 'https://takeoff-pavan.herokuapp.com/checkRefererId',formData ).toPromise();
   }
   
   getSubscription(subscription:SubscriptionDTO): Observable<any>
   {
-  // return this.http.post('http://localhost:8081/subscribe',subscription );
-    return this.http.post('http://localhost:8081/subscribe',subscription );
+  // return this.http.post('https://takeoff-pavan.herokuapp.com/subscribe',subscription );
+    return this.http.post('https://takeoff-pavan.herokuapp.com/subscribe',subscription );
   }
 
 }
