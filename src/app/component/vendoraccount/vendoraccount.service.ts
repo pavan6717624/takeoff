@@ -7,13 +7,13 @@ import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 })
 export class VendoraccountService {
   changePassword(formData: FormData) {
-    return this.http.post("https://takeoff-pavan.herokuapp.com//changePassword",formData);
+    return this.http.post("https://takeoff-pavan.herokuapp.com/changePassword",formData);
   }
  
  
  
   uploadLogo(formData: FormData): Observable<any> {
-    return this.http.post("https://takeoff-pavan.herokuapp.com//uploadLogo",formData);
+    return this.http.post("https://takeoff-pavan.herokuapp.com/uploadLogo",formData);
   }
 
 
@@ -21,12 +21,12 @@ export class VendoraccountService {
 
   getVendorDetails(formData: FormData): Observable<any>
   {
-    return this.http.post("https://takeoff-pavan.herokuapp.com//getVendorDetails",formData);
+    return this.http.post("https://takeoff-pavan.herokuapp.com/getVendorDetails",formData);
   }
 
   getDesignerDetails(formData: FormData): Observable<any>
   {
-    return this.http.post("https://takeoff-pavan.herokuapp.com//getDesignerDetails",formData);
+    return this.http.post("https://takeoff-pavan.herokuapp.com/getDesignerDetails",formData);
   }
 
 }
