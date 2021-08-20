@@ -12,22 +12,22 @@ export class EditcouponsService {
 
 
   getImages(formData: FormData): Observable<any> {
-    return this.http.post('http://localhost:8081/getImages', formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com//getImages', formData);
 
   }
 
   getLogo(formData: FormData): Observable<any> {
-    return this.http.post('http://localhost:8081/getLogo', formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com//getLogo', formData);
 
   }
 
   getCouponTypes(): Observable<any> {
-    return this.http.get('http://localhost:8081/getCouponTypes');
+    return this.http.get('https://takeoff-pavan.herokuapp.com//getCouponTypes');
 
   }
 
   saveCoupon(coupon: Coupon): Observable<any> {
-    return this.http.post('http://localhost:8081/saveCoupon', coupon);
+    return this.http.post('https://takeoff-pavan.herokuapp.com//saveCoupon', coupon);
 
   }
 }
