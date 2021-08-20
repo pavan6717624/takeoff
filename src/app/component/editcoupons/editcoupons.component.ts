@@ -115,14 +115,9 @@ export class EditcouponsComponent implements OnInit {
    
     if(this.addImage)
    { 
-     var newImage = new ImageStatusDTO();
-     newImage.image = this.addImage;
-     this.images.splice(0,0,newImage);
-     console.log("added Image");
+     this.ngOnInit();
      this.addImage=undefined;
     }
-  
-
   
 
  
@@ -272,6 +267,7 @@ export class EditcouponsComponent implements OnInit {
   {
     this.resetImageParams(); 
     this.imageId=item.id; 
+    alert(this.imageId);
     this.previewImage = item.image; 
     this.previewVisible = true;
   }
