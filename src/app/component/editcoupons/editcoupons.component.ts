@@ -77,6 +77,8 @@ export class Coupon
   id:number=0;
   vendorName: string = '';
 
+  coupon: string ='';
+
 }
 
 export class CouponType

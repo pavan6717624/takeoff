@@ -12,27 +12,31 @@
 </ng-container>
 
 <ng-container *ngIf='!loading'>
-    <div *ngFor="let item of coupons">
-        <div nz-row class="coupon" >
-            <div nz-col nzSpan='24'>
-                <div class="container" nz-col nzSpan="24" style='text-align: left;  padding: 2px 16px;
+    <div class='row' >
+
+        <div class="col-lg-6" *ngFor="let item of coupons">
+
+
+            <div nz-row class="coupon">
+                <div nz-col nzSpan='24'>
+                    <div class="container" nz-col nzSpan="24" style='text-align: left;  padding: 2px 16px;
                 background-color: #f1f1f1;'>
 
-                    <h3> {{item.vendorName}}</h3>
+                        <h6> {{item.vendorName}}</h6>
 
-                </div>
-
-
-                <div class="container" style='overflow:hidden;' (click)='coupon=item;previewVisible=true;'>
-                    <img style=' width:100% ;max-height:400px;' id="image" [src]="item.image" >
-                    <img [class]="item.image_align" [src]="item.logo"
-                        style='max-width: 20%; max-height: 20%;border: 2px solid blue;'>
+                    </div>
 
 
-                    <div [class]="item.footer_align" [style.font-family]='item.footer_font'
+                    <div class="container" style='overflow:hidden;' (click)='coupon=item;previewVisible=true;'>
+                        <img style=' width:100% ;max-height:400px;' id="image" [src]="item.coupon">
+                        <img [class]="item.image_align" [src]="item.logo"
+                            style='max-width: 20%; max-height: 20%;border: 2px solid blue;'>
+
+
+                        <!-- <div [class]="item.footer_align" [style.font-family]='item.footer_font'
                         [style.color]='item.footer_color' [style.text-decoration]='item.footer_decoration'
                         [style.font-weight]='item.footer_bold' [style.font-style]='item.footer_style'
-                        [style.font-size]="item.footer_size+'vw'" [innerHTML]="item.footer "></div>
+                        [style.font-size.px]="item.footer_size" [innerHTML]="item.footer "></div>
 
 
 
@@ -43,7 +47,7 @@
                     <div [class]="item.header_align" [style.font-family]='item.header_font'
                         [style.color]='item.header_color' [style.text-decoration]='item.header_decoration'
                         [style.font-weight]='item.header_bold' [style.font-style]='item.header_style'
-                        [style.font-size]="item.header_size+'vw'" [innerHTML]="item.header ">
+                        [style.font-size.px]="item.header_size" [innerHTML]="item.header ">
 
 
 
@@ -53,36 +57,33 @@
 
                     <div [class]="item.body_align" [style.font-family]='item.body_font' [style.color]='item.body_color'
                         [style.text-decoration]='item.body_decoration' [style.font-weight]='item.body_bold'
-                        [style.font-style]="item.body_style" [style.font-size]="item.body_size+'vw'"
+                        [style.font-style]="item.body_style" [style.font-size.px]="item.body_size"
                         [innerHTML]="item.body ">
+                    </div> -->
+
+
+
                     </div>
-
-
-
                 </div>
-            </div>
 
-            <div class="container" nz-col nzSpan="24" style='text-align: center;  padding: 2px 16px;
+                <div class="container" nz-col nzSpan="24" style='text-align: center;  padding: 2px 16px;
             background-color: #f1f1f1;'>
-                <div class="container">
-                    &nbsp;
+                   
+                    <h6 style='color:red'>Expires on {{item.toDate | date:'medium'}}</h6>
+                    <i nz-icon nzType="book" nzTheme="outline" style="font-size: 20px;"></i> &nbsp;
+                    <i nz-icon nzType="shop" nzTheme="outline" style="font-size: 20px;"></i>&nbsp;
+                    <i nz-icon nzType="like" nzTheme="outline" style="font-size: 20px;"></i>&nbsp;
+                    <i nz-icon nzType="dislike" nzTheme="outline" style="font-size: 20px;"></i>&nbsp;
+                    <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;"></i>&nbsp;
+                   
                 </div>
-                <h3 style='color:red'>Expires on {{item.toDate | date:'medium'}}</h3>
-                <i nz-icon nzType="book" nzTheme="outline" style="font-size: 30px;"></i> &nbsp;
-                <i nz-icon nzType="shop" nzTheme="outline" style="font-size: 30px;"></i>&nbsp;
-                <i nz-icon nzType="like" nzTheme="outline" style="font-size: 30px;"></i>&nbsp;
-                <i nz-icon nzType="dislike" nzTheme="outline" style="font-size: 30px;"></i>&nbsp;
-                <i nz-icon nzType="download" nzTheme="outline" style="font-size: 30px;"></i>&nbsp;
-                <div class="container">
-                    &nbsp;
-                </div>
+
+
             </div>
 
+            <hr />
 
         </div>
-
-        <hr/>
-
     </div>
 
 </ng-container>
@@ -92,19 +93,19 @@
     nzWidth='100%'>
     <ng-template #modalContent>
 
-       
 
 
-            <div class="container" style='overflow:hidden;'>
-                <img style=' width:100% ;max-height:400px;' id="image" [src]="coupon.image">
-                <img [class]="coupon.image_align" [src]="coupon.logo"
-                    style='max-width: 20%; max-height: 20%;border: 2px solid blue;'>
+
+        <div class="container" style='overflow:hidden;'>
+            <img style=' width:100%;' id="image" [src]="coupon.coupon">
+            <img [class]="coupon.image_align" [src]="coupon.logo"
+                style='max-width: 20%; max-height: 20%;border: 2px solid blue;'>
 
 
-                <div [class]="coupon.footer_align" [style.font-family]='coupon.footer_font'
+            <!-- <div [class]="coupon.footer_align" [style.font-family]='coupon.footer_font'
                     [style.color]='coupon.footer_color' [style.text-decoration]='coupon.footer_decoration'
                     [style.font-weight]='coupon.footer_bold' [style.font-style]='coupon.footer_style'
-                    [style.font-size]="coupon.footer_size+'vw'" [innerHTML]="coupon.footer "></div>
+                    [style.font-size.px]="coupon.footer_size" [innerHTML]="coupon.footer "></div>
 
 
 
@@ -115,7 +116,7 @@
                 <div [class]="coupon.header_align" [style.font-family]='coupon.header_font'
                     [style.color]='coupon.header_color' [style.text-decoration]='coupon.header_decoration'
                     [style.font-weight]='coupon.header_bold' [style.font-style]='coupon.header_style'
-                    [style.font-size]="coupon.header_size+'vw'" [innerHTML]="coupon.header ">
+                    [style.font-size.px]="coupon.header_size" [innerHTML]="coupon.header ">
 
 
 
@@ -126,18 +127,17 @@
                 <div [class]="coupon.body_align" [style.font-family]='coupon.body_font'
                     [style.color]='coupon.body_color' [style.text-decoration]='coupon.body_decoration'
                     [style.font-weight]='coupon.body_bold' [style.font-style]="coupon.body_style"
-                    [style.font-size]="coupon.body_size+'vw'" [innerHTML]="coupon.body ">
-                </div>
+                    [style.font-size.px]="coupon.body_size" [innerHTML]="coupon.body ">
+                </div> -->
 
 
 
-            </div>
-       
-
-        
+        </div>
 
 
-       
+
+
+
 
     </ng-template>
 </nz-modal>

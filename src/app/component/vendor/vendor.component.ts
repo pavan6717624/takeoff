@@ -24,7 +24,7 @@ export class VendorComponent implements OnInit {
   addImage: string = "";
   isMobile: Boolean = false;
   userType: string ='';
-  addCoupon: Boolean = false;
+  addCoupon: Coupon = new Coupon();
   couponTypes: CouponType[]=[];
   constructor(private router: Router, private msg: NzMessageService, private vendorService:VendorService,  private deviceService: DeviceDetectorService) 
   {
@@ -60,7 +60,7 @@ export class VendorComponent implements OnInit {
   uploadCoupon(coupon: Coupon)
   {
     console.log("came to adding coupon..."+coupon);
-   this.addCoupon=true;
+   this.addCoupon=coupon;
   }
 
   onLogoChange(logo: string)

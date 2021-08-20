@@ -67,7 +67,7 @@
 
                 <div [class]="footer_align" [style.font-family]='footer_font' [style.color]='footer_color'
                     [style.text-decoration]='footer_decoration' [style.font-weight]='footer_bold'
-                    [style.font-style]='footer_style' [style.font-size.px]='footer_size'
+                    [style.font-style]='footer_style' [style.font-size.px]="footer_size"
                     [innerHTML]="footer | replaceNewLine"></div>
 
 
@@ -78,7 +78,7 @@
 
                 <div [class]="header_align" [style.font-family]='header_font' [style.color]='header_color'
                     [style.text-decoration]='header_decoration' [style.font-weight]='header_bold'
-                    [style.font-style]='header_style' [style.font-size.px]='header_size'
+                    [style.font-style]='header_style' [style.font-size.px]="header_size"
                     [innerHTML]="header | replaceNewLine">
 
 
@@ -89,7 +89,7 @@
 
                 <div [class]="body_align" [style.font-family]='body_font' [style.color]='body_color'
                     [style.text-decoration]='body_decoration' [style.font-weight]='body_bold'
-                    [style.font-style]='body_style' [style.font-size.px]='body_size'
+                    [style.font-style]='body_style' [style.font-size.px]="body_size"
                     [innerHTML]="body | replaceNewLine">
                 </div>
 
