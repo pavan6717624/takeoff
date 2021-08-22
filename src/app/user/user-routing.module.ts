@@ -7,23 +7,18 @@ import { FreeComponent } from './free/free.component';
 import { DailyComponent } from './daily/daily.component';
 
 const routes: Routes = [
-  {
-    path: '',
-      component: HomeComponent,
+
+     { path: '',  component: TakeoffComponent},
   
-    
-  
-  
-  children: [
-    { path: '', component: TakeoffComponent },
+   
+
     { path: 'complimentary', component: ComplimentaryComponent },
     { path: 'free', component: FreeComponent },
     { path: 'daily', component: DailyComponent },
     
    
   
-  ],
-  },
+
   
   
   ];

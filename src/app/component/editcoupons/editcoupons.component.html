@@ -20,9 +20,8 @@
 <ng-container *ngIf='!loading'>
     <div nz-row>
         <div nz-col *ngFor="let item of images">
-            <div class="container">
-                <img style=' width:200px;
-                height:200px;  object-fit:scale-down; ' id="image" class="img-fluid img-thumbnail" [src]="item.image"
+            <div class="container" style='overflow:hidden; width:350px; height:250px; '>
+                <img style="width:350px;height:250px;border: 1px solid #555;" id="image" [src]="item.image"
                     (click)="click(item)">
             </div>
         </div>
@@ -37,11 +36,13 @@
 <ng-container *ngIf="userType==='Designer'">
 
     <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
-        (nzOnCancel)="previewVisible = false" nzWidth='80%'>
+        (nzOnCancel)="previewVisible = false">
         <ng-template #modalContent>
             <h3> View Coupon </h3>
-            <div class="container" style='overflow:hidden;'>
-                <img [src]="previewImage" [ngStyle]="{ width: '100%'}" style='border: 2px solid #555;' />
+            <div style='overflow:auto;'>
+                <div class="container" style='overflow:hidden;width:350px;height:250px;'>
+                    <img [src]="previewImage" style="width:350px;height:250px;border: 1px solid #555;" />
+                </div>
             </div>
         </ng-template>
     </nz-modal>
@@ -55,46 +56,47 @@
 
 <ng-container *ngIf="userType==='Vendor'">
     <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
-        (nzOnCancel)="previewVisible = false"  nzWidth='80%'>
+        (nzOnCancel)="previewVisible = false">
         <ng-template #modalContent>
             <h3> Edit Coupon </h3>
-            <div class="container" style='overflow:hidden;'>
-                <img [src]="previewImage" style='width:100%; max-height:400px;border: 2px solid #555;' />
+            <div style='overflow:auto;'>
+                <div class="container" style='overflow:hidden;width:350px;height:250px;'>
+                    <img [src]="previewImage" style='width:350px;height:250px; border: 1px solid #555;' />
 
-                <img class="top-left" id="image" [src]="logo"
-                    style='max-width: 20%; max-height: 20%;border: 1px solid  #bbb;'>
-
-
-                <div [class]="footer_align" [style.font-family]='footer_font' [style.color]='footer_color'
-                    [style.text-decoration]='footer_decoration' [style.font-weight]='footer_bold'
-                    [style.font-style]='footer_style' [style.font-size]="footer_size+'vw'"
-                    [innerHTML]="footer | replaceNewLine"></div>
+                    <img class="top-left" id="image" [src]="logo"
+                        style='max-width: 20%; max-height: 20%;border: 1px solid  #bbb;'>
 
 
-
+                    <div [class]="footer_align" [style.font-family]='footer_font' [style.color]='footer_color'
+                        [style.text-decoration]='footer_decoration' [style.font-weight]='footer_bold'
+                        [style.font-style]='footer_style' [style.font-size.px]="footer_size"
+                        [innerHTML]="footer | replaceNewLine"></div>
 
 
 
 
-                <div [class]="header_align" [style.font-family]='header_font' [style.color]='header_color'
-                    [style.text-decoration]='header_decoration' [style.font-weight]='header_bold'
-                    [style.font-style]='header_style' [style.font-size]="header_size+'vw'"
-                    [innerHTML]="header | replaceNewLine">
 
 
+
+                    <div [class]="header_align" [style.font-family]='header_font' [style.color]='header_color'
+                        [style.text-decoration]='header_decoration' [style.font-weight]='header_bold'
+                        [style.font-style]='header_style' [style.font-size.px]="header_size"
+                        [innerHTML]="header | replaceNewLine">
+
+
+
+                    </div>
+
+
+
+                    <div [class]="body_align" [style.font-family]='body_font' [style.color]='body_color'
+                        [style.text-decoration]='body_decoration' [style.font-weight]='body_bold'
+                        [style.font-style]='body_style' [style.font-size.px]="body_size"
+                        [innerHTML]="body | replaceNewLine">
+                    </div>
 
                 </div>
-
-
-
-                <div [class]="body_align" [style.font-family]='body_font' [style.color]='body_color'
-                    [style.text-decoration]='body_decoration' [style.font-weight]='body_bold'
-                    [style.font-style]='body_style' [style.font-size]="body_size+'vw'"
-                    [innerHTML]="body | replaceNewLine">
-                </div>
-
             </div>
-
 
             <nz-tabset nzTabPosition="top" nzSize="large">
                 <nz-tab nzTitle="Header">
@@ -318,7 +320,7 @@
                 </nz-tab>
 
 
-                
+
                 <nz-tab nzTitle="Description">
 
                     <div nz-row>
@@ -326,7 +328,7 @@
                             <textarea rows="9" nz-input [(ngModel)]='description'></textarea>
                         </div>
                     </div>
-               
+
                 </nz-tab>
 
 

@@ -24,6 +24,16 @@ export class TakeoffComponent implements OnInit {
 
   previewVisible=false;
 
+  visible = false;
+
+  open(): void {
+    this.visible = true;
+  }
+
+  close(): void {
+    this.visible = false;
+  }
+
   cancel()
   {
     this.previewVisible=false;

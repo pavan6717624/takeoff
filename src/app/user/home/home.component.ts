@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private msg: NzMessageService, private router: Router,private deviceService: DeviceDetectorService) { }
 
   isCollapsed = false;
-  collapseWidth = 64;
+  collapseWidth = 0;
   isMobile=false;
   loginStatus: LoginStatus = new LoginStatus();
   userType: string = '';
