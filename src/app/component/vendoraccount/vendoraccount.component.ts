@@ -143,7 +143,7 @@ changePassword()
   uploading: boolean = false;
 
   beforeUpload = (file: any) => {
-    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    const isJpgOrPng = file.type === 'image/jpeg';
     if (!isJpgOrPng) {
       this.msg.error('You can only upload JPG file!');
 

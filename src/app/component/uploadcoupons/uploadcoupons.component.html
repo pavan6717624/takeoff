@@ -7,7 +7,7 @@
 
   <div nz-col nzSpan="18" style='text-align: center'>
 
-    <nz-upload nz-Accept="image/png, image/jpeg" [nzBeforeUpload]="beforeUpload"
+    <nz-upload nz-Accept="image/jpeg" [nzBeforeUpload]="beforeUpload"
       [nzDisabled]="loading || imageSrc.length > 0">
       <button nz-button [nzLoading]="loading"><span nz-icon nzType="upload"></span>Select Coupon Image</button>
     </nz-upload>

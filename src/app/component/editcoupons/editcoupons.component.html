@@ -20,7 +20,7 @@
 <ng-container *ngIf='!loading'>
     <div nz-row>
         <div nz-col *ngFor="let item of images">
-            <div class="container" style='overflow:hidden; width:350px; height:250px; '>
+            <div class="container" style='overflow:hidden; width:365px; height:250px; '>
                 <img style="width:350px;height:250px;border: 1px solid #555;" id="image" [src]="item.image"
                     (click)="click(item)">
             </div>
@@ -40,7 +40,7 @@
         <ng-template #modalContent>
             <h3> View Coupon </h3>
             <div style='overflow:auto;'>
-                <div class="container" style='overflow:hidden;width:350px;height:250px;'>
+                <div class="container" style='overflow:hidden;width:365px;height:250px;'>
                     <img [src]="previewImage" style="width:350px;height:250px;border: 1px solid #555;" />
                 </div>
             </div>
@@ -60,7 +60,7 @@
         <ng-template #modalContent>
             <h3> Edit Coupon </h3>
             <div style='overflow:auto;'>
-                <div class="container" style='overflow:hidden;width:350px;height:250px;'>
+                <div class="container" style='overflow:hidden;width:365px;height:250px;'>
                     <img [src]="previewImage" style='width:350px;height:250px; border: 1px solid #555;' />
 
                     <img class="top-left" id="image" [src]="logo"

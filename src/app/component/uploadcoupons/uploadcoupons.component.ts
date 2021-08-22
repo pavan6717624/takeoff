@@ -82,7 +82,7 @@ imageStatus : ImageStatusDTO = new ImageStatusDTO();
 
   beforeUpload = (file:  any) =>
   {
-    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    const isJpgOrPng = file.type === 'image/jpeg';
     if (!isJpgOrPng) {
       this.msg.error('You can only upload JPG file!');
    
@@ -139,7 +139,7 @@ formData.set("subCategory",this.subCategory);
 formData.set("keywords",this.keywords);
     this.vendorService.upload(formData).subscribe(
 
-      (res) => {console.log(res); this.imageStatus = res ; alert(this.imageStatus.id);this.category=''; this.subCategory = '' ; this.keywords=''; this.onUpload.emit(this.imageSrc); this.imageSrc=''; this.file=null;this.loading=false;},
+      (res) => {console.log(res); this.imageStatus = res ; this.category=''; this.subCategory = '' ; this.keywords=''; this.onUpload.emit(this.imageSrc); this.imageSrc=''; this.file=null;this.loading=false;},
       (err) => {console.log(err); this.category=''; this.subCategory = '' ;this.keywords=''; this.msg.create('error','Error Occured while uploading..');this.imageStatus = new ImageStatusDTO(); this.file = null; this.imageSrc='';this.loading=false;}
     );
   }

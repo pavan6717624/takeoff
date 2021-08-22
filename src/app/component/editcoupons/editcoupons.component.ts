@@ -79,6 +79,8 @@ export class Coupon
 
   coupon: string ='';
 
+  expireTime: string = '';
+
 }
 
 export class CouponType
@@ -267,7 +269,7 @@ export class EditcouponsComponent implements OnInit {
   {
     this.resetImageParams(); 
     this.imageId=item.id; 
-    alert(this.imageId);
+    //alert(this.imageId);
     this.previewImage = item.image; 
     this.previewVisible = true;
   }
