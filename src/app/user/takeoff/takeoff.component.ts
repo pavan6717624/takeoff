@@ -26,6 +26,29 @@ export class TakeoffComponent implements OnInit {
 
   visible = false;
 
+  redeemVisible=false;
+
+  redeemCoupon: Coupon =new Coupon();
+
+  redeemChecked: Boolean = false;
+
+  redeem()
+  {
+    
+  }
+
+  redeemCancel()
+  {
+   this. redeemVisible = false;
+   this.redeemChecked=false;
+  }
+
+  viewRedemption(item: Coupon)
+  {
+    this.redeemCoupon = item;
+    this.redeemVisible=true;
+  }
+
   open(): void {
     this.visible = true;
   }

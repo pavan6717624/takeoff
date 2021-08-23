@@ -31,6 +31,10 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzImageModule } from 'ng-zorro-antd/image';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -65,7 +69,10 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
     NzTableModule,
     NzDatePickerModule,
     NzLayoutModule,
-    NzGridModule
+    NzGridModule,
+    NzImageModule,
+    NzCollapseModule,
+    NzCheckboxModule,
 
   ]
 })

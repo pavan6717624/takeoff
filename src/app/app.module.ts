@@ -53,7 +53,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { AdminComponent } from './component/admin/admin.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
-
+import { NzImageModule } from 'ng-zorro-antd/image';
 import en from '@angular/common/locales/en-IN';
 import { registerLocaleData } from '@angular/common';
 import { ViewcouponsComponent } from './component/viewcoupons/viewcoupons.component';
@@ -122,7 +122,8 @@ const antDesignIcons = AllIcons as {
     NzDescriptionsModule,
     NzTableModule,
     NzDatePickerModule,
-    UserModule
+    UserModule,
+    NzImageModule
   ],
   providers: [LANG_PROVIDERS,],
   bootstrap: [AppComponent]

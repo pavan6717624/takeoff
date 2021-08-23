@@ -109,11 +109,12 @@
                 background-color: #f1f1f1;'>
 
                         <h6 style='color:red'>Expires on {{item.expireTime}}</h6>
-                        <i nz-icon nzType="book" nzTheme="outline" style="font-size: 20px;"></i> &nbsp;
-                        <i nz-icon nzType="shop" nzTheme="outline" style="font-size: 20px;"></i>&nbsp;
-                        <i nz-icon nzType="like" nzTheme="outline" style="font-size: 20px;"></i>&nbsp;
-                        <i nz-icon nzType="dislike" nzTheme="outline" style="font-size: 20px;"></i>&nbsp;
-                        <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;"></i>&nbsp;
+                        <i nz-icon nzType="book" nzTheme="outline" style="font-size: 20px;" class='icon'
+                            (click)='viewRedemption(item)'></i> &nbsp;
+                        <i nz-icon nzType="shop" nzTheme="outline" style="font-size: 20px;" class='icon'></i>&nbsp;
+                        <i nz-icon nzType="like" nzTheme="outline" style="font-size: 20px;" class='icon'></i>&nbsp;
+                        <i nz-icon nzType="dislike" nzTheme="outline" style="font-size: 20px;" class='icon'></i>&nbsp;
+                        <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;" class='icon'></i>&nbsp;
 
                     </div>
 
@@ -181,3 +182,51 @@
     </nz-modal>
 
 </div>
+
+
+
+<nz-modal [nzVisible]="redeemVisible" [nzContent]="redeemContent" [nzFooter]="null" (nzOnCancel)="redeemCancel()">
+    <ng-template #redeemContent>
+        <h3> Redemption </h3>
+        <div nz-row class="container">
+            <div nz-col nzSpan="24" style='text-align: left'>
+                <nz-collapse nzAccordion>
+                    <nz-collapse-panel nzHeader="Coupon Description" nzActive="true" nzDisabled="false">
+                        <p> content</p>
+                    </nz-collapse-panel>
+                    <nz-collapse-panel nzHeader="TakeOff Terms & Conditions" nzDisabled="false">
+                        <p> TakeOff Terms & Conditions</p>
+                    </nz-collapse-panel>
+                </nz-collapse>
+            </div>
+            <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+            <div nz-col nzSpan="24" style='text-align: center'>
+                <label nz-checkbox [(ngModel)]="redeemChecked">I have read Coupon Description and Terms &
+                    Conditions</label>
+            </div>
+            <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+            <div nz-col nzSpan="24" style='text-align: center'>
+                <nz-table  nzSize="small" nzShowPagination=false    [nzData]="['']">
+                    <thead>
+                        <tr>
+                            <th>Coupon ID</th>
+                            <th>User ID</th>
+                            <th>Vendor ID</th>
+                            <th>PassCode</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{redeemCoupon.id}}</td>
+                            <td>User Id</td>
+                            <td>{{redeemCoupon.vendorId}}</td>
+                            <td>PassCode</td>
+                            <td><button nz-button nzType="primary" (click)='redeem()'>Redeem</button></td>
+                        </tr>
+                    </tbody>
+                    </nz-table>
+            </div>
+        </div>
+    </ng-template>
+</nz-modal>
