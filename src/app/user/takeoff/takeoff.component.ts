@@ -32,6 +32,15 @@ export class TakeoffComponent implements OnInit {
 
   redeemChecked: Boolean = false;
 
+
+  code: string[]=[];
+
+
+  singleChar(id: number)
+  {
+    
+  }
+
   redeem()
   {
     

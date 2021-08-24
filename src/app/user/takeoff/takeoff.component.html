@@ -189,44 +189,89 @@
     <ng-template #redeemContent>
         <h3> Redemption </h3>
         <div nz-row class="container">
-            <div nz-col nzSpan="24" style='text-align: left'>
-                <nz-collapse nzAccordion>
-                    <nz-collapse-panel nzHeader="Coupon Description" nzActive="true" nzDisabled="false">
-                        <p> content</p>
-                    </nz-collapse-panel>
-                    <nz-collapse-panel nzHeader="TakeOff Terms & Conditions" nzDisabled="false">
-                        <p> TakeOff Terms & Conditions</p>
-                    </nz-collapse-panel>
-                </nz-collapse>
-            </div>
-            <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
-            <div nz-col nzSpan="24" style='text-align: center'>
-                <label nz-checkbox [(ngModel)]="redeemChecked">I have read Coupon Description and Terms &
-                    Conditions</label>
-            </div>
-            <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
-            <div nz-col nzSpan="24" style='text-align: center'>
-                <nz-table  nzSize="small" nzShowPagination=false    [nzData]="['']">
-                    <thead>
-                        <tr>
-                            <th>Coupon ID</th>
-                            <th>User ID</th>
-                            <th>Vendor ID</th>
-                            <th>PassCode</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{redeemCoupon.id}}</td>
-                            <td>User Id</td>
-                            <td>{{redeemCoupon.vendorId}}</td>
-                            <td>PassCode</td>
-                            <td><button nz-button nzType="primary" (click)='redeem()'>Redeem</button></td>
-                        </tr>
-                    </tbody>
+            <ng-container *ngIf='!redeemChecked'>
+                <div nz-col nzSpan="24" style='text-align: left'>
+                    <nz-collapse nzAccordion>
+                        <nz-collapse-panel nzHeader="Coupon Description" nzActive="true" nzDisabled="false">
+                            <p> content</p>
+                        </nz-collapse-panel>
+                        <nz-collapse-panel nzHeader="TakeOff Terms & Conditions" nzDisabled="false">
+                            <p> TakeOff Terms & Conditions</p>
+                        </nz-collapse-panel>
+                    </nz-collapse>
+                </div>
+                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                <div nz-col nzSpan="24" style='text-align: center'>
+                    <label nz-checkbox [(ngModel)]="redeemChecked">I have read Coupon Description and Terms &
+                        Conditions</label>
+                </div>
+            </ng-container>
+            <ng-container *ngIf='redeemChecked'>
+                <div nz-col nzSpan="24" style='text-align: center'>
+                    <nz-table nzSize="small" nzShowPagination=false [nzData]="['']">
+                        <thead>
+                            <tr>
+                                <th style='text-align:center'>Coupon ID</th>
+                                <th style='text-align:center'>User ID</th>
+                                <th style='text-align:center'>Vendor ID</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style='text-align:center'>
+                                <td>{{redeemCoupon.id}}</td>
+                                <td>User Id</td>
+                                <td>{{redeemCoupon.vendorId}}</td>
+                            </tr>
+                        </tbody>
                     </nz-table>
-            </div>
+                </div>
+                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+                <div nz-col nzSpan="24" style='text-align: center'>Passcode To Vendor :: </div>
+
+                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                <div nz-col nzSpan="24" style='text-align: center'>
+                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[0]"
+                        (ngModelChange)='singleChar(0)' />&nbsp;&nbsp;
+                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[1]"
+                        (ngModelChange)='singleChar(1)' />&nbsp;&nbsp;
+                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[2]"
+                        (ngModelChange)='singleChar(2)' />&nbsp;&nbsp;
+                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[3]"
+                        (ngModelChange)='singleChar(3)' />&nbsp;&nbsp;
+                </div>
+                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+                <div nz-col nzSpan="24" style='text-align: center'>Passcode From Vendor :: </div>
+
+                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+                <div nz-col nzSpan="24" style='text-align: center'>
+                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[4]"
+                        (ngModelChange)='singleChar(4)' />&nbsp;&nbsp;
+                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[5]"
+                        (ngModelChange)='singleChar(5)' />&nbsp;&nbsp;
+                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[6]"
+                        (ngModelChange)='singleChar(6)' />&nbsp;&nbsp;
+                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[7]"
+                        (ngModelChange)='singleChar(7)' />&nbsp;&nbsp;
+                </div>
+                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+                <div nz-col nzSpan="24" style='text-align: center'>
+
+                    Passcode Valid till ::
+
+                </div>
+
+                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                <div nz-col nzSpan="24" style='text-align: center'>
+                    <button nz-button nzType="dashed">HELP</button> &nbsp;
+                    <button nz-button nzType="primary">REDEEM</button> &nbsp;
+                    <button nz-button nzType="default" (click)="redeemCancel()">CANCEL</button>
+                </div>
+            </ng-container>
         </div>
     </ng-template>
 </nz-modal>
