@@ -58,6 +58,7 @@ import en from '@angular/common/locales/en-IN';
 import { registerLocaleData } from '@angular/common';
 import { ViewcouponsComponent } from './component/viewcoupons/viewcoupons.component';
 import { UserModule } from './user/user.module';
+import { RedemptionComponent } from './component/redemption/redemption.component';
 registerLocaleData(en);
 
 const LANG_PROVIDERS = [{ provide: NZ_I18N, useValue: en_US }];
@@ -96,6 +97,7 @@ const antDesignIcons = AllIcons as {
      VendoraccountComponent,
      AdminComponent,
      ViewcouponsComponent,
+     RedemptionComponent,
   ],
   imports: [
     BrowserModule,

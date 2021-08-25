@@ -1,0 +1,35 @@
+<div nz-row>
+    <div nz-col nzSpan="6" style='text-align: left'>&nbsp;</div>
+    <div nz-col nzSpan="6" style='text-align: left'>Enter CouponId</div>
+    <div nz-col nzSpan="6" style='text-align: left'>
+       
+        <input type="text" [(ngModel)]="couponId" nz-input placeholder="Enter CouponId" style='width:100%' />
+    </div>
+    <div nz-col nzSpan="6" style='text-align: left'>&nbsp;</div>
+</div>
+
+<div nz-row>
+    &nbsp;
+</div>
+
+<div nz-row>
+
+    <div nz-col nzSpan="6" style='text-align: left'>&nbsp;</div>
+    <div nz-col nzSpan="6" style='text-align: left'>Enter CustomerId</div>
+    <div nz-col nzSpan="6" style='text-align: left'>
+       
+        <input type="text" [(ngModel)]="customerId" nz-input placeholder="Enter CustomerId" style='width:100%' />
+    </div>
+    <div nz-col nzSpan="6" style='text-align: left'>&nbsp;</div>
+</div>
+
+<div nz-row>
+    &nbsp;
+</div>
+
+<div nz-row>
+
+    <div nz-col nzSpan="24" style='text-align: center'>
+<button nz-button nzType="primary" nzShape="round" (click)="vendorRedemptionProcess()">Get Passcode</button>
+</div>
+</div>

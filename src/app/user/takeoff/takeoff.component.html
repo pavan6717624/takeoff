@@ -109,7 +109,7 @@
                 background-color: #f1f1f1;'>
 
                         <h6 style='color:red'>Expires on {{item.expireTime}}</h6>
-                        <i nz-icon nzType="book" nzTheme="outline" style="font-size: 20px;" class='icon'
+                        <i nz-icon nzType="gift" nzTheme="outline" style="font-size: 20px;" class='icon'
                             (click)='viewRedemption(item)'></i> &nbsp;
                         <i nz-icon nzType="shop" nzTheme="outline" style="font-size: 20px;" class='icon'></i>&nbsp;
                         <i nz-icon nzType="like" nzTheme="outline" style="font-size: 20px;" class='icon'></i>&nbsp;
@@ -187,7 +187,11 @@
 
 <nz-modal [nzVisible]="redeemVisible" [nzContent]="redeemContent" [nzFooter]="null" (nzOnCancel)="redeemCancel()">
     <ng-template #redeemContent>
-        <h3> Redemption </h3>
+        <h3>
+            <ng-container *ngIf='redeemChecked'>
+                <span nz-icon nzType="arrow-left" nzTheme="outline" (click)='redeemChecked=false'> </span>
+            </ng-container> Redemption
+        </h3>
         <div nz-row class="container">
             <ng-container *ngIf='!redeemChecked'>
                 <div nz-col nzSpan="24" style='text-align: left'>
@@ -202,11 +206,15 @@
                 </div>
                 <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
                 <div nz-col nzSpan="24" style='text-align: center'>
-                    <label nz-checkbox [(ngModel)]="redeemChecked">I have read Coupon Description and Terms &
+                    <label nz-checkbox [(ngModel)]="redeemChecked" (ngModelChange) = 'generateRedemption(redeemCoupon.id,redeemCoupon.vendorId)'>I have read Coupon Description and Terms &
                         Conditions</label>
                 </div>
             </ng-container>
             <ng-container *ngIf='redeemChecked'>
+
+
+
+
                 <div nz-col nzSpan="24" style='text-align: center'>
                     <nz-table nzSize="small" nzShowPagination=false [nzData]="['']">
                         <thead>
@@ -228,7 +236,7 @@
                 </div>
                 <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
-                <div nz-col nzSpan="24" style='text-align: center'>Passcode To Vendor :: </div>
+                <div nz-col nzSpan="24" style='text-align: center'><b><i><u>Passcode To Vendor</u></i></b></div>
 
                 <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
                 <div nz-col nzSpan="24" style='text-align: center'>
@@ -243,7 +251,7 @@
                 </div>
                 <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
-                <div nz-col nzSpan="24" style='text-align: center'>Passcode From Vendor :: </div>
+                <div nz-col nzSpan="24" style='text-align: center'><b><i><u>Passcode From Vendor</u></i></b></div>
 
                 <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
@@ -261,15 +269,15 @@
 
                 <div nz-col nzSpan="24" style='text-align: center'>
 
-                    Passcode Valid till ::
+                    Passcode Valid till <b><i><u>{{redemption.validTill}}</u></i></b>
 
                 </div>
 
                 <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
                 <div nz-col nzSpan="24" style='text-align: center'>
-                    <button nz-button nzType="dashed">HELP</button> &nbsp;
-                    <button nz-button nzType="primary">REDEEM</button> &nbsp;
-                    <button nz-button nzType="default" (click)="redeemCancel()">CANCEL</button>
+                    <button nz-button nzType="default">HELP</button> &nbsp;
+                    <button nz-button nzType="primary" nzShape="round" nzDanger>REDEEM</button> &nbsp;
+                    <button nz-button nzType="primary" nzShape="round" (click)="redeemCancel()">CANCEL</button>
                 </div>
             </ng-container>
         </div>
