@@ -6,6 +6,9 @@ import { RedemptionDTO } from './takeoff/takeoff.component';
   providedIn: 'root'
 })
 export class UserService {
+  customerRedemption(redemption: RedemptionDTO) {
+    return this.http.post('https://takeoff-pavan.herokuapp.com/customerRedemption',redemption);
+  }
   generateRedemption(redemption:RedemptionDTO) {
     return this.http.post('https://takeoff-pavan.herokuapp.com/generateRedemption',redemption);
   }
@@ -13,7 +16,10 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
 
+  customerRedeem()
+  {
 
+  }
   getTakeOffRecommendations() {
     return this.http.get('https://takeoff-pavan.herokuapp.com/getTakeOffRecommendations');
   }

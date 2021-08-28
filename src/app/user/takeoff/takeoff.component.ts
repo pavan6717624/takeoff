@@ -92,6 +92,31 @@ export class TakeoffComponent implements OnInit {
     );
   }
 
+  customerRedeem()
+  {
+
+    let passcode: string = this.code[4]+this.code[5]+this.code[6]+this.code[7];
+    if(!passcode || passcode.trim().length!=4)
+    {
+      this.msg.create("error", "please provide all four valid characters of passcode");
+      return;
+    }
+   
+    let passcodeVisible: string = this.redemption.passcode.charAt(0)+this.redemption.passcode.charAt(1)+this.redemption.passcode.charAt(2)+this.redemption.passcode.charAt(3);
+
+    passcode=passcodeVisible+passcode;
+
+    this.redemption.passcode=passcode;
+
+
+
+    this.userService.customerRedemption(this.redemption).subscribe(
+
+      (res: any) => {  if(res) { this.msg.create('success', 'Your Redemption is Successful.');} else {this.msg.create('error','Sorry! Your Redemption Failed.'); }  },
+      (err) => { console.log(err); this.msg.create('error', 'Error Occured while accepting Passcode...'); this.redemption = new RedemptionDTO(); this.redeemLoading = false; }
+    );
+  }
+
   redeemCancel() {
     this.redeemVisible = false;
     this.redeemChecked = false;

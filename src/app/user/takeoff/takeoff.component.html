@@ -276,7 +276,7 @@
                 <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
                 <div nz-col nzSpan="24" style='text-align: center'>
                     <button nz-button nzType="default">HELP</button> &nbsp;
-                    <button nz-button nzType="primary" nzShape="round" nzDanger>REDEEM</button> &nbsp;
+                    <button nz-button nzType="primary" nzShape="round" nzDanger (click)='customerRedeem()'>REDEEM</button> &nbsp;
                     <button nz-button nzType="primary" nzShape="round" (click)="redeemCancel()">CANCEL</button>
                 </div>
             </ng-container>
