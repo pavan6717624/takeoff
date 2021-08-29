@@ -68,6 +68,7 @@ export class TakeoffComponent implements OnInit {
   generateRedemption(couponId: number, vendorId: number) {
     this.redeemLoading = true;
     let redemption : RedemptionDTO =new RedemptionDTO();
+    this.redemption=new RedemptionDTO();
 
     redemption.couponId = couponId;
     redemption.vendorId = vendorId;

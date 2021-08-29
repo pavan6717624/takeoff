@@ -59,6 +59,8 @@ import { registerLocaleData } from '@angular/common';
 import { ViewcouponsComponent } from './component/viewcoupons/viewcoupons.component';
 import { UserModule } from './user/user.module';
 import { RedemptionComponent } from './component/redemption/redemption.component';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
+
 registerLocaleData(en);
 
 const LANG_PROVIDERS = [{ provide: NZ_I18N, useValue: en_US }];
@@ -125,7 +127,8 @@ const antDesignIcons = AllIcons as {
     NzTableModule,
     NzDatePickerModule,
     UserModule,
-    NzImageModule
+    NzImageModule,
+    NzNotificationModule
   ],
   providers: [LANG_PROVIDERS,],
   bootstrap: [AppComponent]
