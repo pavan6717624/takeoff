@@ -120,11 +120,19 @@ export class TakeoffComponent implements OnInit {
   redeemCancel() {
     this.redeemVisible = false;
     this.redeemChecked = false;
+
+ 
   }
 
   viewRedemption(item: Coupon) {
     this.redeemCoupon = item;
     this.redeemVisible = true;
+
+    this.code[4]='';
+    this.code[5]='';
+    this.code[6]='';
+    this.code[7]='';
+    
   }
 
   open(): void {
@@ -138,8 +146,18 @@ export class TakeoffComponent implements OnInit {
   cancel() {
     this.previewVisible = false;
   }
-
+  screenHeight:any=0;
+  screenWidth:any=0;
+  columns:any = 0;
   ngOnInit(): void {
+
+    this.screenHeight = window.innerHeight;
+    this.screenWidth = window.innerWidth;
+    this.columns = Math.ceil(12/(this.screenWidth/400));
+
+   
+    console.log(this.screenHeight, this.screenWidth);
+
     var couponsheader = window.document.getElementById("couponsheader");
 
     if (couponsheader) {

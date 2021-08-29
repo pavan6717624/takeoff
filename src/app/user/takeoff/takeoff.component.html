@@ -52,12 +52,12 @@
 
         <div class='row'>
 
-            <div class="col-lg-4" *ngFor="let item of coupons">
+            <div class="col-lg-{{columns}}" *ngFor="let item of coupons">
 
 
-                <div nz-row class="coupon" style=' width:375px;height:350px;'>
+                <div nz-row class="coupon" style=' width:355px;height:335px;'>
                     <div nz-col nzSpan='24'>
-                        <div class="container" nz-col nzSpan="24" style='text-align: left;  padding: 2px 16px;
+                        <div class="container" nz-col nzSpan="24" style=' border-radius: 15px 15px 0 0 ; text-align: left;  padding: 2px 16px;
                     background-color: #f1f1f1;'>
 
                             <h6> {{item.vendorName}}</h6>
@@ -65,11 +65,11 @@
                         </div>
 
 
-                        <div class="container" style='width:365px;height:250px;overflow:hidden;'
+                        <div class="container" style='border-radius: 0px ;width:350px;height:250px;overflow:hidden;'
                             (click)='coupon=item;previewVisible=true;'>
                             <img style=' width:350px;height:250px ;' id="image" [src]="item.image">
                             <img [class]="item.image_align" [src]="item.logo"
-                                style='max-width: 20%; max-height: 20%;border: 1px solid  #bbb;'>
+                                style='max-width: 25%; max-height: 25%;border: 1px solid  #bbb;'>
 
 
                             <div [class]="item.footer_align" [style.font-family]='item.footer_font'
@@ -105,16 +105,16 @@
                         </div>
                     </div>
 
-                    <div class="container" nz-col nzSpan="24" style='text-align: center;  padding: 2px 16px;
+                    <div class="container" nz-col nzSpan="24" style='text-align: center; border-radius: 0 0  15px 15px; padding: 2px 16px;
                 background-color: #f1f1f1;'>
 
-                        <h6 style='color:red'>Expires on {{item.expireTime}}</h6>
+                        <h6 style='font-size:14px;color:red'>Expires on {{item.expireTime}}</h6>
                         <i nz-icon nzType="gift" nzTheme="outline" style="font-size: 20px;" class='icon'
-                            (click)='viewRedemption(item)'></i> &nbsp;
-                        <i nz-icon nzType="shop" nzTheme="outline" style="font-size: 20px;" class='icon'></i>&nbsp;
-                        <i nz-icon nzType="like" nzTheme="outline" style="font-size: 20px;" class='icon'></i>&nbsp;
-                        <i nz-icon nzType="dislike" nzTheme="outline" style="font-size: 20px;" class='icon'></i>&nbsp;
-                        <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;" class='icon'></i>&nbsp;
+                            (click)='viewRedemption(item)'></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <i nz-icon nzType="shop" nzTheme="outline" style="font-size: 20px;" class='icon'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <i nz-icon nzType="like" nzTheme="outline" style="font-size: 20px;" class='icon'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <i nz-icon nzType="dislike" nzTheme="outline" style="font-size: 20px;" class='icon'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;" class='icon'></i>
 
                     </div>
 
@@ -135,10 +135,10 @@
 
 
             <div style='overflow:auto;'>
-                <div class="container" style='width:365px;height:250px;overflow:hidden;'>
+                <div class="container" style='width:350px;height:250px;overflow:hidden;'>
                     <img style=' width:350px;height:250px;' id="image" [src]="coupon.image">
                     <img [class]="coupon.image_align" [src]="coupon.logo"
-                        style='max-width: 20%; max-height: 20%;border: 1px solid  #bbb;'>
+                        style='max-width: 25%; max-height: 25%;border: 1px solid  #bbb;'>
 
 
                     <div [class]="coupon.footer_align" [style.font-family]='coupon.footer_font'
