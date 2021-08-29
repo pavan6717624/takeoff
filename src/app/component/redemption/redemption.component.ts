@@ -56,16 +56,16 @@ export class RedemptionComponent implements OnInit {
         if (res) {
           this.notification.create(
             'success',
-            'Notification Title',
-            'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+            'Redemption Acceptance',
+            'You have Acceptance of Redemption is Successful.',
             );
         }
         else
         {
           this.notification.create(
             'error',
-            'Notification Title',
-            'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+            'Redemption Acceptance',
+            'Your Acceptance of Redemption got Failed.',
             );
         }
       },
