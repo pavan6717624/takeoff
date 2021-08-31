@@ -45,7 +45,7 @@
                             <div [class]="item.footer_align" [style.font-family]='item.footer_font'
                                 [style.color]='item.footer_color' [style.text-decoration]='item.footer_decoration'
                                 [style.font-weight]='item.footer_bold' [style.font-style]='item.footer_style'
-                                [style.font-size.px]="item.footer_size" [innerHTML]="item.footer "></div>
+                                [style.font-size.px]="item.footer_size" [innerHTML]="item.footer  | replaceNewLine"></div>
 
 
 
@@ -56,7 +56,7 @@
                             <div [class]="item.header_align" [style.font-family]='item.header_font'
                                 [style.color]='item.header_color' [style.text-decoration]='item.header_decoration'
                                 [style.font-weight]='item.header_bold' [style.font-style]='item.header_style'
-                                [style.font-size.px]="item.header_size" [innerHTML]="item.header ">
+                                [style.font-size.px]="item.header_size" [innerHTML]="item.header | replaceNewLine">
 
 
 
@@ -67,7 +67,7 @@
                             <div [class]="item.body_align" [style.font-family]='item.body_font'
                                 [style.color]='item.body_color' [style.text-decoration]='item.body_decoration'
                                 [style.font-weight]='item.body_bold' [style.font-style]="item.body_style"
-                                [style.font-size.px]="item.body_size" [innerHTML]="item.body ">
+                                [style.font-size.px]="item.body_size" [innerHTML]="item.body  | replaceNewLine">
                             </div>
 
 
