@@ -23,4 +23,21 @@ export class UserService {
   getTakeOffRecommendations() {
     return this.http.get('https://takeoff-pavan.herokuapp.com/getTakeOffRecommendations');
   }
+
+
+  getComplimentaryCoupons() {
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getComplimentaryCoupons');
+  }
+
+
+  getFreeCoupons() {
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getFreeCoupons');
+  }
+
+
+  getDailyCoupons() {
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getDailyCoupons');
+  }
+
+  
 }

@@ -8,20 +8,30 @@ import { DailyComponent } from './daily/daily.component';
 
 const routes: Routes = [
 
-     { path: '',  component: TakeoffComponent},
-  
-   
-
-    { path: 'complimentary', component: ComplimentaryComponent },
-    { path: 'free', component: FreeComponent },
-    { path: 'daily', component: DailyComponent },
+     { path: '',  component: HomeComponent,
     
-   
+    
+     children: [
+      { path: '', component: TakeoffComponent, data : {couponDisplayId : '0'} },
+      { path: 'takeoff', component: TakeoffComponent, data : {couponDisplayId : '0'} },
+      { path: 'complimentary', component: TakeoffComponent, data : {couponDisplayId : '1'} },
+    { path: 'free', component: TakeoffComponent,data : {couponDisplayId : '2'} },
+    { path: 'daily', component: TakeoffComponent, data : {couponDisplayId : '3'} },
+     
+
+    ],
+    
+    },
   
+   
+
+   
+
+    ];
 
   
   
-  ];
+  
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

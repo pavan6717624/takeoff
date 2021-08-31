@@ -13,21 +13,25 @@ export class HomeComponent implements OnInit {
 
   constructor(private msg: NzMessageService, private router: Router,private deviceService: DeviceDetectorService) { }
 
-  isCollapsed = false;
-  collapseWidth = 0;
-  isMobile=false;
-  loginStatus: LoginStatus = new LoginStatus();
-  userType: string = '';
+  visible = false;
 
-  onCollapse()
-  {
-    this.isCollapsed = !this.isCollapsed;
-  }
+  selectedMenu : number = 1;
+
 
   ngOnInit(): void {
-    this.isMobile = this.deviceService.isMobile();
 
 
+
+  }
+
+  open(): void {
+    this.visible = true;
+  }
+
+  close(id: number): void {
+    if(id!=0)
+    this.selectedMenu = id;
+    this.visible = false;
   }
 
 }

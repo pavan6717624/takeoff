@@ -1,14 +1,5 @@
-<div class="inner-content" style='padding-left:20px;overflow:auto;width:100%;height: 90%;'>
-    <div nz-row>&nbsp;</div>
-    <div nz-row>
-        <div nz-col nzSpan="4">
-            <i nz-icon nzType="menu" nzTheme="outline" style="font-size: 20px;" (click)="open()"></i>
-        </div>
-        <div nz-col nzSpan="20" style='text-align:center'>
-            <h6> TakeOff Recommendations</h6>
-        </div>
-    </div>
-    <div nz-row>&nbsp;</div>
+<div style='padding-left:15px;padding-right:15px;overflow:auto;width:100%;height: 90%;' (scroll)="onWindowScroll()"
+    #scrollMe>
     <ng-container *ngIf='loading'>
         <div nz-row>
 
@@ -26,27 +17,6 @@
 
 
 
-        <nz-drawer [nzClosable]="false" [nzVisible]="visible" [nzPlacement]="'left'" nzTitle="Menu"
-            (nzOnClose)="close()">
-            <ng-container *nzDrawerContent>
-                <ul nz-menu nzTheme="light" nzMode="inline">
-                    <li nz-menu-item nzSelected> <i nz-icon nzType="home"> </i><span> <a [routerLink]="['/customer']">
-                                TakeOff Recommends </a>
-                        </span> </li>
-
-                    <li nz-submenu nzTitle="Coupons" nzIcon="user">
-                        <ul>
-                            <li nz-menu-item><a [routerLink]="['complimentary']">Complimentary</a></li>
-                            <li nz-menu-item><a [routerLink]="['free']">Free</a></li>
-                            <li nz-menu-item><a [routerLink]="['daily']">Daily</a></li>
-
-
-                        </ul>
-                    </li>
-
-                </ul>
-            </ng-container>
-        </nz-drawer>
 
 
 
@@ -55,7 +25,7 @@
             <div class="col-lg-{{columns}}" *ngFor="let item of coupons">
 
 
-                <div nz-row class="coupon" style=' width:355px;height:335px;'>
+                <div nz-row class="coupon" style=' width:355px;height:380px;'>
                     <div nz-col nzSpan='24'>
                         <div class="container" nz-col nzSpan="24" style=' border-radius: 15px 15px 0 0 ; text-align: left;  padding: 2px 16px;
                     background-color: #f1f1f1;'>
@@ -105,19 +75,60 @@
                         </div>
                     </div>
 
-                    <div class="container" nz-col nzSpan="24" style='text-align: center; border-radius: 0 0  15px 15px; padding: 2px 16px;
+                    <div class="container" nz-col nzSpan="24" style='text-align: center; border-radius: 0 0  15px 15px; padding:0;
                 background-color: #f1f1f1;'>
-
-                        <h6 style='font-size:14px;color:red'>Expires on {{item.expireTime}}</h6>
-                        <i nz-icon nzType="gift" nzTheme="outline" style="font-size: 20px;" class='icon'
-                            (click)='viewRedemption(item)'></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <i nz-icon nzType="shop" nzTheme="outline" style="font-size: 20px;"
-                            class='icon'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <i nz-icon nzType="like" nzTheme="outline" style="font-size: 20px;"
-                            class='icon'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <i nz-icon nzType="dislike" nzTheme="outline" style="font-size: 20px;"
-                            class='icon'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;" class='icon'></i>
+                        <div nz-col nzSpan="24">
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                        </div>
+                        <div nz-col nzSpan="24">
+                            <h6 style=" font-family: 'Brush Script MT', cursive; font-size:15px;color:red">Expires on
+                                {{item.expireTime}}</h6>
+                        </div>
+                        <div nz-col nzSpan="24">
+                            <div nz-row>
+                                <div nz-col nzSpan="2">&nbsp;</div>
+                                <div nz-col nzSpan="4">
+                                    <i nz-icon nzType="gift" nzTheme="outline" style="font-size: 20px;" class='icon'
+                                        (click)='viewRedemption(item)'></i>
+                                </div>
+                                <div nz-col nzSpan="4">
+                                    <i nz-icon nzType="shop" nzTheme="outline" style="font-size: 20px;"
+                                        class='icon'></i>
+                                </div>
+                                <div nz-col nzSpan="4">
+                                    <i nz-icon nzType="like" [nzTheme]="item.like?'fill':'outline'"
+                                        style="font-size: 20px;" class='icon' (click)="like(item)"></i><br />
+                                    {{item.likeCount}}
+                                </div>
+                                <div nz-col nzSpan="4">
+                                    <i nz-icon nzType="dislike" [nzTheme]="item.dislike?'fill':'outline'"
+                                        style="font-size: 20px;" class='icon' (click)="dislike(item)"></i>
+                                </div>
+                                <div nz-col nzSpan="4">
+                                    <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;"
+                                        class='icon'></i>
+                                </div>
+                                <div nz-col nzSpan="2">&nbsp;</div>
+                            </div>
+                        </div>
 
                     </div>
 
@@ -129,6 +140,19 @@
             </div>
         </div>
 
+    </ng-container>
+
+    <ng-container *ngIf='bottom'>
+        <div nz-row>
+
+            &nbsp;
+        </div>
+
+        <div nz-row>
+            <div nz-col nzSpan="24" style='text-align: center'>
+                <nz-spin nzTip="Please wait....Loading Images" nzSimple [nzSize]="'large'"></nz-spin>
+            </div>
+        </div>
     </ng-container>
 
 
@@ -248,14 +272,14 @@
 
                 <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
                 <div nz-col nzSpan="24" style='text-align: center'>
-                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[0]"
-                        (ngModelChange)='singleChar(0)' />&nbsp;&nbsp;
-                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[1]"
-                        (ngModelChange)='singleChar(1)' />&nbsp;&nbsp;
-                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[2]"
-                        (ngModelChange)='singleChar(2)' />&nbsp;&nbsp;
-                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[3]"
-                        (ngModelChange)='singleChar(3)' />&nbsp;&nbsp;
+                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
+                        [(ngModel)]="code[0]" />&nbsp;&nbsp;
+                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
+                        [(ngModel)]="code[1]" />&nbsp;&nbsp;
+                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
+                        [(ngModel)]="code[2]" />&nbsp;&nbsp;
+                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
+                        [(ngModel)]="code[3]" />&nbsp;&nbsp;
                 </div>
                 <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
@@ -264,14 +288,10 @@
                 <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
                 <div nz-col nzSpan="24" style='text-align: center'>
-                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[4]"
-                        (ngModelChange)='singleChar(4)' />&nbsp;&nbsp;
-                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[5]"
-                        (ngModelChange)='singleChar(5)' />&nbsp;&nbsp;
-                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[6]"
-                        (ngModelChange)='singleChar(6)' />&nbsp;&nbsp;
-                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[7]"
-                        (ngModelChange)='singleChar(7)' />&nbsp;&nbsp;
+                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[4]" />&nbsp;&nbsp;
+                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[5]" />&nbsp;&nbsp;
+                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[6]" />&nbsp;&nbsp;
+                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[7]" />&nbsp;&nbsp;
                 </div>
                 <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 

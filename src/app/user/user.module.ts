@@ -34,7 +34,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-
+import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 
 @NgModule({
   declarations: [
@@ -73,7 +73,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzImageModule,
     NzCollapseModule,
     NzCheckboxModule,
-
+    NzBackTopModule
   ]
 })
 export class UserModule { }

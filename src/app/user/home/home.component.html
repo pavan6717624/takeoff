@@ -1,45 +1,41 @@
-<nz-layout style='height: 90%;'> 
+<div style='padding-left:10px;padding-right:10px; padding-top:0px; padding-bottom:0px;width:100%;height:90%;'>
+  <div nz-row>&nbsp;</div>
+  <div nz-row>
+    <div nz-col nzSpan="4">
+      <i nz-icon nzType="menu" nzTheme="outline" style="font-size: 20px;" (click)="open()"></i>
+    </div>
+    <div nz-col nzSpan="20" style='text-align:center'>
+      <h6 id='displayHeader'> </h6>
+    </div>
+  </div>
+  <div nz-row>&nbsp;</div>
 
-    <nz-header>
-      
-      </nz-header>
-  
-    <nz-sider nzCollapsible nzBreakpoint="lg" [nzCollapsedWidth]="collapseWidth" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
-       
-        
-     
-  <br/>
-  
-      <ul nz-menu nzTheme="dark" nzMode="inline">
-              <li nz-menu-item nzSelected> <i nz-icon nzType="home"> </i><span> <a [routerLink]="['/customer']"> TakeOff Recommends </a>
-        </span> </li>
-  
-        <li nz-submenu nzTitle="Coupons" nzIcon="user">
-          <ul>
-            <li nz-menu-item><a [routerLink]="['complimentary']">Complimentary</a></li>
-            <li nz-menu-item><a [routerLink]="['free']">Free</a></li>
-            <li nz-menu-item><a [routerLink]="['daily']">Daily</a></li>
-     
-            
-          </ul>
+  <router-outlet>
+  </router-outlet>
+
+</div>
+
+
+<nz-drawer [nzClosable]="false" [nzVisible]="visible" [nzPlacement]="'left'" nzTitle="Menu"
+(nzOnClose)="close(0)">
+<ng-container *nzDrawerContent>
+    <ul nz-menu nzTheme="light" nzMode="inline">
+        <li nz-menu-item [nzSelected]="selectedMenu==1?true:false"> 
+          <i nz-icon nzType="home"> </i><span> <a [routerLink]="['takeoff']" (click)="close(1)" >TakeOff Recommends </a></span> 
         </li>
-        
-      </ul>
-    </nz-sider>
-    <nz-layout >
-      <nz-header>
 
-        <div id='couponsheader' style=' align-items: center; text-align: center;'> </div>
-      </nz-header>
-      <nz-content>
-   
-        <div  class="inner-content" style='overflow:auto;width:100%;height: 100%;'>
-  
-            <router-outlet>
-            </router-outlet>
-  
-        </div>
-      </nz-content>
-  
-    </nz-layout>
-  </nz-layout>
+        <li nz-submenu nzTitle="Coupons" nzIcon="container" nzOpen>
+            <ul>
+                <li nz-menu-item [nzSelected]="selectedMenu==2?true:false"><a [routerLink]="['complimentary']" (click)="close(2)">Complimentary</a></li>
+                <li nz-menu-item [nzSelected]="selectedMenu==3?true:false"><a [routerLink]="['free']" (click)="close(3)">Free</a></li>
+                <li nz-menu-item [nzSelected]="selectedMenu==4?true:false"><a [routerLink]="['daily']" (click)="close(4)">Daily</a></li>
+
+
+            </ul>
+        </li>
+
+    </ul>
+</ng-container>
+</nz-drawer>
+
+
