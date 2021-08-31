@@ -105,6 +105,25 @@ export class TakeoffComponent implements OnInit {
       
       this.getDailyCoupons();
     }
+
+    else if(this.couponDisplayId == 4)
+    {
+      
+      this.getLimitedCoupons();
+    }
+
+    else if(this.couponDisplayId == 5)
+    {
+      
+      this.getRedeemableCoupons();
+    }
+
+    else if(this.couponDisplayId == 6)
+    {
+      
+      this.getDiscountCoupons();
+    }
+
   
 
     }
@@ -255,6 +274,48 @@ export class TakeoffComponent implements OnInit {
       this.getDailyCoupons();
     }
 
+    else if(this.couponDisplayId == 3)
+    {
+      if(heading)
+      heading.innerHTML= "Daily Coupons";
+      this.getDailyCoupons();
+    }
+
+    else if(this.couponDisplayId == 3)
+    {
+      if(heading)
+      heading.innerHTML= "Daily Coupons";
+      this.getDailyCoupons();
+    }
+
+    else if(this.couponDisplayId == 3)
+    {
+      if(heading)
+      heading.innerHTML= "Daily Coupons";
+      this.getDailyCoupons();
+    }
+
+    else if(this.couponDisplayId == 4)
+    {
+      if(heading)
+      heading.innerHTML= "Limited Coupons"; 
+      this.getLimitedCoupons();
+    }
+
+    else if(this.couponDisplayId == 5)
+    {
+      if(heading)
+      heading.innerHTML= "Redeemable Coupons";
+      this.getRedeemableCoupons();
+    }
+
+    else if(this.couponDisplayId == 6)
+    {
+      if(heading)
+      heading.innerHTML= "Discount Coupons";
+      this.getDiscountCoupons();
+    }
+
    
   }
 
@@ -305,6 +366,46 @@ export class TakeoffComponent implements OnInit {
 
 
     this.userService.getDailyCoupons().subscribe(
+
+      (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
+      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }
+    );
+  }
+
+  getLimitedCoupons() {
+    if(!this.bottom)
+    this.loading = true;
+    var formData = new FormData();
+
+
+    this.userService.getLimitedCoupons().subscribe(
+
+      (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
+      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }
+    );
+  }
+
+  
+  getRedeemableCoupons() {
+    if(!this.bottom)
+    this.loading = true;
+    var formData = new FormData();
+
+
+    this.userService.getRedeemableCoupons().subscribe(
+
+      (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
+      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }
+    );
+  }
+
+  getDiscountCoupons() {
+    if(!this.bottom)
+    this.loading = true;
+    var formData = new FormData();
+
+
+    this.userService.getDiscountCoupons().subscribe(
 
       (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }

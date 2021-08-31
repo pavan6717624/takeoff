@@ -6,6 +6,15 @@ import { RedemptionDTO } from './takeoff/takeoff.component';
   providedIn: 'root'
 })
 export class UserService {
+  getLimitedCoupons() {
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getLimitedCoupons');
+  }
+  getRedeemableCoupons() {
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getRedeemableCoupons');
+  }
+  getDiscountCoupons() {
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getDiscountCoupons');
+  }
   customerRedemption(redemption: RedemptionDTO) {
     return this.http.post('https://takeoff-pavan.herokuapp.com/customerRedemption',redemption);
   }
