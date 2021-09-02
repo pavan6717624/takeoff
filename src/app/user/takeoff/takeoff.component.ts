@@ -3,6 +3,7 @@ import { Coupon } from 'src/app/component/editcoupons/editcoupons.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { UserService } from '../user.service';
+import { LoginStatus } from 'src/app/component/login/login.component';
 
 export class RedemptionDTO {
 
@@ -33,8 +34,30 @@ export class RedemptionDTO {
 })
 export class TakeoffComponent implements OnInit {
 
+  loginStatus: LoginStatus = new LoginStatus();
 
-  constructor(private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) { }
+  userType: string = '';
+
+
+  constructor(private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) 
+  {
+
+    const navigation = this.router.getCurrentNavigation();
+    this.loginStatus =  (navigation?.extras?.state?.loginStatus); 
+
+    if(this.loginStatus)
+    {
+      this.userType=this.loginStatus.userType;
+    }
+    else
+    {
+      this.msg.create('error','Session Expired. Please Login...');
+      this.router.navigate(['login']);
+      return;
+    }
+    console.log("customer login Status :: "+this.loginStatus);
+
+   }
 
   @ViewChild('scrollMe') private eleRef: ElementRef = new ElementRef('') ;
   
@@ -63,6 +86,8 @@ export class TakeoffComponent implements OnInit {
   bottom: Boolean = false;
 
 
+
+
     
   onWindowScroll() {
   
@@ -83,6 +108,7 @@ export class TakeoffComponent implements OnInit {
      
 
       this.bottom=true;
+     
 
       
       if(this.couponDisplayId == 0)
@@ -139,7 +165,7 @@ export class TakeoffComponent implements OnInit {
 
     redemption.couponId = couponId;
     redemption.vendorId = vendorId;
-    redemption.customerId = 10004;
+    redemption.customerId = Number(this.loginStatus.userId);
 
     this.code[0]='';
     this.code[1]='';
@@ -203,18 +229,68 @@ export class TakeoffComponent implements OnInit {
     
   }
 
-  like(coupon: Coupon)
+  async like(coupon: Coupon)
   {
-    coupon.like=!coupon.like;
-    if(coupon.dislike)
-    coupon.dislike=!coupon.dislike;
+    if(coupon.likeLoading)
+    return;
+    
+    coupon.likeLoading=true;
+    coupon.likeCoupon=!coupon.likeCoupon;
+    if(coupon.disLikeCoupon)
+    {
+      coupon.disLikeCoupon=!coupon.disLikeCoupon;
+      coupon.dislikeCount-=1;
+    }
+
+    if(coupon.likeCoupon)
+    coupon.likeCount+=1;
+    else
+    coupon.likeCount-=1;
+
+    var formData = new FormData();
+
+    formData.set("couponId",coupon.id+"");
+    formData.set("userId",this.loginStatus.userId);
+    formData.set("like",coupon.likeCoupon+"")
+
+    
+
+    this.userService.likeCoupon(formData).then(() => coupon.likeLoading=false);
+
   }
 
-  dislike(coupon: Coupon)
+  async dislike(coupon: Coupon)
   {
-    coupon.dislike=!coupon.dislike;
-    if(coupon.like)
-    coupon.like=!coupon.like;
+    if(coupon.likeLoading)
+    return;
+
+    coupon.likeLoading=true;
+
+
+
+
+
+    coupon.disLikeCoupon=!coupon.disLikeCoupon;
+    if(coupon.likeCoupon)
+    {
+      coupon.likeCoupon=!coupon.likeCoupon;
+      coupon.likeCount-=1;
+    }
+
+    if(coupon.disLikeCoupon)
+    coupon.dislikeCount+=1;
+    else
+    coupon.dislikeCount-=1;
+
+    var formData = new FormData();
+
+    formData.set("couponId",coupon.id+"");
+    formData.set("userId",this.loginStatus.userId);
+    formData.set("dislike",coupon.disLikeCoupon+"");
+
+    
+
+    this.userService.disLikeCoupon(formData).then((res) => coupon.likeLoading=false);
   }
 
 
@@ -323,9 +399,9 @@ export class TakeoffComponent implements OnInit {
     if(!this.bottom)
     this.loading = true;
     var formData = new FormData();
+    formData.set("userId",this.loginStatus.userId)
 
-
-    this.userService.getTakeOffRecommendations().subscribe(
+    this.userService.getTakeOffRecommendations(formData).subscribe(
 
       (res: any) => {  this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = [];  if(!this.bottom) this.loading = false; }
@@ -338,8 +414,9 @@ export class TakeoffComponent implements OnInit {
     this.loading = true;
     var formData = new FormData();
 
+    formData.set("userId",this.loginStatus.userId)
 
-    this.userService.getComplimentaryCoupons().subscribe(
+    this.userService.getComplimentaryCoupons(formData).subscribe(
 
       (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }
@@ -350,9 +427,10 @@ export class TakeoffComponent implements OnInit {
     if(!this.bottom)
     this.loading = true;
     var formData = new FormData();
+    formData.set("userId",this.loginStatus.userId)
 
 
-    this.userService.getFreeCoupons().subscribe(
+    this.userService.getFreeCoupons(formData).subscribe(
 
       (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }
@@ -363,9 +441,10 @@ export class TakeoffComponent implements OnInit {
     if(!this.bottom)
     this.loading = true;
     var formData = new FormData();
+    formData.set("userId",this.loginStatus.userId)
 
 
-    this.userService.getDailyCoupons().subscribe(
+    this.userService.getDailyCoupons(formData).subscribe(
 
       (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }
@@ -377,8 +456,9 @@ export class TakeoffComponent implements OnInit {
     this.loading = true;
     var formData = new FormData();
 
+    formData.set("userId",this.loginStatus.userId)
 
-    this.userService.getLimitedCoupons().subscribe(
+    this.userService.getLimitedCoupons(formData).subscribe(
 
       (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }
@@ -390,9 +470,10 @@ export class TakeoffComponent implements OnInit {
     if(!this.bottom)
     this.loading = true;
     var formData = new FormData();
+    formData.set("userId",this.loginStatus.userId)
 
 
-    this.userService.getRedeemableCoupons().subscribe(
+    this.userService.getRedeemableCoupons(formData).subscribe(
 
       (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }
@@ -403,9 +484,9 @@ export class TakeoffComponent implements OnInit {
     if(!this.bottom)
     this.loading = true;
     var formData = new FormData();
+    formData.set("userId",this.loginStatus.userId)
 
-
-    this.userService.getDiscountCoupons().subscribe(
+    this.userService.getDiscountCoupons(formData).subscribe(
 
       (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }

@@ -36,6 +36,8 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 import { ReplaceNewLinePipe } from './replace-new-line.pipe';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { ReplaceNewLinePipe } from './replace-new-line.pipe';
     FreeComponent,
     DailyComponent,
     TakeoffComponent,
-    ReplaceNewLinePipe
+    ReplaceNewLinePipe,
+    AccountComponent
   ],
   imports: [
     CommonModule,
@@ -75,7 +78,8 @@ import { ReplaceNewLinePipe } from './replace-new-line.pipe';
     NzImageModule,
     NzCollapseModule,
     NzCheckboxModule,
-    NzBackTopModule
+    NzBackTopModule,
+    NzToolTipModule 
   ]
 })
 export class UserModule { }

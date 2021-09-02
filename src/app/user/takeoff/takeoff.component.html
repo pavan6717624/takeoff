@@ -45,7 +45,8 @@
                             <div [class]="item.footer_align" [style.font-family]='item.footer_font'
                                 [style.color]='item.footer_color' [style.text-decoration]='item.footer_decoration'
                                 [style.font-weight]='item.footer_bold' [style.font-style]='item.footer_style'
-                                [style.font-size.px]="item.footer_size" [innerHTML]="item.footer  | replaceNewLine"></div>
+                                [style.font-size.px]="item.footer_size" [innerHTML]="item.footer  | replaceNewLine">
+                            </div>
 
 
 
@@ -104,30 +105,55 @@
                         </div>
                         <div nz-col nzSpan="24">
                             <div nz-row>
+
                                 <div nz-col nzSpan="2">&nbsp;</div>
+
                                 <div nz-col nzSpan="4">
-                                    <i nz-icon nzType="gift" nzTheme="outline" style="font-size: 20px;" class='icon'
+
+                                    <i nz-icon nz-tooltip nzTooltipTitle="Redem Coupon" nzType="gift" nzTheme="fill"
+                                        style="font-size: 20px; color: blue" class='icon'
                                         (click)='viewRedemption(item)'></i>
+
                                 </div>
+
                                 <div nz-col nzSpan="4">
-                                    <i nz-icon nzType="shop" nzTheme="outline" style="font-size: 20px;"
-                                        class='icon'></i>
+
+                                    <i nz-icon nz-tooltip nzTooltipTitle="Visit Vendor Store" nzType="bank"
+                                        nzTheme="fill" style="font-size: 20px; color: brown " class='icon'></i>
+
                                 </div>
+
                                 <div nz-col nzSpan="4">
-                                    <i nz-icon nzType="like" [nzTheme]="item.like?'fill':'outline'"
-                                        style="font-size: 20px;" class='icon' (click)="like(item)"></i><br />
+
+                                    <i nz-icon nz-tooltip nzTooltipTitle="Like Coupon" [nzType]="item.likeLoading?'smile':'like'"
+                                         [nzTheme]="item.likeCoupon?'fill':'outline'" style="font-size: 20px; color:green"
+                                        class='icon' (click)="like(item)"></i><br />
+
                                     {{item.likeCount}}
+
                                 </div>
+
                                 <div nz-col nzSpan="4">
-                                    <i nz-icon nzType="dislike" [nzTheme]="item.dislike?'fill':'outline'"
-                                        style="font-size: 20px;" class='icon' (click)="dislike(item)"></i>
+
+                                    <i nz-icon nz-tooltip nzTooltipTitle="DisLike Coupon" [nzType]="item.likeLoading?'frown':'dislike'"
+                                        [nzTheme]="item.disLikeCoupon?'fill':'outline'" style="font-size: 20px; color:red"
+                                        class='icon' (click)="dislike(item)"></i><br/>
+                                        {{item.dislikeCount}}
+
                                 </div>
+
                                 <div nz-col nzSpan="4">
-                                    <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;"
-                                        class='icon'></i>
+
+                                    <i nz-icon nz-tooltip nzTooltipTitle="Download Coupon" nzType="download"
+                                        nzTheme="outline" style="font-size: 20px;" class='icon'></i>
+
                                 </div>
+
                                 <div nz-col nzSpan="2">&nbsp;</div>
+
                             </div>
+
+
                         </div>
 
                     </div>

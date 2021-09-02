@@ -81,13 +81,15 @@ export class Coupon
 
   expireTime: string = '';
 
-  like: Boolean = false;
+  likeCoupon: Boolean = false;
 
-  dislike: Boolean = false;
+  disLikeCoupon: Boolean = false;
 
   likeCount: number = 200;
 
   dislikeCount: number = 250;
+
+  likeLoading: Boolean = false;
 
 }
 
