@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
     if(id!=0)
     this.selectedMenu = id;
     this.visible = false;
+    
   }
 
 }

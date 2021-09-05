@@ -157,7 +157,7 @@ export class TakeoffComponent implements OnInit {
 
   //console.log(this.bottom);
 }
-  
+
   generateRedemption(couponId: number, vendorId: number) {
     this.redeemLoading = true;
     let redemption : RedemptionDTO =new RedemptionDTO();
@@ -206,7 +206,7 @@ export class TakeoffComponent implements OnInit {
 
     this.userService.customerRedemption(this.redemption).subscribe(
 
-      (res: any) => {  if(res) { this.msg.create('success', 'Your Redemption is Successful.');} else {this.msg.create('error','Sorry! Your Redemption Failed.'); }  },
+      (res: any) => {  if(res) { this.redeemCoupon.redemptionCount+=1; this.msg.create('success', 'Your Redemption is Successful.');} else {this.msg.create('error','Sorry! Your Redemption Failed.'); }  },
       (err) => { console.log(err); this.msg.create('error', 'Error Occured while accepting Passcode...'); this.redemption = new RedemptionDTO(); this.redeemLoading = false; }
     );
   }

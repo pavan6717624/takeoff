@@ -108,24 +108,25 @@
 
                                 <div nz-col nzSpan="2">&nbsp;</div>
 
-                                <div nz-col nzSpan="4">
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top" title="Redem Coupon">
 
-                                    <i nz-icon nz-tooltip nzTooltipTitle="Redem Coupon" nzType="gift" nzTheme="fill"
+                                    <i nz-icon  nzType="gift" nzTheme="fill"
                                         style="font-size: 20px; color: blue" class='icon'
-                                        (click)='viewRedemption(item)'></i>
+                                        (click)='viewRedemption(item)'></i><br/>
+                                        {{item.redemptionCount}}
 
                                 </div>
 
-                                <div nz-col nzSpan="4">
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top" title="Visit Vendor Store">
 
-                                    <i nz-icon nz-tooltip nzTooltipTitle="Visit Vendor Store" nzType="bank"
+                                    <i nz-icon  nzType="bank"
                                         nzTheme="fill" style="font-size: 20px; color: brown " class='icon'></i>
 
                                 </div>
 
-                                <div nz-col nzSpan="4">
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top" title="Like Coupon">
 
-                                    <i nz-icon nz-tooltip nzTooltipTitle="Like Coupon" [nzType]="item.likeLoading?'smile':'like'"
+                                    <i nz-icon   [nzType]="item.likeLoading?'smile':'like'"
                                          [nzTheme]="item.likeCoupon?'fill':'outline'" style="font-size: 20px; color:green"
                                         class='icon' (click)="like(item)"></i><br />
 
@@ -133,18 +134,18 @@
 
                                 </div>
 
-                                <div nz-col nzSpan="4">
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top" title="DisLike Coupon">
 
-                                    <i nz-icon nz-tooltip nzTooltipTitle="DisLike Coupon" [nzType]="item.likeLoading?'frown':'dislike'"
+                                    <i nz-icon  [nzType]="item.likeLoading?'frown':'dislike'"
                                         [nzTheme]="item.disLikeCoupon?'fill':'outline'" style="font-size: 20px; color:red"
                                         class='icon' (click)="dislike(item)"></i><br/>
                                         {{item.dislikeCount}}
 
                                 </div>
 
-                                <div nz-col nzSpan="4">
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top" title="Download Coupon">
 
-                                    <i nz-icon nz-tooltip nzTooltipTitle="Download Coupon" nzType="download"
+                                    <i nz-icon  nzType="download"
                                         nzTheme="outline" style="font-size: 20px;" class='icon'></i>
 
                                 </div>
@@ -286,7 +287,7 @@
                         <tbody>
                             <tr style='text-align:center'>
                                 <td>{{redeemCoupon.id}}</td>
-                                <td>User Id</td>
+                                <td>{{loginStatus.userId}}</td>
                                 <td>{{redeemCoupon.vendorId}}</td>
                             </tr>
                         </tbody>
@@ -308,6 +309,15 @@
                         [(ngModel)]="code[3]" />&nbsp;&nbsp;
                 </div>
                 <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+                <div nz-col nzSpan="24" style='text-align: center'>
+                    For WhatsApp Redemption Format for Vendor is 
+                    <b><i>{{redeemCoupon.id}},{{loginStatus.userId}},{{code[0]+code[1]+code[2]+code[3]}}</i></b>
+                    </div>
+
+                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+
 
                 <div nz-col nzSpan="24" style='text-align: center'><b><i><u>Passcode From Vendor</u></i></b></div>
 

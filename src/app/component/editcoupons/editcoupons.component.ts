@@ -91,6 +91,8 @@ export class Coupon
 
   likeLoading: Boolean = false;
 
+  redemptionCount: number = 0;
+
 }
 
 export class CouponType

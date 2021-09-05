@@ -38,6 +38,7 @@ import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 import { ReplaceNewLinePipe } from './replace-new-line.pipe';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { AccountComponent } from './account/account.component';
+import { WalletComponent } from './wallet/wallet.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AccountComponent } from './account/account.component';
     DailyComponent,
     TakeoffComponent,
     ReplaceNewLinePipe,
-    AccountComponent
+    AccountComponent,
+    WalletComponent
   ],
   imports: [
     CommonModule,

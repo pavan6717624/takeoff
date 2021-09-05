@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '../user/home/home.component';
 import { TakeoffComponent } from './takeoff/takeoff.component';
-import { ComplimentaryComponent } from './complimentary/complimentary.component';
-import { FreeComponent } from './free/free.component';
-import { DailyComponent } from './daily/daily.component';
+
+import { AccountComponent } from './account/account.component';
+import { WalletComponent } from './wallet/wallet.component';
+
 
 const routes: Routes = [
 
@@ -12,7 +13,7 @@ const routes: Routes = [
     
     
      children: [
-      { path: '', component: TakeoffComponent, data : {couponDisplayId : '0'} },
+      { path: '', component: TakeoffComponent, data : {couponDisplayId : '0'}, },
       { path: 'takeoff', component: TakeoffComponent, data : {couponDisplayId : '0'} },
       { path: 'complimentary', component: TakeoffComponent, data : {couponDisplayId : '1'} },
     { path: 'free', component: TakeoffComponent,data : {couponDisplayId : '2'} },
@@ -20,6 +21,9 @@ const routes: Routes = [
     { path: 'limited', component: TakeoffComponent, data : {couponDisplayId : '4'} },
     { path: 'redeemable', component: TakeoffComponent, data : {couponDisplayId : '5'} },
     { path: 'discount', component: TakeoffComponent, data : {couponDisplayId : '6'} },
+
+    { path: 'account', component: AccountComponent},
+    { path: 'wallet', component: WalletComponent},
 
     
      
