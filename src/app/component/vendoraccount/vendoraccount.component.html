@@ -1,18 +1,18 @@
 <div class="container">
-<ng-container *ngIf='loading'>
-    <div nz-row>
+    <ng-container *ngIf='loading'>
+        <div nz-row>
 
-        &nbsp;
-    </div>
-
-    <div nz-row>
-        <div nz-col nzSpan="24" style='text-align: center'>
-            <nz-spin nzTip="Please wait....Loading Details" nzSimple [nzSize]="'large'"></nz-spin>
+            &nbsp;
         </div>
-    </div>
-</ng-container>
 
-<!-- <ng-container *ngIf='!loading'>
+        <div nz-row>
+            <div nz-col nzSpan="24" style='text-align: center'>
+                <nz-spin nzTip="Please wait....Loading Details" nzSimple [nzSize]="'large'"></nz-spin>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- <ng-container *ngIf='!loading'>
 
 
 
@@ -70,146 +70,197 @@
 </ng-container>
 <br />
 <br /> -->
-<ng-container *ngIf='!loading'>
-    <div class="row" >
-        <div class="col-lg-3" >
-
-            <h4>Vendor Id</h4>
-            <p>{{vendorDetails.vendorId}}</p>
-        </div>
-        <ng-container *ngIf="userType==='Vendor'">
-            <div class="col-lg-3" >
-
-                <h4>Logo</h4>
-                <p>
-                    <nz-upload nz-Accept="image/jpeg" [nzBeforeUpload]="beforeUpload">
-                        <button nz-button [disabled]="loading"><span nz-icon nzType="upload"></span></button>
-                    </nz-upload>
-
-                    <ng-container *ngIf='vendorDetails.logo.length > 30'>
-                        <br />
-                        <div style='max-width:50%; max-height:20%;text-align:left'>
-                            <img class="img-fluid img-thumbnail" [src]='vendorDetails.logo'>
-                            <ng-container *ngIf='imgSourceChange'>
-                                <div nz-row>
-                                    &nbsp;
-                                </div>
-                                <button nz-button [disabled]="uploading || loading" (click)="logoUpload()"><span nz-icon
-                                        [nzType]="uploading?'loading':'check'" nzTheme="outline"></span></button> &nbsp;
-                                <button nz-button [disabled]="uploading || loading" (click)="getVendorDetails()"><span
-                                        nz-icon nzType="close"></span></button>
-                            </ng-container>
-                        </div>
-
-                    </ng-container>
-                </p>
-            </div>
-        </ng-container>
-
-
-
-        <div class="col-lg-3">
-
-            <h4>Name</h4>
-            <p>{{vendorDetails.name}}</p>
-        </div>
-     
-            <div class="col-lg-3">
-
-                <h4>Details</h4>
-                <p>{{vendorDetails.details}}</p>
-
-            </div>
-       
-
-    </div>
-
-
     <div class="row">
+        <div class="col-lg-4"> &nbsp; </div>
+        <div class="col-lg-8">
+            <ng-container *ngIf='!loading'>
+                <div class="row">
+                    <div class="col-lg-3">
 
-        <ng-container *ngIf="userType==='Vendor'">
-        <div class="col-lg-3">
-            <h4>Address</h4>
-            <p>{{vendorDetails.address}}</p>
-        </div>
-    </ng-container>
+                        <h4>Vendor Id</h4>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{vendorDetails.vendorId}}</p>
+                    </div>
+                </div>
+                <div class="row">&nbsp;</div>
+                <ng-container *ngIf="userType==='Vendor'">
+                    <div class="row">
+                        <div class="col-lg-3">
+
+                            <h4>Logo</h4>
+                        </div>
+                        <div class="col-lg-3">
+                            <p>
+                                <nz-upload nz-Accept="image/jpeg" [nzBeforeUpload]="beforeUpload">
+                                    <button nz-button [disabled]="loading"><span nz-icon
+                                            nzType="upload"></span></button>
+                                </nz-upload>
+
+                                <ng-container *ngIf='vendorDetails.logo.length > 30'>
+                                    <br />
+                                    <div style='max-width:50%; max-height:20%;text-align:left'>
+                                        <img class="img-fluid img-thumbnail" [src]='vendorDetails.logo'>
+                                        <ng-container *ngIf='imgSourceChange'>
+                                            <div nz-row>
+                                                &nbsp;
+                                            </div>
+                                            <button nz-button [disabled]="uploading || loading"
+                                                (click)="logoUpload()"><span nz-icon
+                                                    [nzType]="uploading?'loading':'check'"
+                                                    nzTheme="outline"></span></button> &nbsp;
+                                            <button nz-button [disabled]="uploading || loading"
+                                                (click)="getVendorDetails()"><span nz-icon
+                                                    nzType="close"></span></button>
+                                        </ng-container>
+                                    </div>
+
+                                </ng-container>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">&nbsp;</div>
+                </ng-container>
+
+                <div class="row">
+
+                    <div class="col-lg-3">
+
+                        <h4>Name</h4>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{vendorDetails.name}}</p>
+                    </div>
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <div class="col-lg-3">
+
+                        <h4>Details</h4>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{vendorDetails.details}}</p>
+                    </div>
+                </div>
+
+                <div class="row">&nbsp;</div>
 
 
-        <div class="col-lg-3">
-            <h4>City</h4>
-            <p>{{vendorDetails.city}}</p>
-        </div>
-        <div class="col-lg-3">
-            <h4>Email</h4>
-            <p>{{vendorDetails.email}}</p>
-        </div>
-        <div class="col-lg-3">
-            <h4>Contact</h4>
-            <p>{{vendorDetails.contact}}</p>
+
+                <div class="row">
+
+                    <ng-container *ngIf="userType==='Vendor'">
+                        <div class="col-lg-3">
+                            <h4>Address</h4>
+                        </div>
+                        <div class="col-lg-3">
+                            <p>{{vendorDetails.address}}</p>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h4>City</h4>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{vendorDetails.city}}</p>
+                    </div>
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h4>Email</h4>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{vendorDetails.email}}</p>
+                    </div>
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h4>Contact</h4>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{vendorDetails.contact}}</p>
+                    </div>
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h4>Password</h4>
+                    </div>
+                    <div class="col-lg-3">
+                        <button nz-button nzType="primary" (click)="password='';conpassword='';editVisible=true;">Change
+                            Password</button>
+                    </div>
+                </div>
+            </ng-container>
         </div>
     </div>
-</ng-container>
 </div>
 
 
-<div class="row" >
-    <div class="col-lg-12" >
-        <h4>Password</h4>
-        <button nz-button nzType="primary" (click)="password='';conpassword='';editVisible=true;">Change Password</button>
-    </div>
 
 
-    <nz-modal [nzVisible]="editVisible" [nzContent]="modalContentEdit" [nzFooter]="null" (nzOnCancel)="editVisible = false">
-        <ng-template #modalContentEdit>
-      
-          <h3> Change Password </h3>
-          <div nz-row class="container">
+
+<nz-modal [nzVisible]="editVisible" [nzContent]="modalContentEdit" [nzFooter]="null" (nzOnCancel)="editVisible = false">
+    <ng-template #modalContentEdit>
+
+        <h3> Change Password </h3>
+        <div nz-row class="container">
             <div nz-col nzSpan="8" style='text-align: left'>Current Password</div>
             <div nz-col nzSpan="4" style='text-align: right'>
                 <ng-container *ngIf="password.trim().length > 0">
-                    <i nz-icon [nzType]="password.trim().length> 8 ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
-                   </ng-container>
+                    <i nz-icon [nzType]="password.trim().length> 8 ?'check' : 'close'" nzTheme="outline"></i>
+                    &nbsp;&nbsp;
+                </ng-container>
             </div>
             <div nz-col nzSpan="12" style='text-align: left'>
-                  <input type="password" nz-input placeholder="Enter password" style='width:100%' [(ngModel)]='password' />
+                <input type="password" nz-input placeholder="Enter password" style='width:100%'
+                    [(ngModel)]='password' />
             </div>
-          </div>
-          <div nz-row> &nbsp; </div>
-          
-          <div nz-row class="container">
+        </div>
+        <div nz-row> &nbsp; </div>
+
+        <div nz-row class="container">
             <div nz-col nzSpan="8" style='text-align: left'>Enter New Password</div>
             <div nz-col nzSpan="4" style='text-align: right'>
                 <ng-container *ngIf="newpassword.trim().length > 0">
-                    <i nz-icon [nzType]="newpassword.trim().length> 8 ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
-                   </ng-container>
+                    <i nz-icon [nzType]="newpassword.trim().length> 8 ?'check' : 'close'" nzTheme="outline"></i>
+                    &nbsp;&nbsp;
+                </ng-container>
             </div>
             <div nz-col nzSpan="12" style='text-align: left'>
-                  <input type="password" nz-input placeholder="Enter password" style='width:100%' [(ngModel)]='newpassword' />
+                <input type="password" nz-input placeholder="Enter password" style='width:100%'
+                    [(ngModel)]='newpassword' />
             </div>
-          </div>
-          <div nz-row> &nbsp; </div>
-          <div nz-row class="container">
+        </div>
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
             <div nz-col nzSpan="8" style='text-align: left'>Confirm Password</div>
 
             <div nz-col nzSpan="4" style='text-align: right'>
 
                 <ng-container *ngIf="conpassword.trim().length > 0">
-                    <i nz-icon [nzType]="conpassword==newpassword ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
-                   </ng-container>
-                </div>
+                    <i nz-icon [nzType]="conpassword==newpassword ?'check' : 'close'" nzTheme="outline"></i>
+                    &nbsp;&nbsp;
+                </ng-container>
+            </div>
 
             <div nz-col nzSpan="12" style='text-align: left'>
-               
 
-              <input type="password" nz-input placeholder="Confirm password" style='width:100%' [(ngModel)]='conpassword' />
+
+                <input type="password" nz-input placeholder="Confirm password" style='width:100%'
+                    [(ngModel)]='conpassword' />
             </div>
-          </div>
-      
-          <div nz-row> &nbsp; </div>
-          <div nz-row class="container">
+        </div>
+
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
             <div nz-col nzSpan="24" style='text-align: right'>
-              <button nz-button nzType="primary" (click)='changePassword()'>Change</button>
+                <button nz-button nzType="primary" (click)='changePassword()'>Change</button>
             </div>
-          </div>
-        </ng-template>
-      </nz-modal>
+        </div>
+    </ng-template>
+</nz-modal>
