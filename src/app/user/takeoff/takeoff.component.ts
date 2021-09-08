@@ -49,6 +49,7 @@ export class TakeoffComponent implements OnInit {
     if(this.loginStatus)
     {
       this.userType=this.loginStatus.userType;
+      this.startLoading();
     }
     else
     {
