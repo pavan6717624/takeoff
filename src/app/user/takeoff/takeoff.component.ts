@@ -348,7 +348,14 @@ export class TakeoffComponent implements OnInit {
 
     var heading = window.document.getElementById("displayHeader")
     
- 
+    var loginButton = window.document.getElementById("loginButton")
+    
+    if(loginButton)
+    {
+      loginButton.innerHTML="Logout";
+      loginButton.setAttribute('href','/login');
+      loginButton.setAttribute('onClick',"localStorage.removeItem('token')");
+    }
     
     if(this.couponDisplayId == 0)
     {
