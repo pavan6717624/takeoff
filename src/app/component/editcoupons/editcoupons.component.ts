@@ -211,6 +211,36 @@ export class EditcouponsComponent implements OnInit {
   }
   images: ImageStatusDTO[] = [];
 
+  bottom: Boolean = false;
+
+  noMoreImages: Boolean = false;
+
+
+  @ViewChild('scrollMe') private eleRef: ElementRef = new ElementRef('') ;
+
+    
+  onWindowScroll() {
+  
+
+   
+ 
+    var top=this.eleRef.nativeElement.scrollTop;
+
+    var offSetHeight=this.eleRef.nativeElement.offsetHeight;
+
+    var scrollHeight=this.eleRef.nativeElement.scrollHeight; 
+ 
+    /*if(top === 0){
+       alert('top');
+    }*/
+   
+    if(top>scrollHeight-offSetHeight-1){
+     
+
+      this.bottom=true;
+    }
+  }
+
   getCouponTypes()
   {
     this.editcouponsService.getCouponTypes().subscribe(
@@ -306,11 +336,11 @@ createCoupon()
      return;
   }
   
-  if(!this.profession || this.profession==='')
- {
-   this.msg.create('error','Please Select Target Profession');
-   return;
- }
+//   if(!this.profession || this.profession==='')
+//  {
+//    this.msg.create('error','Please Select Target Profession');
+//    return;
+//  }
 
  if(!this.gender || this.gender==='')
  {

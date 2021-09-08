@@ -138,10 +138,10 @@ export class ViewcouponsComponent implements OnInit {
     }
     
 
-    if (!this.coupon.profession || this.coupon.profession === '') {
-      this.msg.create('error', 'Please Select Target Profession');
-      return;
-    }
+    // if (!this.coupon.profession || this.coupon.profession === '') {
+    //   this.msg.create('error', 'Please Select Target Profession');
+    //   return;
+    // }
 
     if (!this.coupon.gender || this.coupon.gender === '') {
       this.msg.create('error', 'Please Select Target Gender');

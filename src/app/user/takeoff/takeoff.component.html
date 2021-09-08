@@ -27,7 +27,7 @@
                 <div class="col-lg-{{columns}}" *ngFor="let item of coupons">
 
 
-                    <div nz-row class="coupon" style=' width:305px;height:430px;'>
+                    <div nz-row class="coupon" style=' width:305px;height:405px;'>
                         <div nz-col nzSpan='24'>
                             <div class="container" nz-col nzSpan="24" style=' border-radius: 15px 15px 0 0 ; text-align: left;  padding: 2px 16px;
                     background-color: #f1f1f1;'>
@@ -53,17 +53,19 @@
 
                                         <h5 [style.text-decoration]='item.header_decoration'
                                             [style.font-weight]='item.header_bold'
-                                            [style.font-style]='item.header_style' style='word-wrap: break-word;color: #f1f1f1;'>
+                                            [style.font-style]='item.header_style'
+                                            style='word-wrap: break-word;color: #f1f1f1;'>
                                             {{item.header}}</h5>
 
                                         <p [style.text-decoration]='item.body_decoration'
-                                            [style.font-weight]='item.body_bold' [style.font-style]='item.body_style' style='word-wrap: break-word;'>
-                                             {{item.body}}</p>
+                                            [style.font-weight]='item.body_bold' [style.font-style]='item.body_style'
+                                            style='word-wrap: break-word;'>
+                                            {{item.body}}</p>
 
                                         <p [style.text-decoration]='item.footer_decoration'
                                             [style.font-weight]='item.footer_bold'
                                             [style.font-style]='item.footer_style' style='word-wrap: break-word;'>
-                                             {{item.footer}}</p>
+                                            {{item.footer}}</p>
 
 
 
@@ -75,29 +77,29 @@
 
                         <div class="container" nz-col nzSpan="24" style='text-align: center; border-radius: 0 0  15px 15px; padding:0;
                 background-color: #f1f1f1;'>
+                            <!-- <div nz-col nzSpan="24">
+
+                                <i nz-icon nzType="line" nzTheme="outline"></i>
+                                <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                                <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                                <i nz-icon nzType="line" nzTheme="outline"></i>
+                                <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                                <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                                <i nz-icon nzType="line" nzTheme="outline"></i>
+                                <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                                <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                                <i nz-icon nzType="line" nzTheme="outline"></i>
+                                <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                                <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                                <i nz-icon nzType="line" nzTheme="outline"></i>
+                                <i nz-icon nzType="line" nzTheme="outline"></i>
+                            </div> -->
                             <div nz-col nzSpan="24">
-
-                                <i nz-icon nzType="line" nzTheme="outline"></i>
-                                <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
-                                <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
-
-                                <i nz-icon nzType="line" nzTheme="outline"></i>
-                                <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
-                                <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
-
-                                <i nz-icon nzType="line" nzTheme="outline"></i>
-                                <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
-                                <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
-
-                                <i nz-icon nzType="line" nzTheme="outline"></i>
-                                <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
-                                <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
-
-                                <i nz-icon nzType="line" nzTheme="outline"></i>
-                                <i nz-icon nzType="line" nzTheme="outline"></i>
-                            </div>
-                            <div nz-col nzSpan="24">
-                                <h6 style="font-size:15px;color:red">Expires on
+                                <h6 style="font-size:14px;color:red">Expires on
                                     {{item.expireTime}}</h6>
                             </div>
                             <div nz-col nzSpan="24">
@@ -228,18 +230,20 @@
                     </div> -->
 
                     <div
-                    style='padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
+                        style='padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
 
 
 
                         <h5 [style.text-decoration]='coupon.header_decoration' [style.font-weight]='coupon.header_bold'
-                        style='word-wrap: break-word;' [style.font-style]='coupon.header_style' style='color: #f1f1f1;'> {{coupon.header}}</h5>
+                            style='word-wrap: break-word;' [style.font-style]='coupon.header_style'
+                            style='color: #f1f1f1;'> {{coupon.header}}</h5>
 
                         <p [style.text-decoration]='coupon.body_decoration' [style.font-weight]='coupon.body_bold'
-                        style='word-wrap: break-word;' [style.font-style]='coupon.body_style'>{{coupon.body}}</p>
+                            style='word-wrap: break-word;' [style.font-style]='coupon.body_style'>{{coupon.body}}</p>
 
                         <p [style.text-decoration]='coupon.footer_decoration' [style.font-weight]='coupon.footer_bold'
-                        style='word-wrap: break-word;' [style.font-style]='coupon.footer_style'>{{coupon.footer}}</p>
+                            style='word-wrap: break-word;' [style.font-style]='coupon.footer_style'>{{coupon.footer}}
+                        </p>
 
 
                     </div>
