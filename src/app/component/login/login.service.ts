@@ -6,15 +6,15 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
   getLoginDetails() {
-    return this.http.get('http://localhost:8081/getLoginDetails')
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getLoginDetails')
   }
 
   constructor(private http: HttpClient) { }
 
 login(formData: FormData): Observable<any>
 {
- // return this.http.post( 'http://localhost:8081/login',formData );
-  return this.http.post('http://localhost:8081/login',formData)
+ // return this.http.post( 'https://takeoff-pavan.herokuapp.com/login',formData );
+  return this.http.post('https://takeoff-pavan.herokuapp.com/login',formData)
 }
 
 }
