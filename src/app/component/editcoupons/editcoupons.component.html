@@ -338,9 +338,31 @@
                 <nz-tab nzTitle="Details">
                     <div nz-row>
                         <div nz-col nzSpan="24" style='text-align: center' >
-                            <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
+                            <!-- <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
                                 [(ngModel)]='result'>
-                            </nz-range-picker>
+                            </nz-range-picker> -->
+
+                            From Date & Time : <br />
+                            
+                          
+                            <nz-date-picker nzFormat="yyyy-MM-dd" nzPlaceHolder = 'From Date' [(ngModel)]='fromDate' style='width:130px'></nz-date-picker> - 
+                            <nz-time-picker nzPlaceHolder = 'Time' [(ngModel)]="fromTime" nzFormat="HH:mm" style='width:80px'></nz-time-picker>
+
+                        </div>
+                    </div>
+                    <div nz-row>
+
+                        &nbsp;
+                    </div>
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center' >
+                            <!-- <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
+                                [(ngModel)]='result'>
+                            </nz-range-picker> -->
+
+                            To Date & Time : <br />
+                            <nz-date-picker  [nzDisabledDate]="disabledEndDate" nzPlaceHolder = 'To Date' nzFormat="yyyy-MM-dd" style='width:130px' [(ngModel)]='toDate'></nz-date-picker> - 
+                            <nz-time-picker  nzPlaceHolder = 'Time' [(ngModel)]="toTime" style='width:80px' nzFormat="HH:mm"></nz-time-picker>
 
                         </div>
                     </div>

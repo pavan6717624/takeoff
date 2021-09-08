@@ -7,7 +7,7 @@ import { LoginStatus } from '../login/login.component';
 import { Router } from '@angular/router';
 import { VendoraccountService } from '../vendoraccount/vendoraccount.service';
 import { UploadcouponsService } from '../uploadcoupons/uploadcoupons.service';
-import { DatePipe } from '@angular/common';
+import { DatePipe, Time } from '@angular/common';
 
 export class Coupon
 {
@@ -122,11 +122,16 @@ export class EditcouponsComponent implements OnInit {
 
   userType: string = '';
 
+  fromDate: Date = new Date();
+  fromTime: Date = new Date();
+
+  toDate: Date = new Date();
+  toTime: Date = new Date();
 
   ngOnChanges(changes: SimpleChanges) {
         
 
-   
+
     if(this.addImage)
    { 
      this.ngOnInit();
@@ -193,7 +198,7 @@ export class EditcouponsComponent implements OnInit {
   couponType: string = '';
   keywords: string = '';
 
-  result: Array<Date | null> = [];
+  
   description: string ='';
 
   imageId: number =0;
@@ -220,6 +225,24 @@ export class EditcouponsComponent implements OnInit {
     this.imageId=id;
   
   }
+
+
+  disabledEndDate = (endValue: Date): boolean => {
+    if (!endValue || !this.fromDate) {
+      return false;
+    }
+
+    var datePipe = new DatePipe('en-US');
+    let endValueStr = datePipe.transform(endValue, 'yyyyMMdd');
+    let fromDateStr = datePipe.transform(this.fromDate, 'yyyyMMdd');
+
+    if (!endValueStr || !fromDateStr) {
+      return false;
+    }
+    
+    return endValueStr.localeCompare(fromDateStr) < 0;
+  };
+
   getImages() {
 
 
@@ -232,7 +255,7 @@ export class EditcouponsComponent implements OnInit {
         this.userType = this.loginStatus.userType;
       }
     else {
-      this.msg.create('error', 'Session Expired. Please Login');
+      //this.msg.create('error', 'Session Expired. Please Login');
       this.router.navigate(['login']);
     }
 
@@ -263,21 +286,7 @@ export class EditcouponsComponent implements OnInit {
     
   }
 
-
-
-  onChange(result: Date): void {
-    console.log('Selected Time: ', result);
-  }
-
-  onOk(result: Date | Date[] | null): void {
-    console.log('onOk', result);
-  }
-
-  onCalendarChange(result: Array<Date | null>): void {
-    console.log('onCalendarChange', result);
-  }
-
-  click(item: ImageStatusDTO)
+click(item: ImageStatusDTO)
   {
     this.resetImageParams(); 
     this.imageId=item.id; 
@@ -289,7 +298,9 @@ export class EditcouponsComponent implements OnInit {
 createCoupon()
 {
  
-  if(!this.result || this.result.length!=2 || this.result[0]==null || this.result[1] == null)
+
+
+  if(!this.fromDate || !this.fromTime || !this.toDate || !this.toTime || this.fromDate == null || this.fromTime== null ||this.toDate== null ||this.toTime== null)
   {
     this.msg.create('error','Please Select Publish Dates (From & To)');
      return;
@@ -314,8 +325,15 @@ createCoupon()
  }
 
  var datePipe = new DatePipe('en-US');
-    let from = datePipe.transform(this.result[0], 'yyyy-MM-dd HH:mm');
-    let to = datePipe.transform(this.result[1], 'yyyy-MM-dd HH:mm');
+
+    let fromDate = datePipe.transform(new Date(this.fromDate),'yyyy-MM-dd');
+    let fromTime= datePipe.transform(new Date(this.fromTime), 'HH:mm');
+    let from = fromDate+" "+fromTime;
+
+    let toDate = datePipe.transform(new Date(this.toDate),'yyyy-MM-dd');
+    let toTime= datePipe.transform(new Date(this.toTime), 'HH:mm');
+    let to = toDate+" "+toTime;
+    
 
 var coupon =new Coupon();
 
@@ -360,6 +378,10 @@ coupon.  couponType=this.couponType ;
 coupon.  keywords=this.  keywords ;
 coupon.description = this.description;
 
+
+// alert(from+" "+this.fromDate+" "+this.fromTime);
+// alert(to+" "+this.toDate+" "+this.toTime);
+
 if(from)
 coupon.fromDate=from;
 else
@@ -381,7 +403,7 @@ if(this.loginStatus && this.loginStatus.userId)
 coupon.vendorId=Number(this.loginStatus.userId);
 else
 {
-  this.msg.create('error','Session Expired. Please Login.');
+ // this.msg.create('error','Session Expired. Please Login.');
   this.router.navigate(['login']);
   return;
 }
@@ -443,7 +465,12 @@ this.  couponType = '';
 this.description = '';
 this.  keywords = '';
 
-this.result=[];
+this.fromDate=new Date();
+this.toDate=new Date();
  
+
+this.fromTime=new Date();
+this.toTime=new Date();
+
 }
 }

@@ -61,6 +61,7 @@ import { UserModule } from './user/user.module';
 import { RedemptionComponent } from './component/redemption/redemption.component';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { InterceptorService } from './interceptor.service';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 
 registerLocaleData(en);
 
@@ -129,7 +130,8 @@ const antDesignIcons = AllIcons as {
     NzDatePickerModule,
     UserModule,
     NzImageModule,
-    NzNotificationModule
+    NzNotificationModule,
+    NzTimePickerModule
   ],
   providers: [LANG_PROVIDERS,{
     provide: HTTP_INTERCEPTORS, 

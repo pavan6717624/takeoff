@@ -60,7 +60,7 @@ export class AccountComponent implements OnInit {
 
         this.startLoading();
       },
-      (err) => { this.loading=false; this.msg.create('error','Session Expired. Please Login...');
+      (err) => { this.loading=false; //this.msg.create('error','Session Expired. Please Login...');
       this.router.navigate(['login']);
       }
     );

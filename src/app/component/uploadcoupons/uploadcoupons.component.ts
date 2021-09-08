@@ -129,7 +129,7 @@ imageStatus : ImageStatusDTO = new ImageStatusDTO();
     if(this.loginStatus)
     formData.set("vendorId",this.loginStatus.userId)
     else {
-      this.msg.create('error', 'Session Expired. Please Login');
+     // this.msg.create('error', 'Session Expired. Please Login');
       this.router.navigate(['login']);
       this.loading=false;
     }

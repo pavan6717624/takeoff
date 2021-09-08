@@ -27,6 +27,12 @@ export class RedemptionDTO {
   validTill: string = '';
 }
 
+export class SendCouponsRequest
+{
+  userId: number = 0;
+  couponIds: number[] = [];
+
+}
 
 @Component({
   selector: 'app-takeoff',
@@ -38,6 +44,8 @@ export class TakeoffComponent implements OnInit {
   loginStatus: LoginStatus = new LoginStatus();
 
   userType: string = '';
+
+  noMoreImages: Boolean = false;
 
 
   constructor(private loginService: LoginService, private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) 
@@ -429,12 +437,14 @@ export class TakeoffComponent implements OnInit {
   getTakeOffRecommendations() {
     if(!this.bottom)
     this.loading = true;
-    var formData = new FormData();
-    formData.set("userId",this.loginStatus.userId)
+   
+    let sendCouponsRequest = new SendCouponsRequest();
+    sendCouponsRequest.userId=Number(this.loginStatus.userId);
+    sendCouponsRequest.couponIds=this.coupons.map(s => s.id);
 
-    this.userService.getTakeOffRecommendations(formData).subscribe(
+    this.userService.getTakeOffRecommendations(sendCouponsRequest).subscribe(
 
-      (res: any) => {  this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
+      (res: any) => { if(res.length==0) { this.msg.create('info','No More Coupons Found.'); this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = [];  if(!this.bottom) this.loading = false; }
     );
   }
@@ -443,56 +453,60 @@ export class TakeoffComponent implements OnInit {
   getComplimentaryCoupons() {
     if(!this.bottom)
     this.loading = true;
-    var formData = new FormData();
 
-    formData.set("userId",this.loginStatus.userId)
+    let sendCouponsRequest = new SendCouponsRequest();
+    sendCouponsRequest.userId=Number(this.loginStatus.userId);
+    sendCouponsRequest.couponIds=this.coupons.map(s => s.id);
 
-    this.userService.getComplimentaryCoupons(formData).subscribe(
+    this.userService.getComplimentaryCoupons(sendCouponsRequest).subscribe(
 
-      (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
-      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }
+      (res: any) => { if(res.length==0) { this.msg.create('info','No More Coupons Found.'); this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
+      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = [];  if(!this.bottom) this.loading = false; }
     );
   }
 
   getFreeCoupons() {
     if(!this.bottom)
     this.loading = true;
-    var formData = new FormData();
-    formData.set("userId",this.loginStatus.userId)
 
+   let sendCouponsRequest = new SendCouponsRequest();
+    sendCouponsRequest.userId=Number(this.loginStatus.userId);
+    sendCouponsRequest.couponIds=this.coupons.map(s => s.id);
 
-    this.userService.getFreeCoupons(formData).subscribe(
+    this.userService.getFreeCoupons(sendCouponsRequest).subscribe(
 
-      (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
-      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }
+      (res: any) => { if(res.length==0) { this.msg.create('info','No More Coupons Found.'); this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
+      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = [];  if(!this.bottom) this.loading = false; }
     );
   }
 
   getDailyCoupons() {
     if(!this.bottom)
     this.loading = true;
-    var formData = new FormData();
-    formData.set("userId",this.loginStatus.userId)
 
+   let sendCouponsRequest = new SendCouponsRequest();
+    sendCouponsRequest.userId=Number(this.loginStatus.userId);
+    sendCouponsRequest.couponIds=this.coupons.map(s => s.id);
+    
+    this.userService.getDailyCoupons(sendCouponsRequest).subscribe(
 
-    this.userService.getDailyCoupons(formData).subscribe(
-
-      (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
-      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }
+      (res: any) => { if(res.length==0) { this.msg.create('info','No More Coupons Found.'); this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
+      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = [];  if(!this.bottom) this.loading = false; }
     );
   }
 
   getLimitedCoupons() {
     if(!this.bottom)
     this.loading = true;
-    var formData = new FormData();
 
-    formData.set("userId",this.loginStatus.userId)
+    let sendCouponsRequest = new SendCouponsRequest();
+     sendCouponsRequest.userId=Number(this.loginStatus.userId);
+     sendCouponsRequest.couponIds=this.coupons.map(s => s.id);
+     
+     this.userService.getLimitedCoupons(sendCouponsRequest).subscribe(
 
-    this.userService.getLimitedCoupons(formData).subscribe(
-
-      (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
-      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }
+      (res: any) => { if(res.length==0) { this.msg.create('info','No More Coupons Found.'); this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
+      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = [];  if(!this.bottom) this.loading = false; }
     );
   }
 
@@ -500,27 +514,30 @@ export class TakeoffComponent implements OnInit {
   getRedeemableCoupons() {
     if(!this.bottom)
     this.loading = true;
-    var formData = new FormData();
-    formData.set("userId",this.loginStatus.userId)
 
+    let sendCouponsRequest = new SendCouponsRequest();
+     sendCouponsRequest.userId=Number(this.loginStatus.userId);
+     sendCouponsRequest.couponIds=this.coupons.map(s => s.id);
+     
+      this.userService.getRedeemableCoupons(sendCouponsRequest).subscribe(
 
-    this.userService.getRedeemableCoupons(formData).subscribe(
-
-      (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
-      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }
+      (res: any) => { if(res.length==0) { this.msg.create('info','No More Coupons Found.'); this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
+      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = [];  if(!this.bottom) this.loading = false; }
     );
   }
 
   getDiscountCoupons() {
     if(!this.bottom)
     this.loading = true;
-    var formData = new FormData();
-    formData.set("userId",this.loginStatus.userId)
 
-    this.userService.getDiscountCoupons(formData).subscribe(
+    let sendCouponsRequest = new SendCouponsRequest();
+     sendCouponsRequest.userId=Number(this.loginStatus.userId);
+     sendCouponsRequest.couponIds=this.coupons.map(s => s.id);
+     
+     this.userService.getDiscountCoupons(sendCouponsRequest).subscribe(
 
-      (res: any) => { console.log(res); this.coupons=this.coupons.concat(res); if(!this.bottom) this.loading = false; },
-      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if(!this.bottom) this.loading = false; }
+      (res: any) => { if(res.length==0) { this.msg.create('info','No More Coupons Found.'); this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
+      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = [];  if(!this.bottom) this.loading = false; }
     );
   }
 

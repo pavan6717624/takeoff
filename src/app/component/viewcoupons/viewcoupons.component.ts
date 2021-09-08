@@ -23,7 +23,14 @@ export class ViewcouponsComponent implements OnInit {
   previewVisible = false;
 
 
-  result: Array<Date | null> = [];
+  // result: Array<Date | null> = [];
+
+  fromDate: Date = new Date();
+  fromTime: Date = new Date();
+
+  toDate: Date = new Date();
+  toTime: Date = new Date();
+
 
 
   ngOnChanges(changes: SimpleChanges) {
@@ -36,13 +43,24 @@ export class ViewcouponsComponent implements OnInit {
       
     }
 
-
-
-
-
-
-
   }
+
+  disabledEndDate = (endValue: Date): boolean => {
+    if (!endValue || !this.fromDate) {
+      return false;
+    }
+
+    var datePipe = new DatePipe('en-US');
+    let endValueStr = datePipe.transform(endValue, 'yyyyMMdd');
+    let fromDateStr = datePipe.transform(this.fromDate, 'yyyyMMdd');
+
+    if (!endValueStr || !fromDateStr) {
+      return false;
+    }
+    
+    return endValueStr.localeCompare(fromDateStr) < 0;
+  };
+
   userType: string = '';
   coupons: Coupon[] = [];
   coupon: Coupon = new Coupon();
@@ -51,7 +69,13 @@ export class ViewcouponsComponent implements OnInit {
   loading: boolean = false;
 
   cancel() {
-    this.result = [];
+    // this.result = [];
+    this.fromDate = new Date();
+    this.fromTime =  new Date();
+
+    this.toDate=  new Date();
+    this.toTime= new Date();
+    
     this.selectedCoupon = new Coupon();
     this.previewVisible = false
   }
@@ -61,8 +85,21 @@ export class ViewcouponsComponent implements OnInit {
     this.coupon = JSON.parse(JSON.stringify(item));
     this.selectedCoupon = item;
 
-    this.result[0] = new Date(this.coupon.fromDate);
-    this.result[1] = new Date(this.coupon.toDate);
+    // this.result[0] = new Date(this.coupon.fromDate);
+    // this.result[1] = new Date(this.coupon.toDate);
+
+    //alert("from to :: "+this.coupon.fromDate+" "+this.coupon.toDate);
+
+
+    
+
+    this.fromDate = new Date(this.coupon.fromDate.split(" ")[0]);
+    this.fromTime = new Date(this.coupon.fromDate);
+    this.toDate = new Date(this.coupon.toDate.split(" ")[0]);
+    this.toTime = new Date(this.coupon.toDate);
+
+   
+
     this.previewVisible = true;
   }
 
@@ -78,7 +115,7 @@ export class ViewcouponsComponent implements OnInit {
     }
 
     else {
-      this.msg.create('error', 'Session Expired. Please Login');
+   //   this.msg.create('error', 'Session Expired. Please Login');
       this.router.navigate(['login']);
     }
 
@@ -89,10 +126,17 @@ export class ViewcouponsComponent implements OnInit {
 
     console.log(this.coupon);
 
-    if (!this.result || this.result.length != 2 || this.result[0] == null || this.result[1] == null) {
-      this.msg.create('error', 'Please Select Publish Dates (From & To)');
-      return;
+    // if (!this.result || this.result.length != 2 || this.result[0] == null || this.result[1] == null) {
+    //   this.msg.create('error', 'Please Select Publish Dates (From & To)');
+    //   return;
+    // }
+
+    if(!this.fromDate || !this.fromTime || !this.toDate || !this.toTime || this.fromDate == null || this.fromTime== null ||this.toDate== null ||this.toTime== null)
+    {
+      this.msg.create('error','Please Select Publish Dates (From & To)');
+       return;
     }
+    
 
     if (!this.coupon.profession || this.coupon.profession === '') {
       this.msg.create('error', 'Please Select Target Profession');
@@ -110,10 +154,16 @@ export class ViewcouponsComponent implements OnInit {
     }
 
 
-
     var datePipe = new DatePipe('en-US');
-    let from: any = datePipe.transform(this.result[0], 'yyyy-MM-dd HH:mm');
-    let to: any = datePipe.transform(this.result[1], 'yyyy-MM-dd HH:mm');
+
+    let fromDate = datePipe.transform(new Date(this.fromDate),'yyyy-MM-dd');
+    let fromTime= datePipe.transform(new Date(this.fromTime), 'HH:mm');
+    let from = fromDate+" "+fromTime;
+
+    let toDate = datePipe.transform(new Date(this.toDate),'yyyy-MM-dd');
+    let toTime= datePipe.transform(new Date(this.toTime), 'HH:mm');
+    let to = toDate+" "+toTime;
+    
 
 
     if (from)
@@ -133,7 +183,7 @@ export class ViewcouponsComponent implements OnInit {
     if (this.loginStatus && this.loginStatus.userId)
       this.coupon.vendorId = Number(this.loginStatus.userId);
     else {
-      this.msg.create('error', 'Session Expired. Please Login.');
+    //  this.msg.create('error', 'Session Expired. Please Login.');
       this.router.navigate(['login']);
       return;
     }
@@ -168,7 +218,7 @@ export class ViewcouponsComponent implements OnInit {
       this.userType = this.loginStatus.userType;
     }
     else {
-      this.msg.create('error', 'Session Expired. Please Login');
+    //  this.msg.create('error', 'Session Expired. Please Login');
       this.router.navigate(['login']);
     }
     this.loading = true;

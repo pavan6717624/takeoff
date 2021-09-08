@@ -58,7 +58,7 @@ export class VendoraccountComponent implements OnInit {
 
 else
 {
-  this.msg.create('error', 'Session Expired. Please Login');
+ // this.msg.create('error', 'Session Expired. Please Login');
   this.router.navigate(['login']);
 }
     
@@ -74,7 +74,7 @@ changePassword()
 {
  if(!this.loginStatus)
   {
-    this.msg.create('error', 'Session Expired. Please Login');
+   // this.msg.create('error', 'Session Expired. Please Login');
     this.router.navigate(['login']);
     return;
   }
@@ -109,7 +109,7 @@ changePassword()
     formData.set("vendorId", this.loginStatus.userId);
     else
     {
-      this.msg.create('error', 'Session Expired. Please Login');
+      //this.msg.create('error', 'Session Expired. Please Login');
       this.router.navigate(['login']);
     }
     this.vendoraccountService.getDesignerDetails(formData).subscribe(
@@ -126,7 +126,7 @@ changePassword()
     formData.set("vendorId", this.loginStatus.userId);
     else
     {
-      this.msg.create('error', 'Session Expired. Please Login');
+     // this.msg.create('error', 'Session Expired. Please Login');
       this.router.navigate(['login']);
     }
     this.vendoraccountService.getVendorDetails(formData).subscribe(
@@ -176,7 +176,7 @@ changePassword()
     if (this.loginStatus)
       formData.set("vendorId", this.loginStatus.userId);
     else {
-      this.msg.create('error', 'Session Expired. Please Login');
+    //  this.msg.create('error', 'Session Expired. Please Login');
       this.loading = false;
       return;
     }

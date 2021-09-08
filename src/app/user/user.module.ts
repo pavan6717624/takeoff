@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
 import { HomeComponent } from './home/home.component';
-
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -81,7 +81,8 @@ import { WalletComponent } from './wallet/wallet.component';
     NzCollapseModule,
     NzCheckboxModule,
     NzBackTopModule,
-    NzToolTipModule 
+    NzToolTipModule ,
+    NzEmptyModule
   ]
 })
 export class UserModule { }
