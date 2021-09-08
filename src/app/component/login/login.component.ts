@@ -7,6 +7,7 @@ export class LoginStatus {
   userId: string = "";
   userType: string = "";
   loginStatus: boolean = false;
+  jwt: string = '';
 }
 
 
@@ -28,7 +29,29 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
+    
+    this.getLoginDetails();
+
+
    // this.login();
+  }
+
+  getLoginDetails()
+  {
+    this.logginStatus=true;
+    this.loginService.getLoginDetails().subscribe(
+      (res:any) => {
+       this.logginStatus=false;
+        this.loginStatus=res;
+        const token =    localStorage.getItem('token');
+        if(this.loginStatus.loginStatus && token)
+        {
+        this.loginStatus.jwt=token;
+        this.router.navigate(['user'],  { state: {loginStatus: res }}); 
+        }
+      },
+      (err) => { this.logginStatus=false; }
+    );
   }
 
   home() {
@@ -38,7 +61,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.logginStatus = true;
     var formData = new FormData();
-    formData.set("userid", this.userid);
+    formData.set("username", this.userid);
 
    this.password = (shajs('sha256').update(this.password).digest('hex'));
 
@@ -49,6 +72,11 @@ export class LoginComponent implements OnInit {
         console.log(res);
         if (this.loginStatus.loginStatus) {
         this.logginStatus = false;
+
+
+        let tokenStr= 'Bearer '+this.loginStatus.jwt;
+        localStorage.setItem('token', tokenStr);
+
         this.router.navigate(['user'],  { state: {loginStatus: res }}); 
         }
         else {

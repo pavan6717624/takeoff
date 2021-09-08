@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { UserService } from '../user.service';
 import { LoginStatus } from 'src/app/component/login/login.component';
+import { LoginService } from 'src/app/component/login/login.service';
 
 export class RedemptionDTO {
 
@@ -39,7 +40,7 @@ export class TakeoffComponent implements OnInit {
   userType: string = '';
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) 
+  constructor(private loginService: LoginService, private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) 
   {
 
     const navigation = this.router.getCurrentNavigation();
@@ -51,12 +52,28 @@ export class TakeoffComponent implements OnInit {
     }
     else
     {
-      this.msg.create('error','Session Expired. Please Login...');
-      this.router.navigate(['login']);
-      return;
+      this.getLoginDetails();
+      
     }
     console.log("customer login Status :: "+this.loginStatus);
 
+   }
+
+
+   getLoginDetails()
+   {
+     this.loading=true;
+     this.loginService.getLoginDetails().subscribe(
+       (res:any) => {
+        this.loading=false;
+         this.loginStatus=res;
+ 
+         this.startLoading();
+       },
+       (err) => { this.loading=false; this.msg.create('error','Session Expired. Please Login...');
+       this.router.navigate(['login']);
+       }
+     );
    }
 
   @ViewChild('scrollMe') private eleRef: ElementRef = new ElementRef('') ;
@@ -188,7 +205,7 @@ export class TakeoffComponent implements OnInit {
 
   customerRedeem()
   {
-
+    this.redeemLoading = true;
     let passcode: string = this.code[4]+this.code[5]+this.code[6]+this.code[7];
     if(!passcode || passcode.trim().length!=4)
     {
@@ -206,8 +223,8 @@ export class TakeoffComponent implements OnInit {
 
     this.userService.customerRedemption(this.redemption).subscribe(
 
-      (res: any) => {  if(res) { this.redeemCoupon.redemptionCount+=1; this.msg.create('success', 'Your Redemption is Successful.');} else {this.msg.create('error','Sorry! Your Redemption Failed.'); }  },
-      (err) => { console.log(err); this.msg.create('error', 'Error Occured while accepting Passcode...'); this.redemption = new RedemptionDTO(); this.redeemLoading = false; }
+      (res: any) => { this.redeemCancel(); if(res) { this.redeemLoading = false;this.redeemCoupon.redemptionCount+=1; this.msg.create('success', 'Your Redemption is Successful.');} else {this.msg.create('error','Sorry! Your Redemption Failed.'); }  },
+      (err) => { this.redeemLoading = false; console.log(err); this.msg.create('error', 'Error Occured while accepting Passcode...'); this.redemption = new RedemptionDTO(); this.redeemLoading = false; }
     );
   }
 
@@ -305,6 +322,14 @@ export class TakeoffComponent implements OnInit {
   
   ngOnInit(): void {
 
+    
+
+   
+  }
+
+
+  startLoading()
+  {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
     this.columns = Math.ceil(12/(this.screenWidth/400));
@@ -391,8 +416,6 @@ export class TakeoffComponent implements OnInit {
       heading.innerHTML= "Discount Coupons";
       this.getDiscountCoupons();
     }
-
-   
   }
 
   getTakeOffRecommendations() {

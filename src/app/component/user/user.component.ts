@@ -25,6 +25,7 @@ export class UserComponent implements OnInit {
     {
       loginButton.innerHTML="Logout";
       loginButton.setAttribute('href','/login');
+      loginButton.setAttribute('onClick',"localStorage.removeItem('token')");
     }
 
    // alert(this.loginStatus.userType+" ("+this.loginStatus.userId+") succesfully loggged in");

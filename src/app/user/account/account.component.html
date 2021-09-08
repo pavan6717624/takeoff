@@ -1,137 +1,152 @@
 <div style='padding-left:15px;padding-right:15px;overflow:auto;width:100%;height: 90%;'>
 
+    <ng-container *ngIf='loading'>
+        <div nz-row>
 
-
-    <div class="row">
-        <div class="col-lg-3">
-            <h4 style='color: cadetblue'>UserId</h4>
-            <h5 style='color: coral'> {{customerAccount.userId}} </h5>
-            <h5 style='color: coral'> &nbsp; </h5>
+            &nbsp;
         </div>
 
-        <div class="col-lg-3">
-            <h4 style='color: cadetblue'>Name</h4>
-
-            <h5 style='color: coral'> {{customerAccount.name}}</h5>
-
-            <h5 style='color: coral'> &nbsp; </h5>
+        <div nz-row>
+            <div nz-col nzSpan="24" style='text-align: center'>
+                <nz-spin nzTip="Please wait....Loading Details" nzSimple [nzSize]="'large'"></nz-spin>
+            </div>
         </div>
+    </ng-container>
+
+    <ng-container *ngIf='!loading'>
 
 
-        <div class="col-lg-3">
-            <h4 style='color: cadetblue'>Wallet Amount</h4>
-            <h5 style='color: coral'>
-                <i nz-icon nzType="wallet" nzTheme="outline" style='font-size:50px; color:lightslategray'></i>
-                {{customerAccount.walletAmount}}
-            </h5>
-            <h5 style='color: coral'> &nbsp; </h5>
-        </div>
-
-
-        <div class="col-lg-3">
-            <h4 style='color: cadetblue'>Refer Code</h4>
-            <h5 style='color: coral'>
-                {{customerAccount.referCode}}
-            </h5>
-            <h5 style='color: coral'> &nbsp; </h5>
-        </div>
-
-
-
-        <div class="col-lg-3">
-            <h4 style='color: cadetblue'>Referer Id</h4>
-            <h5 style='color: coral'>
-                {{customerAccount.refererId}}</h5>
+        <div class="row">
+            <div class="col-lg-3">
+                <h4 style='color: cadetblue'>UserId</h4>
+                <h5 style='color: coral'> {{customerAccount.userId}} </h5>
                 <h5 style='color: coral'> &nbsp; </h5>
-        </div>
+            </div>
 
+            <div class="col-lg-3">
+                <h4 style='color: cadetblue'>Name</h4>
 
-
-        <div class="col-lg-3">
-            <h4 style='color: cadetblue'>Subscription Order id</h4>
-            <h5 style='color: coral'>
-                {{customerAccount.razorpay_order_id}}</h5>
-                <h5 style='color: coral'> &nbsp; </h5>
-        </div>
-
-
-
-        <div class="col-lg-3">
-            <h4 style='color: cadetblue'>Subscription Payment Id</h4>
-            <h5 style='color: coral'>
-                {{customerAccount.razorpay_payment_id}}</h5>
-                <h5 style='color: coral'> &nbsp; </h5>
-        </div>
-
-
-        <div class="col-lg-3">
-            <h4 style='color: cadetblue'>Contact</h4>
-            <h5 style='color: coral'>
-                {{customerAccount.contact}}</h5>
-                <h5 style='color: coral'> &nbsp; </h5>
-        </div>
-
-
-        <div class="col-lg-3">
-            <h4 style='color: cadetblue'>Email</h4>
-            <h5 style='color: coral'>
-                {{customerAccount.email}}</h5>
-                <h5 style='color: coral'> &nbsp; </h5>
-        </div>
-
-
-
-        <div class="col-lg-3">
-            <h4 style='color: cadetblue'>Gender</h4>
-            <h5 style='color: coral'>
-                {{customerAccount.gender}}</h5>
-                <h5 style='color: coral'> &nbsp; </h5>
-        </div>
-
-
-
-        <div class="col-lg-3">
-            <h4 style='color: cadetblue'>City</h4>
-            <h5 style='color: coral'>
-                {{customerAccount.city}}</h5>
-                <h5 style='color: coral'> &nbsp; </h5>
-        </div>
-
-
-
-        <div class="col-lg-3">
-            <h4 style='color: cadetblue'>Profession</h4>
-            <h5 style='color: coral'>
-                {{customerAccount.profession}}</h5>
+                <h5 style='color: coral'> {{customerAccount.name}}</h5>
 
                 <h5 style='color: coral'> &nbsp; </h5>
-        </div>
+            </div>
 
 
-
-
-
-
-
-
-
-        <div class="col-lg-3">
-            <h4 style='color: cadetblue'>Mapping Status</h4>
-            <h5 style='color: coral'>
-                {{customerAccount.mappingStatus}}</h5>
+            <div class="col-lg-3">
+                <h4 style='color: cadetblue'>Wallet Amount</h4>
+                <h5 style='color: coral'>
+                    <i nz-icon nzType="wallet" nzTheme="outline" style='font-size:50px; color:lightslategray'></i>
+                    {{customerAccount.walletAmount}}
+                </h5>
                 <h5 style='color: coral'> &nbsp; </h5>
-        </div>
+            </div>
 
 
-        <div class="col-lg-3">
-            <h4 style='color: cadetblue'>Payment Status</h4>
-            <h5 style='color: coral'>
-                {{customerAccount.paymentStatus}}</h5>
+            <div class="col-lg-3">
+                <h4 style='color: cadetblue'>Refer Code</h4>
+                <h5 style='color: coral'>
+                    {{customerAccount.referCode}}
+                </h5>
                 <h5 style='color: coral'> &nbsp; </h5>
+            </div>
+
+
+
+            <div class="col-lg-3">
+                <h4 style='color: cadetblue'>Referer Id</h4>
+                <h5 style='color: coral'>
+                    {{customerAccount.refererId}}</h5>
+                <h5 style='color: coral'> &nbsp; </h5>
+            </div>
+
+
+
+            <div class="col-lg-3">
+                <h4 style='color: cadetblue'>Subscription Order id</h4>
+                <h5 style='color: coral'>
+                    {{customerAccount.razorpay_order_id}}</h5>
+                <h5 style='color: coral'> &nbsp; </h5>
+            </div>
+
+
+
+            <div class="col-lg-3">
+                <h4 style='color: cadetblue'>Subscription Payment Id</h4>
+                <h5 style='color: coral'>
+                    {{customerAccount.razorpay_payment_id}}</h5>
+                <h5 style='color: coral'> &nbsp; </h5>
+            </div>
+
+
+            <div class="col-lg-3">
+                <h4 style='color: cadetblue'>Contact</h4>
+                <h5 style='color: coral'>
+                    {{customerAccount.contact}}</h5>
+                <h5 style='color: coral'> &nbsp; </h5>
+            </div>
+
+
+            <div class="col-lg-3">
+                <h4 style='color: cadetblue'>Email</h4>
+                <h5 style='color: coral'>
+                    {{customerAccount.email}}</h5>
+                <h5 style='color: coral'> &nbsp; </h5>
+            </div>
+
+
+
+            <div class="col-lg-3">
+                <h4 style='color: cadetblue'>Gender</h4>
+                <h5 style='color: coral'>
+                    {{customerAccount.gender}}</h5>
+                <h5 style='color: coral'> &nbsp; </h5>
+            </div>
+
+
+
+            <div class="col-lg-3">
+                <h4 style='color: cadetblue'>City</h4>
+                <h5 style='color: coral'>
+                    {{customerAccount.city}}</h5>
+                <h5 style='color: coral'> &nbsp; </h5>
+            </div>
+
+
+
+            <div class="col-lg-3">
+                <h4 style='color: cadetblue'>Profession</h4>
+                <h5 style='color: coral'>
+                    {{customerAccount.profession}}</h5>
+
+                <h5 style='color: coral'> &nbsp; </h5>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="col-lg-3">
+                <h4 style='color: cadetblue'>Mapping Status</h4>
+                <h5 style='color: coral'>
+                    {{customerAccount.mappingStatus}}</h5>
+                <h5 style='color: coral'> &nbsp; </h5>
+            </div>
+
+
+            <div class="col-lg-3">
+                <h4 style='color: cadetblue'>Payment Status</h4>
+                <h5 style='color: coral'>
+                    {{customerAccount.paymentStatus}}</h5>
+                <h5 style='color: coral'> &nbsp; </h5>
+            </div>
+
+
+
+
         </div>
-
-
-
-
-    </div>
+    </ng-container>
 </div>

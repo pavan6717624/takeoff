@@ -7,7 +7,16 @@
 
 
 <ng-container *ngIf="logginStatus">
-    <div id="preloader"></div>
+    <div nz-row>
+
+        &nbsp;
+    </div>
+
+    <div nz-row>
+        <div nz-col nzSpan="24" style='text-align: center'>
+            <nz-spin nzTip="Please wait....Logging in...." nzSimple [nzSize]="'large'"></nz-spin>
+        </div>
+    </div>
 
 </ng-container>
 <ng-container *ngIf="!logginStatus">

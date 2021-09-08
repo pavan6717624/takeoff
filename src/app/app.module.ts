@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
@@ -60,6 +60,7 @@ import { ViewcouponsComponent } from './component/viewcoupons/viewcoupons.compon
 import { UserModule } from './user/user.module';
 import { RedemptionComponent } from './component/redemption/redemption.component';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { InterceptorService } from './interceptor.service';
 
 registerLocaleData(en);
 
@@ -130,7 +131,11 @@ const antDesignIcons = AllIcons as {
     NzImageModule,
     NzNotificationModule
   ],
-  providers: [LANG_PROVIDERS,],
+  providers: [LANG_PROVIDERS,{
+    provide: HTTP_INTERCEPTORS, 
+    useClass: InterceptorService, 
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
