@@ -324,52 +324,55 @@
 
             <nz-tab nzTitle="Details">
 
-                <nz-tabset nzTabPosition="top" nzSize="small">
-                    <nz-tab nzTitle="Date & Time">
+               
 
-                        <div nz-row>
-                            <div nz-col nzSpan="24" style='text-align: center'>
-                                <!-- <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
+
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <!-- <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
                             [(ngModel)]='result'>
                         </nz-range-picker> -->
 
-                                From Date & Time : <br />
+                            From Date & Time : <br />
 
 
-                                <nz-date-picker nzFormat="yyyy-MM-dd" nzPlaceHolder='From Date' [(ngModel)]='fromDate'
-                                    style='width:130px'></nz-date-picker> -
-                                <nz-time-picker nzPlaceHolder='Time' [(ngModel)]="fromTime" nzFormat="HH:mm"
-                                    style='width:80px'>
-                                </nz-time-picker>
+                            <nz-date-picker nzInputReadOnly=true nzFormat="yyyy-MM-dd" nzPlaceHolder='From Date'
+                                [(ngModel)]='fromDate' style='width:130px'></nz-date-picker> -
+                            <nz-time-picker nzPlaceHolder='Time' [(ngModel)]="fromTime" nzFormat="HH:mm"
+                                style='width:80px'>
+                            </nz-time-picker>
 
-                            </div>
                         </div>
-                        <div nz-row>
+                    </div>
+                    <div nz-row>
 
-                            &nbsp;
-                        </div>
-                        <div nz-row>
-                            <div nz-col nzSpan="24" style='text-align: center'>
-                                <!-- <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
+                        &nbsp;
+                    </div>
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <!-- <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
                             [(ngModel)]='result'>
                         </nz-range-picker> -->
 
-                                To Date & Time : <br />
-                                <nz-date-picker [nzDisabledDate]="disabledEndDate" nzPlaceHolder='To Date'
-                                    nzFormat="yyyy-MM-dd" style='width:130px' [(ngModel)]='toDate'></nz-date-picker> -
-                                <nz-time-picker nzPlaceHolder='Time' [(ngModel)]="toTime" style='width:80px'
-                                    nzFormat="HH:mm">
-                                </nz-time-picker>
+                            To Date & Time : <br />
+                            <nz-date-picker nzInputReadOnly=true [nzDisabledDate]="disabledEndDate"
+                                nzPlaceHolder='To Date' nzFormat="yyyy-MM-dd" style='width:130px' [(ngModel)]='toDate'>
+                            </nz-date-picker> -
+                            <nz-time-picker nzPlaceHolder='Time' [(ngModel)]="toTime" style='width:80px'
+                                nzFormat="HH:mm">
+                            </nz-time-picker>
 
-                            </div>
                         </div>
+                    </div>
+
+                    <div nz-row>
+
+                        &nbsp;
+                    </div>
 
 
-                    </nz-tab>
-                    <nz-tab nzTitle="Target Customers">
-
-                        <div nz-row>
-                            <!-- <div nz-col nzSpan="24" style='text-align: center'>
+                    <div nz-row>
+                        <!-- <div nz-col nzSpan="24" style='text-align: center'>
 
                              Profession  <nz-select [(ngModel)]="coupon.profession" nzPlaceHolder="Target Profession"
                                     style='width:150px'>
@@ -390,54 +393,54 @@
                             </div>
      -->
 
-                            <div nz-col nzSpan="24" style='text-align: center'>
+                        <div nz-col nzSpan="24" style='text-align: center'>
 
-                                Gender <nz-select [(ngModel)]="coupon.gender" nzPlaceHolder="Target Gender"
-                                    style='width:150px'>
-                                    <nz-option nzValue="All" nzLabel="All"></nz-option>
-                                    <nz-option nzValue="Male" nzLabel="Male"></nz-option>
-                                    <nz-option nzValue="Female" nzLabel="Female"></nz-option>
-                                    <nz-option nzValue="Others" nzLabel="Others"></nz-option>
-                                </nz-select>
-
-                            </div>
+                            Gender <nz-select [(ngModel)]="coupon.gender" nzPlaceHolder="Target Gender"
+                                style='width:150px'>
+                                <nz-option nzValue="All" nzLabel="All"></nz-option>
+                                <nz-option nzValue="Male" nzLabel="Male"></nz-option>
+                                <nz-option nzValue="Female" nzLabel="Female"></nz-option>
+                                <nz-option nzValue="Others" nzLabel="Others"></nz-option>
+                            </nz-select>
 
                         </div>
 
+                    </div>
 
-                        <div nz-row>
 
-                            &nbsp;
+                    <div nz-row>
+
+                        &nbsp;
+                    </div>
+
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            Type <nz-select nzShowSearch nzPlaceHolder="Select Coupon Type"
+                                [(ngModel)]="coupon.couponType" style='width: 150px ;'>
+
+                                <nz-option *ngFor="let cat of couponTypes" [nzValue]="cat.couponType"
+                                    [nzLabel]="cat.couponType"></nz-option>
+
+                            </nz-select>
+
                         </div>
 
-                        <div nz-row>
-                            <div nz-col nzSpan="24" style='text-align: center'>
-                                Type <nz-select nzShowSearch nzPlaceHolder="Select Coupon Type"
-                                    [(ngModel)]="coupon.couponType" style='width: 150px ;'>
-
-                                    <nz-option *ngFor="let cat of couponTypes" [nzValue]="cat.couponType"
-                                        [nzLabel]="cat.couponType"></nz-option>
-
-                                </nz-select>
-
-                            </div>
-
-                            <!-- Keywords  <div nz-col nzSpan="24" style='text-align: center'>
+                        <!-- Keywords  <div nz-col nzSpan="24" style='text-align: center'>
                                 <input nz-input type='text' style='width:130px' [(ngModel)]='coupon.keywords'
                                     placeholder="Keywords (',' Separated)">
                             </div> -->
 
-                        </div>
+                    </div>
 
-                        <div nz-row>
-                            <div nz-col nzSpan="24" nz-result-extra style='text-align: center'>
-                                <button nz-button nzType="primary" (click)='editCoupons()'>Edit Coupon</button>
-                                <button nz-button (click)='cancel()'>Cancel</button>
-                            </div>
+                    <div nz-row>
+                        <div nz-col nzSpan="24" nz-result-extra style='text-align: center'>
+                            <button nz-button [nzLoading]="loading" [disabled] = "loading" nzType="primary" (click)='editCoupons()'>Edit Coupon</button>
+                            <button nz-button [nzLoading]="loading" [disabled] = "loading" (click)='cancel()'>Cancel</button>
                         </div>
+                    </div>
 
-                    </nz-tab>
-                </nz-tabset>
+
+         
             </nz-tab>
 
         </nz-tabset>

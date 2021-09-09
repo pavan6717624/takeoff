@@ -188,6 +188,7 @@ export class ViewcouponsComponent implements OnInit {
       return;
     }
     this.loading = true;
+    
     this.viewcouponsService.editCoupon(this.coupon).subscribe(
 
       (res) => {
