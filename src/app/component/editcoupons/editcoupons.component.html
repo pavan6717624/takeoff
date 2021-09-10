@@ -63,7 +63,7 @@
                 <div class="container" style='overflow:hidden;width:300px;height:300px;padding:0px'>
                     <img [src]="previewImage" style='width:300px;height:300px;border: 1px solid #555;' />
 
-                    <img class="top-left" id="image" [src]="logo" style=' max-height: 80px;border: 1px solid  #bbb;'>
+                    <img class="top-left" id="image" [src]="logo" style=' max-height: 50px;border: 1px solid  #bbb;'>
 
 
                     <!-- <div [class]="footer_align" [style.font-family]='footer_font' [style.color]='footer_color'
@@ -373,8 +373,8 @@
 
                                 <nz-date-picker nzInputReadOnly=true nzFormat="yyyy-MM-dd" nzPlaceHolder='From Date'
                                     [(ngModel)]='fromDate' style='width:130px'></nz-date-picker> -
-                                <nz-time-picker nzPlaceHolder='Time' [(ngModel)]="fromTime" nzFormat="HH:mm"
-                                    style='width:80px'></nz-time-picker>
+                                <nz-time-picker #timePicker1 nzAllowEmpty = false [nzBackdrop]='true'  nzPlaceHolder='Time' [(ngModel)]="fromTime" nzFormat="HH:mm"
+                                    style='width:80px' (focus)='timePicker1.blur()'></nz-time-picker>
 
                             </div>
                         </div>
@@ -393,8 +393,8 @@
                                     nzPlaceHolder='To Date' nzFormat="yyyy-MM-dd" style='width:130px'
                                     [(ngModel)]='toDate'></nz-date-picker>
                                 -
-                                <nz-time-picker nzPlaceHolder='Time' [(ngModel)]="toTime" style='width:80px'
-                                    nzFormat="HH:mm"></nz-time-picker>
+                                <nz-time-picker #timePicker2 nzAllowEmpty = false [nzBackdrop]='true' nzPlaceHolder='Time' [(ngModel)]="toTime" style='width:80px'
+                                    nzFormat="HH:mm" (focus)='timePicker2.blur()'></nz-time-picker>
 
                             </div>
                         </div>

@@ -93,6 +93,8 @@ export class Coupon
 
   redemptionCount: number = 0;
 
+  expired: Boolean = false;
+
 }
 
 export class CouponType
