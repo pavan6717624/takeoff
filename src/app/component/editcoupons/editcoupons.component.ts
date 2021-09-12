@@ -153,6 +153,7 @@ export class EditcouponsComponent implements OnInit {
 
     if(this.addImage)
    { 
+    this.images = [];
      this.ngOnInit();
      this.addImage=undefined;
     }

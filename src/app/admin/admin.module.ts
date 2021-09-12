@@ -22,6 +22,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { CoupontypesComponent } from './coupontypes/coupontypes.component';
 import { ProfessionComponent } from './profession/profession.component';
+import { ImagesComponent } from './images/images.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -31,7 +32,8 @@ import { ProfessionComponent } from './profession/profession.component';
     VendorsComponent,
     CategoryComponent,
     CoupontypesComponent,
-    ProfessionComponent
+    ProfessionComponent,
+    ImagesComponent
   ],
   imports: [
     CommonModule,
