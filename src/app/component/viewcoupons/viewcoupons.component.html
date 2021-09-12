@@ -21,7 +21,7 @@
                 <div class='top-right' style='background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: red;'><b>Expired</b></div>
             </ng-container>
                 <div
-                    style='padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
+                    style='text-align:center;padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
 
 
 
@@ -63,7 +63,7 @@
 
 
                 <div
-                    style='padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
+                    style='text-align:center;padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
 
 
                     <h5 [style.text-decoration]='coupon.header_decoration' [style.font-weight]='coupon.header_bold'
@@ -338,9 +338,9 @@
                             From Date & Time : <br />
 
 
-                            <nz-date-picker nzInputReadOnly=true nzFormat="yyyy-MM-dd" nzPlaceHolder='From Date'
+                            <nz-date-picker nzAllowEmpty = false nzInputReadOnly=true nzFormat="yyyy-MM-dd" nzPlaceHolder='From Date'
                                 [(ngModel)]='fromDate' style='width:130px'></nz-date-picker> -
-                            <nz-time-picker #timePicker1 (focus)='timePicker1.blur()' [nzBackdrop]='true'  nzAllowEmpty = false nzPlaceHolder='Time' [(ngModel)]="fromTime" nzFormat="HH:mm"
+                            <nz-time-picker [nzBackdrop]='true'  nzAllowEmpty = false nzPlaceHolder='Time' [(ngModel)]="fromTime" nzFormat="HH:mm"
                                 style='width:80px'>
                             </nz-time-picker>
 
@@ -357,10 +357,10 @@
                         </nz-range-picker> -->
 
                             To Date & Time : <br />
-                            <nz-date-picker nzInputReadOnly=true [nzDisabledDate]="disabledEndDate"
+                            <nz-date-picker nzAllowEmpty = false nzInputReadOnly=true [nzDisabledDate]="disabledEndDate"
                                 nzPlaceHolder='To Date' nzFormat="yyyy-MM-dd" style='width:130px' [(ngModel)]='toDate'>
                             </nz-date-picker> -
-                            <nz-time-picker #timePicker2 (focus)='timePicker2.blur()' [nzBackdrop]='true' nzAllowEmpty = false nzPlaceHolder='Time' [(ngModel)]="toTime" style='width:80px'
+                            <nz-time-picker nzAllowEmpty = false [nzBackdrop]='true' nzAllowEmpty = false nzPlaceHolder='Time' [(ngModel)]="toTime" style='width:80px'
                                 nzFormat="HH:mm">
                             </nz-time-picker>
 

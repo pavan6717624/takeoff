@@ -27,12 +27,12 @@
                 <div class="col-lg-{{columns}}" *ngFor="let item of coupons">
 
 
-                    <div nz-row class="coupon" style=' width:305px;height:405px;'>
+                    <div nz-row class="coupon" style=' width:305px;height:401px;'>
                         <div nz-col nzSpan='24'>
                             <div class="container" nz-col nzSpan="24" style=' border-radius: 15px 15px 0 0 ; text-align: left;  padding: 2px 16px;
-                    background-color: #f1f1f1;'>
+                    background-color:white;'>
 
-                                <h6> {{item.vendorName}}</h6>
+                                <h6 style='text-align:left; margin-bottom:0;'> {{item.vendorName}}</h6>
 
                             </div>
                             <div style='overflow:auto;'>
@@ -48,23 +48,23 @@
 
 
                                     <div
-                                        style='padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
+                                        style='text-align:center;padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
 
 
                                         <h5 [style.text-decoration]='item.header_decoration'
                                             [style.font-weight]='item.header_bold'
                                             [style.font-style]='item.header_style'
-                                            style='word-wrap: break-word;color: #f1f1f1;'>
+                                            style='margin-bottom:0.5em;word-wrap: break-word;color: #f1f1f1;'>
                                             {{item.header}}</h5>
 
                                         <p [style.text-decoration]='item.body_decoration'
                                             [style.font-weight]='item.body_bold' [style.font-style]='item.body_style'
-                                            style='word-wrap: break-word;'>
+                                            style='margin-bottom:0.5em;word-wrap: break-word;'>
                                             {{item.body}}</p>
 
                                         <p [style.text-decoration]='item.footer_decoration'
                                             [style.font-weight]='item.footer_bold'
-                                            [style.font-style]='item.footer_style' style='word-wrap: break-word;'>
+                                            [style.font-style]='item.footer_style' style='margin-bottom:0.5em; word-wrap:break-word;'>
                                             {{item.footer}}</p>
 
 
@@ -76,7 +76,7 @@
                         </div>
 
                         <div class="container" nz-col nzSpan="24" style='text-align: center; border-radius: 0 0  15px 15px; padding:0;
-                background-color: #f1f1f1;'>
+                background-color: white;'>
                             <!-- <div nz-col nzSpan="24">
 
                                 <i nz-icon nzType="line" nzTheme="outline"></i>
@@ -98,10 +98,7 @@
                                 <i nz-icon nzType="line" nzTheme="outline"></i>
                                 <i nz-icon nzType="line" nzTheme="outline"></i>
                             </div> -->
-                            <div nz-col nzSpan="24">
-                                <h6 style="font-size:14px;color:red">Expires on
-                                    {{item.expireTime}}</h6>
-                            </div>
+                            
                             <div nz-col nzSpan="24">
                                 <div nz-row>
 
@@ -132,10 +129,13 @@
                                             style="font-size: 20px; color:green" class='icon'
                                             (click)="like(item)"></i><br />
 
+                                          
+
                                         {{item.likeCount}}
 
                                     </div>
 
+                          
                                     <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
                                         title="DisLike Coupon">
 
@@ -160,6 +160,12 @@
                                 </div>
 
 
+                            </div>
+
+                            <div nz-col nzSpan="24">
+                                <h6 style="font-size: 12px;color: white; margin-bottom: 0;  padding: 8px 0; background: #fd6951;
+                                border-radius: 0 0 15px 15px;">Expires on
+                                    {{item.expireTime}}</h6>
                             </div>
 
                         </div>
@@ -230,7 +236,7 @@
                     </div> -->
 
                     <div
-                        style='padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
+                        style='text-align:center;padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
 
 
 

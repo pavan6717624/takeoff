@@ -26,6 +26,7 @@ export class ImageStatusDTO
   image: string="";
   message: string = "";
   id: number = 0;
+  userId: number = 0;
 }
 @Component({
   selector: 'app-uploadcoupons',

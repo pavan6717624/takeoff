@@ -341,7 +341,7 @@ export class TakeoffComponent implements OnInit {
   {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
-    this.columns = Math.ceil(12/(this.screenWidth/400));
+    this.columns = Math.ceil(12/(this.screenWidth/350));
 
     this.route.data.subscribe(v => this.couponDisplayId = v.couponDisplayId);
 

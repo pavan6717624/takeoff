@@ -9,6 +9,13 @@ import { VendoraccountService } from '../vendoraccount/vendoraccount.service';
 import { UploadcouponsService } from '../uploadcoupons/uploadcoupons.service';
 import { DatePipe, Time } from '@angular/common';
 
+export class SendImagesRequest
+{
+  vendorId: number = 0;
+  imageIds: number[] = [];
+
+}
+
 export class Coupon
 {
 
@@ -129,10 +136,20 @@ export class EditcouponsComponent implements OnInit {
 
   toDate: Date = new Date();
   toTime: Date = new Date();
+  checked: Boolean[] = [];
+
+  selectAll: Boolean = false;
+
+  screenHeight: number = 500;
+
+
 
   ngOnChanges(changes: SimpleChanges) {
         
+    this.screenHeight = window.innerHeight;
 
+
+   
 
     if(this.addImage)
    { 
@@ -240,6 +257,7 @@ export class EditcouponsComponent implements OnInit {
      
 
       this.bottom=true;
+      this.getImages1();
     }
   }
 
@@ -289,19 +307,18 @@ export class EditcouponsComponent implements OnInit {
     else {
       //this.msg.create('error', 'Session Expired. Please Login');
       this.router.navigate(['login']);
+      return;
     }
 
-    if(this.userType==='Vendor')
+    
+
+    if(this.userType==='Vendor' && this.loginStatus)
     {
     this.vendoraccountService.getVendorDetails(formData).subscribe(
       (res) => { 
        
          this.logo = res.logo;
-         this.editcouponsService.getImages(formData).subscribe(
-
-          (res) => {  this.getCouponTypes();  console.log(res); this.images = res; this.loading = false; },
-          (err) => {   this.getCouponTypes(); console.log(err); this.images = []; this.loading = false; }
-        );
+         this.getImages1();
         },
       (err) => { this.loading=false; console.log(err); }
 
@@ -309,13 +326,45 @@ export class EditcouponsComponent implements OnInit {
       }
       else if(this.userType==='Designer')
       {
-        this.editcouponsService.getImages(formData).subscribe(
-
-          (res) => { this.loading=false;  console.log(res); this.images = res; this.loading = false; },
-          (err) => {  this.loading=false; console.log(err); this.images = []; this.loading = false; }
-        );
+        this.getImages1();
       }
     
+  }
+
+ deleteImage(id: number)
+ {
+  this.loading = true;
+   var formData = new FormData();
+   formData.set("imageId",id+"");
+
+  let image = this.images.find(i => i.id=id);
+  if(image)
+  {
+    let index=this.images.indexOf(image);
+
+  this.editcouponsService.deleteImage(formData).subscribe(
+
+    (res) => { this.loading=false;  console.log(res); if(res) this.images.splice(index,1); else this.msg.create('error','Unable to Delete Image. Please try Again.'); this.loading = false; },
+    (err) => {  this.loading=false; console.log(err); this.loading = false; }
+  );
+}
+ }
+
+  getImages1()
+  {
+    if(!this.loginStatus)
+    {
+      return;
+    }
+    let sendImagesRequest = new SendImagesRequest();
+    sendImagesRequest.vendorId=Number(this.loginStatus.userId);
+    sendImagesRequest.imageIds=this.images.map(s => s.id);
+
+    this.editcouponsService.getImages(sendImagesRequest).subscribe(
+
+      (res) => { this.loading=false;  console.log(res); if(res.length==0) { this.msg.create('info','No More Images Found.'); this.noMoreImages = true;} else  this.images=this.images.concat(res); this.loading = false; },
+      (err) => {  this.loading=false; console.log(err); this.images = []; this.loading = false; }
+    );
   }
 
 click(item: ImageStatusDTO)

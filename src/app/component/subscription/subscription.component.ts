@@ -46,7 +46,7 @@ export class SubscriptionComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    localStorage.removeItem("token");
     this.getOrderId();
   }
 

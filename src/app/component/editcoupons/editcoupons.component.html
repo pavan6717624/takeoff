@@ -18,18 +18,40 @@
 </ng-container>
 
 <ng-container *ngIf='!loading'>
-    <div nz-row>
-        <div nz-col *ngFor="let item of images">
-            <div class="container" style='overflow:hidden;width:300px;height:300px;padding:0px'>
-                <img style="width:300px;height:300px;border: 1px solid #555;" id="image" [src]="item.image"
-                    (click)="click(item)">
+    <div style='padding-left:15px;padding-right:15px;overflow:auto;width:100%;' [style.height.px]='screenHeight*0.85'
+        (scroll)="onWindowScroll()" #scrollMe>
+
+
+        <div nz-row>
+            <div nz-col *ngFor="let item of images; index as i">
+
+                <div class="container" style='overflow:hidden;width:300px;height:300px;padding:0px'>
+                    <img style="width:300px;height:300px;border: 1px solid #555;" id="image" [src]="item.image"
+                        (click)="click(item)">
+                    <ng-container *ngIf="loginStatus?.userId === (item.userId+'')">
+                        <div class='top-left'><b><i nz-icon  style='background-color:white;color:black' nzType="delete" nzTheme="outline" (click)='deleteImage(item.id)'></i></b></div>
+                    </ng-container>
+
+                </div>
             </div>
+
+
         </div>
 
+        <ng-container *ngIf='bottom && !noMoreImages'>
+            <div nz-row>
+        
+                &nbsp;
+            </div>
+        
+            <div nz-row>
+                <div nz-col nzSpan="24" style='text-align: center'>
+                    <nz-spin nzTip="Please wait....Loading Images" nzSimple [nzSize]="'large'"></nz-spin>
+                </div>
+            </div>
+        </ng-container>
 
     </div>
-
-
 
 </ng-container>
 
@@ -95,7 +117,7 @@
                     </div> -->
 
                     <div
-                        style='padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
+                        style='text-align:center;padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
 
 
                         <h5 [style.text-decoration]='header_decoration' [style.font-weight]='header_bold'
@@ -360,47 +382,48 @@
 
                 <nz-tab nzTitle="Details">
 
-                    
 
-                        <div nz-row>
-                            <div nz-col nzSpan="24" style='text-align: center'>
-                                <!-- <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
+
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <!-- <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
                                 [(ngModel)]='result'>
                             </nz-range-picker> -->
 
-                                From Date & Time : <br />
+                            From Date & Time : <br />
 
 
-                                <nz-date-picker nzInputReadOnly=true nzFormat="yyyy-MM-dd" nzPlaceHolder='From Date'
-                                    [(ngModel)]='fromDate' style='width:130px'></nz-date-picker> -
-                                <nz-time-picker #timePicker1 nzAllowEmpty = false [nzBackdrop]='true'  nzPlaceHolder='Time' [(ngModel)]="fromTime" nzFormat="HH:mm"
-                                    style='width:80px' (focus)='timePicker1.blur()'></nz-time-picker>
+                            <nz-date-picker nzAllowEmpty=false nzInputReadOnly=true nzFormat="yyyy-MM-dd"
+                                nzPlaceHolder='From Date' [(ngModel)]='fromDate' style='width:130px'>
+                            </nz-date-picker> -
+                            <nz-time-picker nzAllowEmpty=false [nzBackdrop]='true' nzPlaceHolder='Time'
+                                [(ngModel)]="fromTime" nzFormat="HH:mm" style='width:80px'></nz-time-picker>
 
-                            </div>
                         </div>
-                        <div nz-row>
+                    </div>
+                    <div nz-row>
 
-                            &nbsp;
-                        </div>
-                        <div nz-row>
-                            <div nz-col nzSpan="24" style='text-align: center'>
-                                <!-- <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
+                        &nbsp;
+                    </div>
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <!-- <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
                                 [(ngModel)]='result'>
                             </nz-range-picker> -->
 
-                                To Date & Time : <br />
-                                <nz-date-picker nzInputReadOnly=true [nzDisabledDate]="disabledEndDate"
-                                    nzPlaceHolder='To Date' nzFormat="yyyy-MM-dd" style='width:130px'
-                                    [(ngModel)]='toDate'></nz-date-picker>
-                                -
-                                <nz-time-picker #timePicker2 nzAllowEmpty = false [nzBackdrop]='true' nzPlaceHolder='Time' [(ngModel)]="toTime" style='width:80px'
-                                    nzFormat="HH:mm" (focus)='timePicker2.blur()'></nz-time-picker>
+                            To Date & Time : <br />
+                            <nz-date-picker nzAllowEmpty=false nzInputReadOnly=true [nzDisabledDate]="disabledEndDate"
+                                nzPlaceHolder='To Date' nzFormat="yyyy-MM-dd" style='width:130px' [(ngModel)]='toDate'>
+                            </nz-date-picker>
+                            -
+                            <nz-time-picker nzAllowEmpty=false [nzBackdrop]='true' nzPlaceHolder='Time'
+                                [(ngModel)]="toTime" style='width:80px' nzFormat="HH:mm"></nz-time-picker>
 
-                            </div>
                         </div>
+                    </div>
 
-                        <div nz-row>
-                            <!-- <div nz-col nzSpan="24" style='text-align: center'>
+                    <div nz-row>
+                        <!-- <div nz-col nzSpan="24" style='text-align: center'>
 
                                    Profession <nz-select [(ngModel)]="profession" nzPlaceHolder="Target Profession"
                                         style='width:200px'>
@@ -415,57 +438,57 @@
 
                                 </div> -->
 
-                            <div nz-col nzSpan="24" style='text-align: center'>
+                        <div nz-col nzSpan="24" style='text-align: center'>
 
-                                Gender <nz-select [(ngModel)]="gender" nzPlaceHolder="Target Gender"
-                                    style='width:200px'>
-                                    <nz-option nzValue="All" nzLabel="All"></nz-option>
-                                    <nz-option nzValue="Male" nzLabel="Male"></nz-option>
-                                    <nz-option nzValue="Female" nzLabel="Female"></nz-option>
-                                    <nz-option nzValue="Others" nzLabel="Others"></nz-option>
-                                </nz-select>
-
-                            </div>
+                            Gender <nz-select [(ngModel)]="gender" nzPlaceHolder="Target Gender" style='width:200px'>
+                                <nz-option nzValue="All" nzLabel="All"></nz-option>
+                                <nz-option nzValue="Male" nzLabel="Male"></nz-option>
+                                <nz-option nzValue="Female" nzLabel="Female"></nz-option>
+                                <nz-option nzValue="Others" nzLabel="Others"></nz-option>
+                            </nz-select>
 
                         </div>
 
+                    </div>
 
-                        <div nz-row>
 
-                            &nbsp;
+                    <div nz-row>
+
+                        &nbsp;
+                    </div>
+
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <nz-select nzShowSearch nzPlaceHolder="Select Coupon Type" [(ngModel)]="couponType"
+                                style='width: 200px ;'>
+
+                                <nz-option *ngFor="let cat of couponTypes" [nzValue]="cat.couponType"
+                                    [nzLabel]="cat.couponType"></nz-option>
+
+                            </nz-select>
+
                         </div>
 
-                        <div nz-row>
-                            <div nz-col nzSpan="24" style='text-align: center'>
-                                <nz-select nzShowSearch nzPlaceHolder="Select Coupon Type" [(ngModel)]="couponType"
-                                    style='width: 200px ;'>
-
-                                    <nz-option *ngFor="let cat of couponTypes" [nzValue]="cat.couponType"
-                                        [nzLabel]="cat.couponType"></nz-option>
-
-                                </nz-select>
-
-                            </div>
-
-                            <!-- <div nz-col nzSpan="12" style='text-align: center'>
+                        <!-- <div nz-col nzSpan="12" style='text-align: center'>
                                     <input nz-input type='text' style='width:200px' [(ngModel)]='keywords'
                                         placeholder="Keywords (',' Separated)">
                                 </div> -->
 
+                    </div>
+
+                    <div nz-row>
+                        <div nz-col nzSpan="24" nz-result-extra style='text-align: center'>
+                            <button nz-button nzType="primary" (click)='createCoupon()'>Create Coupon</button>
+                            <button nz-button (click)='previewVisible = false'>Cancel</button>
                         </div>
-
-                        <div nz-row>
-                            <div nz-col nzSpan="24" nz-result-extra style='text-align: center'>
-                                <button nz-button nzType="primary" (click)='createCoupon()'>Create Coupon</button>
-                                <button nz-button (click)='previewVisible = false'>Cancel</button>
-                            </div>
-                        </div>
+                    </div>
 
 
-                   
+
                 </nz-tab>
 
             </nz-tabset>
 
         </ng-template>
     </nz-modal>
+</ng-container>

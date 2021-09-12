@@ -8,14 +8,14 @@ import { Coupon } from '../editcoupons/editcoupons.component';
 })
 export class ViewcouponsService {
   editCoupon(coupon: Coupon) {
-    return this.http.post('https://takeoff-pavan.herokuapp.com/editCoupon', coupon);
+    return this.http.post('https://takeoff-pavan.herokuapp.com//editCoupon', coupon);
   }
 
   constructor(private http: HttpClient) { }
 
 
   getCoupons(formData: FormData): Observable<any> {
-    return this.http.post('https://takeoff-pavan.herokuapp.com/getCoupons', formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com//getCoupons', formData);
 
   }
 }
