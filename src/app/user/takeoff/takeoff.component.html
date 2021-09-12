@@ -1,4 +1,4 @@
-<div style='padding-left:15px;padding-right:15px;overflow:auto;width:100%;height: 90%;' (scroll)="onWindowScroll()"
+<div style='padding-left:15px;padding-right:15px;overflow:auto;width:100%;height: 90%; text-align:center' (scroll)="onWindowScroll()"
     #scrollMe>
     <ng-container *ngIf='loading'>
         <div nz-row>
@@ -39,7 +39,7 @@
 
                                 <div class="container"
                                     style='border-radius: 0px ;width:300px;height:300px;overflow:hidden;padding:0px'
-                                    (click)='coupon=item;previewVisible=true;'>
+                                    (click)='viewRedemption(item)'>
                                     <img style=' width:300px;height:300px ;' id="image" [src]="item.image">
                                     <img [class]="item.image_align" [src]="item.logo"
                                         style='max-height: 50px;border: 1px solid  #bbb;'>

@@ -7,7 +7,7 @@ import { Coupon, SendImagesRequest } from './editcoupons.component';
 })
 export class EditcouponsService {
   deleteImage(formData: FormData) {
-    return this.http.post('https://takeoff-pavan.herokuapp.com//deleteImage', formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/deleteImage', formData);
   }
 
   constructor(private http: HttpClient) { }
@@ -15,22 +15,22 @@ export class EditcouponsService {
 
 
   getImages(sendImagesRequest: SendImagesRequest): Observable<any> {
-    return this.http.post('https://takeoff-pavan.herokuapp.com//getImages', sendImagesRequest);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getImages', sendImagesRequest);
 
   }
 
   getLogo(formData: FormData): Observable<any> {
-    return this.http.post('https://takeoff-pavan.herokuapp.com//getLogo', formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getLogo', formData);
 
   }
 
   getCouponTypes(): Observable<any> {
-    return this.http.get('https://takeoff-pavan.herokuapp.com//getCouponTypes');
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getCouponTypes');
 
   }
 
   saveCoupon(coupon: Coupon): Observable<any> {
-    return this.http.post('https://takeoff-pavan.herokuapp.com//saveCoupon', coupon);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/saveCoupon', coupon);
 
   }
 }
