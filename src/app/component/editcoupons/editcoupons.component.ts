@@ -146,7 +146,7 @@ export class EditcouponsComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
         
-    this.screenHeight = window.innerHeight;
+ 
 
 
    
@@ -224,7 +224,7 @@ export class EditcouponsComponent implements OnInit {
   imageId: number =0;
 
   ngOnInit(): void {
-
+    this.screenHeight = window.innerHeight;
     this.getImages();
    
     

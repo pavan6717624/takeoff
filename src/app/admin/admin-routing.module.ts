@@ -9,6 +9,8 @@ import { VendorsComponent } from './vendors/vendors.component';
 import { CategoryComponent } from './category/category.component';
 import { CoupontypesComponent } from './coupontypes/coupontypes.component';
 import { ProfessionComponent } from './profession/profession.component';
+import { ImagesComponent } from './images/images.component';
+
 
 const routes: Routes = [
 
@@ -26,6 +28,7 @@ const routes: Routes = [
       { path: 'category', component: CategoryComponent },
       { path: 'coupontypes', component: CoupontypesComponent },
       { path: 'profession', component: ProfessionComponent },
+      { path: 'images', component: ImagesComponent },
      
 
     ],

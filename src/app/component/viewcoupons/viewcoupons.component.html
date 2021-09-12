@@ -12,7 +12,7 @@
 </ng-container>
 
 <ng-container *ngIf='!loading'>
-    <div nz-row>
+    <div nz-row style='text-align:center'>
         <div nz-col *ngFor="let item of coupons">
             <div class="container" style='overflow:hidden;width:300px;height:300px;padding:0px' (click)="click(item);">
                 <img style="width:300px;height:300px;border: 1px solid #555;" id="image" [src]="item.image">

@@ -23,6 +23,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { CoupontypesComponent } from './coupontypes/coupontypes.component';
 import { ProfessionComponent } from './profession/profession.component';
 import { ImagesComponent } from './images/images.component';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -50,7 +51,8 @@ import { ImagesComponent } from './images/images.component';
     FormsModule,
     NzModalModule,  
     NzSelectModule,
-    NzSwitchModule
+    NzSwitchModule,
+    NzSpinModule
     
   ]
 })
