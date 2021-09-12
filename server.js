@@ -1,8 +1,11 @@
 //Install express server
 const express = require('express');
 const path = require('path');
+var forceSsl = require('force-ssl-heroku');
+
 
 const app = express();
+app.use(forceSsl);
 
 // Serve only the static files form the dist directory
 app.use(express.static('./dist/takeoff'));
