@@ -225,6 +225,7 @@ export class EditcouponsComponent implements OnInit {
 
   ngOnInit(): void {
     this.screenHeight = window.innerHeight;
+    this.getCouponTypes();
     this.getImages();
    
     
