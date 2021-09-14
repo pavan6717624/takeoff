@@ -95,9 +95,9 @@
         <div nz-col nzSpan="12" style='text-align: left'>Select Category</div>
         <div nz-col nzSpan="12" style='text-align: left'>
           <nz-select nzShowSearch nzPlaceHolder="Select Category" style='width: 100% ;' [(ngModel)]='category'>
-            <ng-container *ngFor="let number of ['00','01','02','03','04','05','06','07','08','09','10','11','12']">
-            <nz-option  *ngFor="let number1 of ['00','15','30','45']" [nzValue]="number:number1" [nzLabel]="number:number1"></nz-option>
-          </ng-container>
+
+            <nz-option *ngFor="let cat of categories" [nzValue]="cat.id" [nzLabel]="cat.categoryName"></nz-option>
+
           </nz-select>
         </div>
       </div>

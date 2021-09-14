@@ -26,10 +26,10 @@ export class ViewcouponsComponent implements OnInit {
   // result: Array<Date | null> = [];
 
   fromDate: Date = new Date();
-  fromTime: Date = new Date();
+  fromTime: string = this.fromDate.getHours()+":"+this.fromDate.getMinutes();
 
   toDate: Date = new Date();
-  toTime: Date = new Date();
+  toTime: string = this.toDate.getHours()+":"+this.toDate.getMinutes();
 
 
 
@@ -70,11 +70,12 @@ export class ViewcouponsComponent implements OnInit {
 
   cancel() {
     // this.result = [];
-    this.fromDate = new Date();
-    this.fromTime =  new Date();
-
-    this.toDate=  new Date();
-    this.toTime= new Date();
+    this.fromDate= new Date();
+    this.fromTime= this.fromDate.getHours()+":"+this.fromDate.getMinutes();
+  
+    this.toDate = new Date();
+    this.toTime = this.toDate.getHours()+":"+this.toDate.getMinutes();
+  
     
     this.selectedCoupon = new Coupon();
     this.previewVisible = false
@@ -91,19 +92,24 @@ export class ViewcouponsComponent implements OnInit {
     //alert("from to :: "+this.coupon.fromDate+" "+this.coupon.toDate);
 
 
-    
+
+
+
+  
 
     this.fromDate = new Date(this.coupon.fromDate.split(" ")[0]);
-    this.fromTime = new Date(this.coupon.fromDate);
+    this.fromTime = this.coupon.fromDate.split(" ")[1].substring(0,5);
     this.toDate = new Date(this.coupon.toDate.split(" ")[0]);
-    this.toTime = new Date(this.coupon.toDate);
+    this.toTime = this.coupon.toDate.split(" ")[1].substring(0,5);
+
+ 
 
    
 
     this.previewVisible = true;
   }
 
-
+time: string[] = [];
   constructor(private router: Router, private msg: NzMessageService, private viewcouponsService: ViewcouponsService) { }
 
   ngOnInit(): void {
@@ -118,6 +124,25 @@ export class ViewcouponsComponent implements OnInit {
    //   this.msg.create('error', 'Session Expired. Please Login');
       this.router.navigate(['login']);
     }
+
+
+    for(var i=0;i<24;i++)
+    for(var j=0;j<60;j++)
+   {
+     var time = '';
+     if(i<10)
+     time+='0'+i;
+     else
+     time+=i;
+
+     var time1 = '';
+     if(j < 10)
+     time1+='0'+j;
+     else
+     time1+=j;
+    
+     this.time.push(time+":"+time1);
+   }
 
 
   }
@@ -157,11 +182,11 @@ export class ViewcouponsComponent implements OnInit {
     var datePipe = new DatePipe('en-US');
 
     let fromDate = datePipe.transform(new Date(this.fromDate),'yyyy-MM-dd');
-    let fromTime= datePipe.transform(new Date(this.fromTime), 'HH:mm');
+    let fromTime= this.fromTime;
     let from = fromDate+" "+fromTime;
 
     let toDate = datePipe.transform(new Date(this.toDate),'yyyy-MM-dd');
-    let toTime= datePipe.transform(new Date(this.toTime), 'HH:mm');
+    let toTime= this.toTime;
     let to = toDate+" "+toTime;
     
 

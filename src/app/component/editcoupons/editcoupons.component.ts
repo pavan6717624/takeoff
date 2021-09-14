@@ -129,13 +129,15 @@ export class EditcouponsComponent implements OnInit {
 
   couponTypes: CouponType[]=[];
 
+ time: string[] = [];
+
   userType: string = '';
 
   fromDate: Date = new Date();
-  fromTime: Date = new Date();
+  fromTime: string = this.fromDate.getHours()+":"+this.fromDate.getMinutes();
 
   toDate: Date = new Date();
-  toTime: Date = new Date();
+  toTime: string = this.toDate.getHours()+":"+this.toDate.getMinutes();
   checked: Boolean[] = [];
 
   selectAll: Boolean = false;
@@ -227,7 +229,24 @@ export class EditcouponsComponent implements OnInit {
     this.screenHeight = window.innerHeight;
     this.getCouponTypes();
     this.getImages();
-   
+
+    for(var i=0;i<24;i++)
+    for(var j=0;j<60;j++)
+   {
+     var time = '';
+     if(i<10)
+     time+='0'+i;
+     else
+     time+=i;
+
+     var time1 = '';
+     if(j < 10)
+     time1+='0'+j;
+     else
+     time1+=j;
+    
+     this.time.push(time+":"+time1);
+   }
     
   }
   images: ImageStatusDTO[] = [];
@@ -410,11 +429,11 @@ createCoupon()
  var datePipe = new DatePipe('en-US');
 
     let fromDate = datePipe.transform(new Date(this.fromDate),'yyyy-MM-dd');
-    let fromTime= datePipe.transform(new Date(this.fromTime), 'HH:mm');
+    let fromTime= this.fromTime;
     let from = fromDate+" "+fromTime;
 
     let toDate = datePipe.transform(new Date(this.toDate),'yyyy-MM-dd');
-    let toTime= datePipe.transform(new Date(this.toTime), 'HH:mm');
+    let toTime= this.toTime;
     let to = toDate+" "+toTime;
     
 
@@ -552,8 +571,11 @@ this.fromDate=new Date();
 this.toDate=new Date();
  
 
-this.fromTime=new Date();
-this.toTime=new Date();
+
+  this.fromTime = this.fromDate.getHours()+":"+this.fromDate.getMinutes();
+
+
+  this.toTime = this.toDate.getHours()+":"+this.toDate.getMinutes();
 
 }
 }
