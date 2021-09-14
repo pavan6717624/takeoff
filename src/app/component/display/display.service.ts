@@ -10,9 +10,9 @@ export class DisplayService {
 
 
 
-  getTreeStructure(formData: FormData): Observable<any>
+  getTreeStructure(): Observable<any>
   {
-   return this.http.post( 'https://takeoff-pavan.herokuapp.com/getTreeStructure',formData );
+   return this.http.get( 'https://takeoff-pavan.herokuapp.com/getTreeStructure' );
  // return this.http.post( 'https://takeoff-pavan.herokuapp.com/getTreeStructure',formData );
   }
 }

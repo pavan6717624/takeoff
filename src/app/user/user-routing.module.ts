@@ -5,6 +5,7 @@ import { TakeoffComponent } from './takeoff/takeoff.component';
 
 import { AccountComponent } from './account/account.component';
 import { WalletComponent } from './wallet/wallet.component';
+import { DisplayComponent } from '../component/display/display.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,7 @@ const routes: Routes = [
     { path: 'limited', component: TakeoffComponent, data : {couponDisplayId : '4'} },
     { path: 'redeemable', component: TakeoffComponent, data : {couponDisplayId : '5'} },
     { path: 'discount', component: TakeoffComponent, data : {couponDisplayId : '6'} },
-
+    { path: 'display', component: DisplayComponent },
     { path: 'account', component: AccountComponent},
     { path: 'wallet', component: WalletComponent},
 

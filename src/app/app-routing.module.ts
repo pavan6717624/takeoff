@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'subscribe', component: SubscriptionComponent },
   { path: 'paymentStatus', component: PaymentStatusComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'display', component: DisplayComponent },
+
   { path: 'user', component: UserComponent },
   { path: 'vendor', component: VendorComponent },
   { path: 'designer', component: VendorComponent },

@@ -33,15 +33,19 @@
                 <li nz-menu-item [nzSelected]="selectedMenu==5?true:false"><a [routerLink]="['limited']" (click)="close(5)">Limited</a></li>
                 
                 <li nz-menu-item [nzSelected]="selectedMenu==3?true:false"><a [routerLink]="['free']" (click)="close(3)">Free</a></li>
+              </ul>
+            </li>
                 
-                
-                
-                <li nz-menu-item [nzSelected]="selectedMenu==8?true:false"><a [routerLink]="['account']" (click)="close(8)">Account</a></li>
+            <li nz-submenu nzTitle="Account" nzIcon="account-book" nzOpen>
+              <ul>  
+                <li nz-menu-item [nzSelected]="selectedMenu==8?true:false"><a [routerLink]="['account']" (click)="close(8)">Details</a></li>
                 <li nz-menu-item [nzSelected]="selectedMenu==9?true:false"><a [routerLink]="['wallet']" (click)="close(9)">Wallet</a></li>
 
 
             </ul>
         </li>
+        <li nz-menu-item [nzSelected]="selectedMenu==10?true:false"> <i nz-icon nzType="apartment"> </i><span> <a [routerLink]="['display']" (click)="close(10)"> TakeOff Structure </a>
+        </span> </li>
 
     </ul>
 </ng-container>
