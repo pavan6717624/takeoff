@@ -444,7 +444,8 @@ export class TakeoffComponent implements OnInit {
 
     this.userService.getTakeOffRecommendations(sendCouponsRequest).subscribe(
 
-      (res: any) => { if(res.length==0) { this.msg.info('No More Coupons Found.'); this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
+      (res: any) => { if(res.length==0) { //this.msg.info('No More Coupons Found.'); 
+        this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = [];  if(!this.bottom) this.loading = false; }
     );
   }
@@ -476,7 +477,8 @@ export class TakeoffComponent implements OnInit {
 
     this.userService.getFreeCoupons(sendCouponsRequest).subscribe(
 
-      (res: any) => { if(res.length==0) { this.msg.create('info','No More Coupons Found.'); this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
+      (res: any) => { if(res.length==0) { //this.msg.create('info','No More Coupons Found.'); 
+        this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = [];  if(!this.bottom) this.loading = false; }
     );
   }
@@ -491,7 +493,8 @@ export class TakeoffComponent implements OnInit {
     
     this.userService.getDailyCoupons(sendCouponsRequest).subscribe(
 
-      (res: any) => { if(res.length==0) { this.msg.create('info','No More Coupons Found.'); this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
+      (res: any) => { if(res.length==0) { //this.msg.create('info','No More Coupons Found.'); 
+        this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = [];  if(!this.bottom) this.loading = false; }
     );
   }
@@ -506,7 +509,8 @@ export class TakeoffComponent implements OnInit {
      
      this.userService.getLimitedCoupons(sendCouponsRequest).subscribe(
 
-      (res: any) => { if(res.length==0) { this.msg.create('info','No More Coupons Found.'); this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
+      (res: any) => { if(res.length==0) { //this.msg.create('info','No More Coupons Found.'); 
+        this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = [];  if(!this.bottom) this.loading = false; }
     );
   }
@@ -522,7 +526,8 @@ export class TakeoffComponent implements OnInit {
      
       this.userService.getRedeemableCoupons(sendCouponsRequest).subscribe(
 
-      (res: any) => { if(res.length==0) { this.msg.create('info','No More Coupons Found.'); this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
+      (res: any) => { if(res.length==0) { //this.msg.create('info','No More Coupons Found.'); 
+        this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = [];  if(!this.bottom) this.loading = false; }
     );
   }
@@ -537,7 +542,8 @@ export class TakeoffComponent implements OnInit {
      
      this.userService.getDiscountCoupons(sendCouponsRequest).subscribe(
 
-      (res: any) => { if(res.length==0) { this.msg.create('info','No More Coupons Found.'); this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
+      (res: any) => { if(res.length==0) { //this.msg.create('info','No More Coupons Found.'); 
+        this.noMoreImages = true;} else this.coupons=this.coupons.concat(res); console.log(this.coupons);  if(!this.bottom) this.loading = false; },
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = [];  if(!this.bottom) this.loading = false; }
     );
   }
