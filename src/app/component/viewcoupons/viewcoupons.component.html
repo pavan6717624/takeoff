@@ -338,7 +338,7 @@
                             From Date & Time : <br />
 
 
-                            <nz-date-picker nzAllowEmpty = false nzInputReadOnly=true nzFormat="yyyy-MM-dd" nzPlaceHolder='From Date'
+                            <nz-date-picker nzAllowClear=false nzAllowEmpty = false nzInputReadOnly=true nzFormat="yyyy-MM-dd" nzPlaceHolder='From Date'
                                 [(ngModel)]='fromDate' style='width:130px'></nz-date-picker> -
                             <nz-time-picker [nzBackdrop]='true'  nzAllowEmpty = false nzPlaceHolder='Time' [(ngModel)]="fromTime" nzFormat="HH:mm"
                                 style='width:80px'>
@@ -357,7 +357,7 @@
                         </nz-range-picker> -->
 
                             To Date & Time : <br />
-                            <nz-date-picker nzAllowEmpty = false nzInputReadOnly=true [nzDisabledDate]="disabledEndDate"
+                            <nz-date-picker nzAllowClear=false nzAllowEmpty = false nzInputReadOnly=true [nzDisabledDate]="disabledEndDate"
                                 nzPlaceHolder='To Date' nzFormat="yyyy-MM-dd" style='width:130px' [(ngModel)]='toDate'>
                             </nz-date-picker> -
                             <nz-time-picker nzAllowEmpty = false [nzBackdrop]='true' nzAllowEmpty = false nzPlaceHolder='Time' [(ngModel)]="toTime" style='width:80px'
