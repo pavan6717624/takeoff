@@ -85,6 +85,9 @@ export class TakeoffComponent implements OnInit {
      );
    }
 
+
+   
+
   @ViewChild('scrollMe') private eleRef: ElementRef = new ElementRef('') ;
   
   coupons: Coupon[] = [];

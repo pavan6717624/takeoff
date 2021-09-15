@@ -57,7 +57,9 @@
             &nbsp;
             <i nz-icon nzType="delete" nzTheme="outline"
               (click)="showConfirm('Delete', data.subCategoryId,'Sub-Category' )"></i>&nbsp;
-            <nz-switch [(ngModel)]="data.mandatoryComplimentary" (ngModelChange) = "mandatoryComplimentaryChange(data.subCategoryId)" [nzCheckedChildren]="checkedTemplate" [nzUnCheckedChildren]="unCheckedTemplate">
+            <nz-switch [(ngModel)]="data.mandatoryComplimentary"
+              (ngModelChange)="mandatoryComplimentaryChange(data.subCategoryId)" [nzCheckedChildren]="checkedTemplate"
+              [nzUnCheckedChildren]="unCheckedTemplate">
             </nz-switch>
             <ng-template #checkedTemplate><i nz-icon nzType="check"></i></ng-template>
             <ng-template #unCheckedTemplate><i nz-icon nzType="close"></i></ng-template>

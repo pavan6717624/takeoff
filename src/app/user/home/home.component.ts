@@ -3,6 +3,10 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { Router } from '@angular/router';
 import { LoginStatus } from 'src/app/component/login/login.component';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { AdminService } from 'src/app/admin/admin.service';
+import { SubCategoryDTO } from 'src/app/admin/category/category.component';
+import { UploadcouponsService } from 'src/app/component/uploadcoupons/uploadcoupons.service';
+import { Category } from 'src/app/component/uploadcoupons/uploadcoupons.component';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +15,20 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private msg: NzMessageService, private router: Router,private deviceService: DeviceDetectorService) { }
+  constructor(private uploadcouponsService: UploadcouponsService, private adminServie: AdminService, private msg: NzMessageService, private router: Router,private deviceService: DeviceDetectorService) { }
 
   visible = false;
 
+  filterVisible=false;
+
   selectedMenu : number = 1;
+  
 
 
   ngOnInit(): void {
 
-
+    this.getCategories();
+    this.getAllSubCategories();
 
   }
 
@@ -33,6 +41,37 @@ export class HomeComponent implements OnInit {
     this.selectedMenu = id;
     this.visible = false;
     
+  }
+
+  getCategories() {
+   
+    this.uploadcouponsService.getCategories().subscribe(
+
+      (res) => { this.categories = res; },
+      (err) => {}
+
+    );
+  }
+
+  subCategories: SubCategoryDTO[] = [];
+  categories: Category[] = [];
+
+  subCategory: SubCategoryDTO =new SubCategoryDTO();
+  category: Category = new Category();
+
+  getAllSubCategories() {
+   
+
+    this.adminServie.getAllSubCategories().subscribe(
+      (res) => {
+        console.log(res);
+
+        this.subCategories = res;
+        
+
+      },
+      (err) => { console.log(err);  }
+    );
   }
 
 }
