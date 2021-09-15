@@ -82,6 +82,7 @@ export class LoginComponent implements OnInit {
         }
         else {
           this.msg.create("error", "Invalid Credientails..");
+          this.password = "";
           this.logginStatus = false;
         }
       },
