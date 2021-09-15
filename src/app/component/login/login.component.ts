@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
 
 
   userid: string = "";
+  passwordVisible = false;
   password: string = "";
   logginStatus: boolean = false;
   loginStatus: LoginStatus = new LoginStatus();
