@@ -1,5 +1,6 @@
-<div style='padding-left:15px;padding-right:15px;overflow:auto;width:100%;height: 90%; text-align:center' (scroll)="onWindowScroll()"
-    #scrollMe>
+<div style='padding-left:15px;padding-right:15px;overflow:auto;width:100%;height: 90%; text-align:center'
+    (scroll)="onWindowScroll()" #scrollMe>
+
     <ng-container *ngIf='loading'>
         <div nz-row>
 
@@ -15,19 +16,27 @@
 
     <ng-container *ngIf='!loading'>
 
+        <div style='text-align:right'>
+            <nz-affix [nzOffsetTop]="offsetTop">
+                <button nz-button nzType="primary" (click)='filterVisible=true'>
+                    <span><i nz-icon nzType="filter" nzTheme="outline"  (click)='filterVisible=true'></i></span>
+                </button>
+            </nz-affix>
+        </div>
+        
+
 
         <ng-container *ngIf='coupons.length == 0'>
             <nz-empty nzNotFoundContent='No Coupons Found'></nz-empty>
         </ng-container>
 
         <ng-container *ngIf='coupons.length > 0'>
-
             <div class='row'>
 
                 <div class="col-lg-{{columns}}" *ngFor="let item of coupons">
 
 
-                    <div nz-row class="coupon" style=' width:305px;height:401px;'>
+                    <div nz-row class="coupon" style=' width:305px;height:auto;'>
                         <div nz-col nzSpan='24'>
                             <div class="container" nz-col nzSpan="24" style=' border-radius: 15px 15px 0 0 ; text-align: left;  padding: 2px 16px;
                     background-color:white;'>
@@ -64,7 +73,8 @@
 
                                         <p [style.text-decoration]='item.footer_decoration'
                                             [style.font-weight]='item.footer_bold'
-                                            [style.font-style]='item.footer_style' style='margin-bottom:0.5em; word-wrap:break-word;'>
+                                            [style.font-style]='item.footer_style'
+                                            style='margin-bottom:0.5em; word-wrap:break-word;'>
                                             {{item.footer}}</p>
 
 
@@ -98,7 +108,7 @@
                                 <i nz-icon nzType="line" nzTheme="outline"></i>
                                 <i nz-icon nzType="line" nzTheme="outline"></i>
                             </div> -->
-                            
+
                             <div nz-col nzSpan="24">
                                 <div nz-row>
 
@@ -129,13 +139,13 @@
                                             style="font-size: 20px; color:green" class='icon'
                                             (click)="like(item)"></i><br />
 
-                                          
+
 
                                         {{item.likeCount}}
 
                                     </div>
 
-                          
+
                                     <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
                                         title="DisLike Coupon">
 
@@ -380,3 +390,86 @@
         </div>
     </ng-template>
 </nz-modal>
+
+<nz-drawer [nzVisible]="filterVisible" [nzClosable]="true" nzPlacement='bottom' nzTitle="Filter"
+    (nzOnClose)="filterVisible=false;" [nzHeight]='350'>
+    <ng-container *nzDrawerContent>
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: center'>Category</div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                <nz-select nzPlaceHolder="Select Category" style='width: 200px ;' [(ngModel)]='category'
+                    (ngModelChange)='getSubCategories()'>
+
+                    <nz-option nzValue="0" nzLabel="ALL"></nz-option>
+                    <nz-option *ngFor="let cat of categories" [nzValue]="cat.id" [nzLabel]="cat.categoryName">
+                    </nz-option>
+
+                </nz-select>
+            </div>
+        </div>
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: center'>Sub-Category</div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                <nz-select nzPlaceHolder="Select Sub-Category" style='width: 200px ;' [(ngModel)]='subCategory'>
+                    <nz-option nzValue="0" nzLabel="ALL"></nz-option>
+                    <ng-container *ngIf="!isLoading">
+                        <nz-option *ngFor="let cat of subCategories" [nzValue]="cat.subCategoryId"
+                            [nzLabel]="cat.subCategoryName"></nz-option>
+                    </ng-container>
+
+                    <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+                        <i nz-icon nzType="loading" class="loading-icon"></i>
+                        Loading Data...
+                    </nz-option>
+
+                </nz-select>
+            </div>
+        </div>
+        <!-- <ng-container *ngIf="couponDisplayId!=1">
+            <div nz-row> &nbsp; </div>
+            <div nz-row class="container">
+                <div nz-col nzSpan="6" style='text-align: center'>City </div>
+                <div nz-col nzSpan="18" style='text-align: center'>
+
+                    <nz-select [(ngModel)]="city" style='width:200px' nzPlaceHolder="Select City">
+                        <nz-option nzValue="Tirupati" nzLabel="Tirupati"></nz-option>
+                        <nz-option nzValue="Chittoor" nzLabel="Chittoor"></nz-option>
+                        <nz-option nzValue="Ananthapur" nzLabel="Ananthapur"></nz-option>
+                        <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
+                        <nz-option nzValue="Kadapa" nzLabel="Kadapa"></nz-option>
+                        <nz-option nzValue="Kakinada" nzLabel="Kakinada"></nz-option>
+                        <nz-option nzValue="Kurnool" nzLabel="Kurnool"></nz-option>
+                        <nz-option nzValue="Nellore" nzLabel="Nellore"></nz-option>
+                        <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
+                        <nz-option nzValue="Ongole" nzLabel="Ongole"></nz-option>
+                        <nz-option nzValue="Vijayawada" nzLabel="Vijayawada"></nz-option>
+
+
+
+                    </nz-select>
+                </div>
+            </div>
+        </ng-container> -->
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: center'>Keywords (',' Separated) </div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                <input nz-input type='text' style='width:200px' [(ngModel)]='keywords'
+                    placeholder="Keywords (',' Separated)">
+            </div>
+        </div>
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
+            <div nz-col nzSpan="24" style='text-align: center'>
+
+                <button nz-button nzType="primary"> RESET </button> &nbsp;&nbsp;
+                <button nz-button nzType="primary" (click)='filterCoupons()'> FILTER </button>&nbsp;&nbsp;
+                <button nz-button nzType="primary"> CANCEL </button>
+
+            </div>
+        </div>
+    </ng-container>
+</nz-drawer>
+
+

@@ -39,7 +39,7 @@ import { ReplaceNewLinePipe } from './replace-new-line.pipe';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { AccountComponent } from './account/account.component';
 import { WalletComponent } from './wallet/wallet.component';
-
+import { NzAffixModule } from 'ng-zorro-antd/affix';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -82,7 +82,8 @@ import { WalletComponent } from './wallet/wallet.component';
     NzCheckboxModule,
     NzBackTopModule,
     NzToolTipModule ,
-    NzEmptyModule
+    NzEmptyModule,
+    NzAffixModule
   ]
 })
 export class UserModule { }

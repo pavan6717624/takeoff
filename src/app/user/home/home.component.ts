@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 
   visible = false;
 
-  filterVisible=false;
+  // filterVisible=false;
 
   selectedMenu : number = 1;
   
@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getCategories();
-    this.getAllSubCategories();
+    // this.getCategories();
+    // this.getAllSubCategories();
 
   }
 

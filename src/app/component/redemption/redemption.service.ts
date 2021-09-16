@@ -6,13 +6,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RedemptionService {
   acceptRedemption(redemption: RedemptionDTO) {
-    return this.http.post('https://takeoff-pavan.herokuapp.com/acceptRedemption',redemption);
+    return this.http.post('https://takeoff-angular.herokuapp.com/acceptRedemption',redemption);
   }
   vendorRedemptionProcess(redemption: RedemptionDTO) {
-    return this.http.post('https://takeoff-pavan.herokuapp.com/vendorRedemptionProcess',redemption);
+    return this.http.post('https://takeoff-angular.herokuapp.com/vendorRedemptionProcess',redemption);
   }
   generateRedemption(redemption:RedemptionDTO) {
-    return this.http.post('https://takeoff-pavan.herokuapp.com/generateRedemption',redemption);
+    return this.http.post('https://takeoff-angular.herokuapp.com/generateRedemption',redemption);
   }
 
   
