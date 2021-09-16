@@ -12,7 +12,7 @@ export class DisplayService {
 
   getTreeStructure(): Observable<any>
   {
-   return this.http.get( 'https://takeoff-angular.herokuapp.com/getTreeStructure' );
- // return this.http.post( 'https://takeoff-angular.herokuapp.com/getTreeStructure',formData );
+   return this.http.get( 'https://takeoff-pavan.herokuapp.com/getTreeStructure' );
+ // return this.http.post( 'https://takeoff-pavan.herokuapp.com/getTreeStructure',formData );
   }
 }
