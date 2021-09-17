@@ -19,11 +19,11 @@
         <div style='text-align:right'>
             <nz-affix [nzOffsetTop]="offsetTop">
                 <button nz-button nzType="primary" (click)='filterVisible=true'>
-                    <span><i nz-icon nzType="filter" nzTheme="outline"  (click)='filterVisible=true'></i></span>
+                    <span><i nz-icon nzType="filter" nzTheme="outline" (click)='filterVisible=true'></i></span>
                 </button>
             </nz-affix>
         </div>
-        
+
 
 
         <ng-container *ngIf='coupons.length == 0'>
@@ -414,12 +414,12 @@
                 <nz-select nzPlaceHolder="Select Sub-Category" style='width: 200px ;' [(ngModel)]='subCategory'>
                     <nz-option nzValue="0" nzLabel="ALL"></nz-option>
                     <ng-container *ngIf="!isLoading">
-                        <nz-option *ngFor="let cat of subCategories" [nzValue]="cat.subCategoryId"
-                            [nzLabel]="cat.subCategoryName"></nz-option>
+                        <nz-option *ngFor="let cat of subCategories" [nzValue]="cat.id" [nzLabel]="cat.subCategoryName">
+                        </nz-option>
                     </ng-container>
 
                     <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
-                        <i nz-icon nzType="loading" class="loading-icon"></i>
+                        <i nz-icon nzType="loading"></i>
                         Loading Data...
                     </nz-option>
 
@@ -453,7 +453,7 @@
         </ng-container> -->
         <div nz-row> &nbsp; </div>
         <div nz-row class="container">
-            <div nz-col nzSpan="6" style='text-align: center'>Keywords (',' Separated) </div>
+            <div nz-col nzSpan="6" style='text-align: center'>Search (',' Separated) </div>
             <div nz-col nzSpan="18" style='text-align: center'>
                 <input nz-input type='text' style='width:200px' [(ngModel)]='keywords'
                     placeholder="Keywords (',' Separated)">
@@ -463,13 +463,11 @@
         <div nz-row class="container">
             <div nz-col nzSpan="24" style='text-align: center'>
 
-                <button nz-button nzType="primary"> RESET </button> &nbsp;&nbsp;
+                <button nz-button nzType="primary" (click)='resetFilter()'> RESET </button> &nbsp;&nbsp;
                 <button nz-button nzType="primary" (click)='filterCoupons()'> FILTER </button>&nbsp;&nbsp;
-                <button nz-button nzType="primary"> CANCEL </button>
+                <button nz-button nzType="primary" (click)='filterVisible=false;'> CANCEL </button>
 
             </div>
         </div>
     </ng-container>
 </nz-drawer>
-
-

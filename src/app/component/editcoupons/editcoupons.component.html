@@ -22,36 +22,39 @@
         [style.height.px]='screenHeight*0.85' (scroll)="onWindowScroll()" #scrollMe>
 
 
-        <div nz-row>
-            <div nz-col *ngFor="let item of images; index as i">
+        <div style='text-align:center'>
 
-                <div class="container" style='overflow:hidden;width:300px;height:300px;padding:0px'>
-                    <img style="width:300px;height:300px;border: 1px solid #555;" id="image" [src]="item.image"
-                        (click)="click(item)">
-                    <ng-container *ngIf="loginStatus?.userId === (item.userId+'')">
-                        <div class='top-left'><b><i nz-icon style='background-color:white;color:black' nzType="delete"
-                                    nzTheme="outline" (click)='deleteImage(item.id)'></i></b></div>
-                    </ng-container>
+            <div nz-row>
+                <div nz-col *ngFor="let item of images; index as i" style='padding-left: 10px; padding-bottom: 10px;'>
 
+                    <div class="container" style='overflow:hidden;width:300px;height:300px;padding:0px'>
+                        <img style="width:300px;height:300px;border: 1px solid #555;" id="image" [src]="item.image"
+                            (click)="click(item)">
+                        <ng-container *ngIf="loginStatus?.userId === (item.userId+'')">
+                            <div class='top-left'><b><i nz-icon style='background-color:white;color:black'
+                                        nzType="delete" nzTheme="outline" (click)='deleteImage(item.id)'></i></b></div>
+                        </ng-container>
+
+                    </div>
                 </div>
+
+
             </div>
 
 
+            <ng-container *ngIf='bottom && !noMoreImages'>
+                <div nz-row>
+
+                    &nbsp;
+                </div>
+
+                <div nz-row>
+                    <div nz-col nzSpan="24" style='text-align: center'>
+                        <nz-spin nzTip="Please wait....Loading Images" nzSimple [nzSize]="'large'"></nz-spin>
+                    </div>
+                </div>
+            </ng-container>
         </div>
-
-        <ng-container *ngIf='bottom && !noMoreImages'>
-            <div nz-row>
-
-                &nbsp;
-            </div>
-
-            <div nz-row>
-                <div nz-col nzSpan="24" style='text-align: center'>
-                    <nz-spin nzTip="Please wait....Loading Images" nzSimple [nzSize]="'large'"></nz-spin>
-                </div>
-            </div>
-        </ng-container>
-
     </div>
 
 </ng-container>
@@ -401,11 +404,11 @@
                             <!-- <nz-time-picker nzAllowEmpty=false [nzBackdrop]='true' nzPlaceHolder='Time'
                                 [(ngModel)]="fromTime" nzFormat="HH:mm" style='width:80px'></nz-time-picker> -->
 
-                            <nz-select [nzBackdrop]='true' style='width:100px' [nzOptionOverflowSize] = '4' nzAllowClear=false [(ngModel)]="fromTime">
-                               
-                                    <nz-option *ngFor="let time1 of time" [nzValue]="time1"
-                                        [nzLabel]="time1"></nz-option>
-                                      
+                            <nz-select [nzBackdrop]='true' style='width:100px' [nzOptionOverflowSize]='4'
+                                nzAllowClear=false [(ngModel)]="fromTime">
+
+                                <nz-option *ngFor="let time1 of time" [nzValue]="time1" [nzLabel]="time1"></nz-option>
+
 
                             </nz-select>
                         </div>
@@ -429,11 +432,11 @@
                             <!-- <nz-time-picker nzAllowEmpty=false [nzBackdrop]='true' nzPlaceHolder='Time'
                                 [(ngModel)]="toTime" style='width:80px' nzFormat="HH:mm"></nz-time-picker> -->
 
-                                <nz-select [nzBackdrop]='true' style='width:100px' [nzOptionOverflowSize] = '4' nzAllowClear=false  [(ngModel)]="toTime">
-                               
-                                    <nz-option *ngFor="let time1 of time" [nzValue]="time1"
-                                        [nzLabel]="time1"></nz-option>
-                                      
+                            <nz-select [nzBackdrop]='true' style='width:100px' [nzOptionOverflowSize]='4'
+                                nzAllowClear=false [(ngModel)]="toTime">
+
+                                <nz-option *ngFor="let time1 of time" [nzValue]="time1" [nzLabel]="time1"></nz-option>
+
 
                             </nz-select>
                         </div>

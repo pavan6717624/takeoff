@@ -13,7 +13,7 @@
 
 <ng-container *ngIf='!loading'>
     <div nz-row style='text-align:center'>
-        <div nz-col *ngFor="let item of coupons">
+        <div nz-col *ngFor="let item of coupons"  style='padding-left: 10px; padding-bottom: 10px;'>
             <div class="container" style='overflow:hidden;width:300px;height:300px;padding:0px' (click)="click(item);">
                 <img style="width:300px;height:300px;border: 1px solid #555;" id="image" [src]="item.image">
                 <img [class]="item.image_align" [src]="logo" style='max-height: 50px;border: 1px solid  #bbb;'>
@@ -40,11 +40,112 @@
                 </div>
 
             </div>
+
+
+            <div class="container" nz-col nzSpan="24" style='text-align: center; border-radius: 0 0  15px 15px; padding:0;
+            background-color: white;'>
+                        <!-- <div nz-col nzSpan="24">
+
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                        </div> -->
+
+                        <div nz-col nzSpan="24">
+                            <div nz-row>
+
+                                <div nz-col nzSpan="2">&nbsp;</div>
+
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                    title="Redem Coupon">
+
+                                    <i nz-icon nzType="gift" nzTheme="fill" style="font-size: 20px; color: blue"
+                                        class='icon'></i><br />
+                                    {{item.redemptionCount}}
+
+                                </div>
+
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                    title="Visit Vendor Store">
+
+                                    <i nz-icon nzType="bank" nzTheme="fill" style="font-size: 20px; color: brown "
+                                        class='icon'></i>
+
+                                </div>
+
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                    title="Like Coupon">
+
+                                    <i nz-icon [nzType]="item.likeLoading?'smile':'like'"
+                                        [nzTheme]="item.likeCoupon?'fill':'outline'"
+                                        style="font-size: 20px; color:green" class='icon'
+                                        ></i><br />
+
+
+
+                                    {{item.likeCount}}
+
+                                </div>
+
+
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                    title="DisLike Coupon">
+
+                                    <i nz-icon [nzType]="item.likeLoading?'frown':'dislike'"
+                                        [nzTheme]="item.disLikeCoupon?'fill':'outline'"
+                                        style="font-size: 20px; color:red" class='icon'
+                                        ></i><br />
+                                    {{item.dislikeCount}}
+
+                                </div>
+
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                    title="Download Coupon">
+
+                                    <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;"
+                                        class='icon'></i>
+
+                                </div>
+
+                                <div nz-col nzSpan="2">&nbsp;</div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div nz-col nzSpan="24">
+                            <h6 style="font-size: 12px;color: white; margin-bottom: 0;  padding: 8px 0; background: #fd6951;
+                            border-radius: 0 0 15px 15px;"><ng-container *ngIf='item.expired'>Expired</ng-container><ng-container *ngIf='!item.expired'>Expires</ng-container> on
+                                {{item.expireTime}}</h6>
+                        </div>
+
+                    </div>
+
         </div>
+
+
+        
 
 
     </div>
 
+   
 
 
 </ng-container>

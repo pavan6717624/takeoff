@@ -6,7 +6,7 @@ import { UserService } from '../user.service';
 import { LoginStatus } from 'src/app/component/login/login.component';
 import { LoginService } from 'src/app/component/login/login.service';
 import { SubCategoryDTO } from 'src/app/admin/category/category.component';
-import { Category } from 'src/app/component/uploadcoupons/uploadcoupons.component';
+import { Category, SubCategory } from 'src/app/component/uploadcoupons/uploadcoupons.component';
 import { UploadcouponsService } from 'src/app/component/uploadcoupons/uploadcoupons.service';
 import { AdminService } from 'src/app/admin/admin.service';
 
@@ -610,7 +610,13 @@ export class TakeoffComponent implements OnInit {
       (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
     );
   }
-
+  resetFilter()
+  {
+    this.category = 0;
+    this.subCategory = 0;
+    this.keywords = '';
+    
+  }
   getCategories() {
 
     this.uploadcouponsService.getCategories().subscribe(
@@ -621,7 +627,7 @@ export class TakeoffComponent implements OnInit {
     );
   }
 
-  subCategories: SubCategoryDTO[] = [];
+  subCategories: SubCategory[] = [];
   categories: Category[] = [];
 
   subCategory: number = 0;
@@ -651,6 +657,7 @@ export class TakeoffComponent implements OnInit {
 
   filterCoupons() {
     this.coupons = [];
+    this.filterVisible = false;
     this.businessLogic();
   }
 }

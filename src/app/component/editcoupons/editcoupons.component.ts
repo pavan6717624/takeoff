@@ -280,8 +280,8 @@ export class EditcouponsComponent implements OnInit {
   getCouponTypes() {
     this.editcouponsService.getCouponTypes().subscribe(
 
-      (res) => { this.loading = false; console.log(res); this.couponTypes = res; this.onCouponTypes.emit(this.couponTypes); this.loading = false; },
-      (err) => { this.loading = false; console.log(err); this.couponTypes = []; this.loading = false; }
+      (res) => {  console.log(res); this.couponTypes = res; this.onCouponTypes.emit(this.couponTypes);  },
+      (err) => {  console.log(err); this.couponTypes = [];  }
     );
   }
 
