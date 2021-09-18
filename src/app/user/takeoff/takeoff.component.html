@@ -9,7 +9,7 @@
 
         <div nz-row>
             <div nz-col nzSpan="24" style='text-align: center'>
-                <nz-spin nzTip="Please wait....Loading Images" nzSimple [nzSize]="'large'"></nz-spin>
+                <nz-spin nzTip="Prepare for Take OFF..... " nzSimple [nzSize]="'large'"></nz-spin>
             </div>
         </div>
     </ng-container>
@@ -109,35 +109,46 @@
                                 <i nz-icon nzType="line" nzTheme="outline"></i>
                             </div> -->
 
+
+                            <div nz-col nzSpan="24" style='width:302px;padding-left:2px' (click)='viewRedemption(item)'>
+                                <p class="redeembutton"> <i class="fas fa-gifts"></i>  Redeem {{item.redemptionCount>0?'('+item.redemptionCount+')':''}}</p>
+                            </div>
+
                             <div nz-col nzSpan="24">
                                 <div nz-row>
 
+                                   
                                     <div nz-col nzSpan="2">&nbsp;</div>
-
-                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                    <!-- <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
                                         title="Redem Coupon">
 
                                         <i nz-icon nzType="gift" nzTheme="fill" style="font-size: 20px; color: blue"
                                             class='icon' (click)='viewRedemption(item)'></i><br />
                                         {{item.redemptionCount}}
 
+                                    </div> -->
+
+                                    <div nz-col nzSpan="5" data-toggle="tooltip" data-placement="top"
+                                        title="Visit Vendor Store" style='padding-top:10px;padding-bottom:10px'>
+
+                                        <!-- <i nz-icon nzType="bank" nzTheme="fill" style="font-size: 20px; color: brown "
+                                            class='icon'></i> -->
+
+                                        <i style='font-size:20px; color:brown' class="icon fas fa-store"></i>
+
                                     </div>
 
-                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
-                                        title="Visit Vendor Store">
+                                    <div nz-col nzSpan="5" data-toggle="tooltip" data-placement="top"
+                                        title="Like Coupon" style='padding-top:10px;padding-bottom:10px'>
 
-                                        <i nz-icon nzType="bank" nzTheme="fill" style="font-size: 20px; color: brown "
-                                            class='icon'></i>
-
-                                    </div>
-
-                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
-                                        title="Like Coupon">
-
-                                        <i nz-icon [nzType]="item.likeLoading?'smile':'like'"
+                                        <!-- <i nz-icon [nzType]="item.likeLoading?'smile':'like'"
                                             [nzTheme]="item.likeCoupon?'fill':'outline'"
                                             style="font-size: 20px; color:green" class='icon'
-                                            (click)="like(item)"></i><br />
+                                            (click)="like(item)"></i><br /> -->
+
+                                        <i class='icon' style='font-size:20px; color:green'
+                                            [class]="item.likeLoading?item.likeCoupon?'fas fa-smile':'far fa-smile' : item.likeCoupon?'fas fa-thumbs-up':'far fa-thumbs-up'"
+                                            (click)="like(item)"></i>
 
 
 
@@ -146,22 +157,40 @@
                                     </div>
 
 
-                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
-                                        title="DisLike Coupon">
+                                    <div nz-col nzSpan="5" data-toggle="tooltip" data-placement="top"
+                                        title="DisLike Coupon" style='padding-top:10px;padding-bottom:10px'>
 
-                                        <i nz-icon [nzType]="item.likeLoading?'frown':'dislike'"
-                                            [nzTheme]="item.disLikeCoupon?'fill':'outline'"
-                                            style="font-size: 20px; color:red" class='icon'
-                                            (click)="dislike(item)"></i><br />
+
+
+                                        <!-- <i nz-icon [nzType]="item.likeLoading?'frown':'dislike'"
+
+                                        [nzTheme]="item.disLikeCoupon?'fill':'outline'"
+
+                                        style="font-size: 20px; color:red" class='icon'
+
+                                        (click)="dislike(item)"></i><br /> -->
+
+
+
+                                        <i class='icon' style='font-size:20px; color:red'
+                                            [class]="item.likeLoading?item.disLikeCoupon?'fas fa-frown':'far fa-frown' : item.disLikeCoupon?'fas fa-thumbs-down':'far fa-thumbs-down'"
+                                            (click)="dislike(item)"></i>
+
+
+
                                         {{item.dislikeCount}}
+
+
 
                                     </div>
 
-                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
-                                        title="Download Coupon">
+                                    <div nz-col nzSpan="5" data-toggle="tooltip" data-placement="top"
+                                        title="Download Coupon" style='padding-top:10px;padding-bottom:10px'>
 
-                                        <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;"
-                                            class='icon'></i>
+                                        <!-- <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;"
+                                            class='icon'></i> -->
+
+                                            <i  style='font-size:20px; color:gray' class="icon fas fa-download"></i>
 
                                     </div>
 
