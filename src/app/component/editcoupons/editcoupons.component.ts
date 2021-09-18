@@ -102,6 +102,8 @@ export class Coupon {
   
    address: string = '';
 
+   contact: number = 0;
+
 }
 
 export class CouponType {

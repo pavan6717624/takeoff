@@ -125,8 +125,9 @@ export class TakeoffComponent implements OnInit {
     showAddress(item:Coupon)
   {
     this.modal.info({
-      nzTitle: 'Address',
-      nzContent: '<p>'+item.address+'</p>',
+      nzTitle: 'Location of '+item.vendorName,
+      nzContent: '<p>'+item.address+'<br/>Mobile: '+item.contact+'</p>',
+      nzMaskClosable: true,
     });
   }
 

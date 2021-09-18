@@ -42,12 +42,12 @@
                     background-color:white;'>
 
                                 <div nz-row>
-                                    <div nz-col nzSpan='2' style='padding-top:5px'>
+                                    <!-- <div nz-col nzSpan='2' style='padding-top:5px'>
                                         <i style='font-size:20px; color:#fd6951' class="fas fa-map-marker-alt"
                                             (click)='showAddress(item)'></i>
-                                    </div>
+                                    </div> -->
 
-                                    <div nz-col nzSpan='22'>
+                                    <div nz-col nzSpan='24'>
 
                                         <h6 style='text-align:left; margin-bottom:0;'> {{item.vendorName}} </h6>
                                     </div>
@@ -138,7 +138,7 @@
 
                                     </div> -->
 
-                                    <div nz-col nzSpan="5" data-toggle="tooltip" data-placement="top"
+                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
                                         title="Visit Vendor Store" style='padding-top:10px;padding-bottom:10px'>
 
                                         <!-- <i nz-icon nzType="bank" nzTheme="fill" style="font-size: 20px; color: brown "
@@ -148,7 +148,7 @@
 
                                     </div>
 
-                                    <div nz-col nzSpan="5" data-toggle="tooltip" data-placement="top"
+                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
                                         title="Like Coupon" style='padding-top:10px;padding-bottom:10px'>
 
                                         <!-- <i nz-icon [nzType]="item.likeLoading?'smile':'like'"
@@ -167,7 +167,7 @@
                                     </div>
 
 
-                                    <div nz-col nzSpan="5" data-toggle="tooltip" data-placement="top"
+                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
                                         title="DisLike Coupon" style='padding-top:10px;padding-bottom:10px'>
 
 
@@ -194,7 +194,7 @@
 
                                     </div>
 
-                                    <div nz-col nzSpan="5" data-toggle="tooltip" data-placement="top"
+                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
                                         title="Download Coupon" style='padding-top:10px;padding-bottom:10px'>
 
                                         <!-- <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;"
@@ -204,6 +204,22 @@
 
                                     </div>
 
+
+                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                    title="Download Coupon" style='padding-top:10px;padding-bottom:10px'>
+
+                                    <!-- <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;"
+                                        class='icon'></i> -->
+
+                                        <i style='font-size:20px; color:#fd6951' class="fas fa-map-marker-alt"
+                                    (click)='showAddress(item)'></i>
+
+                                </div>
+
+
+
+
+                                   
                                     <div nz-col nzSpan="2">&nbsp;</div>
 
                                 </div>
@@ -316,8 +332,6 @@
     </nz-modal>
 
 </div>
-
-
 
 <nz-modal [nzVisible]="redeemVisible" [nzContent]="redeemContent" [nzFooter]="null" (nzOnCancel)="redeemCancel()">
     <ng-template #redeemContent>
