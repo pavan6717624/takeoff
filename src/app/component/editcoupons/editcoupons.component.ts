@@ -289,6 +289,14 @@ export class EditcouponsComponent implements OnInit {
     );
   }
 
+  getAllCouponTypes() {
+    this.editcouponsService.getAllCouponTypes().subscribe(
+
+      (res) => {  console.log(res); this.couponTypes = res; this.onCouponTypes.emit(this.couponTypes);  },
+      (err) => {  console.log(err); this.couponTypes = [];  }
+    );
+  }
+
   saveId(id: number) {
     this.imageId = id;
 
@@ -391,6 +399,10 @@ export class EditcouponsComponent implements OnInit {
     //alert(this.imageId);
     this.previewImage = item.image;
     this.previewVisible = true;
+    if(item.categoryId!=5)
+    this.getCouponTypes();
+    else
+    this.getAllCouponTypes();
   }
 
   createCoupon() {
@@ -504,7 +516,7 @@ export class EditcouponsComponent implements OnInit {
 
     this.editcouponsService.saveCoupon(coupon).subscribe(
 
-      (res) => { this.loading1 = false; console.log(res);  if (res) { this.getCouponTypes(); this.previewVisible = false; this.msg.create('success', 'Coupon Saved Succesfully'); this.onUploadCoupon.emit(coupon); } else this.msg.create('error', 'Error while Saving Coupon. Please try Again.'); },
+      (res) => { this.loading1 = false; console.log(res);  if (res) { this.previewVisible = false; this.msg.create('success', 'Coupon Saved Succesfully'); this.onUploadCoupon.emit(coupon); } else this.msg.create('error', 'Error while Saving Coupon. Please try Again.'); },
       (err) => { this.loading1 = false; this.msg.create('error', 'Error while Saving Coupon. Please try Again.'); console.log(err); }
     );
 

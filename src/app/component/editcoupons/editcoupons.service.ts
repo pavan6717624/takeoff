@@ -29,6 +29,11 @@ export class EditcouponsService {
 
   }
 
+  getAllCouponTypes(): Observable<any> {
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getAllCouponTypes');
+
+  }
+
   saveCoupon(coupon: Coupon): Observable<any> {
     return this.http.post('https://takeoff-pavan.herokuapp.com/saveCoupon', coupon);
 
