@@ -9,6 +9,7 @@ import { SubCategoryDTO } from 'src/app/admin/category/category.component';
 import { Category, SubCategory } from 'src/app/component/uploadcoupons/uploadcoupons.component';
 import { UploadcouponsService } from 'src/app/component/uploadcoupons/uploadcoupons.service';
 import { AdminService } from 'src/app/admin/admin.service';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 export class RedemptionDTO {
 
@@ -58,7 +59,7 @@ export class TakeoffComponent implements OnInit {
 
   filterVisible = false;
 
-  constructor(private uploadcouponsService: UploadcouponsService, private adminServie: AdminService, private loginService: LoginService, private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) {
+  constructor(private modal: NzModalService,private uploadcouponsService: UploadcouponsService, private adminServie: AdminService, private loginService: LoginService, private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) {
 
     const navigation = this.router.getCurrentNavigation();
     this.loginStatus = (navigation?.extras?.state?.loginStatus);
@@ -120,6 +121,15 @@ export class TakeoffComponent implements OnInit {
   code: string[] = [];
 
   bottom: Boolean = false;
+  
+    showAddress(item:Coupon)
+  {
+    this.modal.info({
+      nzTitle: 'Address',
+      nzContent: '<p>'+item.address+'</p>',
+    });
+  }
+
 
 downloadCoupon(item:Coupon)
   {
