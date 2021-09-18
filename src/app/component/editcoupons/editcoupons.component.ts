@@ -99,6 +99,8 @@ export class Coupon {
   redemptionCount: number = 0;
 
   expired: Boolean = false;
+  
+   address: string = '';
 
 }
 
