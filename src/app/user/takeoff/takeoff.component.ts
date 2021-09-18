@@ -30,6 +30,10 @@ export class RedemptionDTO {
 
 
   validTill: string = '';
+
+  status: Boolean = true;
+
+  message: string = '';
 }
 
 export class SendCouponsRequest {
@@ -232,7 +236,18 @@ downloadCoupon(item:Coupon)
     this.userService.generateRedemption(redemption).subscribe(
 
       (res: any) => {
+
+
+
         console.log(res); this.redemption = res;
+
+        if(!this.redemption.status)
+        {
+          this.msg.create('error',this.redemption.message);
+          this.redeemLoading = false;
+          return;
+        }
+
         this.code[0] = this.redemption.passcode.charAt(0);
         this.code[1] = this.redemption.passcode.charAt(1);
         this.code[2] = this.redemption.passcode.charAt(2);
