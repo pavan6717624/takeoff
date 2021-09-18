@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
 
     
 
-      (err) => { this.msg.create("error", "Could not Connect to Sever. Please Try After Some Time..."); this.logginStatus = false; }
+      (err) => {  this.password = ""; this.msg.create("error", "Could not Connect to Sever. Please Try After Some Time..."); this.logginStatus = false; }
     );
 
   }
