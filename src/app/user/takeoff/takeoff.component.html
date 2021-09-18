@@ -41,7 +41,17 @@
                             <div class="container" nz-col nzSpan="24" style=' border-radius: 15px 15px 0 0 ; text-align: left;  padding: 2px 16px;
                     background-color:white;'>
 
-                                <h6 style='text-align:left; margin-bottom:0;'> {{item.vendorName}}</h6>
+                                <div nz-row>
+                                    <div nz-col nzSpan='2' style='padding-top:5px'>
+                                        <i style='font-size:20px; color:#fd6951' class="fas fa-map-marker-alt"
+                                            (click)='showAddress(item)'></i>
+                                    </div>
+
+                                    <div nz-col nzSpan='22'>
+
+                                        <h6 style='text-align:left; margin-bottom:0;'> {{item.vendorName}} </h6>
+                                    </div>
+                                </div>
 
                             </div>
                             <div style='overflow:auto;'>
