@@ -8,84 +8,84 @@ import { VendorDetails } from '../component/vendoraccount/vendoraccount.componen
 })
 export class AdminService {
   editDesigner(designer: VendorDetails) {
-    return this.http.post('http://localhost:8081/editDesigner',designer);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/editDesigner',designer);
   }
 
 
   editVendor(vendor: VendorDetails) {
-    return this.http.post('http://localhost:8081/editVendor',vendor);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/editVendor',vendor);
   }
 
   addDesigner(designer: VendorDetails) {
-    return this.http.post('http://localhost:8081/addDesigner',designer);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/addDesigner',designer);
   }
 
   addVendor(designer: VendorDetails) {
-    return this.http.post('http://localhost:8081/addVendor',designer);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/addVendor',designer);
   }
 
   disableDesigner(formData: FormData) {
-    return this.http.post('http://localhost:8081/disableDesigner',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/disableDesigner',formData);
   }
 
   deleteDesigner(formData: FormData) {
-    return this.http.post('http://localhost:8081/deleteDesigner',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/deleteDesigner',formData);
   }
 
 
   disableVendor(formData: FormData) {
-    return this.http.post('http://localhost:8081/disableVendor',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/disableVendor',formData);
   }
 
   deleteVendor(formData: FormData) {
-    return this.http.post('http://localhost:8081/deleteVendor',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/deleteVendor',formData);
   }
 
 
   getVendors() {
-    return this.http.get('http://localhost:8081/getVendors');
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getVendors');
   }
   getDesigners() {
-    return this.http.get('http://localhost:8081/getDesigners');
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getDesigners');
   }
   mandatoryComplimentaryChange(formData: FormData) {
-    return this.http.post('http://localhost:8081/mandatoryComplimentaryChange',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/mandatoryComplimentaryChange',formData);
   }
   deleteSubCategory(formData: FormData) {
-    return this.http.post('http://localhost:8081/deleteSubCategory',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/deleteSubCategory',formData);
   }
 
   deleteCategory(formData: FormData) {
-    return this.http.post('http://localhost:8081/deleteCategory',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/deleteCategory',formData);
   }
 
   deleteCouponType(formData: FormData) {
-    return this.http.post('http://localhost:8081/deleteCouponType',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/deleteCouponType',formData);
   }
 
   
   visibleCouponType(formData: FormData) {
-    return this.http.post('http://localhost:8081/visibleCouponType',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/visibleCouponType',formData);
   }
 
   visibleSubCategory(formData: FormData) {
-    return this.http.post('http://localhost:8081/visibleSubCategory',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/visibleSubCategory',formData);
   }
 
   visibleCategory(formData: FormData) {
-    return this.http.post('http://localhost:8081/visibleCategory',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/visibleCategory',formData);
   }
 
   editSubCategory(formData: FormData) {
-    return this.http.post('http://localhost:8081/editSubCategory',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/editSubCategory',formData);
   }
 
   editCategory(formData: FormData) {
-    return this.http.post('http://localhost:8081/editCategory',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/editCategory',formData);
   }
 
   editCouponType(formData: FormData) {
-    return this.http.post('http://localhost:8081/editCouponType',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/editCouponType',formData);
   }
 
 
@@ -102,22 +102,22 @@ export class AdminService {
  
   getAllSubCategories(): Observable<any>
   {
-    return this.http.get('http://localhost:8081/getAllSubCategories');
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getAllSubCategories');
   }
 
   addCategory(formData: FormData): Observable<any>
   {
-    return this.http.post('http://localhost:8081/addCategory',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/addCategory',formData);
   }
 
   addCouponType(formData: FormData): Observable<any>
   {
-    return this.http.post('http://localhost:8081/addCouponType',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/addCouponType',formData);
   }
 
 
   addSubCategory(formData: FormData): Observable<any>
   {
-    return this.http.post('http://localhost:8081/addSubCategory',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/addSubCategory',formData);
   }
 }
