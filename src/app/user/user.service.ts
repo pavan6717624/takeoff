@@ -6,6 +6,10 @@ import { RedemptionDTO, SendCouponsRequest } from './takeoff/takeoff.component';
   providedIn: 'root'
 })
 export class UserService {
+  
+   downloadCoupon(formData: FormData) {
+    return this.http.post('http://localhost:8083/downloadCoupon',formData);
+  }
  
   async likeCoupon(formData: FormData) {
     return await this.http.post('https://takeoff-pavan.herokuapp.com/likeCoupon',formData).toPromise();;
