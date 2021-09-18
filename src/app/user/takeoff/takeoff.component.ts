@@ -121,7 +121,23 @@ export class TakeoffComponent implements OnInit {
 
   bottom: Boolean = false;
 
+downloadCoupon(item:Coupon)
+  {
 
+    var formData= new FormData();
+    formData.set('couponId',item.id+"")
+    this.userService.downloadCoupon(formData).subscribe(
+
+      (res: any) => {  
+      var a = document.createElement("a"); //Create <a>
+      a.href = res.img; //Image Base64 Goes here
+      a.download = "coupon.jpg"; //File name Here
+      a.click(); //Downloaded file},
+      a.remove();
+    },
+      (err) => { console.log(err);}
+    );
+  }
 
 
 
