@@ -226,12 +226,13 @@
 
 
                             </div>
-
+                            <ng-container *ngIf='couponDisplayId!=1'>
                             <div nz-col nzSpan="24">
                                 <h6 style="font-size: 12px;color: white; margin-bottom: 0;  padding: 8px 0; background: #fd6951;
                                 border-radius: 0 0 15px 15px;">Expires on
                                     {{item.expireTime}}</h6>
                             </div>
+                        </ng-container>
 
                         </div>
 

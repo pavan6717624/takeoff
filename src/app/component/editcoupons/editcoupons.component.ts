@@ -504,7 +504,7 @@ export class EditcouponsComponent implements OnInit {
 
     this.editcouponsService.saveCoupon(coupon).subscribe(
 
-      (res) => { this.loading1 = false; console.log(res); if (res) { this.previewVisible = false; this.msg.create('success', 'Coupon Saved Succesfully'); this.onUploadCoupon.emit(coupon); } else this.msg.create('error', 'Error while Saving Coupon. Please try Again.'); },
+      (res) => { this.loading1 = false; console.log(res);  if (res) { this.getCouponTypes(); this.previewVisible = false; this.msg.create('success', 'Coupon Saved Succesfully'); this.onUploadCoupon.emit(coupon); } else this.msg.create('error', 'Error while Saving Coupon. Please try Again.'); },
       (err) => { this.loading1 = false; this.msg.create('error', 'Error while Saving Coupon. Please try Again.'); console.log(err); }
     );
 
