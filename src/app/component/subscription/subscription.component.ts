@@ -83,11 +83,12 @@ payment()
   var options = {
    // "key": "rzp_test_WJFhmfMmFRxETB", // Enter the Key ID generated from the Dashboard
    "key": "rzp_live_nWA6UVrzTQFr9W",
-    "amount": "100", 
+   // "amount": "100", 
+   "amount" : 119900,
     "currency": "INR",
     "name": "TAKEOFF",
     "description": "Subscription to TAKEOFF",
-    "image": "https://thetakeoff.in/assets/images/logo-white1.png",
+    "image": "https://thetakeoff.in/assets/img/logo-white.png",
     "handler": function (response:any){
       var event = new CustomEvent("payment.success", 
           {
