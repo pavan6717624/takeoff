@@ -334,6 +334,7 @@ export class EditcouponsComponent implements OnInit {
     else {
       //this.msg.create('error', 'Session Expired. Please Login');
       this.router.navigate(['login']);
+      this.loading=false;
       return;
     }
 
