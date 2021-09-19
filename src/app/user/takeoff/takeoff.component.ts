@@ -135,9 +135,12 @@ export class TakeoffComponent implements OnInit {
     });
   }
 
+  downloading: Boolean = false;
 
 downloadCoupon(item:Coupon)
   {
+
+    item.download=true;
 
     var formData= new FormData();
     formData.set('couponId',item.id+"")
@@ -149,8 +152,9 @@ downloadCoupon(item:Coupon)
       a.download = "coupon.jpg"; //File name Here
       a.click(); //Downloaded file},
       a.remove();
+      item.download=false;
     },
-      (err) => { console.log(err);}
+      (err) => { console.log(err); item.download=false;}
     );
   }
 
@@ -245,6 +249,7 @@ downloadCoupon(item:Coupon)
         {
           this.msg.create('error',this.redemption.message);
           this.redeemLoading = false;
+          this.redeemCancel();
           return;
         }
 

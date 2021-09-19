@@ -104,6 +104,8 @@ export class Coupon {
 
    contact: number = 0;
 
+   download: Boolean = false;
+
 }
 
 export class CouponType {

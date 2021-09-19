@@ -198,11 +198,16 @@
                                     <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
                                         title="Download Coupon" style='padding-top:10px;padding-bottom:10px'>
 
-                                        <!-- <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;"
+                                        <ng-container *ngIf="item.download">
+                                       <!-- <i nz-icon nzType="loading" nzTheme="outline" style="font-size: 20px;"
                                             class='icon'></i> -->
 
+                                            <i nz-icon [nzType]="'sync'" [nzSpin]="true"  style="font-size: 20px;"></i>
+                                        </ng-container>
+                                        <ng-container *ngIf="!item.download">
                                         <i style='font-size:20px; color:gray' class="icon fas fa-download"
                                             (click)='downloadCoupon(item)'></i>
+                                        </ng-container>
 
                                     </div>
 
