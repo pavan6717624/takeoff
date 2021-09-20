@@ -27,6 +27,11 @@ export class UserService {
     return this.http.post('https://takeoff-pavan.herokuapp.com/generateRedemption',redemption);
   }
 
+  getKYCDetails() {
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getKYCDetails');
+  }
+
+
   constructor(private http: HttpClient) { }
 
 

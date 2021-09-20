@@ -1,1 +1,163 @@
-<p>wallet works!</p>
+
+<hr/>
+
+<div nz-row>
+
+    <div nz-col nzSpan="12" style='text-align: center'>
+
+        <h3>Your Wallet Amount</h3>
+    </div>
+
+    <div nz-col nzSpan="6" style='text-align: center'>
+
+        <p><b>With KYC</b></p>
+        
+        <h2 style='color:green'>475 Rs.</h2>
+        <p>500rs - (5% tax)</p>
+    </div>
+    <div nz-col nzSpan="6" style='text-align: center'>
+
+        <p><b>Without KYC</b></p>
+        
+        <h4 style='color:red'>400 Rs.</h4>
+        <p>500rs - (25% tax)</p>
+    </div>
+</div>
+
+
+
+
+<hr/>
+
+<div nz-row>
+
+    <div nz-col nzSpan="24" style='text-align: center'>
+
+
+<h6>Update Your KYC to increase your Wallet Amount</h6>
+
+</div></div>
+
+<div nz-row>
+
+    &nbsp;
+</div>
+
+
+<div nz-row>
+
+    <div nz-col nzSpan="4" style='text-align: center'>
+
+       &nbsp;
+    </div>
+
+    <div nz-col nzSpan="6" style='text-align: center'>
+
+        PAN
+    </div>
+
+    <div nz-col nzSpan="14" style='text-align: left'>
+
+        <input type="text" [(ngModel)]="kycDetails.pan" nz-input placeholder="Enter PAN" style='width:200px' />
+
+
+    </div>
+</div>
+
+<div nz-row>
+
+    &nbsp;
+</div>
+
+<div nz-row>
+
+    <div nz-col nzSpan="4" style='text-align: center'>
+
+       &nbsp;
+    </div>
+
+    <div nz-col nzSpan="6" style='text-align: center'>
+
+        NAME as per Your Bank Account
+    </div>
+
+    <div nz-col nzSpan="14" style='text-align: left'>
+
+        <input type="text" [(ngModel)]="kycDetails.pan" nz-input placeholder="Enter Name" style='width:200px' />
+
+
+    </div>
+</div>
+
+
+<div nz-row>
+
+    &nbsp;
+</div>
+
+<div nz-row>
+
+    <div nz-col nzSpan="4" style='text-align: center'>
+
+       &nbsp;
+    </div>
+
+    <div nz-col nzSpan="6" style='text-align: center'>
+
+        Bank Account Number
+    </div>
+
+    <div nz-col nzSpan="14" style='text-align: left'>
+
+        <input type="text" [(ngModel)]="kycDetails.pan" nz-input placeholder="Enter Account" style='width:200px' />
+
+
+    </div>
+</div>
+
+
+<div nz-row>
+
+    &nbsp;
+</div>
+
+
+<div nz-row>
+
+    <div nz-col nzSpan="4" style='text-align: center'>
+
+       &nbsp;
+    </div>
+
+    <div nz-col nzSpan="6" style='text-align: center'>
+
+       IFSC Number
+    </div>
+
+    <div nz-col nzSpan="14" style='text-align: left'>
+
+        <input type="text" [(ngModel)]="kycDetails.pan" nz-input placeholder="Enter IFSC" style='width:200px' />
+
+
+    </div>
+</div>
+
+
+<div nz-row>
+
+    &nbsp;
+</div>
+
+<div nz-row>
+
+    <div nz-col nzSpan="24" style='text-align: center'>
+
+
+        <button nz-button nzType="primary" (click)='updateKYC()'> Update KYC </button>
+
+</div></div>
+
+
+
+
+
