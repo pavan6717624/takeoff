@@ -70,6 +70,16 @@ export class AccountComponent implements OnInit {
   {
   this.getCustomerAccountDetails();
 
+  var loginButton = window.document.getElementById("loginButton")
+    
+    if(loginButton)
+    {
+      loginButton.innerHTML="Logout";
+      loginButton.setAttribute('href','/login');
+      loginButton.setAttribute('onClick',"localStorage.removeItem('token')");
+    }
+    
+
   var heading = window.document.getElementById("displayHeader");
   
     if(heading)

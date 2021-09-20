@@ -40,6 +40,12 @@ export class DisplayComponent implements OnInit {
       loginButton.setAttribute('href','/login');
       loginButton.setAttribute('onClick',"localStorage.removeItem('token')");
     }
+
+    var couponsheader = window.document.getElementById("displayHeader");
+
+    if (couponsheader) {
+      couponsheader.innerHTML = 'TakeOff Structure'
+    }
     
      this.status=true;
      this.loginService.getLoginDetails().subscribe(

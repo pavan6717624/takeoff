@@ -6,6 +6,13 @@ import { RedemptionDTO, SendCouponsRequest } from './takeoff/takeoff.component';
   providedIn: 'root'
 })
 export class UserService {
+  updatePan(formData: FormData) {
+    return this.http.post('https://takeoff-pavan.herokuapp.com/updatePan',formData);
+  }
+
+  updateKYC(formData: FormData) {
+    return this.http.post('https://takeoff-pavan.herokuapp.com/updateKYC',formData);
+  }
   
    downloadCoupon(formData: FormData) {
     return this.http.post('https://takeoff-pavan.herokuapp.com/downloadCoupon',formData);

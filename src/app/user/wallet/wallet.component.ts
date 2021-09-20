@@ -15,8 +15,11 @@ export class KYCDetails
   cname: string = '';
   bname: string = '';
   ifsc: string = '';
+  account: string = '';
   walletAmount: number = 0;
   referals: number = 0;
+  panStatus: string= '';
+  kycStatus: string = '';
 }
 
 @Component({
@@ -37,7 +40,21 @@ export class WalletComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //this.kycDetails.referals = 2;
+    var loginButton = window.document.getElementById("loginButton")
+    
+    if(loginButton)
+    {
+      loginButton.innerHTML="Logout";
+      loginButton.setAttribute('href','/login');
+      loginButton.setAttribute('onClick',"localStorage.removeItem('token')");
+    }
+    
+    var couponsheader = window.document.getElementById("displayHeader");
+
+    if (couponsheader) {
+      couponsheader.innerHTML = 'Wallet Amount'
+    }
+
     
   }
 
@@ -45,9 +62,10 @@ export class WalletComponent implements OnInit {
 
   getKYCDetails()
   {
+    this.loading=true;
     this.userService.getKYCDetails().subscribe(
-      (res) => { console.log(res);},
-      (err) => { console.log(err);}
+      (res : any) => { console.log(res); this.kycDetails=res[0]; if(!this.kycDetails) this.kycDetails = new KYCDetails(); this.loading=false;},
+      (err) => { console.log(err); this.msg.create('success','Error Occured at Server. Please try again.'); this.loading=false;}
      
        );
   }
@@ -70,14 +88,50 @@ export class WalletComponent implements OnInit {
     );
   }
  
-  updateKYC()
+  updatePAN()
   {
-    this.msg.create("info","In Development. Will Inform you Soon on Updates");
-    if(1==1)
-    return;
+    if(!this.kycDetails.pan || this.kycDetails.pan.trim().length ==0 )
+{
+  this.msg.create('success', 'Please provide PAN Details..')
+  return;
+}
     var formData = new FormData();
     formData.set("pan",this.kycDetails.pan);
+
+    this.loading=true;
+    this.userService.updatePan(formData).subscribe(
+      (res : any) => { console.log(res);  this.kycDetails = res; this.loading=false;},
+      (err) => { console.log(err); this.msg.create('success','Error Occured at Server. Please try again.'); this.loading=false;}
+     
+       );
+  }
+
+  updateKYC()
+  {
+    // this.msg.create("info","In Development. Will Inform you Soon on Updates");
+    // if(1==1)
+    // return;
+
+    if(!this.kycDetails.cname || !this.kycDetails.bname || !this.kycDetails.account || !this.kycDetails.ifsc || 
+      this.kycDetails.cname.trim().length ==0 || this.kycDetails.bname.trim().length ==0 || this.kycDetails.account.trim().length ==0 || this.kycDetails.ifsc.trim().length ==0)
+{
+  this.msg.create('success', 'Please provide Full KYC Details..')
+  return;
+}
+    var formData = new FormData();
+  
+    formData.set("cname",this.kycDetails.cname);
     formData.set("bname",this.kycDetails.bname);
+    formData.set("account", this.kycDetails.account);
+    formData.set("ifsc", this.kycDetails.ifsc);
+
+    this.loading=true;
+    this.userService.updateKYC(formData).subscribe(
+      (res : any) => { console.log(res);   this.kycDetails = res; this.loading=false;},
+      (err) => { console.log(err); this.msg.create('success','Error Occured at Server. Please try again.'); this.loading=false;}
+     
+       );
+
 
   }
 
