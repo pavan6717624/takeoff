@@ -9,18 +9,30 @@
     </div>
 
     <div nz-col nzSpan="6" style='text-align: center'>
-
+<ng-container *ngIf="kycDetails.referals != 0">
         <p><b>With KYC</b></p>
         
-        <h2 style='color:green'>475 Rs.</h2>
-        <p>500rs - (5% tax)</p>
+        <h2 style='color:green'>{{(kycDetails.referals)*475}} Rs.</h2>
+        <p>{{(kycDetails.referals)*500}} rs - (5% tax)</p>
+    </ng-container>
+    <ng-container *ngIf="kycDetails.referals == 0">
+        <h2 style='color:green'> 0 Rs.</h2>
+
+    </ng-container>
+
+
     </div>
     <div nz-col nzSpan="6" style='text-align: center'>
-
+        <ng-container *ngIf="kycDetails.referals != 0">
         <p><b>Without KYC</b></p>
         
-        <h4 style='color:red'>400 Rs.</h4>
-        <p>500rs - (25% tax)</p>
+        <h4 style='color:red'>{{(kycDetails.referals)*400}} Rs.</h4>
+        <p>{{(kycDetails.referals)*500}} rs - (25% tax)</p>
+        </ng-container>
+        <ng-container *ngIf="kycDetails.referals == 0">
+       &nbsp;
+        </ng-container>
+
     </div>
 </div>
 

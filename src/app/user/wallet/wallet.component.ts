@@ -16,6 +16,7 @@ export class KYCDetails
   bname: string = '';
   ifsc: string = '';
   walletAmount: number = 0;
+  referals: number = 0;
 }
 
 @Component({
@@ -35,6 +36,8 @@ export class WalletComponent implements OnInit {
   loading: Boolean = false;
 
   ngOnInit(): void {
+
+    //this.kycDetails.referals = 2;
     
   }
 
