@@ -27,7 +27,7 @@
         <p><b>Without KYC</b></p>
         
         <h4 style='color:red'>{{(kycDetails.referals)*400}} Rs.</h4>
-        <p>{{(kycDetails.referals)*500}} rs - (25% tax)</p>
+        <p>{{(kycDetails.referals)*500}} rs - (20% tax)</p>
         </ng-container>
         <ng-container *ngIf="kycDetails.referals == 0">
        &nbsp;
@@ -70,7 +70,7 @@
 
     <div nz-col nzSpan="14" style='text-align: left'>
 
-        <input type="text" [(ngModel)]="kycDetails.pan" nz-input placeholder="Enter PAN" style='width:200px' />
+        <input type="text" nz-input placeholder="Enter PAN" style='width:200px' />
 
 
     </div>
@@ -95,7 +95,7 @@
 
     <div nz-col nzSpan="14" style='text-align: left'>
 
-        <input type="text" [(ngModel)]="kycDetails.pan" nz-input placeholder="Enter Name" style='width:200px' />
+        <input type="text"  nz-input placeholder="Enter Name" style='width:200px' />
 
 
     </div>
@@ -121,7 +121,7 @@
 
     <div nz-col nzSpan="14" style='text-align: left'>
 
-        <input type="text" [(ngModel)]="kycDetails.pan" nz-input placeholder="Enter Account" style='width:200px' />
+        <input type="text"  nz-input placeholder="Enter Account" style='width:200px' />
 
 
     </div>
@@ -148,7 +148,7 @@
 
     <div nz-col nzSpan="14" style='text-align: left'>
 
-        <input type="text" [(ngModel)]="kycDetails.pan" nz-input placeholder="Enter IFSC" style='width:200px' />
+        <input type="text"  nz-input placeholder="Enter IFSC" style='width:200px' />
 
 
     </div>
