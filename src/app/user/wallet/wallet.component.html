@@ -21,7 +21,7 @@
             <h3>Your Wallet Amount</h3>
         </div>
 
-        <div nz-col nzSpan="6" style='text-align: center'>
+<!--         <div nz-col nzSpan="6" style='text-align: center'>
             <ng-container *ngIf="kycDetails && kycDetails.referals != 0">
                 <p><b>With KYC</b></p>
 
@@ -46,7 +46,18 @@
                 &nbsp;
             </ng-container>
 
+        </div> -->
+      
+       <div nz-col nzSpan="6" style='text-align: center'>
+          
+            <h3>{{kycDetails.walletAmount}}</h3>
+
         </div>
+        <div nz-col nzSpan="6" style='text-align: center'>
+          
+           &nbsp;
+        </div>
+      
     </div>
 
 
