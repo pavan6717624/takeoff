@@ -28,6 +28,7 @@ export class ImageStatusDTO
   id: number = 0;
   userId: number = 0;
   categoryId: number = 0;
+  keywords: string = '';
 }
 @Component({
   selector: 'app-uploadcoupons',

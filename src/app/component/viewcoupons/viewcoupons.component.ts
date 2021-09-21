@@ -250,7 +250,7 @@ time: string[] = [];
     this.loading = true;
     this.viewcouponsService.getCoupons(formData).subscribe(
 
-      (res) => {this.loading = false; console.log(res); this.coupons = res; this.logo = this.coupons[0].logo;  },
+      (res) => {this.loading = false; console.log(res); this.coupons = res; if(this.coupons.length > 0) this.logo = this.coupons[0].logo;  },
       (err) => { this.loading = false;console.log(err); this.coupons = [];  }
     );
   }

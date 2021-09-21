@@ -5,6 +5,10 @@
 
 
 <ng-container *ngIf='loading'>
+
+   
+
+    
     <div nz-row>
 
         &nbsp;
@@ -18,6 +22,15 @@
 </ng-container>
 
 <ng-container *ngIf='!loading'>
+
+    <div style='text-align:right'>
+        <nz-affix [nzOffsetTop]="offsetTop">
+            <button nz-button nzType="primary" (click)='filterVisible=true'>
+                <span><i nz-icon nzType="filter" nzTheme="outline" (click)='filterVisible=true'></i></span>
+            </button>
+        </nz-affix>
+    </div>
+
     <div style='padding-left:15px;padding-right:15px;overflow:auto;width:100%;text-align:center'
         [style.height.px]='screenHeight*0.85' (scroll)="onWindowScroll()" #scrollMe>
 
@@ -516,3 +529,84 @@
         </ng-template>
     </nz-modal>
 </ng-container>
+
+<nz-drawer [nzVisible]="filterVisible" [nzClosable]="true" nzPlacement='bottom' nzTitle="Filter"
+    (nzOnClose)="filterVisible=false;" [nzHeight]='350'>
+    <ng-container *nzDrawerContent>
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: center'>Category</div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                <nz-select nzPlaceHolder="Select Category" style='width: 200px ;' [(ngModel)]='category'
+                    (ngModelChange)='getSubCategories()'>
+
+                    <nz-option nzValue="0" nzLabel="ALL"></nz-option>
+                    <nz-option *ngFor="let cat of categories" [nzValue]="cat.id" [nzLabel]="cat.categoryName">
+                    </nz-option>
+
+                </nz-select>
+            </div>
+        </div>
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: center'>Sub-Category</div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                <nz-select nzPlaceHolder="Select Sub-Category" style='width: 200px ;' [(ngModel)]='subCategory'>
+                    <nz-option nzValue="0" nzLabel="ALL"></nz-option>
+                    <ng-container *ngIf="!isLoading">
+                        <nz-option *ngFor="let cat of subCategories" [nzValue]="cat.id" [nzLabel]="cat.subCategoryName">
+                        </nz-option>
+                    </ng-container>
+
+                    <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+                        <i nz-icon nzType="loading"></i>
+                        Loading Data...
+                    </nz-option>
+
+                </nz-select>
+            </div>
+        </div>
+        <!-- <ng-container *ngIf="couponDisplayId!=1">
+            <div nz-row> &nbsp; </div>
+            <div nz-row class="container">
+                <div nz-col nzSpan="6" style='text-align: center'>City </div>
+                <div nz-col nzSpan="18" style='text-align: center'>
+
+                    <nz-select [(ngModel)]="city" style='width:200px' nzPlaceHolder="Select City">
+                        <nz-option nzValue="Tirupati" nzLabel="Tirupati"></nz-option>
+                        <nz-option nzValue="Chittoor" nzLabel="Chittoor"></nz-option>
+                        <nz-option nzValue="Ananthapur" nzLabel="Ananthapur"></nz-option>
+                        <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
+                        <nz-option nzValue="Kadapa" nzLabel="Kadapa"></nz-option>
+                        <nz-option nzValue="Kakinada" nzLabel="Kakinada"></nz-option>
+                        <nz-option nzValue="Kurnool" nzLabel="Kurnool"></nz-option>
+                        <nz-option nzValue="Nellore" nzLabel="Nellore"></nz-option>
+                        <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
+                        <nz-option nzValue="Ongole" nzLabel="Ongole"></nz-option>
+                        <nz-option nzValue="Vijayawada" nzLabel="Vijayawada"></nz-option>
+
+
+
+                    </nz-select>
+                </div>
+            </div>
+        </ng-container> -->
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: center'>Search (',' Separated) </div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                <input nz-input type='text' style='width:200px' [(ngModel)]='keywords'
+                    placeholder="Keywords (',' Separated)">
+            </div>
+        </div>
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
+            <div nz-col nzSpan="24" style='text-align: center'>
+
+                <button nz-button nzType="primary" (click)='resetFilter()'> RESET </button> &nbsp;&nbsp;
+                <button nz-button nzType="primary" (click)='filterCoupons()'> FILTER </button>&nbsp;&nbsp;
+                <button nz-button nzType="primary" (click)='filterVisible=false;'> CANCEL </button>
+
+            </div>
+        </div>
+    </ng-container>
+</nz-drawer>

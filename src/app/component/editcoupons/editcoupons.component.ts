@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { EditcouponsService } from './editcoupons.service';
-import { ImageStatusDTO, Category } from '../uploadcoupons/uploadcoupons.component';
+import { ImageStatusDTO, Category, SubCategory } from '../uploadcoupons/uploadcoupons.component';
 import { VendorService } from '../vendor/vendor.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { LoginStatus } from '../login/login.component';
@@ -12,6 +12,11 @@ import { DatePipe, Time } from '@angular/common';
 export class SendImagesRequest {
   vendorId: number = 0;
   imageIds: number[] = [];
+  category: number = 0;
+  subCategory: number = 0;
+  keywords: string = '';
+  city: string = '';
+
 
 }
 
@@ -136,6 +141,11 @@ export class EditcouponsComponent implements OnInit {
 
   userType: string = '';
 
+  filterVisible = false;
+
+  offsetTop = 100;
+
+
   fromDate: Date = new Date();
   fromTime: string = this.fromDate.getHours() + ":" + this.fromDate.getMinutes();
 
@@ -231,6 +241,7 @@ export class EditcouponsComponent implements OnInit {
     this.screenHeight = window.innerHeight;
     this.getCouponTypes();
     this.getImages();
+    this.getCategories()
 
     for (var i = 0; i < 24; i++)
       for (var j = 0; j < 60; j++) {
@@ -374,6 +385,7 @@ export class EditcouponsComponent implements OnInit {
     }
   }
 
+  city: string = '';
   getImages1() {
     if (!this.loginStatus) {
       return;
@@ -381,7 +393,12 @@ export class EditcouponsComponent implements OnInit {
     let sendImagesRequest = new SendImagesRequest();
     sendImagesRequest.vendorId = Number(this.loginStatus.userId);
     sendImagesRequest.imageIds = this.images.map(s => s.id);
+    sendImagesRequest.category = this.category;
+    sendImagesRequest.subCategory = this.subCategory;
+    sendImagesRequest.keywords = this.keywords;
+    sendImagesRequest.city = this.city;
 
+    
     this.editcouponsService.getImages(sendImagesRequest).subscribe(
 
       (res) => {
@@ -581,4 +598,60 @@ export class EditcouponsComponent implements OnInit {
     this.toTime = this.toDate.getHours() + ":" + this.toDate.getMinutes();
 
   }
+
+
+  resetFilter()
+  {
+    this.category = 0;
+    this.subCategory = 0;
+    this.keywords = '';
+    
+  }
+  getCategories() {
+
+    this.uploadcouponsService.getCategories().subscribe(
+
+      (res) => { this.categories = res; },
+      (err) => { }
+
+    );
+  }
+
+  subCategories: SubCategory[] = [];
+  categories: Category[] = [];
+
+  isLoading = false;
+
+  subCategory: number = 0;
+  category: number = 0;
+
+  getSubCategories() {
+    this.subCategory = 0;
+    if (this.category == 0) {
+      return;
+    }
+    this.isLoading = true;
+    var formData = new FormData();
+    formData.set("category", this.category + "");
+
+    this.uploadcouponsService.getSubCategories(formData).subscribe(
+      (res) => {
+        this.isLoading = false;
+        console.log(res);
+
+        this.subCategories = res;
+
+
+      },
+      (err) => { this.isLoading = false; console.log(err); }
+    );
+  }
+
+  filterCoupons() {
+    this.images = [];
+    this.filterVisible = false;
+    this.loading=true;
+    this.getImages1();
+  }
+
 }
