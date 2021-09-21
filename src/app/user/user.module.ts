@@ -34,7 +34,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-import { NzBackTopModule } from 'ng-zorro-antd/back-top';
+// import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 import { ReplaceNewLinePipe } from './replace-new-line.pipe';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { AccountComponent } from './account/account.component';
@@ -80,7 +80,7 @@ import { NzAffixModule } from 'ng-zorro-antd/affix';
     NzImageModule,
     NzCollapseModule,
     NzCheckboxModule,
-    NzBackTopModule,
+//     NzBackTopModule,
     NzToolTipModule ,
     NzEmptyModule,
     NzAffixModule
