@@ -17,7 +17,6 @@ export class KYCDetails
   ifsc: string = '';
   account: string = '';
   walletAmount: number = 0;
-  referals: number = 0;
   panStatus: string= '';
   kycStatus: string = '';
 }

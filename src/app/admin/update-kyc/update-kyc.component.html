@@ -1,0 +1,84 @@
+<nz-table #basicTable nzShowPagination=false nzBordered [nzData]="['']" [nzLoading]="loading">
+
+    <thead>
+        <tr>
+
+            <th>#</th>
+            <th>Customer Id</th>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Pan</th>
+            <th> PAN Status </th>
+            <th>Action on PAN</th>
+            <th>Bank Name</th>
+            <th>Name as Per Bank Account</th>
+            <th>Account Number</th>
+            <th>IFSC</th>
+            <th>Action on Bank Details</th>
+            <th> KYC Status </th>
+            <th> Amount</th>
+
+
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let data of kycDetails; index as i">
+            <td>{{ i+1 }}</td>
+            <td>{{ data.customerId }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.contact }}</td>
+            <td>{{ data.pan }}</td>
+            <td>{{ data.panStatus }}</td>
+
+            <td>
+                <ng-container *ngIf="data.panStatus === 'Submitted'">
+                    <i nz-icon style='color:green; font-size: 25px;' nzType="check-square" nzTheme="outline" (click)="verifyPanStatus(i,data.customerId,'Approved')"></i> | <i
+                        nz-icon style='color:red; font-size: 25px;' nzType="close-square" nzTheme="outline" (click)="verifyPanStatus(i,data.customerId,'Rejected')"></i>
+                </ng-container>
+
+
+                <ng-container *ngIf="data.panStatus === 'Approved'">
+                    <i nz-icon style='color:green; font-size: 25px;' nzType="check-square" nzTheme="outline"></i> 
+                </ng-container>
+
+                <ng-container *ngIf="data.panStatus === 'Rejected'">
+                    <i nz-icon style='color:red; font-size: 25px;' nzType="close-square" nzTheme="outline"></i> 
+                </ng-container>
+
+
+            </td>
+
+            <td>{{ data.bname }}</td>
+            <td>{{ data.cname }}</td>
+            <td>{{ data.account }}</td>
+            <td>{{ data.ifsc }}</td>
+            <td>
+                <ng-container *ngIf="data.kycStatus === 'Submitted'">
+                    <i nz-icon style='color:green; font-size: 25px;' nzType="check-square" nzTheme="outline" (click)="verifyKycStatus(i,data.customerId,'Approved')"></i> | <i
+                        nz-icon style='color:red; font-size: 25px;' nzType="close-square" nzTheme="outline" (click)="verifyKycStatus(i,data.customerId,'Rejected')"></i>
+                </ng-container>
+
+
+                <ng-container *ngIf="data.kycStatus === 'Approved'">
+                    <i nz-icon style='color:green; font-size: 25px;' nzType="check-square" nzTheme="outline"></i> 
+                </ng-container>
+
+                <ng-container *ngIf="data.kycStatus === 'Rejected'">
+                    <i nz-icon style='color:red; font-size: 25px;' nzType="close-square" nzTheme="outline"></i> 
+                </ng-container>
+            </td>
+            <td>{{ data.kycStatus }}</td>
+            <td>{{ data.walletAmount }}</td>
+
+
+
+        </tr>
+    </tbody>
+
+
+
+
+</nz-table>

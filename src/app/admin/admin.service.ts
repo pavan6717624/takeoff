@@ -7,6 +7,15 @@ import { VendorDetails } from '../component/vendoraccount/vendoraccount.componen
   providedIn: 'root'
 })
 export class AdminService {
+  verifyPanStatus(formData: FormData) {
+    return this.http.post('https://takeoff-pavan.herokuapp.com/verifyPanStatus',formData);
+  }
+
+
+  verifyKycStatus(formData: FormData) {
+    return this.http.post('https://takeoff-pavan.herokuapp.com/verifyKycStatus',formData);
+  }
+
   editDesigner(designer: VendorDetails) {
     return this.http.post('https://takeoff-pavan.herokuapp.com/editDesigner',designer);
   }

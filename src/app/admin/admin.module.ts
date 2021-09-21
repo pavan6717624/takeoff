@@ -24,6 +24,7 @@ import { CoupontypesComponent } from './coupontypes/coupontypes.component';
 import { ProfessionComponent } from './profession/profession.component';
 import { ImagesComponent } from './images/images.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { UpdateKycComponent } from './update-kyc/update-kyc.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -34,7 +35,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     CategoryComponent,
     CoupontypesComponent,
     ProfessionComponent,
-    ImagesComponent
+    ImagesComponent,
+    UpdateKycComponent
   ],
   imports: [
     CommonModule,
