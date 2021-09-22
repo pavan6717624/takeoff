@@ -12,6 +12,12 @@ export class VendorService {
    
   }
 
+  beforeUploadStatement(formData: FormData) : Observable<any> {
+
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getImageStatement',formData);
+   
+  }
+
 
   upload(formData: FormData) : Observable<any> {
 

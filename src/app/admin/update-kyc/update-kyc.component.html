@@ -14,6 +14,7 @@
             <th>Name as Per Bank Account</th>
             <th>Account Number</th>
             <th>IFSC</th>
+            <th>Statement</th>
             <th>Action on Bank Details</th>
             <th> KYC Status </th>
             <th> Amount</th>
@@ -56,6 +57,17 @@
             <td>{{ data.account }}</td>
             <td>{{ data.ifsc }}</td>
             <td>
+
+                <ng-container *ngIf="data && data.statement && data.statement.length > 30 ">
+
+                    <i nz-icon style='color:green; font-size: 25px;' nzType="link" nzTheme="outline" (click)="previewImage='data:image/jpeg;base64,'+data.statement; previewVisible=true;"></i> 
+                    
+
+                </ng-container>
+
+            </td>
+
+            <td>
                 <ng-container *ngIf="data.kycStatus === 'Submitted'">
                     <i nz-icon style='color:green; font-size: 25px;' nzType="check-square" nzTheme="outline" (click)="verifyKycStatus(i,data.customerId,'Approved')"></i> | <i
                         nz-icon style='color:red; font-size: 25px;' nzType="close-square" nzTheme="outline" (click)="verifyKycStatus(i,data.customerId,'Rejected')"></i>
@@ -70,6 +82,7 @@
                     <i nz-icon style='color:red; font-size: 25px;' nzType="close-square" nzTheme="outline"></i> 
                 </ng-container>
             </td>
+           
             <td>{{ data.kycStatus }}</td>
             <td>{{ data.walletAmount }}</td>
 
@@ -82,3 +95,16 @@
 
 
 </nz-table>
+
+
+<nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+(nzOnCancel)="previewVisible = false" nzWidth=700>
+<ng-template #modalContent>
+    <h3> Statement </h3>
+    <div style='overflow:auto;'>
+        <div class="container" style='overflow:hidden;width:600px;height:600px;padding:0px'>
+            <img [src]="previewImage" style="width:600px;height:600px;border: 1px solid #555;" />
+        </div>
+    </div>
+</ng-template>
+</nz-modal>

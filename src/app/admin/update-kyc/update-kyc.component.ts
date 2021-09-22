@@ -26,7 +26,12 @@ export class UpdateKycComponent implements OnInit {
     this.getKYCDetails();
   }
 
+
+  previewVisible = false;
+
   kycDetails: KYCDetails[] = [];
+
+  previewImage: string = '';
 
   getKYCDetails()
   {

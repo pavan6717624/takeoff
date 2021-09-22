@@ -6,7 +6,7 @@
 
     <div nz-row>
         <div nz-col nzSpan="24" style='text-align: center'>
-            <nz-spin nzTip="Preparing for Wallet..... " nzSimple [nzSize]="'large'"></nz-spin>
+            <nz-spin nzTip="Preparing Your Wallet..... " nzSimple [nzSize]="'large'"></nz-spin>
         </div>
     </div>
 </ng-container>
@@ -21,7 +21,7 @@
             <h3>Your Wallet Amount</h3>
         </div>
 
-<!--         <div nz-col nzSpan="6" style='text-align: center'>
+        <!--         <div nz-col nzSpan="6" style='text-align: center'>
             <ng-container *ngIf="kycDetails && kycDetails.referals != 0">
                 <p><b>With KYC</b></p>
 
@@ -47,17 +47,17 @@
             </ng-container>
 
         </div> -->
-      
-       <div nz-col nzSpan="6" style='text-align: center'>
-          
+
+        <div nz-col nzSpan="6" style='text-align: center'>
+
             <h3>&#x20B9; {{kycDetails.walletAmount}}</h3>
 
         </div>
         <div nz-col nzSpan="6" style='text-align: center'>
-          
-           &nbsp;
+
+            &nbsp;
         </div>
-      
+
     </div>
 
 
@@ -100,14 +100,15 @@
                 type="text" [(ngModel)]='kycDetails.pan' nz-input placeholder="Enter PAN" style='width:200px' />
 
 
-<!--             <ng-container *ngIf="(kycDetails && (kycDetails.panStatus === 'Submitted'))">
+            <!--             <ng-container *ngIf="(kycDetails && (kycDetails.panStatus === 'Submitted'))">
 
                 &nbsp;&nbsp; <i nz-icon nzType="loading" nzTheme="outline"></i> &nbsp;&nbsp; Awaiting Approval
             </ng-container> -->
 
             <ng-container *ngIf="(kycDetails && (kycDetails.panStatus === 'Rejected'))">
 
-                &nbsp;&nbsp; <span style='color:red'><i nz-icon nzType="close-circle" nzTheme="outline"></i> &nbsp;&nbsp;
+                &nbsp;&nbsp; <span style='color:red'><i nz-icon nzType="close-circle" nzTheme="outline"></i>
+                    &nbsp;&nbsp;
                     Rejected
                 </span>
             </ng-container>
@@ -167,14 +168,15 @@
                 [readonly]="kycDetails && (kycDetails.kycStatus === 'Submitted'|| kycDetails.kycStatus==='Approved')"
                 [(ngModel)]='kycDetails.cname' nz-input placeholder="Enter Name" style='width:200px' />
 
-<!--             <ng-container *ngIf="(kycDetails && (kycDetails.kycStatus === 'Submitted'))">
+            <!--             <ng-container *ngIf="(kycDetails && (kycDetails.kycStatus === 'Submitted'))">
 
                 &nbsp;&nbsp; <i nz-icon nzType="loading" nzTheme="outline"></i> &nbsp;&nbsp; Awaiting Approval
             </ng-container> -->
 
             <ng-container *ngIf="(kycDetails && (kycDetails.kycStatus === 'Rejected'))">
 
-                &nbsp;&nbsp; <span style='color:red'><i nz-icon nzType="close-circle" nzTheme="outline"></i> &nbsp;&nbsp;
+                &nbsp;&nbsp; <span style='color:red'><i nz-icon nzType="close-circle" nzTheme="outline"></i>
+                    &nbsp;&nbsp;
                     Rejected
                 </span>
             </ng-container>
@@ -212,14 +214,15 @@
             <input type="text"
                 [readonly]="kycDetails && (kycDetails.kycStatus === 'Submitted'|| kycDetails.kycStatus==='Approved')"
                 [(ngModel)]='kycDetails.bname' nz-input placeholder="Enter Bank Name" style='width:200px' />
-<!--             <ng-container *ngIf="(kycDetails && (kycDetails.kycStatus === 'Submitted'))">
+            <!--             <ng-container *ngIf="(kycDetails && (kycDetails.kycStatus === 'Submitted'))">
 
                 &nbsp;&nbsp; <i nz-icon nzType="loading" nzTheme="outline"></i> &nbsp;&nbsp; Awaiting Approval
             </ng-container>
  -->
             <ng-container *ngIf="(kycDetails && (kycDetails.kycStatus === 'Rejected'))">
 
-                &nbsp;&nbsp; <span style='color:red'><i nz-icon nzType="close-circle" nzTheme="outline"></i> &nbsp;&nbsp;
+                &nbsp;&nbsp; <span style='color:red'><i nz-icon nzType="close-circle" nzTheme="outline"></i>
+                    &nbsp;&nbsp;
                     Rejected
                 </span>
             </ng-container>
@@ -257,14 +260,15 @@
             <input type="text"
                 [readonly]="kycDetails && (kycDetails.kycStatus === 'Submitted'|| kycDetails.kycStatus==='Approved')"
                 [(ngModel)]='kycDetails.account' nz-input placeholder="Enter Account" style='width:200px' />
-<!--             <ng-container *ngIf="(kycDetails && (kycDetails.kycStatus === 'Submitted'))">
+            <!--             <ng-container *ngIf="(kycDetails && (kycDetails.kycStatus === 'Submitted'))">
 
                 &nbsp;&nbsp; <i nz-icon nzType="loading" nzTheme="outline"></i> &nbsp;&nbsp; Awaiting Approval
             </ng-container> -->
 
             <ng-container *ngIf="(kycDetails && (kycDetails.kycStatus === 'Rejected'))">
 
-                &nbsp;&nbsp; <span style='color:red'><i nz-icon nzType="close-circle" nzTheme="outline"></i> &nbsp;&nbsp;
+                &nbsp;&nbsp; <span style='color:red'><i nz-icon nzType="close-circle" nzTheme="outline"></i>
+                    &nbsp;&nbsp;
                     Rejected
                 </span>
             </ng-container>
@@ -303,14 +307,15 @@
             <input type="text"
                 [readonly]="kycDetails && (kycDetails.kycStatus === 'Submitted'|| kycDetails.kycStatus==='Approved')"
                 [(ngModel)]='kycDetails.ifsc' nz-input placeholder="Enter IFSC" style='width:200px' />
-<!--             <ng-container *ngIf="(kycDetails && (kycDetails.kycStatus === 'Submitted'))">
+            <!--             <ng-container *ngIf="(kycDetails && (kycDetails.kycStatus === 'Submitted'))">
 
                 &nbsp;&nbsp; <i nz-icon nzType="loading" nzTheme="outline"></i> &nbsp;&nbsp; Awaiting Approval
             </ng-container> -->
 
             <ng-container *ngIf="(kycDetails && (kycDetails.kycStatus === 'Rejected'))">
 
-                &nbsp;&nbsp; <span style='color:red'><i nz-icon nzType="close-circle" nzTheme="outline"></i> &nbsp;&nbsp;
+                &nbsp;&nbsp; <span style='color:red'><i nz-icon nzType="close-circle" nzTheme="outline"></i>
+                    &nbsp;&nbsp;
                     Rejected
                 </span>
             </ng-container>
@@ -332,6 +337,52 @@
 
         &nbsp;
     </div>
+
+
+    <div nz-row>
+
+
+        <div nz-col nzSpan="4" style='text-align: center'>
+
+            &nbsp;
+        </div>
+
+
+
+        <div nz-col nzSpan="6" style='text-align: center'> Bank Statement
+
+
+
+        </div>
+
+        <div nz-col nzSpan="14" style='text-align: left'>
+
+            <ng-container
+                *ngIf="!(kycDetails && (kycDetails.kycStatus === 'Submitted' || kycDetails.kycStatus==='Approved'))">
+
+                <nz-upload nz-Accept="image/jpeg" [nzBeforeUpload]="beforeUpload">
+                    <button nz-button [disabled]="loading"><span nz-icon nzType="upload"></span></button>
+                </nz-upload>
+            </ng-container>
+
+            <ng-container *ngIf='imageSrc.length > 30'>
+                <br />
+                <div style='max-width:50%; max-height:30%;text-align:left'>
+                    <img class="img-fluid img-thumbnail" [src]='imageSrc'>
+
+                </div>
+
+            </ng-container>
+
+
+        </div>
+    </div>
+
+    <div nz-row>
+
+        &nbsp;
+    </div>
+
 
     <ng-container *ngIf="!(kycDetails && (kycDetails.kycStatus === 'Submitted' || kycDetails.kycStatus==='Approved'))">
 

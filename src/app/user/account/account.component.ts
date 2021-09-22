@@ -50,6 +50,11 @@ export class AccountComponent implements OnInit {
     
   }
 
+toWallet()
+{
+  this.router.navigate(['wallet']);
+}
+
   getLoginDetails()
   {
     this.loading=true;

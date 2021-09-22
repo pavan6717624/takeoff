@@ -7,8 +7,7 @@
 
   <div nz-col nzSpan="18" style='text-align: center'>
 
-    <nz-upload nz-Accept="image/jpeg" [nzBeforeUpload]="beforeUpload"
-      [nzDisabled]="loading || imageSrc.length > 0">
+    <nz-upload nz-Accept="image/jpeg" [nzBeforeUpload]="beforeUpload" [nzDisabled]="loading || imageSrc.length > 0">
       <button nz-button [nzLoading]="loading"><span nz-icon nzType="upload"></span>Select Coupon Image</button>
     </nz-upload>
 
@@ -62,7 +61,8 @@
 
   <div nz-row>
     <div nz-col nzSpan="24" nz-result-extra style='text-align: center'>
-      <nz-select nzShowSearch nzPlaceHolder="Select Category" [(ngModel)]="category" (ngModelChange)='getSubCategories()' style='width: 200px ;'>
+      <nz-select nzShowSearch nzPlaceHolder="Select Category" [(ngModel)]="category"
+        (ngModelChange)='getSubCategories()' style='width: 200px ;'>
 
         <nz-option *ngFor="let cat of categories" [nzValue]="cat.categoryName" [nzLabel]="cat.categoryName"></nz-option>
 
