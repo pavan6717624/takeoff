@@ -115,7 +115,7 @@ export class WalletComponent implements OnInit {
     // return;
 
     if(!this.kycDetails.cname || !this.kycDetails.bname || !this.kycDetails.account || !this.kycDetails.ifsc || 
-      this.kycDetails.cname.trim().length ==0 || || this.file == undefined || this.kycDetails.bname.trim().length ==0 || this.kycDetails.account.trim().length ==0 || this.kycDetails.ifsc.trim().length ==0)
+      this.kycDetails.cname.trim().length ==0 || this.file == undefined || this.kycDetails.bname.trim().length ==0 || this.kycDetails.account.trim().length ==0 || this.kycDetails.ifsc.trim().length ==0)
 {
   this.msg.create('success', 'Please provide Full KYC Details..')
   return;
