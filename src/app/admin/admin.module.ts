@@ -25,6 +25,8 @@ import { ProfessionComponent } from './profession/profession.component';
 import { ImagesComponent } from './images/images.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { UpdateKycComponent } from './update-kyc/update-kyc.component';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -54,7 +56,8 @@ import { UpdateKycComponent } from './update-kyc/update-kyc.component';
     NzModalModule,  
     NzSelectModule,
     NzSwitchModule,
-    NzSpinModule
+    NzSpinModule,
+    NzDatePickerModule
     
   ]
 })

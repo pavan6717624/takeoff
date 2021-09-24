@@ -21,9 +21,34 @@ export class UpdateKycComponent implements OnInit {
 
   loading = false;
 
+  time: string[] = [];
+
+  creditDate: Date = new Date();
+  creditTime: string = this.creditDate.getHours() + ":" + this.creditDate.getMinutes();
+  credit : number = 0;
+
   ngOnInit(): void {
 
     this.getKYCDetails();
+
+    for (var i = 0; i < 24; i++)
+    for (var j = 0; j < 60; j++) {
+      var time = '';
+      if (i < 10)
+        time += '0' + i;
+      else
+        time += i;
+
+      var time1 = '';
+      if (j < 10)
+        time1 += '0' + j;
+      else
+        time1 += j;
+
+      this.time.push(time + ":" + time1);
+    }
+
+
   }
 
 
@@ -32,6 +57,11 @@ export class UpdateKycComponent implements OnInit {
   kycDetails: KYCDetails[] = [];
 
   previewImage: string = '';
+
+  payVisible = false;
+
+  selectedKyc: KYCDetails = new KYCDetails();
+
 
   getKYCDetails()
   {
