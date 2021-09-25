@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -24,7 +25,7 @@ export class UpdateKycComponent implements OnInit {
   time: string[] = [];
 
   creditDate: Date = new Date();
-  creditTime: string = this.creditDate.getHours() + ":" + this.creditDate.getMinutes();
+  creditTime: string = this.creditDate.getHours() + ":" + (this.creditDate.getMinutes() < 10 ? '0'+this.creditDate.getMinutes() : this.creditDate.getMinutes());
   credit : number = 0;
 
   ngOnInit(): void {
@@ -49,8 +50,16 @@ export class UpdateKycComponent implements OnInit {
     }
 
 
+
   }
 
+
+  resetPayValues()
+  {
+  this.creditDate = new Date();
+  this.creditTime = this.creditDate.getHours() + ":" + this.creditDate.getMinutes();
+  this.credit = 0;
+  }
 
   previewVisible = false;
 
@@ -62,6 +71,40 @@ export class UpdateKycComponent implements OnInit {
 
   selectedKyc: KYCDetails = new KYCDetails();
 
+  selectedId: number = 0;
+
+  crediting= false;
+
+  creditAmount()
+{
+  if(Number(this.credit) <=0)
+  {
+    this.msg.create('error', 'Please Provide Valid Credit Amount');
+    return;
+  }
+  else if(Number(this.credit) > this.kycDetails[this.selectedId].walletAmount)
+  {
+  this.msg.create('error', 'Cannot Credit more than the Wallet Amount');
+  return;
+  }
+ 
+  this.crediting=true;
+  var formData = new FormData();
+  var datePipe = new DatePipe('en-US');
+  let creditDate = datePipe.transform(new Date(this.creditDate), 'yyyy-MM-dd');
+
+  formData.set("customerId", this.selectedKyc.customerId+"");
+  formData.set("creditAmount", this.credit+"");
+  formData.set("creditDate",creditDate+" "+this.creditTime);
+  
+
+  this.adminService.creditAmount(formData).subscribe(
+    (res : any) => { console.log(res); this.payVisible=false; this.kycDetails[this.selectedId]=res; this.msg.create('info',this.kycDetails[this.selectedId].message); this.crediting=false;},
+    (err) => { console.log(err); this.msg.create('success','Error Occured at Server. Please try again.'); this.crediting=false;}
+   
+     );
+
+}
 
   getKYCDetails()
   {

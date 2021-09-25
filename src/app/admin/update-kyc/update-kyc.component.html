@@ -16,7 +16,7 @@
             <th>Name as Per Bank Account</th>
             <th>Account Number</th>
             <th>IFSC</th>
-            <th>Statement</th>
+            <th>Proof</th>
             <th>Action on Bank Details</th>
             <th> KYC Status </th>
             <th> Amount</th>
@@ -59,7 +59,7 @@
             <td>
                 <ng-container *ngIf="data.panStatus === 'Approved'">
                     <i style='font-size: 25px;' class="fab fa-amazon-pay"
-                        (click)='selectedKyc=data;payVisible=true;'></i>
+                        (click)='resetPayValues();selectedId=i;selectedKyc=data;payVisible=true;'></i>
                 </ng-container>
             </td>
 
@@ -158,21 +158,20 @@
         <div nz-row class="container">
             <div nz-col nzSpan="6" style='text-align: left'>Credit Date</div>
             <div nz-col nzSpan="18" style='text-align: center'>
-               
-                <nz-date-picker nzAllowClear=false nzAllowEmpty=false nzInputReadOnly=true
-                nzFormat="yyyy-MM-dd" nzPlaceHolder='From Date' [(ngModel)]='creditDate'
-                style='width:130px'>
-            </nz-date-picker> -
-            <!-- <nz-time-picker nzAllowEmpty=false [nzBackdrop]='true' nzPlaceHolder='Time'
+
+                <nz-date-picker nzAllowClear=false nzAllowEmpty=false nzInputReadOnly=true nzFormat="yyyy-MM-dd"
+                    nzPlaceHolder='From Date' [(ngModel)]='creditDate' style='width:130px'>
+                </nz-date-picker> -
+                <!-- <nz-time-picker nzAllowEmpty=false [nzBackdrop]='true' nzPlaceHolder='Time'
                 [(ngModel)]="fromTime" nzFormat="HH:mm" style='width:80px'></nz-time-picker> -->
 
-            <nz-select [nzBackdrop]='true' style='width:100px' [nzOptionOverflowSize]='4'
-                nzAllowClear=false [(ngModel)]="creditTime">
+                <nz-select [nzBackdrop]='true' style='width:100px' [nzOptionOverflowSize]='4' nzAllowClear=false
+                    [(ngModel)]="creditTime">
 
-                <nz-option *ngFor="let time1 of time" [nzValue]="time1" [nzLabel]="time1"></nz-option>
+                    <nz-option *ngFor="let time1 of time" [nzValue]="time1" [nzLabel]="time1"></nz-option>
 
 
-            </nz-select>
+                </nz-select>
 
 
 
@@ -184,7 +183,7 @@
         <div nz-row class="container">
             <div nz-col nzSpan="6" style='text-align: left'>Credit Amount</div>
             <div nz-col nzSpan="18" style='text-align: center'>
-                
+
                 <input nz-input type='number' [(ngModel)]='credit' style='width:100px'>
 
             </div>
@@ -194,16 +193,16 @@
 
         <div nz-row class="container">
             <div nz-col nzSpan="24" style='text-align: center' nz-result-extra>
-            
-                <button nz-button nzType="primary" >
+
+                <button nz-button nzType="primary" (click)='creditAmount()' [nzLoading]='crediting'>
                     Pay Amount
                 </button> &nbsp;
-                <button nz-button (click) = 'payVisible = false'> Cancel</button>
-            
+                <button nz-button (click)='payVisible = false' [nzLoading]='crediting'> Cancel</button>
+
             </div>
         </div>
 
 
-        
+
     </ng-template>
 </nz-modal>

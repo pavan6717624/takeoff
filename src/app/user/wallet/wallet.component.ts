@@ -22,6 +22,7 @@ export class KYCDetails
   panStatus: string= '';
   kycStatus: string = '';
   statement: string = '';
+  message: string = '';
 }
 
 @Component({
