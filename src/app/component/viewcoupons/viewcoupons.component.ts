@@ -26,10 +26,10 @@ export class ViewcouponsComponent implements OnInit {
   // result: Array<Date | null> = [];
 
   fromDate: Date = new Date();
-  fromTime: string = this.fromDate.getHours()+":"+this.fromDate.getMinutes();
+  fromTime: string = (this.fromDate.getHours()<10?'0'+this.fromDate.getHours: this.fromDate.getHours()) + ":" + (this.fromDate.getMinutes() < 10 ? '0'+this.fromDate.getMinutes() : this.fromDate.getMinutes());
 
   toDate: Date = new Date();
-  toTime: string = this.toDate.getHours()+":"+this.toDate.getMinutes();
+  toTime: string = (this.toDate.getHours()<10?'0'+this.toDate.getHours: this.toDate.getHours()) + ":" + (this.toDate.getMinutes() < 10 ? '0'+this.toDate.getMinutes() : this.toDate.getMinutes());
 
 
 

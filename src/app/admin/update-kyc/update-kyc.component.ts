@@ -25,7 +25,7 @@ export class UpdateKycComponent implements OnInit {
   time: string[] = [];
 
   creditDate: Date = new Date();
-  creditTime: string = this.creditDate.getHours() + ":" + (this.creditDate.getMinutes() < 10 ? '0'+this.creditDate.getMinutes() : this.creditDate.getMinutes());
+  creditTime: string = (this.creditDate.getHours()<10?'0'+this.creditDate.getHours: this.creditDate.getHours()) + ":" + (this.creditDate.getMinutes() < 10 ? '0'+this.creditDate.getMinutes() : this.creditDate.getMinutes());
   credit : number = 0;
 
   ngOnInit(): void {
