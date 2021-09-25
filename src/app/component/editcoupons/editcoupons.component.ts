@@ -592,10 +592,10 @@ export class EditcouponsComponent implements OnInit {
 
 
 
-    this.fromTime = this.fromDate.getHours() + ":" + this.fromDate.getMinutes();
+    this.fromTime = (this.fromDate.getHours()<10?'0'+this.fromDate.getHours: this.fromDate.getHours()) + ":" + (this.fromDate.getMinutes() < 10 ? '0'+this.fromDate.getMinutes() : this.fromDate.getMinutes());
 
-
-    this.toTime = this.toDate.getHours() + ":" + this.toDate.getMinutes();
+  
+    this.toTime = (this.toDate.getHours()<10?'0'+this.toDate.getHours: this.toDate.getHours()) + ":" + (this.toDate.getMinutes() < 10 ? '0'+this.toDate.getMinutes() : this.toDate.getMinutes());
 
   }
 

@@ -57,7 +57,7 @@ export class UpdateKycComponent implements OnInit {
   resetPayValues()
   {
   this.creditDate = new Date();
-  this.creditTime = this.creditDate.getHours() + ":" + this.creditDate.getMinutes();
+  this.creditTime = (this.creditDate.getHours()<10?'0'+this.creditDate.getHours: this.creditDate.getHours()) + ":" + (this.creditDate.getMinutes() < 10 ? '0'+this.creditDate.getMinutes() : this.creditDate.getMinutes());
   this.credit = 0;
   }
 
