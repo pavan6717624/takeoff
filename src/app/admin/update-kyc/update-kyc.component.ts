@@ -8,6 +8,17 @@ import { UserService } from 'src/app/user/user.service';
 import { KYCDetails } from 'src/app/user/wallet/wallet.component';
 import { AdminService } from '../admin.service';
 
+export class Statement
+{
+ 
+  
+  customerId: number = 0;
+  amount: number =0 ;
+  date: string ='';
+  description: string = '';
+	
+}
+
 @Component({
   selector: 'app-update-kyc',
   templateUrl: './update-kyc.component.html',
@@ -76,6 +87,8 @@ export class UpdateKycComponent implements OnInit {
 
   crediting = false;
 
+  statements: Statement[]=[];
+
   creditAmount() {
     if (Number(this.credit) <= 0) {
       this.msg.create('error', 'Please Provide Valid Credit Amount');
@@ -140,7 +153,15 @@ export class UpdateKycComponent implements OnInit {
     );
   }
 
+  statementWallet: number = 0;
+  statementCredit: number = 0;
+
   takeOffStatement(id: number) {
+    this.statements=[];
+    this.statmentVisible=true;
+    this.statementWallet = 0;
+    this.statementCredit = 0;
+
     this.stating = true;
 
     var formData = new FormData();
@@ -148,11 +169,27 @@ export class UpdateKycComponent implements OnInit {
 
 
     this.adminService.takeOffStatement(formData).subscribe(
-        (res: any) => { console.log(res); this.kycDetails[id] = res; this.stating = false; },
+        (res: any) => { console.log(res); this.statements=res; 
+          
+          for(var i=0;i<this.statements.length;i++)
+          {
+            if(this.statements[i].description.indexOf("credited") == -1)
+            {
+              this.statementWallet += this.statements[i].amount;
+            }
+            else
+            {
+              this.statementCredit += this.statements[i].amount;
+            }
+          }
+          
+          this.stating = false; },
         (err) => { console.log(err); this.msg.create('success', 'Error Occured at Server. Please try again.'); this.stating = false; }
 
       );
   }
+
+
 
 
 }

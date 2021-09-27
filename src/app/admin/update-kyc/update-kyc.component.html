@@ -31,7 +31,7 @@
     <tbody>
         <tr *ngFor="let data of kycDetails; index as i">
             <td>{{ i+1 }}</td>
-            <td (click)='statmentVisible=true;'> <i class="fas fa-list" ></i> {{ data.customerId }}</td>
+            <td (click)='takeOffStatement(i)'> <i class="fas fa-list"></i> {{ data.customerId }}</td>
             <td>{{ data.name }}</td>
             <td>{{ data.contact }}</td>
             <td>{{ data.pan }}</td>
@@ -64,10 +64,10 @@
                 </ng-container>
             </td>
 
-            
 
 
-            
+
+
 
             <td>{{ data.bname }}</td>
             <td>{{ data.cname }}</td>
@@ -221,26 +221,51 @@
     <ng-template #statementContent>
         <h3> Take Off Statement </h3>
         <div style='overflow:auto;'>
-           
+
             <nz-table #statementTable nzShowPagination=false nzBordered [nzData]="['']" [nzLoading]="stating">
 
-            <thead>
-                <tr>
-        
-                    <th>#</th>
-                    <th>Customer Id</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>Wallet Amount</th>
-                    <th>Credited to Bank Account</th>
-                    </tr>
-                    </thead>
+                <thead>
+                    <tr>
 
-                    <tbody>
-
+                        <th>#</th>
+                        <th>Customer Id</th>
+                        <th>Date</th>
+                        <th>Description</th>
                         
-                    </tbody>
-        </nz-table>
+                        <th>Wallet Amount</th>
+                        <th>Credited to Bank Account</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let data of statements; index as i">
+                        <td>{{ i+1 }}</td>
+                        <td>{{ data.customerId }}</td>
+                        <td>{{ data.date }}</td>
+                        <td>{{ data.description }}</td>
+                        <ng-container *ngIf="data.description.indexOf('credited') == -1">
+                            <td>{{ data.amount }}</td>
+                            <td>0</td>
+                        </ng-container>
+                        <ng-container *ngIf="data.description.indexOf('credited') != -1">
+                            <td>0</td>
+                            <td>{{ data.amount }}</td>
+                        </ng-container>
+
+                    </tr>
+                    <tr>
+
+                    <td> &nbsp; </td>
+                    <td> &nbsp; </td>
+                    <td> &nbsp; </td>
+                    <td> Balance </td>
+                    <td> {{statementWallet}} </td>
+                        <td> {{statementCredit}} </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+
+           
 
         </div>
     </ng-template>
