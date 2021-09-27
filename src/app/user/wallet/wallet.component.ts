@@ -23,6 +23,7 @@ export class KYCDetails
   kycStatus: string = '';
   statement: string = '';
   message: string = '';
+  creditAmount: number = 0;
 }
 
 @Component({

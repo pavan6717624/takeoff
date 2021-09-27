@@ -19,7 +19,8 @@
             <th>Proof</th>
             <th>Action on Bank Details</th>
             <th> KYC Status </th>
-            <th> Amount</th>
+            <th> Wallet Amount</th>
+            <th> Credit Amount</th>
 
 
 
@@ -30,7 +31,7 @@
     <tbody>
         <tr *ngFor="let data of kycDetails; index as i">
             <td>{{ i+1 }}</td>
-            <td>{{ data.customerId }}</td>
+            <td (click)='statmentVisible=true;'> <i class="fas fa-list" ></i> {{ data.customerId }}</td>
             <td>{{ data.name }}</td>
             <td>{{ data.contact }}</td>
             <td>{{ data.pan }}</td>
@@ -62,6 +63,11 @@
                         (click)='resetPayValues();selectedId=i;selectedKyc=data;payVisible=true;'></i>
                 </ng-container>
             </td>
+
+            
+
+
+            
 
             <td>{{ data.bname }}</td>
             <td>{{ data.cname }}</td>
@@ -99,6 +105,7 @@
 
             <td>{{ data.kycStatus }}</td>
             <td>{{ data.walletAmount }}</td>
+            <td>{{ data.creditAmount }}</td>
 
 
 
@@ -114,7 +121,7 @@
 <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
     (nzOnCancel)="previewVisible = false" nzWidth=700>
     <ng-template #modalContent>
-        <h3> Statement </h3>
+        <h3> Bank Proof </h3>
         <div style='overflow:auto;'>
             <div class="container" style='overflow:hidden;width:600px;height:600px;padding:0px'>
                 <img [src]="previewImage" style="width:600px;height:600px;border: 1px solid #555;" />
@@ -204,5 +211,37 @@
 
 
 
+    </ng-template>
+</nz-modal>
+
+
+
+<nz-modal [nzVisible]="statmentVisible" [nzContent]="statementContent" [nzFooter]="null"
+    (nzOnCancel)="statmentVisible = false" nzWidth=700>
+    <ng-template #statementContent>
+        <h3> Take Off Statement </h3>
+        <div style='overflow:auto;'>
+           
+            <nz-table #statementTable nzShowPagination=false nzBordered [nzData]="['']" [nzLoading]="stating">
+
+            <thead>
+                <tr>
+        
+                    <th>#</th>
+                    <th>Customer Id</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Wallet Amount</th>
+                    <th>Credited to Bank Account</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                        
+                    </tbody>
+        </nz-table>
+
+        </div>
     </ng-template>
 </nz-modal>

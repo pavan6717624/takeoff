@@ -7,6 +7,9 @@ import { VendorDetails } from '../component/vendoraccount/vendoraccount.componen
   providedIn: 'root'
 })
 export class AdminService {
+  takeOffStatement(formData: FormData) {
+    return this.http.post('https://takeoff-pavan.herokuapp.com/takeOffStatement',formData);
+  }
 
   creditAmount(formData: FormData) {
     return this.http.post('https://takeoff-pavan.herokuapp.com/creditAmount',formData);

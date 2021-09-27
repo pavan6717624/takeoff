@@ -18,44 +18,21 @@
 
         <div nz-col nzSpan="12" style='text-align: center'>
 
-            <h3>Your Wallet Amount</h3>
+            <h3>Your Income</h3>
         </div>
 
-        <!--         <div nz-col nzSpan="6" style='text-align: center'>
-            <ng-container *ngIf="kycDetails && kycDetails.referals != 0">
-                <p><b>With KYC</b></p>
-
-                <h2 style='color:green'>{{(kycDetails.referals)*475}} Rs.</h2>
-                <p>{{(kycDetails.referals)*500}} rs - (5% tax)</p>
-            </ng-container>
-            <ng-container *ngIf="!kycDetails || kycDetails.referals == 0">
-                <h2 style='color:green'> 0 Rs.</h2>
-
-            </ng-container>
-
-
-        </div>
-        <div nz-col nzSpan="6" style='text-align: center'>
-            <ng-container *ngIf="kycDetails && kycDetails.referals != 0">
-                <p><b>Without KYC</b></p>
-
-                <h4 style='color:red'>{{(kycDetails.referals)*400}} Rs.</h4>
-                <p>{{(kycDetails.referals)*500}} rs - (20% tax)</p>
-            </ng-container>
-            <ng-container *ngIf="!kycDetails || kycDetails.referals == 0">
-                &nbsp;
-            </ng-container>
-
-        </div> -->
+      
 
         <div nz-col nzSpan="6" style='text-align: center'>
 
             <h3>&#x20B9; {{kycDetails.walletAmount}}</h3>
+            <p> Wallet Amount</p>
 
         </div>
         <div nz-col nzSpan="6" style='text-align: center'>
 
-            &nbsp;
+            <h3>&#x20B9; {{kycDetails.creditAmount}}</h3>
+            <p> Credited to Bank Account</p>
         </div>
 
     </div>
