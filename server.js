@@ -2,9 +2,10 @@
 const express = require('express');
 const path = require('path');
 var forceSsl = require('force-ssl-heroku');
-
+var compression = require('compression');
 
 const app = express();
+app.use(compression());
 app.use(forceSsl);
 
 // Serve only the static files form the dist directory
