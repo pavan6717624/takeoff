@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 
 
-const compression = require('compression')
+
 
 
 
@@ -13,7 +13,7 @@ var forceSsl = require('force-ssl-heroku');
 
 const app = express();
 app.use(forceSsl);
-app.use(compression())
+
 
 // Serve only the static files form the dist directory
 app.use(express.static('./dist/takeoff'));
