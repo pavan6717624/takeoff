@@ -26,6 +26,8 @@ import { ImagesComponent } from './images/images.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { UpdateKycComponent } from './update-kyc/update-kyc.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { GstComponent } from './gst/gst.component';
+import { TdsComponent } from './tds/tds.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
     CoupontypesComponent,
     ProfessionComponent,
     ImagesComponent,
-    UpdateKycComponent
+    UpdateKycComponent,
+    GstComponent,
+    TdsComponent
   ],
   imports: [
     CommonModule,

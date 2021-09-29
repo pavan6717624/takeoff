@@ -12,6 +12,8 @@ import { ProfessionComponent } from './profession/profession.component';
 import { ImagesComponent } from './images/images.component';
 import { DisplayComponent } from '../component/display/display.component';
 import { UpdateKycComponent } from './update-kyc/update-kyc.component';
+import { GstComponent } from './gst/gst.component';
+import { TdsComponent } from './tds/tds.component';
 
 
 const routes: Routes = [
@@ -33,6 +35,8 @@ const routes: Routes = [
       { path: 'images', component: ImagesComponent },
       { path: 'display', component: DisplayComponent },
       { path: 'verifyKYC', component: UpdateKycComponent },
+      { path: 'gst', component: GstComponent },
+      { path: 'tcs', component: TdsComponent },
      
 
     ],

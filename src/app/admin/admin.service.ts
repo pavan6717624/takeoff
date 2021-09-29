@@ -7,6 +7,10 @@ import { VendorDetails } from '../component/vendoraccount/vendoraccount.componen
   providedIn: 'root'
 })
 export class AdminService {
+
+  gstDetails() {
+    return this.http.get('https://takeoff-pavan.herokuapp.com/gstDetails');
+  }
   takeOffStatement(formData: FormData) {
     return this.http.post('https://takeoff-pavan.herokuapp.com/takeOffStatement',formData);
   }

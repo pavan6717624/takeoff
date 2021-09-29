@@ -27,8 +27,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { PaymentStatusComponent } from './component/payment-status/payment-status.component';
-import { PaymentFailedComponent } from './componet/payment-failed/payment-failed.component';
-import { PaymentSuccessComponent } from './componet/payment-success/payment-success.component';
+
 import { LoginComponent } from './component/login/login.component';
 import { DisplayComponent } from './component/display/display.component';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
@@ -50,7 +49,7 @@ import { ReplaceNewLinePipe } from './component/replace-new-line.pipe';
 import { VendoraccountComponent } from './component/vendoraccount/vendoraccount.component';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzTableModule } from 'ng-zorro-antd/table';
-import { AdminComponent } from './component/admin/admin.component';
+
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzImageModule } from 'ng-zorro-antd/image';
@@ -97,8 +96,7 @@ const antDesignIcons = AllIcons as {
      MainComponent,
      SubscriptionComponent,
      PaymentStatusComponent,
-     PaymentFailedComponent,
-     PaymentSuccessComponent,
+
      LoginComponent,
      DisplayComponent,
      VendorComponent,
@@ -107,7 +105,7 @@ const antDesignIcons = AllIcons as {
      EditcouponsComponent,
      ReplaceNewLinePipe,
      VendoraccountComponent,
-     AdminComponent,
+
      ViewcouponsComponent,
      RedemptionComponent,
   ],

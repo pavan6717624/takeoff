@@ -148,9 +148,9 @@ imageStatus : ImageStatusDTO = new ImageStatusDTO();
 
   beforeUpload = (file:  any) =>
   {
-    const isJpgOrPng = file.type === 'image/jpeg';
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
     if (!isJpgOrPng) {
-      this.msg.error('You can only upload JPG file!');
+      this.msg.error('You can only upload JPG / PNG file!');
    
       return false;
     }
