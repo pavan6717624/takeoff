@@ -4,23 +4,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { MastheadComponent } from './component/masthead/masthead.component';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import {FormsModule} from '@angular/forms';
-import { HeroComponent } from './component/hero/hero.component';
-import { ClientsComponent } from './component/clients/clients.component';
-import { AboutComponent } from './component/about/about.component';
-import { WhyusComponent } from './component/whyus/whyus.component';
-import { ServicesComponent } from './component/services/services.component';
-import { CtaComponent } from './component/cta/cta.component';
-import { PricingComponent } from './component/pricing/pricing.component';
+
 import { NzIconModule,  NZ_ICON_DEFAULT_TWOTONE_COLOR, NZ_ICONS  } from 'ng-zorro-antd/icon';
-import { ContactComponent } from './component/contact/contact.component';
-import { FooterComponent } from './component/footer/footer.component';
+
 import { MainComponent } from './component/main/main.component';
 import { SubscriptionComponent } from './component/subscription/subscription.component'
 import { NzSelectModule } from 'ng-zorro-antd/select';
@@ -82,17 +74,7 @@ const antDesignIcons = AllIcons as {
 @NgModule({
   declarations: [
     AppComponent,
-    MastheadComponent,
-    HeroComponent,
-    ClientsComponent,
-    AboutComponent,
-    WhyusComponent,
-    ServicesComponent,
-    CtaComponent,
-    PricingComponent,
-
-    ContactComponent,
-     FooterComponent,
+    
      MainComponent,
      SubscriptionComponent,
      PaymentStatusComponent,
