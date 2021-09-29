@@ -4,7 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
+<<<<<<< HEAD
     "build": "ng build --prod --aot --vendor-chunk --common-chunk --delete-output-path --build-optimizer",
+=======
+    "build": "ng build --prod",
+>>>>>>> 9f45e9e681215493cd9cb058f718c43c2a31c97e
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "heroku-postbuild": "ng build --prod --aot --vendor-chunk --common-chunk --delete-output-path --build-optimizer"
