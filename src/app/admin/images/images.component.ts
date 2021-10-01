@@ -129,18 +129,20 @@ export class ImagesComponent implements OnInit {
    formData.set("imageId",id+"");
 
   
- 
+ this.msg.create('info','Please wait..Deleting..');
    
   this.editcouponsService.deleteImage(formData).subscribe(
 
     (res) => { //this.loading=false;  
-              console.log(res); if(res) this.images = this.images.filter(i => id!=i.id); else this.msg.create('error','Unable to Delete Image. Please try Again.');
+              console.log(res); if(res){  this.images = this.images.filter(i => id!=i.id);  this.msg.create('success','Image Deleted.');
+                                       } else this.msg.create('error','Unable to Delete Image. Please try Again.');
      // this.loading = false; 
     },
     (err) => { 
       //this.loading=false; 
       console.log(err); 
-      //this.loading = false; }
+      //this.loading = false; 
+}
   );
  }
 
