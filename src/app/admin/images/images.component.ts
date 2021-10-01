@@ -18,7 +18,7 @@ export class ImagesComponent implements OnInit {
   constructor(private editcouponsService: EditcouponsService,private loginService: LoginService, private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) 
   {
 
-    alert('adsfadsf');
+   // alert('adsfadsf');
 
     const navigation = this.router.getCurrentNavigation();
     this.loginStatus =  (navigation?.extras?.state?.loginStatus); 
@@ -99,7 +99,7 @@ export class ImagesComponent implements OnInit {
 
   getImages() {
 
-    alert('adsfadsf' + this.loginStatus.userId );
+   // alert('adsfadsf' + this.loginStatus.userId );
 
 
     this.loading = true;
@@ -124,7 +124,7 @@ export class ImagesComponent implements OnInit {
 
  deleteImage(id: number)
  {
-  this.loading = true;
+  //this.loading = true;
    var formData = new FormData();
    formData.set("imageId",id+"");
 
@@ -133,8 +133,14 @@ export class ImagesComponent implements OnInit {
    
   this.editcouponsService.deleteImage(formData).subscribe(
 
-    (res) => { this.loading=false;  console.log(res); if(res) this.images = this.images.filter(i => id!=i.id); else this.msg.create('error','Unable to Delete Image. Please try Again.'); this.loading = false; },
-    (err) => {  this.loading=false; console.log(err); this.loading = false; }
+    (res) => { //this.loading=false;  
+              console.log(res); if(res) this.images = this.images.filter(i => id!=i.id); else this.msg.create('error','Unable to Delete Image. Please try Again.');
+     // this.loading = false; 
+    },
+    (err) => { 
+      //this.loading=false; 
+      console.log(err); 
+      //this.loading = false; }
   );
  }
 
