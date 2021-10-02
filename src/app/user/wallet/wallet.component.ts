@@ -154,9 +154,9 @@ imageStatus : ImageStatusDTO = new ImageStatusDTO();
    
       return false;
     }
-    const isLt2M = file.size! / 1024 / 1024 < 1;
+    const isLt2M = file.size! / 1024 / 1024 < 2;
     if (!isLt2M) {
-      this.msg.error('Image must smaller than 1MB!');
+      this.msg.error('Image must smaller than 2MB!');
      
       return false;
     }
