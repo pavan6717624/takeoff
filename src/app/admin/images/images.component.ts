@@ -99,7 +99,7 @@ export class ImagesComponent implements OnInit {
 
   getImages() {
 
-   // alert('adsfadsf' + this.loginStatus.userId );
+   alert('Welcome Admin...' + this.loginStatus.userId );
 
 
     this.loading = true;
