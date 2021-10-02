@@ -149,9 +149,9 @@ changePassword()
 
       return false;
     }
-    const isLt2M = file.size! / 1024 / 1024 < 2;
+    const isLt2M = file.size! / 1024 / 1024 < 1;
     if (!isLt2M) {
-      this.msg.error('Image must smaller than 2MB!');
+      this.msg.error('Image must smaller than 1MB!');
 
       return false;
     }
