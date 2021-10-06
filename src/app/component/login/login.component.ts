@@ -25,8 +25,17 @@ export class LoginComponent implements OnInit {
   password: string = "";
   logginStatus: boolean = false;
   loginStatus: LoginStatus = new LoginStatus();
+
+  userId: string = "";
+  email: string = "";
+  city: string = "";
+
   constructor(private router: Router, private loginService: LoginService, private msg: NzMessageService) {
   }
+
+
+  passwordModalVisible = false;
+  generating = false;
 
   ngOnInit(): void {
 
@@ -91,6 +100,49 @@ export class LoginComponent implements OnInit {
 
       (err) => {  this.password = ""; this.msg.create("error", "Could not Connect to Sever. Please Try After Some Time..."); this.logginStatus = false; }
     );
+
+  }
+
+  mailSent = false;
+
+  generateMailPasscode()
+  {
+    
+  if(
+    this.userId == null || this.userId == undefined || this.userId.trim().length == 0 || 
+    this.email == null || this.email == undefined || this.email.trim().length == 0 || 
+    this.city == null || this.city == undefined || this.city.trim().length == 0  
+  ) 
+  
+  {
+    this.msg.create('error', 'Please provide your Full Details' + this.userId +" "+this.email+" "+this.city);
+    return;
+  }
+    
+    this.generating = true;
+    var formData = new FormData();
+    formData.set("userId",this.userId);
+    formData.set("email", this.email);
+    formData.set("city", this.city);
+
+
+    this.loginService.generateMailPasscode(formData).subscribe(
+      (res:any) => {
+       this.generating=false;
+        console.log(res);
+
+        if(res)
+        {
+          this.mailSent = true;
+        }
+        else
+        {
+          this.msg.create('error', 'Provided Details are not Registered. Please provide Registered Details.');
+        }
+      },
+      (err) => { this.generating=false; this.msg.create('error', 'Error Occured at Server. Please try again.');}
+    );
+
 
   }
 }

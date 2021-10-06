@@ -8,20 +8,20 @@ export class VendorService {
 
   beforeUpload(formData: FormData) : Observable<any> {
 
-    return this.http.post('https://takeoff-pavan.herokuapp.com/getImage',formData);
+    return this.http.post('http://localhost:8081/getImage',formData);
    
   }
 
   beforeUploadStatement(formData: FormData) : Observable<any> {
 
-    return this.http.post('https://takeoff-pavan.herokuapp.com/getImageStatement',formData);
+    return this.http.post('http://localhost:8081/getImageStatement',formData);
    
   }
 
 
   upload(formData: FormData) : Observable<any> {
 
-    return this.http.post('https://takeoff-pavan.herokuapp.com/uploadCoupon',formData);
+    return this.http.post('http://localhost:8081/uploadCoupon',formData);
    
   }
 

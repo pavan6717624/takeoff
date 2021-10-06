@@ -17,6 +17,7 @@ export class KYCDetails
   cname: string = '';
   bname: string = '';
   ifsc: string = '';
+  email: string = '';
   account: string = '';
   walletAmount: number = 0;
   panStatus: string= '';

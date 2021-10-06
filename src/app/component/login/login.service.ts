@@ -5,16 +5,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
+  generateMailPasscode(formData: FormData): Observable<any> {
+    return this.http.post('http://localhost:8081/generateMailPasscode',formData)
+  }
   getLoginDetails() {
-    return this.http.get('https://takeoff-pavan.herokuapp.com/getLoginDetails')
+    return this.http.get('http://localhost:8081/getLoginDetails')
   }
 
   constructor(private http: HttpClient) { }
 
 login(formData: FormData): Observable<any>
 {
- // return this.http.post( 'https://takeoff-pavan.herokuapp.com/login',formData );
-  return this.http.post('https://takeoff-pavan.herokuapp.com/login',formData)
+ // return this.http.post( 'http://localhost:8083/login',formData );
+  return this.http.post('http://localhost:8081/login',formData)
 }
 
 }
