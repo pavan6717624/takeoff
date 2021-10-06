@@ -78,60 +78,169 @@
     (nzOnCancel)="passwordModalVisible = false">
     <ng-template #modalContent>
 
-        <h3> Provide Your Details </h3>
-        <div nz-row class="container">
-            <div nz-col nzSpan="12" style='text-align: left'>Login Id</div>
-            <div nz-col nzSpan="12" style='text-align: left'>
-                <input type="text" nz-input placeholder="Your Login Id"  [(ngModel)]="userId" style='width:100%' />
+
+        <ng-container *ngIf="!mailSent">
+            <h3> Provide Your Details </h3>
+            <div nz-row class="container">
+
+
+                <div nz-col nzSpan="12" style='text-align: left'>Login Id</div>
+                <div nz-col nzSpan="12" style='text-align: left'>
+                    <input type="text" nz-input placeholder="Your Login Id" [(ngModel)]="userId" style='width:100%' />
+                </div>
             </div>
-        </div>
 
-        <div nz-row> &nbsp; </div>
+            <div nz-row> &nbsp; </div>
 
-        <div nz-row class="container">
-            <div nz-col nzSpan="12" style='text-align: left'>Registered Email Id</div>
-            <div nz-col nzSpan="12" style='text-align: left'>
-                <input type="text" nz-input placeholder="Registered Email Id"  [(ngModel)]="email" style='width:100%' />
+            <div nz-row class="container">
+                <div nz-col nzSpan="12" style='text-align: left'>Registered Email Id</div>
+                <div nz-col nzSpan="12" style='text-align: left'>
+                    <input type="text" nz-input placeholder="Registered Email Id" [(ngModel)]="email"
+                        style='width:100%' />
+                </div>
             </div>
-        </div>
 
-        <div nz-row> &nbsp; </div>
+            <div nz-row> &nbsp; </div>
 
-        <div nz-row class="container">
-            <div nz-col nzSpan="12" style='text-align: left'>City</div>
-            <div nz-col nzSpan="12" style='text-align: left'  >
-
-
-                <nz-select nzPlaceHolder="Select City" style='width:100%' [(ngModel)]="city">
-                    <nz-option nzValue="Tirupati" nzLabel="Tirupati"></nz-option>
-                    <nz-option nzValue="Chittoor" nzLabel="Chittoor"></nz-option>
-                    <nz-option nzValue="Ananthapur" nzLabel="Ananthapur"></nz-option>
-                    <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
-                    <nz-option nzValue="Kadapa" nzLabel="Kadapa"></nz-option>
-                    <nz-option nzValue="Kakinada" nzLabel="Kakinada"></nz-option>
-                    <nz-option nzValue="Kurnool" nzLabel="Kurnool"></nz-option>
-                    <nz-option nzValue="Nellore" nzLabel="Nellore"></nz-option>
-                    <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
-                    <nz-option nzValue="Ongole" nzLabel="Ongole"></nz-option>
-                    <nz-option nzValue="Vijayawada" nzLabel="Vijayawada"></nz-option>
+            <div nz-row class="container">
+                <div nz-col nzSpan="12" style='text-align: left'>City</div>
+                <div nz-col nzSpan="12" style='text-align: left'>
 
 
+                    <nz-select nzPlaceHolder="Select City" style='width:100%' [(ngModel)]="city">
+                        <nz-option nzValue="Tirupati" nzLabel="Tirupati"></nz-option>
+                        <nz-option nzValue="Chittoor" nzLabel="Chittoor"></nz-option>
+                        <nz-option nzValue="Ananthapur" nzLabel="Ananthapur"></nz-option>
+                        <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
+                        <nz-option nzValue="Kadapa" nzLabel="Kadapa"></nz-option>
+                        <nz-option nzValue="Kakinada" nzLabel="Kakinada"></nz-option>
+                        <nz-option nzValue="Kurnool" nzLabel="Kurnool"></nz-option>
+                        <nz-option nzValue="Nellore" nzLabel="Nellore"></nz-option>
+                        <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
+                        <nz-option nzValue="Ongole" nzLabel="Ongole"></nz-option>
+                        <nz-option nzValue="Vijayawada" nzLabel="Vijayawada"></nz-option>
 
-                </nz-select>
+
+
+                    </nz-select>
+                </div>
             </div>
-        </div>
 
 
 
-        <div nz-row class="container">
-            <div nz-col nzSpan="24" style='text-align: center' nz-result-extra>
-            
-                <button nz-button nzType="primary" (click)='generateMailPasscode()' [nzLoading]='generating'>
-                    Generate PassCode
-                </button>
-                <button nz-button [nzLoading]='generating' (click) = 'passwordModalVisible = false'> Cancel</button>
-            
+            <div nz-row class="container">
+                <div nz-col nzSpan="24" style='text-align: center' nz-result-extra>
+
+                    <button nz-button nzType="primary" (click)='generateMailPasscode()' [nzLoading]='generating'>
+                        Generate PassCode
+                    </button>
+                    <button nz-button [nzLoading]='generating' (click)='passwordModalVisible = false'> Cancel</button>
+
+                </div>
             </div>
-        </div>
+        </ng-container>
+        <ng-container *ngIf='mailSent'>
+
+            <ng-container *ngIf='!checkedOTP'>
+                <h3> OTP Sent to your Mail </h3>
+
+                <div nz-row class="container">
+
+
+                    <div nz-col nzSpan="12" style='text-align: left'>Provide OTP</div>
+
+                    <div nz-col nzSpan="12" style='text-align: left'>
+
+                        <input type="text" nz-input placeholder="Provide OTP" [(ngModel)]="otp" style='width:100%' />
+
+                    </div>
+
+
+
+                </div>
+
+                <div nz-row class="container">
+                    <div nz-col nzSpan="24" style='text-align: center' nz-result-extra>
+
+                        <button nz-button nzType="primary" (click)='checkPasswordOTP()' [nzLoading]='checkingOTP'>
+                            Submit OTP
+                        </button>
+                        <button nz-button [nzLoading]='checkingOTP' (click)='passwordModalVisible = false'> Cancel
+                        </button>
+
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf='checkedOTP'>
+                <ng-container *ngIf='!changedpassword'>
+                <h3> Change Password </h3>
+
+                <div nz-row class="container">
+
+
+                    <div nz-col nzSpan="12" style='text-align: left'>New Password</div>
+
+                    <div nz-col nzSpan="12" style='text-align: left'>
+
+                        <nz-input-group [nzSuffix]="suffixTemplate1">
+                            <input [type]="passwordVisible1 ? 'text' : 'password'" nz-input placeholder="Change Password"
+                                [(ngModel)]="changepassword" style='width:100%' />
+                        </nz-input-group>
+                        <ng-template #suffixTemplate1>
+                            <i nz-icon [nzType]="passwordVisible1 ? 'eye' : 'eye-invisible'"
+                                (click)="passwordVisible1 = !passwordVisible1"></i>
+                        </ng-template>
+
+                    </div>
+
+
+
+                </div>
+
+                <div nz-row> &nbsp; </div>
+
+                <div nz-row class="container">
+
+
+                    <div nz-col nzSpan="12" style='text-align: left'>Confirm Password</div>
+
+                    <div nz-col nzSpan="12" style='text-align: left'>
+
+                        <nz-input-group [nzSuffix]="suffixTemplate2" >
+                            <input [type]="passwordVisible2 ? 'text' : 'password'" nz-input placeholder="Confirm Password"
+                                [(ngModel)]="confirmpassword" style='width:100%'  />
+                        </nz-input-group>
+                        <ng-template #suffixTemplate2>
+                            <i nz-icon [nzType]="passwordVisible2 ? 'eye' : 'eye-invisible'"
+                                (click)="passwordVisible2 = !passwordVisible2"></i>
+                        </ng-template>
+                    </div>
+
+
+
+                </div>
+
+              
+
+                <div nz-row class="container">
+                    <div nz-col nzSpan="24" style='text-align: center' nz-result-extra>
+
+                        <button nz-button nzType="primary" (click)='forgetPassword()' [nzLoading]='changingpassword'>
+                            Change Password
+                        </button>
+                        <button nz-button [nzLoading]='changingpassword' (click)='passwordModalVisible = false'> Cancel
+                        </button>
+
+                    </div>
+                </div>
+                </ng-container>
+
+                <ng-container *ngIf='changedpassword'>
+                    <h3> <i nz-icon nzType="check"></i> Password Changed Successfully. </h3>
+                    </ng-container>
+            </ng-container>
+
+        </ng-container>
     </ng-template>
 </nz-modal>

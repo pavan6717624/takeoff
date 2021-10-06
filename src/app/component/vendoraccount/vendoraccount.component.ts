@@ -91,7 +91,7 @@ changePassword()
     this.loading=true;
     this.editVisible=false;
     this.vendoraccountService.changePassword(formData).subscribe(
-      (res) => { this.loading=false; if(res) this.msg.create('success','Password Changed.'); console.log(res); },
+      (res) => { this.loading=false; if(res) this.msg.create('success','Password Changed.'); else this.msg.create('error','Invalid Current Password.'); console.log(res); },
       (err) => { this.loading=false; console.log(err); }
 
     );

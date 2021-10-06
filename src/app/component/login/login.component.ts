@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
 
   userid: string = "";
   passwordVisible = false;
+  passwordVisible1 = false;
+  passwordVisible2 = false;
   password: string = "";
   logginStatus: boolean = false;
   loginStatus: LoginStatus = new LoginStatus();
@@ -29,6 +31,12 @@ export class LoginComponent implements OnInit {
   userId: string = "";
   email: string = "";
   city: string = "";
+  otp: string= '';
+  checkingOTP = false;
+  checkedOTP = false;
+  changepassword : string = '';
+  confirmpassword: string ='';
+
 
   constructor(private router: Router, private loginService: LoginService, private msg: NzMessageService) {
   }
@@ -143,6 +151,85 @@ export class LoginComponent implements OnInit {
       (err) => { this.generating=false; this.msg.create('error', 'Error Occured at Server. Please try again.');}
     );
 
+
+  }
+
+  changingpassword = false;
+  changedpassword = false;
+
+  forgetPassword()
+  {
+    
+
+  
+
+   if(this.changepassword && this.confirmpassword && this.changepassword === this.confirmpassword && this.changepassword.length > 8)
+   {
+     var changepassword=this.changepassword;
+    this.changepassword = (shajs('sha256').update(this.changepassword).digest('hex'));
+    this.confirmpassword = (shajs('sha256').update(this.confirmpassword).digest('hex'));
+    this.passwordVisible1=false;
+    this.passwordVisible2=false;
+
+    this.changingpassword = true;
+    var formData = new FormData();
+    formData.set("userId", this.userId);
+    formData.set("newpassword", this.changepassword);
+
+    this.loginService.forgetPassword(formData).subscribe(
+      (res:any) => {
+       this.changingpassword=false;
+        console.log(res);
+
+        if(res)
+        {
+          this.changedpassword = true;
+          this.userid=this.userId;
+          this.password=changepassword;
+          this.login();
+        }
+        else
+        {
+          this.msg.create('error', 'Could not Change password. Contact Admin.');
+        }
+      },
+      (err) => { this.changingpassword=false; this.msg.create('error', 'Error Occured at Server. Please try again.');}
+    );
+
+   }
+   else
+   {
+     this.msg.create('error', 'Provide Valid (Minimum 8 Characters) Passwords');
+   }
+
+   
+  }
+
+  checkPasswordOTP()
+  {
+    this.checkingOTP = true;
+    var formData = new FormData();
+    formData.set("userId",this.userId);
+    formData.set("otp", this.otp);
+    
+
+
+    this.loginService.checkPasswordOTP(formData).subscribe(
+      (res:any) => {
+       this.checkingOTP=false;
+        console.log(res);
+
+        if(res)
+        {
+          this.checkedOTP = true;
+        }
+        else
+        {
+          this.msg.create('error', 'Wrong OTP. Please provide Correct OTP');
+        }
+      },
+      (err) => { this.checkingOTP=false; this.msg.create('error', 'Error Occured at Server. Please try again.');}
+    );
 
   }
 }
