@@ -11,7 +11,7 @@ import { GstDetails } from './gst/gst.component';
 export class AdminService {
   
   downloadGST(gstDetailsList: GstDetails[]) {
-    return this.http.post('http://localhost:8083/downloadGST',gstDetailsList,{responseType: 'blob'});
+    return this.http.post('https://takeoff-pavan.herokuapp.com/downloadGST',gstDetailsList,{responseType: 'blob'});
   }
 
   gstDetails() {
