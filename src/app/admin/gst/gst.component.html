@@ -1,3 +1,4 @@
+<ng-container *ngIf="!loading && gstDetailsList && gstDetailsList.length > 0">
 <div nz-row >
     <div nz-col nzSpan="24" style='text-align: left'>
 
@@ -10,6 +11,8 @@
 </div>
 
 <div nz-row> &nbsp; </div>
+
+</ng-container>
 
 <nz-table #basicTable nzShowPagination=false nzBordered [nzData]="['']" [nzLoading]="loading">
     <thead>
