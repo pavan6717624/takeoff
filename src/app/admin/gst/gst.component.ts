@@ -36,7 +36,20 @@ export class GstComponent implements OnInit {
        );
   }
 
+ downloading=false;
 
+  download()
+  {
+    this.downloading=true;
+    this.adminService.downloadGST(this.gstDetailsList).subscribe((res : any) => {
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(new Blob([res], { type: 'text/csv' }));
+      link.download = 'GST Report.csv';
+      link.click();
+      link.remove();
+      this.downloading=false;
+    });
+  }
 
 
 }
