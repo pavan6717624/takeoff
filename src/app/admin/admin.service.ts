@@ -2,11 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { VendorDetails } from '../component/vendoraccount/vendoraccount.component';
+import { GstDetails } from './gst/gst.component';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
+  
+  downloadGST(gstDetailsList: GstDetails[]) {
+    return this.http.post('http://localhost:8083/downloadGST',gstDetailsList,{responseType: 'blob'});
+  }
 
   gstDetails() {
     return this.http.get('https://takeoff-pavan.herokuapp.com/gstDetails');
