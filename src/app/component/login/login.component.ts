@@ -217,7 +217,7 @@ export class LoginComponent implements OnInit {
     this.checkingOTP = true;
     var formData = new FormData();
     formData.set("userId",this.userId);
-    formData.set("otp", this.otp);
+    formData.set("otp", this.otp.trim());
     
 
 
