@@ -207,6 +207,13 @@ export class LoginComponent implements OnInit {
 
   checkPasswordOTP()
   {
+    
+     if(this.otp.trim().length == 0)
+    {
+      this.msg.create('error', 'Provide Valid OTP');
+      return;
+    }
+    
     this.checkingOTP = true;
     var formData = new FormData();
     formData.set("userId",this.userId);
