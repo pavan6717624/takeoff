@@ -1,1 +1,56 @@
-<p>customers works!</p>
+    <nz-table #basicTable nzShowPagination=false nzBordered [nzData]="['']" [nzLoading]="loading">
+        <thead>
+            <tr>    
+                <th> # </th>    
+                <th> User Id </th>
+                <th> Name </th>
+                <th> Contact </th>
+                <th> Email </th>     
+                <th> City </th>      
+                <th> Join Date </th>    
+                <th> Login Id / ReferCode </th>
+                <th> Referer Id </th>
+                <th> Wallet Amount </th>
+                <th> Profession </th>
+                <th> Gender </th>
+                <th> Order Id </th> 
+                <th> Payment Id </th>                    
+                <th> Payment Status </th>                  
+                <th> Mapping Status </th>   
+    
+            </tr>
+        </thead>  
+        <tbody>
+        <tr *ngFor="let data of customerDetails; index as i">    
+            <td>{{ (i+1) }}</td>
+            <td>{{ data.userId }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.contact }}</td>
+            <td>{{ data.email }}</td>
+            <td>{{ data.city }}</td>
+            <td>{{ data.joinDate }}</td>
+            <td>{{ data.referCode }}</td>
+            <td>{{ data.refererId }}</td>
+            <td>{{ data.walletAmount }}</td>
+
+            <td>{{ data.profession }}</td>
+            <td>{{ data.gender }}</td>
+            <td>{{ data.razorpay_order_id }}</td>
+            <td>{{ data.razorpay_payment_id }}</td>
+           
+           
+           
+            <td>{{ data.paymentStatus }}</td>
+            <td>{{ data.mappingStatus }}</td>
+           
+           
+            
+           
+    
+    
+    
+        </tr>
+    
+    
+    </tbody>
+    </nz-table>
