@@ -1,3 +1,16 @@
+<div nz-row >
+    <div nz-col nzSpan="24" style='text-align: left'>
+
+        <button nz-button nzType="primary" (click)='download()' [nzLoading]='downloading'>
+            Download Excel
+        </button>
+       
+
+    </div>
+</div>
+
+<div nz-row> &nbsp; </div>
+
 <nz-table #basicTable nzShowPagination=false nzBordered [nzData]="['']" [nzLoading]="loading">
     <thead>
         <tr>
