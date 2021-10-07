@@ -10,6 +10,10 @@ import { GstDetails } from './gst/gst.component';
 })
 export class AdminService {
   
+   getAllCustomerAccountDetails() {
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getAllCustomerAccountDetails');
+  }
+  
   downloadGST(gstDetailsList: GstDetails[]) {
     return this.http.post('https://takeoff-pavan.herokuapp.com/downloadGST',gstDetailsList,{responseType: 'blob'});
   }
