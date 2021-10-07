@@ -23,6 +23,9 @@ referCode	: string= "";
 paymentStatus: Boolean = false;
 mappingStatus: Boolean = false;
 walletAmount: number =0;
+  
+  joinDate: string = '';
+  
 }
 
 @Component({
