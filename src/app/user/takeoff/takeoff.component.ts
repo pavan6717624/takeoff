@@ -162,7 +162,8 @@ downloadCoupon(item:Coupon)
 
   onWindowScroll() {
 
-
+    if(this.loading)
+    return;
 
 
     var top = this.eleRef.nativeElement.scrollTop;
