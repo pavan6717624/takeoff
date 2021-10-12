@@ -402,7 +402,8 @@ export class EditcouponsComponent implements OnInit {
     this.editcouponsService.getImages(sendImagesRequest).subscribe(
 
       (res) => {
-      this.loading = false; console.log(res); if (res.length == 0) { this.msg.create('info', 'No More Images Found.'); this.noMoreImages = true; } else {
+      this.loading = false; console.log(res); if (res.length == 0) { // this.msg.create('info', 'No More Images Found.'); 
+        this.noMoreImages = true; } else {
       this.images = this.images.concat(res);
         this.images = this.images.filter((value, index, arr) => {
           return index === arr.findIndex(obj => obj.id === value.id);
