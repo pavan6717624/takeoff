@@ -158,7 +158,8 @@ export class ImagesComponent implements OnInit {
 
     this.editcouponsService.getImages(sendImagesRequest).subscribe(
 
-      (res) => { this.loading=false;  console.log(res); if(res.length==0) { this.msg.create('info','No More Images Found.'); this.noMoreImages = true;} else  this.images=this.images.concat(res); this.loading = false; },
+      (res) => { this.loading=false;  console.log(res); if(res.length==0) { // this.msg.create('info','No More Images Found.'); 
+        this.noMoreImages = true;} else  this.images=this.images.concat(res); this.loading = false; },
       (err) => {  this.loading=false; console.log(err); this.images = []; this.loading = false; }
     );
   }
