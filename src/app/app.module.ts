@@ -56,6 +56,8 @@ import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { NzConfig, NZ_CONFIG } from 'ng-zorro-antd/core/config';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
+import { NgQrScannerModule } from 'angular2-qrscanner';
+
 registerLocaleData(en);
 
 const LANG_PROVIDERS = [{ provide: NZ_I18N, useValue: en_US }];
@@ -103,6 +105,7 @@ const antDesignIcons = AllIcons as {
     NzIconModule,
     NzSelectModule,
     BrowserAnimationsModule,
+    NgQrScannerModule,
     NzMessageModule,
     NzAffixModule,
     NzResultModule,
