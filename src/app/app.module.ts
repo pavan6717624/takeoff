@@ -41,7 +41,7 @@ import { ReplaceNewLinePipe } from './component/replace-new-line.pipe';
 import { VendoraccountComponent } from './component/vendoraccount/vendoraccount.component';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzTableModule } from 'ng-zorro-antd/table';
-
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzImageModule } from 'ng-zorro-antd/image';
@@ -93,6 +93,7 @@ const antDesignIcons = AllIcons as {
   ],
   imports: [
     BrowserModule,
+    ZXingScannerModule,
     AppRoutingModule,
     HttpClientModule,
     NzButtonModule,

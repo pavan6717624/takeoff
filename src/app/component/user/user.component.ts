@@ -14,6 +14,18 @@ export class UserComponent implements OnInit {
  userid: string='';
  loginStatus: LoginStatus = new LoginStatus();
 
+
+ qrResultString: string = '';
+
+ clearResult(): void {
+   this.qrResultString = '';
+ }
+
+ onCodeResult(resultString: string) {
+   this.qrResultString = resultString;
+ }
+
+
   constructor(private router: Router) { 
 
     const navigation = this.router.getCurrentNavigation();
@@ -37,7 +49,7 @@ export class UserComponent implements OnInit {
 
     else if(this.loginStatus.userType === 'Designer')
     {
-     this.router.navigate(['designer'],  { state: {loginStatus: this.loginStatus }}); 
+     //this.router.navigate(['designer'],  { state: {loginStatus: this.loginStatus }}); 
     }
 
     else if(this.loginStatus.userType === 'Admin')
