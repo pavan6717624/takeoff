@@ -38,6 +38,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { AccountComponent } from './account/account.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -79,7 +81,8 @@ import { NzAffixModule } from 'ng-zorro-antd/affix';
 //     NzBackTopModule,
     NzToolTipModule ,
     NzEmptyModule,
-    NzAffixModule
+    NzAffixModule,
+    ZXingScannerModule
   ]
 })
 export class UserModule { }

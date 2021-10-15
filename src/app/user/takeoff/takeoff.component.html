@@ -199,14 +199,14 @@
                                         title="Download Coupon" style='padding-top:10px;padding-bottom:10px'>
 
                                         <ng-container *ngIf="item.download">
-                                       <!-- <i nz-icon nzType="loading" nzTheme="outline" style="font-size: 20px;"
+                                            <!-- <i nz-icon nzType="loading" nzTheme="outline" style="font-size: 20px;"
                                             class='icon'></i> -->
 
-                                            <i nz-icon [nzType]="'sync'" [nzSpin]="true"  style="font-size: 20px;"></i>
+                                            <i nz-icon [nzType]="'sync'" [nzSpin]="true" style="font-size: 20px;"></i>
                                         </ng-container>
                                         <ng-container *ngIf="!item.download">
-                                        <i style='font-size:20px; color:gray' class="icon fas fa-download"
-                                            (click)='downloadCoupon(item)'></i>
+                                            <i style='font-size:20px; color:gray' class="icon fas fa-download"
+                                                (click)='downloadCoupon(item)'></i>
                                         </ng-container>
 
                                     </div>
@@ -341,6 +341,9 @@
 
 </div>
 
+
+
+
 <nz-modal [nzVisible]="redeemVisible" [nzContent]="redeemContent" [nzFooter]="null" (nzOnCancel)="redeemCancel()">
     <ng-template #redeemContent>
         <h3>
@@ -373,82 +376,159 @@
             </ng-container>
             <ng-container *ngIf='redeemChecked'>
 
+                <nz-tabset nzTabPosition="top" nzSize="large">
+                    <nz-tab nzTitle="Manual">
+
+
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <nz-table nzSize="small" nzShowPagination=false [nzData]="['']">
+                                <thead>
+                                    <tr>
+                                        <th style='text-align:center'>Coupon ID</th>
+                                        <th style='text-align:center'>Coupon Type</th>
+                                        <th style='text-align:center'>User ID</th>
+                                        <th style='text-align:center'>Vendor ID</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style='text-align:center'>
+                                        <td>{{redeemCoupon.id}}</td>
+                                        <td>{{redeemCoupon.couponType}}</td>
+                                        <td>{{loginStatus.userId}}</td>
+                                        <td>{{redeemCoupon.vendorId}}</td>
+                                    </tr>
+                                </tbody>
+                            </nz-table>
+                        </div>
+                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+                        <div nz-col nzSpan="24" style='text-align: center'><b><i><u>Passcode To Vendor</u></i></b></div>
+
+                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[0]" />&nbsp;&nbsp;
+                            <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[1]" />&nbsp;&nbsp;
+                            <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[2]" />&nbsp;&nbsp;
+                            <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[3]" />&nbsp;&nbsp;
+                        </div>
+                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            For WhatsApp Redemption Format for Vendor is
+                            <b><i>{{redeemCoupon.id}},{{loginStatus.userId}},{{code[0]+code[1]+code[2]+code[3]}}</i></b>
+                        </div>
+
+                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
 
 
-                <div nz-col nzSpan="24" style='text-align: center'>
-                    <nz-table nzSize="small" nzShowPagination=false [nzData]="['']">
-                        <thead>
-                            <tr>
-                                <th style='text-align:center'>Coupon ID</th>
-                                <th style='text-align:center'>Coupon Type</th>
-                                <th style='text-align:center'>User ID</th>
-                                <th style='text-align:center'>Vendor ID</th>
+                        <div nz-col nzSpan="24" style='text-align: center'><b><i><u>Passcode From Vendor</u></i></b>
+                        </div>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style='text-align:center'>
-                                <td>{{redeemCoupon.id}}</td>
-                                <td>{{redeemCoupon.couponType}}</td>
-                                <td>{{loginStatus.userId}}</td>
-                                <td>{{redeemCoupon.vendorId}}</td>
-                            </tr>
-                        </tbody>
-                    </nz-table>
-                </div>
-                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
-                <div nz-col nzSpan="24" style='text-align: center'><b><i><u>Passcode To Vendor</u></i></b></div>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[4]" />&nbsp;&nbsp;
+                            <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[5]" />&nbsp;&nbsp;
+                            <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[6]" />&nbsp;&nbsp;
+                            <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[7]" />&nbsp;&nbsp;
+                        </div>
+                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
-                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
-                <div nz-col nzSpan="24" style='text-align: center'>
-                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
-                        [(ngModel)]="code[0]" />&nbsp;&nbsp;
-                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
-                        [(ngModel)]="code[1]" />&nbsp;&nbsp;
-                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
-                        [(ngModel)]="code[2]" />&nbsp;&nbsp;
-                    <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
-                        [(ngModel)]="code[3]" />&nbsp;&nbsp;
-                </div>
-                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                        <div nz-col nzSpan="24" style='text-align: center'>
 
-                <div nz-col nzSpan="24" style='text-align: center'>
-                    For WhatsApp Redemption Format for Vendor is
-                    <b><i>{{redeemCoupon.id}},{{loginStatus.userId}},{{code[0]+code[1]+code[2]+code[3]}}</i></b>
-                </div>
+                            Passcode Valid till <b><i><u>{{redemption.validTill}}</u></i></b>
 
-                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                        </div>
+                        <ng-container *ngIf='!redeemLoading'>
+                            <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                            <div nz-col nzSpan="24" style='text-align: center'>
+                                <button nz-button nzType="default">HELP</button> &nbsp;
+                                <button nz-button nzType="primary" nzShape="round" nzDanger
+                                    (click)='customerRedeem()'>REDEEM</button> &nbsp;
+                                <button nz-button nzType="primary" nzShape="round"
+                                    (click)="redeemCancel()">CANCEL</button>
+                            </div>
+                        </ng-container>
+                    </nz-tab>
+                    <nz-tab nzTitle="Scan">
+                        <ng-container *ngIf="redeemCoupon.vendorId == 10013">
+                            <ng-container *ngIf='qrResultString.trim().length == 0'>
+                                <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+
+                                <section class="results" *ngIf="qrResultString">
+                                    <div>
+                                        <small>Result</small>
+                                        <strong>{{ qrResultString }}</strong>
+                                    </div>
+                                    <button (click)="clearResult()"> Result </button>
+                                </section>
+                            </ng-container>
+
+                            <ng-container *ngIf='qrResultString.trim().length > 0'>
+
+                                <ng-container *ngIf='!redeemLoading'>
 
 
 
-                <div nz-col nzSpan="24" style='text-align: center'><b><i><u>Passcode From Vendor</u></i></b></div>
+                                    <div nz-col nzSpan="24" style='text-align: center'><b><i><u>Passcode From
+                                                    Vendor</u></i></b>
+                                    </div>
 
-                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                                    <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
-                <div nz-col nzSpan="24" style='text-align: center'>
-                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[4]" />&nbsp;&nbsp;
-                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[5]" />&nbsp;&nbsp;
-                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[6]" />&nbsp;&nbsp;
-                    <input nz-input style='width: 40px;' type="text" maxlength="1" [(ngModel)]="code[7]" />&nbsp;&nbsp;
-                </div>
-                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                                    <div nz-col nzSpan="24" style='text-align: center'>
+                                        <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                            [(ngModel)]="code[4]" />&nbsp;&nbsp;
+                                        <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                            [(ngModel)]="code[5]" />&nbsp;&nbsp;
+                                        <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                            [(ngModel)]="code[6]" />&nbsp;&nbsp;
+                                        <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                            [(ngModel)]="code[7]" />&nbsp;&nbsp;
+                                    </div>
+                                    <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
-                <div nz-col nzSpan="24" style='text-align: center'>
+                                    <div nz-col nzSpan="24" style='text-align: center'>
 
-                    Passcode Valid till <b><i><u>{{redemption.validTill}}</u></i></b>
+                                        Passcode Valid till <b><i><u>{{redemption.validTill}}</u></i></b>
 
-                </div>
-                <ng-container *ngIf='!redeemLoading'>
-                    <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
-                    <div nz-col nzSpan="24" style='text-align: center'>
-                        <button nz-button nzType="default">HELP</button> &nbsp;
-                        <button nz-button nzType="primary" nzShape="round" nzDanger
-                            (click)='customerRedeem()'>REDEEM</button> &nbsp;
-                        <button nz-button nzType="primary" nzShape="round" (click)="redeemCancel()">CANCEL</button>
-                    </div>
-                </ng-container>
+                                    </div>
+                                    <ng-container *ngIf='!redeemLoading'>
+                                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                                        <div nz-col nzSpan="24" style='text-align: center'>
+                                            <button nz-button nzType="default">HELP</button> &nbsp;
+                                            <button nz-button nzType="primary" nzShape="round" nzDanger
+                                                (click)='customerRedeem()'>REDEEM</button> &nbsp;
+                                            <button nz-button nzType="primary" nzShape="round"
+                                                (click)="redeemCancel()">CANCEL</button>
+                                        </div>
+                                    </ng-container>
+
+
+                                </ng-container>
+
+
+                            </ng-container>
+
+
+                        </ng-container>
+                        <ng-container *ngIf='redeemCoupon.vendorId!=10013'>
+
+                            Only for 1947 Saloon, Will be Available to other Outlets Shortly.
+
+                        </ng-container>
+                    </nz-tab>
+                </nz-tabset>
             </ng-container>
         </div>
     </ng-template>

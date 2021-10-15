@@ -98,7 +98,19 @@ export class TakeoffComponent implements OnInit {
   }
 
 
+  qrResultString: string = '';
 
+  clearResult(): void {
+    this.qrResultString = '';
+  }
+ 
+  onCodeResult(resultString: string) {
+    this.qrResultString = resultString;
+
+    this.sendRedemptionCode();
+
+
+  }
 
   @ViewChild('scrollMe') private eleRef: ElementRef = new ElementRef('');
 
@@ -266,7 +278,7 @@ downloadCoupon(item:Coupon)
   }
 
   customerRedeem() {
-    this.redeemLoading = true;
+  
     let passcode: string = this.code[4] + this.code[5] + this.code[6] + this.code[7];
     if (!passcode || passcode.trim().length != 4) {
       this.msg.create("error", "please provide all four valid characters of passcode");
@@ -279,11 +291,11 @@ downloadCoupon(item:Coupon)
 
     this.redemption.passcode = passcode;
 
-
+    this.redeemLoading = true;
 
     this.userService.customerRedemption(this.redemption).subscribe(
 
-      (res: any) => { this.redeemCancel(); if (res) { this.redeemLoading = false; this.redeemCoupon.redemptionCount += 1; this.msg.create('success', 'Your Redemption is Successful.'); } else { this.msg.create('error', 'Sorry! Your Redemption Failed.'); } },
+      (res: any) => { this.redeemCancel(); this.redeemLoading = false;  if (res) { this.redeemCoupon.redemptionCount += 1; this.msg.create('success', 'Your Redemption is Successful.'); } else { this.msg.create('error', 'Sorry! Your Redemption Failed.'); } },
       (err) => { this.redeemLoading = false; console.log(err); this.msg.create('error', 'Error Occured while accepting Passcode...'); this.redemption = new RedemptionDTO(); this.redeemLoading = false; }
     );
   }
@@ -298,6 +310,7 @@ downloadCoupon(item:Coupon)
   viewRedemption(item: Coupon) {
     this.redeemCoupon = item;
     this.redeemVisible = true;
+    this.qrResultString='';
 
     this.code[4] = '';
     this.code[5] = '';
@@ -708,6 +721,33 @@ downloadCoupon(item:Coupon)
     this.filterVisible = false;
     this.businessLogic();
   }
+
+
+  sendRedemptionCode()
+  {
+    if(this.qrResultString === '')
+    return;
+    this.redeemLoading = true;
+    var formData = new FormData();
+    formData.set("couponId",this.redeemCoupon.id+"");
+    formData.set("scanCode",this.qrResultString);
+    
+    this.userService.sendRedemptionCode(formData).subscribe(
+      (res : any) => {
+        this.redeemLoading = false;
+        this.redemption = res;
+        console.log(res);
+
+        
+
+      },
+      (err) => { this.redeemLoading=false; console.log(err); }
+    );
+    
+
+
+  }
+
 }
 
 
