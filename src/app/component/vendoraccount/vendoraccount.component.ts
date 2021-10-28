@@ -17,6 +17,7 @@ export class VendorDetails {
   city: string = "";
   logo: string = "";
   isDisabled: Boolean=false;
+  loginId: number = 0;
 }
 
 @Component({
