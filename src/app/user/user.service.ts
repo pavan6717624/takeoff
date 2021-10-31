@@ -6,6 +6,9 @@ import { RedemptionDTO, SendCouponsRequest } from './takeoff/takeoff.component';
   providedIn: 'root'
 })
 export class UserService {
+  getCoupon(formData: FormData) {
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getCoupon',formData);
+  }
   sendRedemptionCode(formData: FormData) {
     return this.http.post('https://takeoff-pavan.herokuapp.com/sendRedemptionCode',formData);
   }
@@ -27,6 +30,10 @@ export class UserService {
 
   async disLikeCoupon(formData: FormData) {
     return await this.http.post('https://takeoff-pavan.herokuapp.com/disLikeCoupon',formData).toPromise();;
+  }
+
+  getRedemptionHistory() {
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getRedemptionHistory');
   }
 
   

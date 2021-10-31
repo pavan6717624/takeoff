@@ -6,6 +6,7 @@ import { TakeoffComponent } from './takeoff/takeoff.component';
 import { AccountComponent } from './account/account.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { DisplayComponent } from '../component/display/display.component';
+import { RedemHistoryComponent } from './redem-history/redem-history.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     { path: 'display', component: DisplayComponent },
     { path: 'account', component: AccountComponent},
     { path: 'wallet', component: WalletComponent},
+    { path: 'redemHistory', component: RedemHistoryComponent},
 
     
      

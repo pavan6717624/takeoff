@@ -39,6 +39,7 @@ import { AccountComponent } from './account/account.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { RedemHistoryComponent } from './redem-history/redem-history.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     TakeoffComponent,
     ReplaceNewLinePipe,
     AccountComponent,
-    WalletComponent
+    WalletComponent,
+    RedemHistoryComponent
   ],
   imports: [
     CommonModule,
