@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import { UserService } from 'src/app/user/user.service';
 import { Coupon } from 'src/app/component/editcoupons/editcoupons.component';
 import { LoginService } from 'src/app/component/login/login.service';
 import { Router } from '@angular/router';
