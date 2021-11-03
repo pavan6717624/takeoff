@@ -4,6 +4,14 @@
   <div nz-col nzSpan="24">
 
     <nz-tabset [nzTabPosition]="talign" nzSize="large">
+      
+      <nz-tab nzTitle="Redemption">
+
+        <app-redemption></app-redemption>
+
+      </nz-tab>
+
+
       <nz-tab nzTitle="Upload">
         <app-uploadcoupons (onUpload)="uploadFun($event)" [loginStatus]="loginStatus"></app-uploadcoupons>
 
@@ -24,11 +32,7 @@
       </nz-tab>
 
 
-      <nz-tab nzTitle="Redemption">
-
-        <app-redemption></app-redemption>
-
-      </nz-tab>
+    
 
       <nz-tab nzTitle="Redemption History">
 

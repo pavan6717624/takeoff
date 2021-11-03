@@ -36,7 +36,7 @@ const routes: Routes = [
       { path: 'display', component: DisplayComponent },
       { path: 'verifyKYC', component: UpdateKycComponent },
       { path: 'gst', component: GstComponent },
-      { path: 'tcs', component: TdsComponent },
+      { path: 'tds', component: TdsComponent },
      
 
     ],
