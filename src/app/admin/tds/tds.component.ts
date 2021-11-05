@@ -11,6 +11,7 @@ export class Tds
   contact: string ='';
   city: string ='';
   tds: number = 0;
+  pan: string = '';
 }
 
 @Component({
