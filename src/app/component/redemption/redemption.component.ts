@@ -57,7 +57,8 @@ export class RedemptionComponent implements OnInit {
           this.notification.create(
             'success',
             'Redemption Acceptance',
-            'You have Acceptance of Redemption is Successful.',
+            'Your Acceptance of Redemption is Successful.',
+            { nzDuration: 0 }
             );
         }
         else
@@ -66,6 +67,7 @@ export class RedemptionComponent implements OnInit {
             'error',
             'Redemption Acceptance',
             'Your Acceptance of Redemption got Failed.',
+            { nzDuration: 0 }
             );
         }
       },

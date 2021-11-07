@@ -433,15 +433,18 @@
                         <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
                         <div nz-col nzSpan="24" style='text-align: center'>
-                            <input nz-input style='width: 40px;' type="text" maxlength="1"
+                            <!-- <input nz-input style='width: 40px;' type="text" maxlength="1"
                                 [(ngModel)]="code[4]" />&nbsp;&nbsp;
                             <input nz-input style='width: 40px;' type="text" maxlength="1"
                                 [(ngModel)]="code[5]" />&nbsp;&nbsp;
                             <input nz-input style='width: 40px;' type="text" maxlength="1"
                                 [(ngModel)]="code[6]" />&nbsp;&nbsp;
                             <input nz-input style='width: 40px;' type="text" maxlength="1"
-                                [(ngModel)]="code[7]" />&nbsp;&nbsp;
-                        </div>
+                                [(ngModel)]="code[7]" />&nbsp;&nbsp; -->
+
+                                <input nz-input style='width: 80px;' type="text" maxlength="4"
+                                            [(ngModel)]="passcode" />
+                            </div>
                         <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
                         <div nz-col nzSpan="24" style='text-align: center'>
@@ -461,24 +464,21 @@
                         </ng-container>
                     </nz-tab>
                     <nz-tab nzTitle="Scan">
+                        <ng-template nz-tab>
                         <ng-container *ngIf="redeemCoupon.vendorId == 10013">
                             <ng-container *ngIf='qrResultString.trim().length == 0'>
-                                <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+                                <zxing-scanner (scanSuccess)="onCodeResult($event)" [enable]='qrResultString.trim().length == 0'></zxing-scanner>
 
-                                <section class="results" *ngIf="qrResultString">
-                                    <div>
-                                        <small>Result</small>
-                                        <strong>{{ qrResultString }}</strong>
-                                    </div>
-                                    <button (click)="clearResult()"> Result </button>
-                                </section>
+                               
                             </ng-container>
 
                             <ng-container *ngIf='qrResultString.trim().length > 0'>
 
                                 <ng-container *ngIf='!redeemLoading'>
 
+                                    
 
+                                    <ng-container *ngIf='redemption && redemption.status'>
 
                                     <div nz-col nzSpan="24" style='text-align: center'><b><i><u>Passcode From
                                                     Vendor</u></i></b>
@@ -487,14 +487,18 @@
                                     <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
                                     <div nz-col nzSpan="24" style='text-align: center'>
-                                        <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                        <!-- <input nz-input style='width: 40px;' type="text" maxlength="1"
                                             [(ngModel)]="code[4]" />&nbsp;&nbsp;
                                         <input nz-input style='width: 40px;' type="text" maxlength="1"
                                             [(ngModel)]="code[5]" />&nbsp;&nbsp;
                                         <input nz-input style='width: 40px;' type="text" maxlength="1"
                                             [(ngModel)]="code[6]" />&nbsp;&nbsp;
                                         <input nz-input style='width: 40px;' type="text" maxlength="1"
-                                            [(ngModel)]="code[7]" />&nbsp;&nbsp;
+                                            [(ngModel)]="code[7]" />&nbsp;&nbsp; -->
+
+                                            <input nz-input style='width: 80px;' type="text" maxlength="4"
+                                            [(ngModel)]="passcode" />
+
                                     </div>
                                     <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
@@ -514,7 +518,12 @@
                                         </div>
                                     </ng-container>
 
+                                    </ng-container>
+                                    <ng-container *ngIf='redemption && !redemption.status'>
 
+                                        <h3> {{ redemption.message }}</h3>
+
+                                    </ng-container>
                                 </ng-container>
 
 
@@ -527,6 +536,7 @@
                             Only for 1947 Saloon, Will be Available to other Outlets Shortly.
 
                         </ng-container>
+                        </ng-template>
                     </nz-tab>
                 </nz-tabset>
             </ng-container>

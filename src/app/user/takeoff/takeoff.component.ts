@@ -5,11 +5,11 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { UserService } from '../user.service';
 import { LoginStatus } from 'src/app/component/login/login.component';
 import { LoginService } from 'src/app/component/login/login.service';
-import { SubCategoryDTO } from 'src/app/admin/category/category.component';
 import { Category, SubCategory } from 'src/app/component/uploadcoupons/uploadcoupons.component';
 import { UploadcouponsService } from 'src/app/component/uploadcoupons/uploadcoupons.service';
 import { AdminService } from 'src/app/admin/admin.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 export class RedemptionDTO {
 
@@ -63,7 +63,7 @@ export class TakeoffComponent implements OnInit {
 
   filterVisible = false;
 
-  constructor(private modal: NzModalService,private uploadcouponsService: UploadcouponsService, private adminServie: AdminService, private loginService: LoginService, private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) {
+  constructor(private notification: NzNotificationService,private modal: NzModalService,private uploadcouponsService: UploadcouponsService, private adminServie: AdminService, private loginService: LoginService, private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) {
 
     const navigation = this.router.getCurrentNavigation();
     this.loginStatus = (navigation?.extras?.state?.loginStatus);
@@ -107,12 +107,15 @@ export class TakeoffComponent implements OnInit {
   onCodeResult(resultString: string) {
     this.qrResultString = resultString;
 
+ 
     this.sendRedemptionCode();
 
 
   }
 
   @ViewChild('scrollMe') private eleRef: ElementRef = new ElementRef('');
+
+  @ViewChild('scanner') private eleRefScan: ElementRef = new ElementRef('');
 
   coupons: Coupon[] = [];
 
@@ -132,6 +135,7 @@ export class TakeoffComponent implements OnInit {
   redeemLoading: Boolean = false;
 
   redemption: RedemptionDTO = new RedemptionDTO();
+  
 
 
   code: string[] = [];
@@ -277,9 +281,13 @@ downloadCoupon(item:Coupon)
     );
   }
 
+  passcode: string  = '';
   customerRedeem() {
   
-    let passcode: string = this.code[4] + this.code[5] + this.code[6] + this.code[7];
+    //let passcode: string = this.code[4] + this.code[5] + this.code[6] + this.code[7];
+    
+    let passcode=this.passcode;
+
     if (!passcode || passcode.trim().length != 4) {
       this.msg.create("error", "please provide all four valid characters of passcode");
       return;
@@ -295,7 +303,7 @@ downloadCoupon(item:Coupon)
 
     this.userService.customerRedemption(this.redemption).subscribe(
 
-      (res: any) => { this.redeemCancel(); this.redeemLoading = false;  if (res) { this.redeemCoupon.redemptionCount += 1; this.msg.create('success', 'Your Redemption is Successful.'); } else { this.msg.create('error', 'Sorry! Your Redemption Failed.'); } },
+      (res: any) => { this.redeemCancel(); this.redeemLoading = false;  if (res.status) { this.redeemCoupon.redemptionCount += 1; this.notification.create('success', 'Redemption Success','Your Redemption is Successful\nfor Coupon Id: '+res.couponId, { nzDuration: 0 }); } else { this.notification.create('error', 'Redemption Failed','Sorry! Your Redemption Failed\nfor Coupon Id: '+res.couponId, { nzDuration: 0 }); } },
       (err) => { this.redeemLoading = false; console.log(err); this.msg.create('error', 'Error Occured while accepting Passcode...'); this.redemption = new RedemptionDTO(); this.redeemLoading = false; }
     );
   }
@@ -303,6 +311,7 @@ downloadCoupon(item:Coupon)
   redeemCancel() {
     this.redeemVisible = false;
     this.redeemChecked = false;
+    this.qrResultString = "";
 
 
   }
@@ -316,6 +325,7 @@ downloadCoupon(item:Coupon)
     this.code[5] = '';
     this.code[6] = '';
     this.code[7] = '';
+    this.passcode='';
 
   }
 
