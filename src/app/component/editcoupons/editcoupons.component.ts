@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { VendoraccountService } from '../vendoraccount/vendoraccount.service';
 import { UploadcouponsService } from '../uploadcoupons/uploadcoupons.service';
 import { DatePipe, Time } from '@angular/common';
+import { SubscriptionService } from '../subscription/subscription.service';
 
 export class SendImagesRequest {
   vendorId: number = 0;
@@ -111,6 +112,8 @@ export class Coupon {
 
    download: Boolean = false;
 
+   exclusiveFor: string = '';
+
 }
 
 export class CouponType {
@@ -178,7 +181,7 @@ export class EditcouponsComponent implements OnInit {
 
   }
 
-  constructor(private uploadcouponsService: UploadcouponsService, private vendoraccountService: VendoraccountService, private router: Router, private msg: NzMessageService, private vendorService: VendorService, private editcouponsService: EditcouponsService) { }
+  constructor(private subscriptionService: SubscriptionService,private uploadcouponsService: UploadcouponsService, private vendoraccountService: VendoraccountService, private router: Router, private msg: NzMessageService, private vendorService: VendorService, private editcouponsService: EditcouponsService) { }
 
   loading: boolean = false;
   loading1: boolean = false;
@@ -232,6 +235,7 @@ export class EditcouponsComponent implements OnInit {
   couponType: string = '';
   keywords: string = '';
 
+  exclusiveFor: string = '';
 
   description: string = '';
 
@@ -505,7 +509,7 @@ export class EditcouponsComponent implements OnInit {
     coupon.keywords = this.keywords;
     coupon.description = this.description;
 
-
+    coupon.exclusiveFor = this.exclusiveFor;
     // alert(from+" "+this.fromDate+" "+this.fromTime);
     // alert(to+" "+this.toDate+" "+this.toTime);
 
@@ -522,6 +526,7 @@ export class EditcouponsComponent implements OnInit {
       this.msg.create('error', 'Publish To Date not Found.');
       return;
     }
+
 
     coupon.imageId = this.imageId;
     if (this.loginStatus && this.loginStatus.userId)
@@ -591,7 +596,7 @@ export class EditcouponsComponent implements OnInit {
     this.fromDate = new Date();
     this.toDate = new Date();
 
-
+    this.exclusiveFor = '';
 
     this.fromTime = (this.fromDate.getHours()<10?'0'+this.fromDate.getHours: this.fromDate.getHours()) + ":" + (this.fromDate.getMinutes() < 10 ? '0'+this.fromDate.getMinutes() : this.fromDate.getMinutes());
 

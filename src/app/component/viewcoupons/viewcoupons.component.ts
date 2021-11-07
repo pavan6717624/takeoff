@@ -5,6 +5,8 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { ViewcouponsService } from './viewcoupons.service';
 import { Coupon, CouponType } from '../editcoupons/editcoupons.component';
 import { DatePipe } from '@angular/common';
+import { SubscriptionService } from '../subscription/subscription.service';
+import { async } from 'rxjs';
 
 @Component({
   selector: 'app-viewcoupons',
@@ -117,7 +119,7 @@ export class ViewcouponsComponent implements OnInit {
   }
 
 time: string[] = [];
-  constructor(private router: Router, private msg: NzMessageService, private viewcouponsService: ViewcouponsService) { }
+  constructor(private subscriptionService: SubscriptionService, private router: Router, private msg: NzMessageService, private viewcouponsService: ViewcouponsService) { }
 
   ngOnInit(): void {
     if (this.loginStatus) {
@@ -219,6 +221,7 @@ time: string[] = [];
       this.router.navigate(['login']);
       return;
     }
+
     this.loading = true;
     
     this.viewcouponsService.editCoupon(this.coupon).subscribe(
