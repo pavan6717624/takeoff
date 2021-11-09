@@ -1,57 +1,110 @@
 <div style='padding-left:2%;padding-right:2%; padding-top:2%; padding-bottom:0px;width:100%;height:90%;'>
-<div nz-row>
+  <div nz-row>
 
-  <div nz-col nzSpan="24">
+    <div nz-col nzSpan="24">
 
-    <nz-tabset [nzTabPosition]="talign" nzSize="large">
-      
-      <nz-tab nzTitle="Redemption">
+      <nz-tabset [nzTabPosition]="talign" nzSize="large">
 
-        <app-redemption></app-redemption>
+        <nz-tab nzTitle="Redemption">
 
-      </nz-tab>
+          <app-redemption></app-redemption>
 
-
-      <nz-tab nzTitle="Upload">
-        <app-uploadcoupons (onUpload)="uploadFun($event)" [loginStatus]="loginStatus"></app-uploadcoupons>
+        </nz-tab>
 
 
-
-      </nz-tab>
-      <nz-tab nzTitle="Images">
-
-        <app-editcoupons [logo]='logo' (onCouponTypes)='onCouponTypes($event)' (onUploadCoupon)='uploadCoupon($event)' [addImage]='addImage' [loginStatus]="loginStatus"></app-editcoupons>
-
-      </nz-tab>
-
-<ng-container *ngIf="userType==='Vendor'">
-      <nz-tab nzTitle="Coupons">
-
-        <app-viewcoupons [logo]='logo' [couponTypes]='couponTypes' [addCoupon]='addCoupon' [loginStatus]="loginStatus"></app-viewcoupons>
-
-      </nz-tab>
+        <nz-tab nzTitle="Upload">
+          <app-uploadcoupons (onUpload)="uploadFun($event)" [loginStatus]="loginStatus"></app-uploadcoupons>
 
 
-    
 
-      <nz-tab nzTitle="Redemption History">
+        </nz-tab>
+        <nz-tab nzTitle="Images">
 
-        <app-redem-history></app-redem-history>
+          <app-editcoupons [logo]='logo' (onCouponTypes)='onCouponTypes($event)' (onUploadCoupon)='uploadCoupon($event)'
+            [addImage]='addImage' [loginStatus]="loginStatus"></app-editcoupons>
 
-      </nz-tab>
+        </nz-tab>
+
+        <ng-container *ngIf="userType==='Vendor'">
+          <nz-tab nzTitle="Coupons">
+
+            <app-viewcoupons [logo]='logo' [couponTypes]='couponTypes' [addCoupon]='addCoupon'
+              [loginStatus]="loginStatus"></app-viewcoupons>
+
+          </nz-tab>
 
 
-    </ng-container>
 
-      <nz-tab nzTitle="Account">
 
-        <app-vendoraccount (onLogoChange)='onLogoChange($event)' [loginStatus]="loginStatus"></app-vendoraccount>
+          <nz-tab nzTitle="Redemption History">
 
-      </nz-tab>
+            <app-redem-history></app-redem-history>
 
-    
+          </nz-tab>
 
-    </nz-tabset>
+
+
+
+
+          <nz-tab nzTitle="Scan Code">
+
+            <ng-template nz-tab>
+
+
+              <h3>Capture Your Scan Code</h3>
+
+              <div nz-row style='text-align:center;'>
+
+                <div nz-col nzSpan='8' style='text-align:center;'> &nbsp; </div>
+                <div nz-col nzSpan='8' style='text-align:center;'>
+                  <ng-container *ngIf='qrResultString.trim().length == 0 && !this.status'>
+
+
+                    <zxing-scanner style='width:300px;height:300px' (scanSuccess)="onCodeResult($event)"
+                      [enable]='qrResultString.trim().length == 0'></zxing-scanner>
+                  </ng-container>
+
+                  <ng-container *ngIf='qrResultString.trim().length > 0 && !this.status'>
+
+                    <h5> <i class="fas fa-check-circle"></i> &nbsp;Scan Code Captured. <br /> <br />
+                      <button nz-button nzType="primary" nzShape="round" (click)='updateScanCode()'
+                        [nzLoading]='loading'>UPDATE</button> &nbsp;
+                      <button nz-button nzType="primary" nzShape="round" (click)="qrResultString = ''"
+                        [nzLoading]='loading'>CANCEL</button> </h5>
+
+                  </ng-container>
+
+                  <ng-container *ngIf='status'>
+
+                    <h5> <i [class]="status.status?'fas fa-check-circle':'fas fa-times-circle'"></i> &nbsp; {{status.message}} <br /> <br /> </h5>
+
+                      <button nz-button nzType="primary" nzShape="round"
+                        (click)='recapture()'>New Capture</button> &nbsp;
+
+
+                  </ng-container>
+
+                </div>
+                <div nz-col nzSpan='8' style='text-align:center;'> &nbsp; </div>
+
+              </div>
+
+
+            </ng-template>
+          </nz-tab>
+
+        </ng-container>
+
+
+        <nz-tab nzTitle="Account">
+
+          <app-vendoraccount (onLogoChange)='onLogoChange($event)' [loginStatus]="loginStatus"></app-vendoraccount>
+
+        </nz-tab>
+
+
+
+      </nz-tabset>
+    </div>
   </div>
-</div>
 </div>

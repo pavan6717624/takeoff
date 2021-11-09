@@ -8,6 +8,7 @@ import { NzTabPosition } from 'ng-zorro-antd/tabs';
 import { Router } from '@angular/router';
 import { LoginStatus } from '../login/login.component';
 import { Coupon, CouponType } from '../editcoupons/editcoupons.component';
+import { RedemptionDTO } from 'src/app/user/takeoff/takeoff.component';
 
 @Component({
   selector: 'app-vendor',
@@ -17,8 +18,10 @@ import { Coupon, CouponType } from '../editcoupons/editcoupons.component';
 export class VendorComponent implements OnInit {
 
   deviceInfo: any ;
+  qrResultString: string = '';
   talign:  NzTabPosition = 'left';
   loginStatus: LoginStatus = new LoginStatus();
+  
   uploaded: Boolean = false;
   logo: string = "";
   addImage: string = "";
@@ -26,6 +29,12 @@ export class VendorComponent implements OnInit {
   userType: string ='';
   addCoupon: Coupon = new Coupon();
   couponTypes: CouponType[]=[];
+  loading=false;
+
+  status : any = null;
+  onCodeResult(resultString: string) {
+    this.qrResultString = resultString;
+  }
   constructor(private router: Router, private msg: NzMessageService, private vendorService:VendorService,  private deviceService: DeviceDetectorService) 
   {
     const navigation = this.router.getCurrentNavigation();
@@ -70,6 +79,33 @@ export class VendorComponent implements OnInit {
   onCouponTypes(couponTypes:CouponType[])
   {
   this.couponTypes=couponTypes;
+  }
+
+  updateScanCode()
+  {
+    var formData = new FormData();
+    formData.set("scanCode",this.qrResultString);
+    this.loading=true;
+    this.vendorService.updateScanCode(formData).subscribe(
+      (res : any) => {
+        this.status=res;
+       
+        this.qrResultString = '';
+        console.log(res);
+       
+        this.loading=false;
+        
+
+      },
+      (err) => { this.loading=false;this.msg.create('error','Scan Code Failed. Try Again.')
+        console.log(err); }
+    );
+  }
+
+  recapture()
+  {
+    this.status=null;
+    this.qrResultString = '';
   }
  
 }

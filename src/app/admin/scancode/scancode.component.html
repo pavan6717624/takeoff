@@ -1,0 +1,28 @@
+<nz-table #basicTable nzShowPagination=false nzBordered [nzData]="scanCodes" [nzLoading]="loading">
+    <thead>
+        <tr>
+
+            <th> # </th>
+            <th> Vendor Id </th>
+            <th> Captured </th>
+            
+            
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let data of scanCodes; index as i">
+
+        <td>{{ (i+1) }}</td>
+        <td>{{ data.vendorId }}</td>
+        <td>{{ data.code }}</td>
+        
+       
+
+    </tr>
+
+
+</tbody>
+</nz-table>

@@ -465,7 +465,7 @@
                     </nz-tab>
                     <nz-tab nzTitle="Scan">
                         <ng-template nz-tab>
-                        <ng-container *ngIf="redeemCoupon.vendorId == 10013">
+                        <!-- <ng-container *ngIf="redeemCoupon.vendorId == 10013"> -->
                             <ng-container *ngIf='qrResultString.trim().length == 0'>
                                 <zxing-scanner (scanSuccess)="onCodeResult($event)" [enable]='qrResultString.trim().length == 0'></zxing-scanner>
 
@@ -530,12 +530,12 @@
                             </ng-container>
 
 
-                        </ng-container>
-                        <ng-container *ngIf='redeemCoupon.vendorId!=10013'>
+                        <!-- </ng-container> -->
+                        <!-- <ng-container *ngIf='redeemCoupon.vendorId!=10013'>
 
                             Only for 1947 Saloon, Will be Available to other Outlets Shortly.
 
-                        </ng-container>
+                        </ng-container> -->
                         </ng-template>
                     </nz-tab>
                 </nz-tabset>
