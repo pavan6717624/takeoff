@@ -5,19 +5,43 @@
 
       <nz-tabset [nzTabPosition]="talign" nzSize="large">
 
+
+        
+        <ng-container *ngIf="userType==='Vendor'">
+
         <nz-tab nzTitle="Redemption">
 
-          <app-redemption></app-redemption>
+          <nz-tabset nzTabPosition="top" nzSize="large">
 
+            <nz-tab nzTitle="Redemption">
+
+              <app-redemption></app-redemption>
+
+            </nz-tab>
+
+            <nz-tab nzTitle="Redemption History">
+
+              <app-redem-history></app-redem-history>
+  
+            </nz-tab>
+
+          </nz-tabset>
         </nz-tab>
+        </ng-container>
 
 
         <nz-tab nzTitle="Upload">
+
+          <nz-tabset nzTabPosition="top" nzSize="large">
+
+            <nz-tab nzTitle="Upload">
+          
           <app-uploadcoupons (onUpload)="uploadFun($event)" [loginStatus]="loginStatus"></app-uploadcoupons>
 
 
 
         </nz-tab>
+
         <nz-tab nzTitle="Images">
 
           <app-editcoupons [logo]='logo' (onCouponTypes)='onCouponTypes($event)' (onUploadCoupon)='uploadCoupon($event)'
@@ -35,71 +59,83 @@
 
 
 
-
-          <nz-tab nzTitle="Redemption History">
-
-            <app-redem-history></app-redem-history>
-
-          </nz-tab>
+          
+        </ng-container>
 
 
+        </nz-tabset>
+        </nz-tab>
+        
+
+        
+        <ng-container *ngIf="userType==='Vendor'">
+        <nz-tab nzTitle="Scan Code">
+
+          <ng-template nz-tab>
 
 
+            <h3>Capture Your Scan Code</h3>
 
-          <nz-tab nzTitle="Scan Code">
+            <div nz-row style='text-align:center;'>
 
-            <ng-template nz-tab>
-
-
-              <h3>Capture Your Scan Code</h3>
-
-              <div nz-row style='text-align:center;'>
-
-                <div nz-col nzSpan='8' style='text-align:center;'> &nbsp; </div>
-                <div nz-col nzSpan='8' style='text-align:center;'>
-                  <ng-container *ngIf='qrResultString.trim().length == 0 && !this.status'>
+              <!-- <div nz-col nzSpan='2' style='text-align:center;'> &nbsp; </div> -->
+              <div container nz-col nzSpan='24' style='text-align:center;'>
+                <ng-container *ngIf='qrResultString.trim().length == 0 && !this.status'>
 
 
-                    <zxing-scanner style='width:300px;height:300px' (scanSuccess)="onCodeResult($event)"
-                      [enable]='qrResultString.trim().length == 0'></zxing-scanner>
-                  </ng-container>
+                  <zxing-scanner style='width:300px;height:300px' (scanSuccess)="onCodeResult($event)"
+                    [enable]='qrResultString.trim().length == 0'></zxing-scanner>
+                </ng-container>
 
-                  <ng-container *ngIf='qrResultString.trim().length > 0 && !this.status'>
+                <ng-container *ngIf='qrResultString.trim().length > 0 && !this.status'>
 
-                    <h5> <i class="fas fa-check-circle"></i> &nbsp;Scan Code Captured. <br /> <br />
-                      <button nz-button nzType="primary" nzShape="round" (click)='updateScanCode()'
-                        [nzLoading]='loading'>UPDATE</button> &nbsp;
-                      <button nz-button nzType="primary" nzShape="round" (click)="qrResultString = ''"
-                        [nzLoading]='loading'>CANCEL</button> </h5>
+                  <h5> <i class="fas fa-check-circle"></i> &nbsp;Scan Code Captured. <br /> <br />
+                    <button nz-button nzType="primary" nzShape="round" (click)='updateScanCode()'
+                      [nzLoading]='loading'>UPDATE</button> &nbsp;
+                    <button nz-button nzType="primary" nzShape="round" (click)="qrResultString = ''"
+                      [nzLoading]='loading'>CANCEL</button> </h5>
 
-                  </ng-container>
+                </ng-container>
 
-                  <ng-container *ngIf='status'>
+                <ng-container *ngIf='status'>
 
-                    <h5> <i [class]="status.status?'fas fa-check-circle':'fas fa-times-circle'"></i> &nbsp; {{status.message}} <br /> <br /> </h5>
+                  <h5> <i [class]="status.status?'fas fa-check-circle':'fas fa-times-circle'"></i> &nbsp;
+                    {{status.message}} <br /> <br /> </h5>
 
-                      <button nz-button nzType="primary" nzShape="round"
-                        (click)='recapture()'>New Capture</button> &nbsp;
+                  <button nz-button nzType="primary" nzShape="round" (click)='recapture()'>New Capture</button> &nbsp;
 
 
-                  </ng-container>
-
-                </div>
-                <div nz-col nzSpan='8' style='text-align:center;'> &nbsp; </div>
+                </ng-container>
 
               </div>
+              <!-- <div nz-col nzSpan='2' style='text-align:center;'> &nbsp; </div> -->
+
+            </div>
 
 
-            </ng-template>
-          </nz-tab>
+          </ng-template>
+        </nz-tab>
 
         </ng-container>
 
 
+
+
+
+       
+
+
         <nz-tab nzTitle="Account">
+
+          <nz-tabset nzTabPosition="top" nzSize="large">
+
+            <nz-tab nzTitle="Account">
 
           <app-vendoraccount (onLogoChange)='onLogoChange($event)' [loginStatus]="loginStatus"></app-vendoraccount>
 
+        </nz-tab>
+
+        </nz-tabset>
         </nz-tab>
 
 
