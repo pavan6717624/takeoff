@@ -6,6 +6,9 @@ import { SubscriptionDTO } from './subscription.component';
   providedIn: 'root'
 })
 export class SubscriptionService {
+  addContacts(formData: FormData) {
+    return this.http.post( 'https://takeoff-pavan.herokuapp.com/addContacts',formData );
+  }
 
   constructor(private http: HttpClient) { }
 

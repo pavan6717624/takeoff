@@ -2,23 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
-export class ScanCodes
+export class Contacts
 {
-  code: string ='';
-  vendorId: string = '';
-  vendorName: string = '';
+ contact: string = '';
+  name: string = '';
 }
 
 @Component({
-  selector: 'app-scancode',
-  templateUrl: './scancode.component.html',
-  styleUrls: ['./scancode.component.css']
+  selector: 'app-contacts',
+  templateUrl: './contacts.component.html',
+  styleUrls: ['./contacts.component.css']
 })
-export class ScancodeComponent implements OnInit {
+export class ContactsComponent implements OnInit {
 
   constructor(private adminService: AdminService, private msg: NzMessageService) { }
 
-  scanCodes: ScanCodes[] = [];
+  contacts: Contacts[] = [];
 
   loading = false;
 
@@ -31,8 +30,8 @@ getScanCodes()
    
 
     this.loading=true;
-    this.adminService.getScanCodes().subscribe(
-      (res : any) => { console.log(res);   this.scanCodes = res; this.loading=false;},
+    this.adminService.getContacts().subscribe(
+      (res : any) => { console.log(res);   this.contacts = res; this.loading=false;},
       (err) => { console.log(err); this.msg.create('error','Error Occured at Server. Please try again.'); this.loading=false;}
      
        );

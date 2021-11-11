@@ -1,8 +1,4 @@
-<br /><br /><br /><br />
-
-
-
-
+<br/>
 <h3> ---- Subscribe to TAKEOFF</h3>
 
 <ng-container *ngIf="paying">
@@ -18,7 +14,7 @@
         <i nz-icon [nzType]="refererStatus" nzTheme="outline"></i> &nbsp;&nbsp;
         </ng-container>
         <input type="text" nz-input [(ngModel)]="refererid" placeholder="Enter Referer ID" style='width:80%' (ngModelChange) = "checkRefererId()"/>
-       
+        <br /><button nz-button nzType="text" (click)='noReferralCode()'><u>No Referral Code?</u></button>
     </div>
 
 </div>
@@ -207,3 +203,66 @@
     </ng-container>
         <br /><br />
         
+        <nz-modal [nzVisible]="noReferralCodeVisible " [nzContent]="modalContent" [nzFooter]="null"
+        (nzOnCancel)="noReferralCodeVisible = false;">
+        <ng-template #modalContent>
+    
+            <ng-container *ngIf='confirmContacts'>
+                <div nz-row>
+                    <div nz-col nzSpan="24" style='text-align: center'>
+                <h2>Thank You for Sharing</h2> 
+                <h3>Sharing is Caring</h3>
+                Use Referral Code : <h5>{{ refererid }}</h5> 
+                </div>
+                </div>
+            </ng-container>
+
+    
+            <ng-container *ngIf='!confirmContacts'>
+            
+            <h3> We are happy to Assist you..</h3>
+            <h5>Provide Any of Your Friends Details <br/> and Get Referral Code </h5>
+    
+            <nz-table #basicTable nzShowPagination=false nzBordered [nzData]="['']">
+                <thead>
+                    <tr>
+    
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Contact Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+    
+                    <tr>
+                        <td>1</td>
+                        <td> <input type="text" nz-input placeholder="Enter Friend1" style='width:100%' [(ngModel)]='name1' /></td>
+                        <td><input type="text" nz-input placeholder="Enter Contact1" style='width:100%' [(ngModel)]='contact1' maxlength="10"/></td>
+                    </tr>
+    
+                    <tr>
+                        <td>2</td>
+                        <td> <input type="text" nz-input placeholder="Enter Friend2" style='width:100%' [(ngModel)]='name2' /></td>
+                        <td><input type="text" nz-input placeholder="Enter Contact2" style='width:100%' [(ngModel)]='contact2'  maxlength="10" /></td>
+                    </tr>
+    
+                    <tr>
+                        <td>3</td>
+                        <td><input type="text" nz-input placeholder="Enter Friend3" style='width:100%' [(ngModel)]='name3' /></td>
+                        <td><input type="text" nz-input placeholder="Enter Contact3" style='width:100%' [(ngModel)]='contact3'  maxlength="10" /></td>
+                    </tr>
+                </tbody>
+            </nz-table>
+    
+            <div nz-row> &nbsp; </div>
+            <div nz-row>
+                <div nz-col nzSpan="12" style='text-align: left'>
+            <button nz-button  nzShape="round" (click)='noReferralCodeVisible=false;'  [nzLoading]='loading' > Cancel</button></div>
+            <div nz-col nzSpan="12" style='text-align: right'>
+            <button nz-button nzType="primary" nzShape="round" [nzLoading]='loading' nzDanger (click)='getContacts()'> Get Referral Code </button>
+            </div>
+            </div>
+            </ng-container>
+        </ng-template>
+    </nz-modal>
+    

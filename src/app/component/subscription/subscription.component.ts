@@ -43,6 +43,8 @@ export class SubscriptionComponent implements OnInit {
  gender: string="";
  city: string="";
  paying: boolean=false;
+ noReferralCodeVisible=false;
+ loading = false;
 
 
   ngOnInit(): void {
@@ -50,6 +52,102 @@ export class SubscriptionComponent implements OnInit {
     this.getOrderId();
   }
 
+  noReferralCode()
+  {
+    this.noReferralCodeVisible=true;
+  }
+
+  confirmContacts = false;
+
+  getContacts()
+  {
+    
+    var provided=false;
+
+    var name1='',name2='',name3='',contact1='',contact2='',contact3='';
+    
+    
+    if(this.name1.trim().length > 0 || this.contact1.trim().length > 0)
+    {
+    if(this.name1.trim().length > 0 && this.contact1.trim().length == 10)
+    {
+    name1 = this.name1;
+    contact1 = this.contact1;
+    provided=true;
+    }
+    else
+    {
+      this.msg.create('info', 'Please Provide Valid Information of Your First Friend.');
+      return;
+    }
+    }
+
+    if(this.name2.trim().length > 0 || this.contact2.trim().length > 0)
+    {
+    if(this.name2.trim().length > 0 && this.contact2.trim().length == 10)
+    {
+      name2 = this.name2;
+      contact2 = this.contact2;
+      provided=true;  
+    }
+    else
+    {
+      this.msg.create('info', 'Please Provide Valid Information of Your Second Friend.');
+      return;
+    }
+    }
+
+
+    if(this.name3.trim().length > 0 || this.contact3.trim().length > 0)
+    {
+    if(this.name3.trim().length > 0 && this.contact3.trim().length == 10)
+    {
+      name3 = this.name3;
+    contact3 = this.contact3;
+    provided=true;  
+    }
+    else
+    {
+      this.msg.create('info', 'Please Provide Valid Information of Your Third Friend.');
+      return;
+    }
+    }
+
+    if(!provided)
+    {
+      this.msg.create('info', 'Please Share Atleast One Contact Details of your Friends.');
+      return;
+    }
+    
+    var formData = new FormData();
+
+    formData.set("name1",name1);
+    formData.set("name2",name2);
+    formData.set("name3",name3);
+    formData.set("contact1",contact1);
+    formData.set("contact2",contact2);
+    formData.set("contact3",contact3);
+
+    
+this.loading=true;
+    this.subscriptionService.addContacts(formData).subscribe(
+      (res: any) => { this.refererid = res.refererid; this.checkRefererId(); this.confirmContacts=true; console.log(this.refererid); this.loading=false;},
+      (err) => {this.msg.create("error","Error Occured at Sever...");  this.loading=false;}
+     
+       );
+
+
+
+  }
+
+  name1: string = '';
+  contact1: string = '';
+
+  name2: string = '';
+  contact2: string = '';
+  
+  name3: string = '';
+  contact3: string = '';
 
   async checkRefererId()
   {

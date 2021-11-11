@@ -29,6 +29,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { GstComponent } from './gst/gst.component';
 import { TdsComponent } from './tds/tds.component';
 import { ScancodeComponent } from './scancode/scancode.component';
+import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ScancodeComponent } from './scancode/scancode.component';
     UpdateKycComponent,
     GstComponent,
     TdsComponent,
-    ScancodeComponent
+    ScancodeComponent,
+    ContactsComponent
   ],
   imports: [
     CommonModule,

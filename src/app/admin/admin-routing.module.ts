@@ -15,6 +15,7 @@ import { UpdateKycComponent } from './update-kyc/update-kyc.component';
 import { GstComponent } from './gst/gst.component';
 import { TdsComponent } from './tds/tds.component';
 import { ScancodeComponent } from './scancode/scancode.component';
+import { ContactsComponent } from './contacts/contacts.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
       { path: 'gst', component: GstComponent },
       { path: 'tds', component: TdsComponent },
       { path: 'scancodes', component: ScancodeComponent },
+      { path: 'contacts', component: ContactsComponent },
      
 
     ],

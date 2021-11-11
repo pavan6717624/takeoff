@@ -8,6 +8,9 @@ import { GstDetails } from './gst/gst.component';
   providedIn: 'root'
 })
 export class AdminService {
+  getContacts() {
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getContacts');
+  }
   getScanCodes() {
     return this.http.get('https://takeoff-pavan.herokuapp.com/getScanCodes');
   }
