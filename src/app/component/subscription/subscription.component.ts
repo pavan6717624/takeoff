@@ -48,9 +48,34 @@ export class SubscriptionComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.recordHits();
+
     localStorage.removeItem("token");
     this.getOrderId();
+    
   }
+
+  recordHits()
+  {
+   var formData =  new FormData();
+   var referer = document.referrer;
+
+   if(referer == null || referer === null || referer == undefined || referer === undefined)
+   referer = "";
+
+   formData.set("referer",referer);
+
+    this.subscriptionService.recordHits(formData).subscribe(
+
+      (res) => { console.log(res);},
+      (err) => { console.log(err);}
+
+    );
+
+
+  }
+
 
   noReferralCode()
   {
