@@ -6,6 +6,10 @@ import { SubscriptionDTO } from './subscription.component';
   providedIn: 'root'
 })
 export class SubscriptionService {
+    recordHits(formData: FormData) {
+    return this.http.post( 'https://takeoff-pavan.herokuapp.com/recordHits',formData );
+  }
+  
   addContacts(formData: FormData) {
     return this.http.post( 'https://takeoff-pavan.herokuapp.com/addContacts',formData );
   }
