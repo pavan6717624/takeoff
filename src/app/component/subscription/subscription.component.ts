@@ -77,7 +77,6 @@ export class SubscriptionComponent implements OnInit {
 
   }
 
-
   noReferralCode()
   {
     this.noReferralCodeVisible=true;
@@ -156,8 +155,9 @@ export class SubscriptionComponent implements OnInit {
 
     
 this.loading=true;
-   (res: any) => { this.refererid = res.refererid; this.checkRefererId(); this.confirmContacts=true; this.noReferralCodeVisible=false; this.notification.create('Success','Congratulations...','Referral Code:'+this.refererid+' activated.<br/> Continue with your Subscription.<br/>Enjoy the Experience of TakeOff.'); console.log(this.refererid); this.loading=false;},
-    (err) => {this.msg.create("error","Error Occured at Sever...");  this.loading=false;}
+    this.subscriptionService.addContacts(formData).subscribe(
+      (res: any) => { this.refererid = res.refererid; this.checkRefererId(); this.confirmContacts=true; this.noReferralCodeVisible=false; this.notification.create('Success','Congratulations...','Referral Code:'+this.refererid+' activated.<br/> Continue with your Subscription.<br/>Enjoy the Experience of TakeOff.'); console.log(this.refererid); this.loading=false;},
+      (err) => {this.msg.create("error","Error Occured at Sever...");  this.loading=false;}
      
        );
 
