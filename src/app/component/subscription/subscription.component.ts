@@ -4,6 +4,7 @@ import { SubscriptionService } from './subscription.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Router } from '@angular/router';
 import * as shajs from 'sha.js';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 declare var Razorpay: any;
 
 export class SubscriptionDTO
@@ -155,9 +156,8 @@ export class SubscriptionComponent implements OnInit {
 
     
 this.loading=true;
-    this.subscriptionService.addContacts(formData).subscribe(
-      (res: any) => { this.refererid = res.refererid; this.checkRefererId(); this.confirmContacts=true; console.log(this.refererid); this.loading=false;},
-      (err) => {this.msg.create("error","Error Occured at Sever...");  this.loading=false;}
+   (res: any) => { this.refererid = res.refererid; this.checkRefererId(); this.confirmContacts=true; this.noReferralCodeVisible=false; this.notification.create('Success','Congratulations...','Referral Code:'+this.refererid+' activated.<br/> Continue with your Subscription.<br/>Enjoy the Experience of TakeOff.'); console.log(this.refererid); this.loading=false;},
+    (err) => {this.msg.create("error","Error Occured at Sever...");  this.loading=false;}
      
        );
 
