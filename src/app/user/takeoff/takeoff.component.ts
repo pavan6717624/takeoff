@@ -441,8 +441,7 @@ downloadCoupon(item:Coupon)
   }
 
   businessLogic() {
-    var heading = window.document.getElementById("displayHeader");
-     
+    var heading = window.document.getElementById("displayHeader")
     if (this.couponDisplayId == 0) {
       if (heading)
         heading.innerHTML = "TakeOff Recommendations";
@@ -481,7 +480,6 @@ downloadCoupon(item:Coupon)
         heading.innerHTML = "Discount Coupons";
       this.getDiscountCoupons();
     }
-   
   }
 
   getTakeOffRecommendations() {
