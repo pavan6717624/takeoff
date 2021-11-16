@@ -1,0 +1,29 @@
+<nz-table #basicTable nzShowPagination=false nzBordered [nzData]="hitsReceived" [nzLoading]="loading">
+    <thead>
+        <tr>
+
+            <th> # </th>
+            <th> Time On</th>
+            <th> Hit From</th>
+          
+            
+            
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let data of hitsReceived; index as i">
+
+        <td>{{ (i+1) }}</td>
+        <td>{{ data.timeOn }}</td>
+        <td>{{ data.referer }}</td>
+        
+       
+
+    </tr>
+
+
+</tbody>
+</nz-table>

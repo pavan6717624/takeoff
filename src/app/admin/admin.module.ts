@@ -30,6 +30,7 @@ import { GstComponent } from './gst/gst.component';
 import { TdsComponent } from './tds/tds.component';
 import { ScancodeComponent } from './scancode/scancode.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { HitsRecordedComponent } from './hits-recorded/hits-recorded.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ContactsComponent } from './contacts/contacts.component';
     GstComponent,
     TdsComponent,
     ScancodeComponent,
-    ContactsComponent
+    ContactsComponent,
+    HitsRecordedComponent
   ],
   imports: [
     CommonModule,
