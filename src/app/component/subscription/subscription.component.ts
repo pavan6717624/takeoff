@@ -30,7 +30,7 @@ export class SubscriptionDTO
 })
 export class SubscriptionComponent implements OnInit {
 
-  constructor(private router: Router, private subscriptionService: SubscriptionService,private msg: NzMessageService) { }
+  constructor(private router: Router, private subscriptionService: SubscriptionService,private msg: NzMessageService,private notification: NzNotificationService) { }
  orderid: string = "";
  refererIdStatus: boolean = false;
  refererStatus : string = "";
