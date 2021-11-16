@@ -156,7 +156,7 @@ export class SubscriptionComponent implements OnInit {
     
 this.loading=true;
     this.subscriptionService.addContacts(formData).subscribe(
-      (res: any) => { this.refererid = res.refererid; this.checkRefererId(); this.confirmContacts=true; this.noReferralCodeVisible=false; this.notification.create('Success','Congratulations...','Referral Code:'+this.refererid+' activated.<br/> Continue with your Subscription.<br/>Enjoy the Experience of TakeOff.'); console.log(this.refererid); this.loading=false;},
+      (res: any) => { this.refererid = res.refererid; this.checkRefererId(); this.confirmContacts=true; this.noReferralCodeVisible=false; this.notification.create('success','Congratulations...','Referral Code:'+this.refererid+' activated.<br/> Continue with your Subscription.<br/>Enjoy the Experience of TakeOff.',{ nzDuration: 0 }); console.log(this.refererid); this.loading=false;},
       (err) => {this.msg.create("error","Error Occured at Sever...");  this.loading=false;}
      
        );
