@@ -222,7 +222,7 @@
             <ng-container *ngIf='!confirmContacts'>
             
             <h3> We are happy to Assist you..</h3>
-            <h5>Provide Any of Your Friends Details <br/> and Get Referral Code </h5>
+           <h5>Provide Yours and Your Friends Details <br /> and Get Referral Code </h5>
     
             <nz-table #basicTable nzShowPagination=false nzBordered [nzData]="['']">
                 <thead>
@@ -237,8 +237,10 @@
     
                     <tr>
                         <td>1</td>
-                        <td> <input type="text" nz-input placeholder="Enter Friend1" style='width:100%' [(ngModel)]='name1' /></td>
-                        <td><input type="text" nz-input placeholder="Enter Contact1" style='width:100%' [(ngModel)]='contact1' maxlength="10"/></td>
+                      <td> <input type="text" nz-input placeholder="Your Name" style='width:100%'
+                                [(ngModel)]='name1' /></td>
+                        <td><input type="text" nz-input placeholder="Your Contact" style='width:100%'
+                                [(ngModel)]='contact1' maxlength="10" /></td>
                     </tr>
     
                     <tr>
