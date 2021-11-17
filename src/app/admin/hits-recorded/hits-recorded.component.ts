@@ -4,7 +4,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 
 export class HitsReceived
 {
-  timeOn: string = '';
+  hitOn: string = '';
   referer: string = '';
 }
 
