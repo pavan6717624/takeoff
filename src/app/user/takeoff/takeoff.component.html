@@ -26,7 +26,7 @@
 
 
 
-        <ng-container *ngIf='coupons.length == 0'>
+        <ng-container *ngIf='coupons.length == 0 && !loading'>
             <nz-empty nzNotFoundContent='No Coupons Found'></nz-empty>
         </ng-container>
 
