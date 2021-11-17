@@ -730,6 +730,7 @@ downloadCoupon(item:Coupon)
 
   filterCoupons() {
     this.coupons = [];
+    this.noMoreImages=false;
     this.bottom=false;
     this.filterVisible = false;
     this.businessLogic();
