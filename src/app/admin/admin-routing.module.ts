@@ -16,6 +16,7 @@ import { GstComponent } from './gst/gst.component';
 import { TdsComponent } from './tds/tds.component';
 import { ScancodeComponent } from './scancode/scancode.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { HitsRecordedComponent } from './hits-recorded/hits-recorded.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,7 @@ const routes: Routes = [
       { path: 'tds', component: TdsComponent },
       { path: 'scancodes', component: ScancodeComponent },
       { path: 'contacts', component: ContactsComponent },
+      { path: 'hits', component: HitsRecordedComponent },
      
 
     ],
