@@ -57,6 +57,7 @@ import { NzConfig, NZ_CONFIG } from 'ng-zorro-antd/core/config';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { RedemHistoryComponent } from './component/redem-history/redem-history.component';
+import { ReferenceComponent } from './component/reference/reference.component';
 registerLocaleData(en);
 
 const LANG_PROVIDERS = [{ provide: NZ_I18N, useValue: en_US }];
@@ -92,6 +93,7 @@ const antDesignIcons = AllIcons as {
      ViewcouponsComponent,
      RedemptionComponent,
      RedemHistoryComponent,
+     ReferenceComponent,
   ],
   imports: [
     BrowserModule,

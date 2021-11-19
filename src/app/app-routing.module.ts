@@ -8,13 +8,14 @@ import { LoginComponent } from './component/login/login.component';
 import { DisplayComponent } from './component/display/display.component';
 import { UserComponent } from './component/user/user.component';
 import { VendorComponent } from './component/vendor/vendor.component';
+import { ReferenceComponent } from './component/reference/reference.component';
 
 const routes: Routes = [
   { path:'',component: MainComponent},
   { path: 'subscribe', component: SubscriptionComponent },
   { path: 'paymentStatus', component: PaymentStatusComponent },
   { path: 'login', component: LoginComponent },
-
+  { path: 'reference',component: ReferenceComponent},
   { path: 'user', component: UserComponent },
   { path: 'vendor', component: VendorComponent },
   { path: 'designer', component: VendorComponent },
