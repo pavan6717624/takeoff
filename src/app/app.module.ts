@@ -58,6 +58,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { RedemHistoryComponent } from './component/redem-history/redem-history.component';
 import { ReferenceComponent } from './component/reference/reference.component';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 registerLocaleData(en);
 
 const LANG_PROVIDERS = [{ provide: NZ_I18N, useValue: en_US }];
@@ -97,6 +98,7 @@ const antDesignIcons = AllIcons as {
   ],
   imports: [
     BrowserModule,
+    NzCarouselModule,
     ZXingScannerModule,
     AppRoutingModule,
     HttpClientModule,

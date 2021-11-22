@@ -1,5 +1,3 @@
-
-  
 <!-- <app-hero></app-hero>
     <app-about></app-about>
     <app-whyus></app-whyus>
@@ -9,308 +7,397 @@
     <app-contact></app-contact>
     <app-footer></app-footer> -->
 
+
+
+<section id="hero" class="d-flex align-items-center">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up"
+        data-aos-delay="200">
+        <h1>Introducing Digital Coupons in your city</h1>
+        <h2>A Platform creating connectivity between potential customers & local outlets offering benefits using DIGITAL
+          COUPONS</h2>
+        <div class="d-flex justify-content-center justify-content-lg-start">
+          <a href="#pricing" class="btn-get-started scrollto">Subscribe</a>
+          <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> Watch Video <i class="icofont-play-alt-2"></i></a> -->
+        </div>
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+        <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+      </div>
+    </div>
+  </div>
+
+</section><!-- End Hero -->
+
+
+<section id="coupon" class="coupon">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Our Coupons</h2>
+    </div>
+
+    <div class="row content" style='text-align:center'>
+      
+
+
+
+        <ng-container *ngIf='loading'>
+          <nz-carousel nzAutoPlay>
+          <div nz-carousel-content>
+            <h3><br />
+              <nz-spin nzTip="Loading our Coupons..... " nzSimple [nzSize]="'large'"></nz-spin>
+            </h3>
+          </div>
+          </nz-carousel>
+        </ng-container>
+        <ng-container *ngIf='!loading'>
+          <nz-carousel nzAutoPlay>
+          <div nz-carousel-content *ngFor="let item of coupon" style='text-align:center;height:100px'>
+            <div class="container"
+            style='border-radius: 0px ;width:300px;height:300px;overflow:hidden;padding:0px'>
+            <img style=' width:300px;height:300px ;' id="image" [src]="item.image">
+            
+
+
+
+
+            <div
+                style='text-align:center;padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
+
+
+                <h5 [style.text-decoration]='item.header_decoration'
+                    [style.font-weight]='item.header_bold'
+                    [style.font-style]='item.header_style'
+                    style='margin-bottom:0.5em;word-wrap: break-word;color: #f1f1f1;'>
+                    {{item.header}}</h5>
+
+                <p [style.text-decoration]='item.body_decoration'
+                    [style.font-weight]='item.body_bold' [style.font-style]='item.body_style'
+                    style='margin-bottom:0.5em;word-wrap: break-word;'>
+                    {{item.body}}</p>
+
+                
+
+
+
+            </div>
+
+        </div>
+            
+          </div>
+          </nz-carousel>
+        </ng-container>
+
+
+
     
 
-  <section id="hero" class="d-flex align-items-center">
+    </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-          <h1>Introducing Digital Coupons in your city</h1>
-          <h2>A Platform creating connectivity between potential customers & local outlets offering benefits using DIGITAL COUPONS</h2>
-          <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="#pricing" class="btn-get-started scrollto">Subscribe</a>
-            <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> Watch Video <i class="icofont-play-alt-2"></i></a> -->
-          </div>
-        </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-          <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
-        </div>
+
+
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>About Us</h2>
+    </div>
+
+    <div class="row content">
+      <div class="col-lg-6">
+        <p>
+          TakeOff aims to keep all online buyers smiling with its insightful,
+          research-oriented user-centric content.
+          We hope that our coupons will be as essential as your daily shopping needs be.
+          TakeOff is one of the trustworthy city partners.
+          Our specific user interface and user experience are known for upholding consistent
+          quality levels and We're here to give customers the most genuine and up-to-date
+          discounts and offers at any given point in time.
+
+        </p>
+
+        <ul>
+          <li><i class="ri-check-double-line"></i> Our coupons are simple to understand</li>
+          <li><i class="ri-check-double-line"></i> Our coupons can be redeemed at your favourite stores around you</li>
+        </ul>
+
+      </div>
+      <div class="col-lg-6 pt-4 pt-lg-0">
+        <p>
+          Today, TakeOff may be your city's new player but we sure are excited to bring
+          the best to the city! We help to increase people 's engagement,
+          develop brand awareness and extend community outreach through our network partners.
+          Our network contains a wide variety of strategic partners and is intended to work
+          together in order to give end consumers the best offers.
+          TakeOff aims to partner with companies which delivers the best for our customers.
+          Let us aim to celebrate each offer and save on everything!
+        </p>
+
+        <ul>
+          <li><i class="ri-check-double-line"></i> Our coupons are up-to-date and brings you exciting offers</li>
+          <li><i class="ri-check-double-line"></i> Users gets a notification when the new coupon gets listed on our site
+          </li>
+        </ul>
+
+
       </div>
     </div>
 
-  </section><!-- End Hero -->
+  </div>
+</section><!-- End About Us Section -->
 
-  <section id="about" class="about">
-    <div class="container" data-aos="fade-up">
+<section id="why-us" class="why-us section-bg">
+  <div class="container-fluid" data-aos="fade-up">
+    <div class="row">
 
-      <div class="section-title">
-        <h2>About Us</h2>
-      </div>
+      <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
 
-      <div class="row content">
-        <div class="col-lg-6">
+        <div class="content">
+          <h3>Why Choose TakeOff?</h3>
           <p>
-            TakeOff aims to keep all online buyers smiling with its insightful,
-             research-oriented user-centric content. 
-             We hope that our coupons will be as essential as your daily shopping needs be. 
-             TakeOff is one of the trustworthy city partners. 
-             Our specific user interface and user experience are known for upholding consistent
-              quality levels and We're here to give customers the most genuine and up-to-date
-               discounts and offers at any given point in time.
-               
+            Our platform provides seamless Digital Coupon allocation and issuing, and use-as-you-move. And the platform
+            has got a plethora of options for every kind of user who wants to relish their favorites. We believe in a
+            win-win situation where business can save on costs while leveraging on digital technology to engage with
+            hundreds of customers of theirs relishing products.
           </p>
-         
-            <ul>
-                <li><i class="ri-check-double-line"></i> Our coupons are simple to understand</li>
-                <li><i class="ri-check-double-line"></i> Our coupons can be redeemed at your favourite stores around you</li>
-                </ul>
-          
-        </div>
-        <div class="col-lg-6 pt-4 pt-lg-0">
-          <p>
-            Today, TakeOff may be your city's new player but we sure are excited to bring
-                 the best to the city! We help to increase people 's engagement,
-                  develop brand awareness and extend community outreach through our network partners.
-                   Our network contains a wide variety of strategic partners and is intended to work
-                    together in order to give end consumers the best offers.
-                     TakeOff aims to partner with companies which delivers the best for our customers.
-                      Let us aim to celebrate each offer and save on everything!
-          </p>
-        
-            <ul>
-                <li><i class="ri-check-double-line"></i> Our coupons are up-to-date and brings you exciting offers</li>
-                 <li><i class="ri-check-double-line"></i> Users gets a notification when the new coupon gets listed on our site</li>
-               </ul>
-               
-         
-        </div>
-      </div>
-    
-    </div>
-  </section><!-- End About Us Section -->
-
-  <section id="why-us" class="why-us section-bg">
-    <div class="container-fluid" data-aos="fade-up">
-      <div class="row">
-
-        <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
-
-          <div class="content">
-            <h3>Why Choose TakeOff?</h3>
-            <p>
-                Our platform provides seamless Digital Coupon allocation and issuing, and use-as-you-move. And the platform has got a plethora of options for every kind of user who wants to relish their favorites. We believe in a win-win situation where business can save on costs while leveraging on digital technology to engage with hundreds of customers of theirs relishing products.
-            </p>
-          </div>
-
-          <div class="accordion-list">
-            <ul>
-              <li>
-                <a style='color: #fd6951;' data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span> Our Local Partners <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
-                  <p>
-                    We are working with various partners across the city who are willing to bring exciting offers to the consumers in the city.
-Our local partners will provide you with new features based on the market trends and create special coupons that can be up and running in just matter of minutes.
-                  </p>
-                </div>
-              </li>
-
-              <li>
-                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Coupon Savings <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                <div id="accordion-list-2" class="collapse show" data-bs-parent=".accordion-list">
-                  <p>
-                    TakeOff ensures you always save big and enjoy your favourite products. Optimize your savings by browsing our exclusive coupons by our partner stores. <br><br> TakeOff keeps you updated on our offers and promotions.
-                  </p>
-                </div>
-              </li>
-
-              <li>
-                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> What coupons are available? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                <div id="accordion-list-3" class="collapse show" data-bs-parent=".accordion-list">
-                  <p>
-                    TakeOff has a bank of coupons for almost all categories related to your favourite goods and shopping, be that fashion, accessories, products, hotels, pizzas, restaurants and much more. We have coupons from wide range of local partners from around the city. We have all here at TakeOff for you. Wish you an exciting time ahead!
-                  </p>
-                </div>
-              </li>
-
-            </ul>
-          </div>
-
         </div>
 
-        <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/why-us.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
+        <div class="accordion-list">
+          <ul>
+            <li>
+              <a style='color: #fd6951;' data-bs-toggle="collapse" class="collapse"
+                data-bs-target="#accordion-list-1"><span>01</span> Our Local Partners <i
+                  class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+                <p>
+                  We are working with various partners across the city who are willing to bring exciting offers to the
+                  consumers in the city.
+                  Our local partners will provide you with new features based on the market trends and create special
+                  coupons that can be up and running in just matter of minutes.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Coupon
+                Savings <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="accordion-list-2" class="collapse show" data-bs-parent=".accordion-list">
+                <p>
+                  TakeOff ensures you always save big and enjoy your favourite products. Optimize your savings by
+                  browsing our exclusive coupons by our partner stores. <br><br> TakeOff keeps you updated on our offers
+                  and promotions.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> What
+                coupons are available? <i class="bx bx-chevron-down icon-show"></i><i
+                  class="bx bx-chevron-up icon-close"></i></a>
+              <div id="accordion-list-3" class="collapse show" data-bs-parent=".accordion-list">
+                <p>
+                  TakeOff has a bank of coupons for almost all categories related to your favourite goods and shopping,
+                  be that fashion, accessories, products, hotels, pizzas, restaurants and much more. We have coupons
+                  from wide range of local partners from around the city. We have all here at TakeOff for you. Wish you
+                  an exciting time ahead!
+                </p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
       </div>
 
+      <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img"
+        style='background-image: url("assets/img/why-us.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
     </div>
-  </section><!-- End Why Us Section -->
+
+  </div>
+</section><!-- End Why Us Section -->
 
 
-  <section id="services" class="services section-bg">
-    <div class="container" data-aos="fade-up">
+<section id="services" class="services section-bg">
+  <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-            <h2>Products</h2>
-            <p>We provide 6 different types of coupons to get best offers from local outlets.</p>
+    <div class="section-title">
+      <h2>Products</h2>
+      <p>We provide 6 different types of coupons to get best offers from local outlets.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bxl-dribbble"></i></div>
+          <h4><a href="">Complimentary Coupons</a></h4>
+          <p>Get free complimentaries from local outlets</p>
         </div>
+      </div>
 
-        <div class="row">
-            <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-                <div class="icon-box">
-                    <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                    <h4><a href="">Complimentary Coupons</a></h4>
-                    <p>Get free complimentaries from local outlets</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4" data-aos="zoom-in"
-                data-aos-delay="200">
-                <div class="icon-box">
-                    <div class="icon"><i class="bx bx-file"></i></div>
-                    <h4><a href="">Discount Coupons</a></h4>
-                    <p>Get discounts like 30%, 50% off (or) offers like buy 2 get 2</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4" data-aos="zoom-in"
-                data-aos-delay="300">
-                <div class="icon-box">
-                    <div class="icon"><i class="bx bx-tachometer"></i></div>
-                    <h4><a href="">Redeemable Coupons</a></h4>
-                    <p>Get coupons with lower price compared to actual price</p>
-                </div>
-            </div>
-
-
-
-
-
+      <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-file"></i></div>
+          <h4><a href="">Discount Coupons</a></h4>
+          <p>Get discounts like 30%, 50% off (or) offers like buy 2 get 2</p>
         </div>
+      </div>
 
-        <div class="row">
-            &nbsp;
+      <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-tachometer"></i></div>
+          <h4><a href="">Redeemable Coupons</a></h4>
+          <p>Get coupons with lower price compared to actual price</p>
         </div>
-        <div class="row">
+      </div>
 
-            <div class="col-lg-4"  data-aos="zoom-in"
-                data-aos-delay="400">
-                <div class="icon-box">
-                    <div class="icon"><i class="bx bx-layer"></i></div>
-                    <h4><a href="">Free Coupons</a></h4>
-                    <p>Get free coupons from outlets</p>
-                </div>
-            </div>
 
-            <div  class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-                <div class="icon-box">
-                    <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                    <h4><a href="">Daily Deals</a></h4>
-                    <p>Get amazing deals every day from outlets</p>
-                </div>
-            </div>
 
-            <div class="col-lg-4" nzSpan="8" data-aos="zoom-in"
-                data-aos-delay="200">
-                <div class="icon-box">
-                    <div class="icon"><i class="bx bx-file"></i></div>
-                    <h4><a href="">Limited Coupons</a></h4>
-                    <p>Grab limited coupons alloted from outlets</p>
-                </div>
-            </div>
 
-        </div>
 
     </div>
+
+    <div class="row">
+      &nbsp;
+    </div>
+    <div class="row">
+
+      <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="400">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-layer"></i></div>
+          <h4><a href="">Free Coupons</a></h4>
+          <p>Get free coupons from outlets</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bxl-dribbble"></i></div>
+          <h4><a href="">Daily Deals</a></h4>
+          <p>Get amazing deals every day from outlets</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4" nzSpan="8" data-aos="zoom-in" data-aos-delay="200">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-file"></i></div>
+          <h4><a href="">Limited Coupons</a></h4>
+          <p>Grab limited coupons alloted from outlets</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 </section><!-- End Services Section -->
 
 <section id="cta" class="cta">
-    <div class="container" data-aos="zoom-in">
+  <div class="container" data-aos="zoom-in">
 
-      <div class="row">
-        <div class="col-lg-9 text-center text-lg-start">
-          <h3>Call To Action</h3>
-          <p>Our platform provides seamless Digital Coupon allocation and issuing, and use-as-you-move. And the platform has got a plethora of options for every kind of user who wants to relish their favorites. We believe in a win-win situation where business can save on costs while leveraging on digital technology to engage with hundreds of customers of theirs relishing products.</p>
+    <div class="row">
+      <div class="col-lg-9 text-center text-lg-start">
+        <h3>Call To Action</h3>
+        <p>Our platform provides seamless Digital Coupon allocation and issuing, and use-as-you-move. And the platform
+          has got a plethora of options for every kind of user who wants to relish their favorites. We believe in a
+          win-win situation where business can save on costs while leveraging on digital technology to engage with
+          hundreds of customers of theirs relishing products.</p>
+      </div>
+      <div class="col-lg-3 cta-btn-container text-center">
+        <a class="cta-btn align-middle" href="#contact">Call To Action</a>
+      </div>
+    </div>
+
+  </div>
+</section><!-- End Cta Section -->
+
+<section id="pricing" class="pricing">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Pricing</h2>
+      <p>One Year Subscription for Take%OFF Digital Coupons</p>
+      <p>Complimentary || Free || Daily Deals || Redeemable || Discount || Limited Digital Coupons</p>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div>
+          &nbsp;
         </div>
-        <div class="col-lg-3 cta-btn-container text-center">
-          <a class="cta-btn align-middle" href="#contact">Call To Action</a>
+      </div>
+
+      <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
+        <div class="box featured">
+          <h3>Exclusive Plan</h3>
+          <h4><sup>Rs.</sup>1199<span>per Year</span></h4>
+          <ul>
+            <li><i class="bx bx-check"></i> Complimentary Coupons</li>
+            <li><i class="bx bx-check"></i> Discount Coupons</li>
+            <li><i class="bx bx-check"></i> Redeemable Coupons</li>
+            <li><i class="bx bx-check"></i> Free Coupons</li>
+            <li><i class="bx bx-check"></i> Daily Deals</li>
+            <li><i class="bx bx-check"></i> Limited Coupons</li>
+          </ul>
+          <span href="#" class="buy-btn" (click)="open()">Subscribe</span>
+        </div>
+      </div>
+
+      <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
+        <div>
+          &nbsp;
         </div>
       </div>
 
     </div>
-  </section><!-- End Cta Section -->
 
-  <section id="pricing" class="pricing">
-    <div class="container" data-aos="fade-up">
+  </div>
+</section><!-- End Pricing Section -->
 
-      <div class="section-title">
-        <h2>Pricing</h2>
-        <p>One Year Subscription for Take%OFF Digital Coupons</p>
-        <p>Complimentary   ||  Free   ||  Daily Deals   ||  Redeemable   ||  Discount   ||  Limited Digital Coupons</p>
-      </div>
 
-      <div class="row">
+<section id="contact" class="contact">
+  <div class="container" data-aos="fade-up">
 
-        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div>
-           &nbsp;
-          </div>
-        </div>
-
-        <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
-          <div class="box featured">
-            <h3>Exclusive Plan</h3>
-            <h4><sup>Rs.</sup>1199<span>per Year</span></h4>
-            <ul>
-              <li><i class="bx bx-check"></i> Complimentary Coupons</li>
-              <li><i class="bx bx-check"></i> Discount Coupons</li>
-              <li><i class="bx bx-check"></i> Redeemable Coupons</li>
-              <li><i class="bx bx-check"></i> Free Coupons</li>
-              <li><i class="bx bx-check"></i> Daily Deals</li>
-              <li><i class="bx bx-check"></i> Limited Coupons</li>
-            </ul>
-            <span href="#" class="buy-btn" (click)="open()">Subscribe</span>
-          </div>
-        </div>
-
-        <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
-          <div >
-           &nbsp;
-          </div>
-        </div>
-
-      </div>
-
+    <div class="section-title">
+      <h2>Contact</h2>
+      <p>TakeOff aims to keep all online buyers smiling with its insightful, research-oriented user-centric content</p>
+      <p>OUR TAKEOFF SERVICES PRIVATE LIMITED.</p>
     </div>
-  </section><!-- End Pricing Section -->
 
+    <div class="row">
 
-  <section id="contact" class="contact">
-    <div class="container" data-aos="fade-up">
-
-      <div class="section-title">
-        <h2>Contact</h2>
-        <p>TakeOff aims to keep all online buyers smiling with its insightful, research-oriented user-centric content</p>
-        <p>OUR TAKEOFF SERVICES PRIVATE LIMITED.</p>
-      </div>
-
-      <div class="row">
-
-        <div class="col-lg-5 d-flex align-items-stretch">
-          <div class="info">
-            <div class="address">
-              <i class="bi bi-geo-alt"></i>
-              <h4>Location:</h4>
-              <p>6-7-544A RCC Ground Floor , 
-                ISKCON ROAD, TIRUPATI - 517501, AndhraPradesh</p>
-            </div>
-
-            <div class="email">
-              <i class="bi bi-envelope"></i>
-              <h4>Email:</h4>
-              <p>thetakeoff.in@gmail.com</p>
-            </div>
-
-            <div class="phone">
-              <i class="bi bi-phone"></i>
-              <h4>Call:</h4>
-              <p>+91-9052461199</p>
-            </div>
-
-            <!--iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe-->
+      <div class="col-lg-5 d-flex align-items-stretch">
+        <div class="info">
+          <div class="address">
+            <i class="bi bi-geo-alt"></i>
+            <h4>Location:</h4>
+            <p>6-7-544A RCC Ground Floor ,
+              ISKCON ROAD, TIRUPATI - 517501, AndhraPradesh</p>
           </div>
 
+          <div class="email">
+            <i class="bi bi-envelope"></i>
+            <h4>Email:</h4>
+            <p>thetakeoff.in@gmail.com</p>
+          </div>
+
+          <div class="phone">
+            <i class="bi bi-phone"></i>
+            <h4>Call:</h4>
+            <p>+91-9052461199</p>
+          </div>
+
+          <!--iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe-->
         </div>
 
-<!--         <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+      </div>
+
+      <!--         <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
           <form action="forms/contact.php" method="post" role="form" class="php-email-form">
             <div class="row">
               <div class="form-group col-md-6">
@@ -339,22 +426,22 @@ Our local partners will provide you with new features based on the market trends
           </form>
         </div> -->
 
-      </div>
-
     </div>
-  </section><!-- End Contact Section -->
 
-  
-
-  <footer id="footer">
+  </div>
+</section><!-- End Contact Section -->
 
 
 
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
+<footer id="footer">
 
-          <!-- <div class="col-lg-4 col-md-6 footer-contact">
+
+
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <!-- <div class="col-lg-4 col-md-6 footer-contact">
             <h3>ADDRESS</h3>
             <p>
                 OUR TAKEOFF SERVICES PRIVATE LIMITED.<br>
@@ -368,38 +455,38 @@ Our local partners will provide you with new features based on the market trends
             </p>
           </div> -->
 
-          <div class="col-lg-5 col-md-5 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-
-          <div class="col-lg-7 col-md-7 footer-links">
-            <h4>Our Social Networks</h4>
-            <p>Follow Us @ </p>
-            <div class="social-links mt-3">
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              </div>
-          </div>
-
+        <div class="col-lg-5 col-md-5 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+          </ul>
         </div>
-      </div>
-    </div>
 
-    <div class="container footer-bottom clearfix">
-      <div class="copyright">
-        &copy; Copyright <strong><span>OUR TAKEOFF SERVICES PRIVATE LIMITED.</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-       
-        Designed by <a href="#" style='color:#fd6951'>OUR TAKEOFF SERVICES PRIVATE LIMITED.</a>
+
+        <div class="col-lg-7 col-md-7 footer-links">
+          <h4>Our Social Networks</h4>
+          <p>Follow Us @ </p>
+          <div class="social-links mt-3">
+            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          </div>
+        </div>
+
       </div>
     </div>
-  </footer>
+  </div>
+
+  <div class="container footer-bottom clearfix">
+    <div class="copyright">
+      &copy; Copyright <strong><span>OUR TAKEOFF SERVICES PRIVATE LIMITED.</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+
+      Designed by <a href="#" style='color:#fd6951'>OUR TAKEOFF SERVICES PRIVATE LIMITED.</a>
+    </div>
+  </div>
+</footer>
