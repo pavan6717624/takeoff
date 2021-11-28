@@ -12,12 +12,13 @@ import { MainService } from './main.service';
 export class MainComponent implements OnInit {
 
   coupon: Coupon[]=[];
+  logos: string[]=[];
   deviceInfo: any;
 
   constructor(private router: Router, private mainService: MainService, private deviceService: DeviceDetectorService) { }
 
   loading=false;
-  height = '155';
+  height = '40';
   ngOnInit(): void {
     this.deviceInfo = this.deviceService.getDeviceInfo();
     const isMobile = this.deviceService.isMobile();
@@ -36,10 +37,29 @@ export class MainComponent implements OnInit {
 
     this.mainService.getHomePageCoupons().subscribe(
       (res:any) => {
+
+        this.coupon=res;
+
+        this.mainService.getLogos().subscribe(
+          (res1:any) => {
+
+            this.logos=res1;
+            console.log(res1);
+
+
+          },
+          (err1) => { this.loading=false; } 
+
+        )
+
+
+
+
+
        this.loading=false;
         console.log(res);
 
-        this.coupon=res;
+        
       },
       (err) => { this.loading=false;}
     );
