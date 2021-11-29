@@ -11,7 +11,7 @@ import { MainService } from './main.service';
 })
 export class MainComponent implements OnInit {
 
-  coupon: Coupon[]=[];
+   coupon: Coupon[]=[];
   logos: string[]=[];
   deviceInfo: any;
 
@@ -19,13 +19,17 @@ export class MainComponent implements OnInit {
 
   loading=false;
   height = '40';
+  maxHeight= '100';
   ngOnInit(): void {
     this.deviceInfo = this.deviceService.getDeviceInfo();
     const isMobile = this.deviceService.isMobile();
    
     
     if(isMobile)
+    {
     this.height='16';
+    this.maxHeight='50';
+    }
 
     this.getHomePageCoupons();
   }
