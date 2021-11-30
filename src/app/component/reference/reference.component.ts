@@ -12,4 +12,9 @@ export class ReferenceComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  go()
+  {
+    document.location.replace('https://www.thetakeoff.in/subscribe');
+  }
+
 }

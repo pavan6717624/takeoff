@@ -207,7 +207,8 @@ payment()
    // "key": "rzp_test_WJFhmfMmFRxETB", // Enter the Key ID generated from the Dashboard
    "key": "rzp_live_nWA6UVrzTQFr9W",
    // "amount": "100", 
-   "amount" : 119900,
+   // "amount" : 119900,
+    "amount" : 99900,
     "currency": "INR",
     "name": "TAKEOFF",
     "description": "Subscription to TAKEOFF",
