@@ -18,7 +18,7 @@ const routes: Routes = [
       { path: '', component: TakeoffComponent, data : {couponDisplayId : '0'}, },
       { path: 'takeoff', component: TakeoffComponent, data : {couponDisplayId : '0'} },
       { path: 'complimentary', component: TakeoffComponent, data : {couponDisplayId : '1'} },
-    { path: 'free', component: TakeoffComponent,data : {couponDisplayId : '2'} },
+   { path: 'onetimeoffers', component: TakeoffComponent,data : {couponDisplayId : '2'} },
     { path: 'daily', component: TakeoffComponent, data : {couponDisplayId : '3'} },
     { path: 'limited', component: TakeoffComponent, data : {couponDisplayId : '4'} },
     { path: 'redeemable', component: TakeoffComponent, data : {couponDisplayId : '5'} },
