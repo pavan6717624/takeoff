@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
     if(isMobile)
     {
     this.height='16';
-    this.maxHeight='50';
+    this.maxHeight='150';
     }
 
     this.getHomePageCoupons();
