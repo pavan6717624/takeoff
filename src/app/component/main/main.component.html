@@ -132,15 +132,16 @@
             </div>
          
         </ng-container>
-        <ng-container *ngIf='!loading'>
-       
-          <div *ngFor="let item of logos" style='text-align:center;'>
-            <div class="container" style='padding: 20px'>
-              <img [src]="item"
-              [ngStyle]="{'max-height.px': maxHeight}" style='border: 1px solid  #bbb;'>
-            </div>
-            </div>
+          <ng-container *ngIf='!loading'>
           
+       <marquee behavior="scroll" direction="left" scrollamount="20">
+          
+           
+              <img *ngFor="let item of logos" style='text-align:center;' [src]="item"
+              [ngStyle]="{'max-height.px': maxHeight}" style='padding: 20px'> 
+           
+           
+          </marquee>
         </ng-container>
 
 
