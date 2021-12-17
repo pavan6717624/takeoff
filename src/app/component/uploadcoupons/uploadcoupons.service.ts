@@ -19,4 +19,9 @@ export class UploadcouponsService {
   {
     return this.http.post('https://takeoff-pavan.herokuapp.com/getSubCategories',formData);
   }
+  
+   getVendorList(): Observable<any>
+  {
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getVendorList');
+  }
 }
