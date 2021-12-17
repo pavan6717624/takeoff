@@ -547,6 +547,28 @@
 <nz-drawer [nzVisible]="filterVisible" [nzClosable]="true" nzPlacement='bottom' nzTitle="Filter"
     (nzOnClose)="filterVisible=false;" [nzHeight]='350'>
     <ng-container *nzDrawerContent>
+
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: center'>Vendor</div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                <nz-select nzPlaceHolder="Select Vendor" style='width: 200px;' nzShowSearch=true [(ngModel)]='vendorSelected'>
+                    <nz-option nzValue="0" nzLabel="ALL"></nz-option>
+                    <ng-container *ngIf="!vendorListLoading">
+                        <nz-option nzCustomContent *ngFor="let vendor of vendorList" [nzValue]="vendor.userId" [nzLabel]="vendor.name +'\n'+vendor.address">
+                            {{vendor.name}} <br/> {{vendor.address}}
+                        </nz-option>
+                    </ng-container>
+
+                    <nz-option *ngIf="vendorListLoading" nzDisabled nzCustomContent>
+                        <i nz-icon nzType="loading"></i>
+                        Loading List...
+                    </nz-option>
+
+                </nz-select>
+            </div>
+        </div>
+        <div nz-row> &nbsp; </div>
+
         <div nz-row class="container">
             <div nz-col nzSpan="6" style='text-align: center'>Category</div>
             <div nz-col nzSpan="18" style='text-align: center'>
@@ -579,6 +601,10 @@
                 </nz-select>
             </div>
         </div>
+
+       
+          
+      
         <!-- <ng-container *ngIf="couponDisplayId!=1">
             <div nz-row> &nbsp; </div>
             <div nz-row class="container">
