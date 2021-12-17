@@ -43,8 +43,16 @@ export class SendCouponsRequest {
   subCategory: number = 0;
   keywords: string = '';
   city: string = '';
+  vendorSelected: number = 0;
 
 
+}
+
+export class VendorList
+{
+  userId: number = 0;
+  name: string = '';
+  address: string = '';
 }
 
 @Component({
@@ -405,6 +413,21 @@ downloadCoupon(item:Coupon)
   ngOnInit(): void {
 
     this.getCategories();
+    this.getVendorList();
+
+  }
+
+vendorListLoading=true;
+
+  getVendorList() {
+    
+    this.vendorListLoading = true;
+    this.uploadcouponsService.getVendorList().subscribe(
+
+      (res) => { this.vendorList = res; console.log(this.vendorList);  this.vendorListLoading = false;},
+      (err) => {   this.vendorListLoading = false; }
+
+    );
 
   }
 
@@ -495,6 +518,7 @@ downloadCoupon(item:Coupon)
     sendCouponsRequest.subCategory = this.subCategory;
     sendCouponsRequest.keywords = this.keywords;
     sendCouponsRequest.city = this.city;
+    sendCouponsRequest.vendorSelected=this.vendorSelected;
 
 
 
@@ -526,6 +550,7 @@ downloadCoupon(item:Coupon)
     sendCouponsRequest.subCategory = this.subCategory;
     sendCouponsRequest.keywords = this.keywords;
     sendCouponsRequest.city = this.city;
+    sendCouponsRequest.vendorSelected=this.vendorSelected;
 
     this.userService.getComplimentaryCoupons(sendCouponsRequest).subscribe(
 
@@ -554,6 +579,7 @@ downloadCoupon(item:Coupon)
     sendCouponsRequest.subCategory = this.subCategory;
     sendCouponsRequest.keywords = this.keywords;
     sendCouponsRequest.city = this.city;
+    sendCouponsRequest.vendorSelected=this.vendorSelected;
 
     this.userService.getFreeCoupons(sendCouponsRequest).subscribe(
 
@@ -582,6 +608,7 @@ downloadCoupon(item:Coupon)
     sendCouponsRequest.subCategory = this.subCategory;
     sendCouponsRequest.keywords = this.keywords;
     sendCouponsRequest.city = this.city;
+    sendCouponsRequest.vendorSelected=this.vendorSelected;
 
     this.userService.getDailyCoupons(sendCouponsRequest).subscribe(
 
@@ -610,6 +637,7 @@ downloadCoupon(item:Coupon)
     sendCouponsRequest.subCategory = this.subCategory;
     sendCouponsRequest.keywords = this.keywords;
     sendCouponsRequest.city = this.city;
+    sendCouponsRequest.vendorSelected=this.vendorSelected;
 
     this.userService.getLimitedCoupons(sendCouponsRequest).subscribe(
 
@@ -639,6 +667,7 @@ downloadCoupon(item:Coupon)
     sendCouponsRequest.subCategory = this.subCategory;
     sendCouponsRequest.keywords = this.keywords;
     sendCouponsRequest.city = this.city;
+    sendCouponsRequest.vendorSelected=this.vendorSelected;
 
     this.userService.getRedeemableCoupons(sendCouponsRequest).subscribe(
 
@@ -667,6 +696,7 @@ downloadCoupon(item:Coupon)
     sendCouponsRequest.subCategory = this.subCategory;
     sendCouponsRequest.keywords = this.keywords;
     sendCouponsRequest.city = this.city;
+    sendCouponsRequest.vendorSelected=this.vendorSelected;
 
     this.userService.getDiscountCoupons(sendCouponsRequest).subscribe(
 
@@ -688,6 +718,7 @@ downloadCoupon(item:Coupon)
     this.category = 0;
     this.subCategory = 0;
     this.keywords = '';
+    this.vendorSelected = 0;
     
   }
   getCategories() {
@@ -702,6 +733,8 @@ downloadCoupon(item:Coupon)
 
   subCategories: SubCategory[] = [];
   categories: Category[] = [];
+  vendorList: VendorList[]=[];
+  vendorSelected : number = 0;
 
   subCategory: number = 0;
   category: number = 0;
@@ -733,6 +766,7 @@ downloadCoupon(item:Coupon)
     this.noMoreImages=false;
     this.bottom=false;
     this.filterVisible = false;
+    
     this.businessLogic();
   }
 
