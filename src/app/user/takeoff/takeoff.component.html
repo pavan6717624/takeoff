@@ -358,9 +358,11 @@
             <ng-container *ngIf='!redeemChecked'>
                 <div nz-col nzSpan="24" style='text-align: left'>
                     <nz-collapse nzAccordion>
-                        <nz-collapse-panel nzHeader="Coupon Description" nzActive="true" nzDisabled="false">
-                            <p> content</p>
-                        </nz-collapse-panel>
+                        <ng-container *ngIf='redeemCoupon.description.trim().length > 0'>
+                            <nz-collapse-panel nzHeader="Coupon Description" nzActive="true" nzDisabled="false">
+                                <p> {{redeemCoupon.description}}</p>
+                            </nz-collapse-panel>
+                        </ng-container>
                         <nz-collapse-panel nzHeader="TakeOff Terms & Conditions" nzDisabled="false">
                           <p>-Kindly Show the Digital Coupon and ask Vendor Passcode to the Outlet Manager/Service
                                 Provider to Redeem the Coupon</p>
@@ -380,9 +382,17 @@
                 <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
                 <div nz-col nzSpan="24" style='text-align: center'>
                     <label nz-checkbox [(ngModel)]="redeemChecked"
-                        (ngModelChange)='generateRedemption(redeemCoupon.id,redeemCoupon.vendorId)'>I have read Coupon
-                        Description and Terms &
-                        Conditions</label>
+                        (ngModelChange)='generateRedemption(redeemCoupon.id,redeemCoupon.vendorId)'>
+                        <ng-container *ngIf='redeemCoupon.description.trim().length > 0'>
+                            I have read Coupon
+                            Description and Terms & Conditions
+                        </ng-container>
+
+                        <ng-container *ngIf='redeemCoupon.description.trim().length == 0'>
+                            I have read Terms & Conditions
+                        </ng-container>
+
+                    </label>
                 </div>
             </ng-container>
             <ng-container *ngIf='redeemChecked'>
