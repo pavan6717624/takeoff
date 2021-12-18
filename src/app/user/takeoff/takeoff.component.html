@@ -550,8 +550,7 @@
 
         <div nz-row class="container">
           <div nz-col nzSpan="24" style='text-align: center'>
-            Select Outlet
-                <nz-select nzPlaceHolder="Select Outlet" [nzBackdrop]= true style='width: 300px;' nzShowSearch=true [(ngModel)]='vendorSelected' [nzBackdrop]=true>
+               <nz-select nzPlaceHolder="Select Outlet" [nzBackdrop]= true style='width: 300px;' nzShowSearch=true [(ngModel)]='vendorSelected' [nzBackdrop]=true>
                     <nz-option nzValue="0" nzLabel="ALL"></nz-option>
                     <ng-container *ngIf="!vendorListLoading">
                         <nz-option nzCustomContent *ngFor="let vendor of vendorList" [nzValue]="vendor.userId" [nzLabel]="vendor.name +'\n'+vendor.address">
