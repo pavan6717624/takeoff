@@ -92,7 +92,7 @@ export class TakeoffComponent implements OnInit {
   visitStore(vendorId: number)
   {
     this.vendorSelected=vendorId;
-    this.businessLogic();
+   this.filterCoupons();
   }
 
   getLoginDetails() {
