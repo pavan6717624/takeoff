@@ -18,7 +18,7 @@
 
         <div style='text-align:right'>
             <nz-affix [nzOffsetTop]="offsetTop">
-                <button nz-button nzType="primary" (click)='filterVisible=true'>
+               <button nz-button nzType="primary" (click)='filterVisible=true' [style.background] = "(vendorSelected>0 || category > 0 || subCategory > 0 || keywords.length > 0)?'#fd6951': 'light blue'">
                     <span><i nz-icon nzType="filter" nzTheme="outline" (click)='filterVisible=true'></i></span>
                 </button>
             </nz-affix>
