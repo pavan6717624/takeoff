@@ -555,7 +555,7 @@
                     <nz-option nzValue="0" nzLabel="ALL"></nz-option>
                     <ng-container *ngIf="!vendorListLoading">
                         <nz-option nzCustomContent *ngFor="let vendor of vendorList" [nzValue]="vendor.userId" [nzLabel]="vendor.name +'\n'+vendor.address">
-                            {{vendor.name}} <br/> {{vendor.address}}
+                          <i nz-icon nzType="caret-right" nzTheme="outline"></i>{{vendor.name}} <br/> {{vendor.address}}
                         </nz-option>
                     </ng-container>
 
