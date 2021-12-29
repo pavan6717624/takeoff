@@ -77,7 +77,7 @@
             <div nz-col nzSpan="6" style='text-align: left'>Enter Mobile Number </div>
             <div nz-col nzSpan="12" style='text-align: left'>
                 <ng-container *ngIf="contact.trim().length > 0">
-                    <i nz-icon [nzType]="contact.trim().length == 10 ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
+                    <i nz-icon [nzType]="check(contact.trim()) && contact.trim().length == 10 ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
                    </ng-container>
                 <input type="text" [disabled]="!refererIdStatus" [(ngModel)]="contact" nz-input placeholder="Enter Mobile Number" style='width:80%' />
             </div>
@@ -192,6 +192,7 @@
                 !(password.trim().length> 8) || 
                 !(conpassword==password) || 
                 !(contact.trim().length == 10) || 
+                !check(contact.trim()) || 
                 (email.trim().indexOf('@')==-1 || email.trim().indexOf('@') != email.trim().lastIndexOf('@') || email.trim().lastIndexOf('@') > email.trim().lastIndexOf('.')  || email.trim().endsWith('.') || email.trim().startsWith('@')  || email.trim().endsWith('@') || email.trim().startsWith('.') || email.trim().indexOf('.')==-1) ||
                 !(profession.trim().length > 0) ||
                 !(gender.trim().length > 0) || 
