@@ -173,7 +173,13 @@ this.loading=true;
   
   name3: string = '';
   contact3: string = '';
-
+  
+    check(val: any)
+  {
+    let isnum = /^\d+$/.test(val);
+    return isnum;
+  }
+  
   async checkRefererId()
   {
     this.refererStatus = "loading";
