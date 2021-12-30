@@ -8,6 +8,8 @@ import { GstDetails } from './gst/gst.component';
   providedIn: 'root'
 })
 export class AdminService {
+
+  
   hitsReceivedFun() {
     return this.http.get('https://takeoff-pavan.herokuapp.com/hitsReceived');
     }
@@ -68,6 +70,10 @@ export class AdminService {
     return this.http.post('https://takeoff-pavan.herokuapp.com/addDesigner',designer);
   }
 
+  addInvestor(designer: VendorDetails) {
+    return this.http.post('https://takeoff-pavan.herokuapp.com/addInvestor',designer);
+  }
+
   addVendor(designer: VendorDetails) {
     return this.http.post('https://takeoff-pavan.herokuapp.com/addVendor',designer);
   }
@@ -95,6 +101,9 @@ export class AdminService {
   }
   getDesigners() {
     return this.http.get('https://takeoff-pavan.herokuapp.com/getDesigners');
+  }
+  getInvestors() {
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getInvestors');
   }
   mandatoryComplimentaryChange(formData: FormData) {
     return this.http.post('https://takeoff-pavan.herokuapp.com/mandatoryComplimentaryChange',formData);

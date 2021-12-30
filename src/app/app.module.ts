@@ -59,6 +59,9 @@ import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { RedemHistoryComponent } from './component/redem-history/redem-history.component';
 import { ReferenceComponent } from './component/reference/reference.component';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { InvestorComponent } from './component/investor/investor.component';
+import { ExecutiveComponent } from './component/executive/executive.component';
+import { FranchizeComponent } from './component/franchize/franchize.component';
 registerLocaleData(en);
 
 const LANG_PROVIDERS = [{ provide: NZ_I18N, useValue: en_US }];
@@ -95,6 +98,9 @@ const antDesignIcons = AllIcons as {
      RedemptionComponent,
      RedemHistoryComponent,
      ReferenceComponent,
+     InvestorComponent,
+     ExecutiveComponent,
+     FranchizeComponent,
   ],
   imports: [
     BrowserModule,

@@ -31,6 +31,9 @@ import { TdsComponent } from './tds/tds.component';
 import { ScancodeComponent } from './scancode/scancode.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HitsRecordedComponent } from './hits-recorded/hits-recorded.component';
+import { InvestorsComponent } from './investors/investors.component';
+import { FranchizesComponent } from './franchizes/franchizes.component';
+import { ExecutivesComponent } from './executives/executives.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { HitsRecordedComponent } from './hits-recorded/hits-recorded.component';
     TdsComponent,
     ScancodeComponent,
     ContactsComponent,
-    HitsRecordedComponent
+    HitsRecordedComponent,
+    InvestorsComponent,
+    FranchizesComponent,
+    ExecutivesComponent
   ],
   imports: [
     CommonModule,

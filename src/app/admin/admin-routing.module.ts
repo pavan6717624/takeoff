@@ -17,6 +17,7 @@ import { TdsComponent } from './tds/tds.component';
 import { ScancodeComponent } from './scancode/scancode.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HitsRecordedComponent } from './hits-recorded/hits-recorded.component';
+import { InvestorsComponent } from './investors/investors.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'designers', component: DesignersComponent },
       { path: 'customers', component: CustomersComponent },
       { path: 'vendors', component: VendorsComponent },
+      { path: 'investors', component: InvestorsComponent },
       { path: 'category', component: CategoryComponent },
       { path: 'coupontypes', component: CoupontypesComponent },
       { path: 'profession', component: ProfessionComponent },
