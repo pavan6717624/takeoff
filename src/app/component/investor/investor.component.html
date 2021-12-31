@@ -1,1 +1,78 @@
-<p>investor works!</p>
+<div style='padding-left:2%;padding-right:2%; padding-top:2%; padding-bottom:0px;width:100%;height:90%;'>
+    <div nz-row>
+  
+      <div nz-col nzSpan="24">
+  
+        <nz-tabset [nzTabPosition]="talign" nzSize="large">
+            
+  
+            <nz-tab nzTitle="Subscriptions">
+
+                <h3 style='text-align: center;'> Subscriptions </h3>
+              
+                <nz-table style='overflow:auto;width:100%;height:100%' #basicTable nzShowPagination=false nzBordered [nzData]="['']" [nzLoading]="loading">
+                    <thead>
+                        <tr>    
+                            <th> # </th>    
+                            <th> User Id </th>
+                            <th> Name </th>
+                            <th> Contact </th>
+                            <th> Email </th>     
+                            <th> City </th>      
+                            <th> Join Date </th>    
+                            <th> Login Id / ReferCode </th>
+                            <th> Referer Id </th>
+                           
+                            <th> Profession </th>
+                            <th> Gender </th>
+                           
+                            
+                
+                        </tr>
+                    </thead>  
+                    <tbody>
+                    <tr *ngFor="let data of customerDetails; index as i">    
+                        <td>{{ (i+1) }}</td>
+                        <td>{{ data.userId }}</td>
+                        <td>{{ data.name }}</td>
+                        <td>{{ data.contact }}</td>
+                        <td>{{ data.email }}</td>
+                        <td>{{ data.city }}</td>
+                        <td>{{ data.joinDate }}</td>
+                        <td>{{ data.referCode }}</td>
+                        <td>{{ data.refererId }}</td>
+                       
+            
+                        <td>{{ data.profession }}</td>
+                        <td>{{ data.gender }}</td>
+                       
+                       
+                       
+                        
+                       
+                
+                
+                
+                    </tr>
+                
+                
+                </tbody>
+                </nz-table>
+           
+
+
+            </nz-tab>
+
+                <nz-tab nzTitle="Wallet">
+                     <h3 style='text-align: center;'>
+                    Your Wallet Amount is 0.00 <br>
+                    Your Credited Amount is 0.00
+                    </h3>
+                </nz-tab>
+                <nz-tab nzTitle="Account">
+                    <h3> In Development </h3>
+                </nz-tab>
+                </nz-tabset>
+                </div>
+                </div>
+</div>
