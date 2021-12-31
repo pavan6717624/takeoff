@@ -5,6 +5,11 @@ import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 export class VendorService {
+  
+  getExecutiveCustomerAccountDetails() {
+    return this.http.get('http://localhost:8083/getInvestorCustomerAccountDetails');
+  }
+  
   updateScanCode(formData: FormData) {
     return this.http.post('https://takeoff-pavan.herokuapp.com/updateScanCode',formData);
   }
