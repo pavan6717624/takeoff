@@ -18,7 +18,7 @@ import { ScancodeComponent } from './scancode/scancode.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HitsRecordedComponent } from './hits-recorded/hits-recorded.component';
 import { InvestorsComponent } from './investors/investors.component';
-
+import { ExecutivesComponent } from './executives/executives.component';
 
 const routes: Routes = [
 
