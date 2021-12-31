@@ -39,10 +39,22 @@
         <td>{{ data.date }}</td>
         <td>{{ data.id }}</td>
         <td>{{ data.name }}</td>
+      <ng-container *ngIf="data.date < '2021-12-01'">
+
         <td>1016</td>
         <td>91.50</td>
         <td>91.50</td>
         <td>183</td>
+        </ng-container>
+
+        <ng-container *ngIf="data.date > '2021-12-01'">
+
+            <td>846.61</td>
+            <td>76.19</td>
+            <td>76.19</td>
+            <td>152.39</td>
+            </ng-container>
+            
 
 
 
