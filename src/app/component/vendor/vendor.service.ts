@@ -27,6 +27,12 @@ export class VendorService {
     return this.http.post('https://takeoff-pavan.herokuapp.com/uploadCoupon',formData);
    
   }
+  
+    getInvestorCustomerAccountDetails(): Observable<any> 
+  {
+  return this.http.get('https://takeoff-pavan.herokuapp.com/getInvestorCustomerAccountDetails');
+  }
+
 
   constructor(private http: HttpClient) { }
 }
