@@ -14,7 +14,13 @@ export class HomeComponent implements OnInit {
   isCollapsed = false;
 
   ngOnInit(): void {
+ var loginButton = window.document.getElementById("loginButton")
 
+    if (loginButton) {
+      loginButton.innerHTML = "Logout";
+      loginButton.setAttribute('href', '/login');
+      loginButton.setAttribute('onClick', "localStorage.removeItem('token')");
+    }
     
   }
 
