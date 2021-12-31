@@ -10,6 +10,7 @@ import { UserComponent } from './component/user/user.component';
 import { VendorComponent } from './component/vendor/vendor.component';
 import { ReferenceComponent } from './component/reference/reference.component';
 import { InvestorComponent } from './component/investor/investor.component';
+import { ExecutiveComponent } from './component/executive/executive.component';
 
 const routes: Routes = [
   { path:'',component: MainComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'vendor', component: VendorComponent },
   { path: 'designer', component: VendorComponent },
   { path: 'investor', component: InvestorComponent },
+  { path: 'executive', component: ExecutiveComponent },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: 'customer', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
 
