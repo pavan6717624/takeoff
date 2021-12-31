@@ -76,11 +76,11 @@ export class AdminService {
 
   
   addExecutive(designer: VendorDetails) {
-    return this.http.post('http://localhost:8083/addExecutive',designer);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/addExecutive',designer);
   }
 
   getExecutives() {
-    return this.http.get('http://localhost:8083/getExecutives');
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getExecutives');
   }
   
   addVendor(designer: VendorDetails) {
