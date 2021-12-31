@@ -74,6 +74,15 @@ export class AdminService {
     return this.http.post('https://takeoff-pavan.herokuapp.com/addInvestor',designer);
   }
 
+  
+  addExecutive(designer: VendorDetails) {
+    return this.http.post('http://localhost:8083/addExecutive',designer);
+  }
+
+  getExecutives() {
+    return this.http.get('http://localhost:8083/getExecutives');
+  }
+  
   addVendor(designer: VendorDetails) {
     return this.http.post('https://takeoff-pavan.herokuapp.com/addVendor',designer);
   }
