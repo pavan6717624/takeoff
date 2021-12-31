@@ -7,7 +7,7 @@ import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 export class VendorService {
   
   getExecutiveCustomerAccountDetails() {
-    return this.http.get('http://localhost:8083/getInvestorCustomerAccountDetails');
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getInvestorCustomerAccountDetails');
   }
   
   updateScanCode(formData: FormData) {
