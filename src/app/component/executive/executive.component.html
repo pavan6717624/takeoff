@@ -3,14 +3,14 @@
   
       <div nz-col nzSpan="24">
   
-        <nz-tabset [nzTabPosition]="talign" nzSize="large">
+        <nz-tabset [nzTabPosition]="talign" nzSize="large" #tabs>
             
   
             <nz-tab nzTitle="Subscriptions">
 
                 <h3 style='text-align: center;'> Your Subscriptions </h3>
 
-                <button nz-button nzType="primary" (click)='addSubscription()'>+ New User Subscription</button><br/><br/>
+                <button nz-button nzType="primary" (click)='tabs.nzSelectedIndex=3'>+ New User Subscription</button><br/><br/>
 
                 <div style='overflow:auto;width:100%;height:100%'>
                 <nz-table #basicTable nzShowPagination=true nzBordered [nzData]="customerDetails" [nzLoading]="loading">
@@ -74,6 +74,9 @@
                 </nz-tab>
                 <nz-tab nzTitle="Account">
                     <h3> In Development </h3>
+                </nz-tab>
+                <nz-tab nzTitle="New Subscription">
+                    <app-subscription [executiveId]="loginStatus.loginId"></app-subscription>
                 </nz-tab>
                 </nz-tabset>
                 </div>

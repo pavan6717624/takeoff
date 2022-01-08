@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { WindowRefService } from './window-ref.service';
 import { SubscriptionService } from './subscription.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -21,6 +21,7 @@ export class SubscriptionDTO
  razorpay_order_id: string="";
  razorpay_signature: string="";
  message: string="";
+ executiveId: string = '';
 }
 
 @Component({
@@ -46,13 +47,15 @@ export class SubscriptionComponent implements OnInit {
  paying: boolean=false;
  noReferralCodeVisible=false;
  loading = false;
-
+ @Input() executiveId: string | undefined ;
 
   ngOnInit(): void {
 
     this.recordHits();
 
+    if(this.executiveId == null || this.executiveId == undefined || this.executiveId.trim() === '' || this.executiveId.trim().length == 0)
     localStorage.removeItem("token");
+
     this.getOrderId();
     
   }
@@ -280,6 +283,10 @@ onPaymentSuccess(event: any): void {
  subscription.profession=this.profession;
  subscription.gender=this.gender;
  subscription.city=this.city;
+ if(this.executiveId)
+ subscription.executiveId=this.executiveId;
+ else
+ subscription.executiveId='';
 
  this.subscriptionService.getSubscription(subscription).subscribe(
   (res) => {     this.router.navigate(['paymentStatus'],  { state: {statusDTO: res }}); },

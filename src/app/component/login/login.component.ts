@@ -7,6 +7,7 @@ export class LoginStatus {
   userId: string = "";
   userType: string = "";
   loginStatus: boolean = false;
+  loginId: string = "";
   jwt: string = '';
 }
 

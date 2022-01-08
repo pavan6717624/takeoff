@@ -1,4 +1,4 @@
-<br/>
+<br />
 <h3> ---- Subscribe to TAKEOFF</h3>
 
 <ng-container *ngIf="paying">
@@ -6,23 +6,41 @@
     Please Wait...Processing....
 </ng-container>
 <ng-container *ngIf="!paying">
-<div nz-row>
-    <div nz-col nzSpan="6" style='text-align: left'>&nbsp;</div>
-    <div nz-col nzSpan="6" style='text-align: left'>Referer ID</div>
-    <div nz-col nzSpan="12" style='text-align: left'>
-        <ng-container *ngIf="refererStatus.length > 0 && refererid.length > 0">
-        <i nz-icon [nzType]="refererStatus" nzTheme="outline"></i> &nbsp;&nbsp;
-        </ng-container>
-        <input type="text" nz-input [(ngModel)]="refererid" placeholder="Enter Referer ID" style='width:80%' (ngModelChange) = "checkRefererId()"/>
-        <br /><button nz-button nzType="text" (click)='noReferralCode()'><u>No Referral Code?</u></button>
+
+
+    <ng-container *ngIf="!(this.executiveId == null || this.executiveId == undefined || this.executiveId.trim() === '' || this.executiveId.trim().length == 0)">
+    <div nz-row>
+        <div nz-col nzSpan="6" style='text-align: left'>&nbsp;</div>
+        <div nz-col nzSpan="6" style='text-align: left'><b>Executive ID</b></div>
+        <div nz-col nzSpan="12" style='text-align: left'><b>{{executiveId}}</b></div>
     </div>
 
-</div>
-<ng-container *ngIf="refererIdStatus">
-<div nz-row>
-    <div nz-col nzSpan="12" style='text-align: left'>&nbsp;</div>
-    <div nz-col nzSpan="12" style='text-align: left'> &nbsp;</div>
-</div>
+    <div nz-row>
+        <div nz-col nzSpan="12" style='text-align: left'>&nbsp;</div>
+        <div nz-col nzSpan="12" style='text-align: left'> &nbsp;</div>
+    </div>
+    </ng-container>
+
+
+
+    <div nz-row>
+        <div nz-col nzSpan="6" style='text-align: left'>&nbsp;</div>
+        <div nz-col nzSpan="6" style='text-align: left'>Referer ID</div>
+        <div nz-col nzSpan="12" style='text-align: left'>
+            <ng-container *ngIf="refererStatus.length > 0 && refererid.length > 0">
+                <i nz-icon [nzType]="refererStatus" nzTheme="outline"></i> &nbsp;&nbsp;
+            </ng-container>
+            <input type="text" nz-input [(ngModel)]="refererid" placeholder="Enter Referer ID" style='width:80%'
+                (ngModelChange)="checkRefererId()" />
+            <br /><button nz-button nzType="text" (click)='noReferralCode()'><u>No Referral Code?</u></button>
+        </div>
+
+    </div>
+    <ng-container *ngIf="refererIdStatus">
+        <div nz-row>
+            <div nz-col nzSpan="12" style='text-align: left'>&nbsp;</div>
+            <div nz-col nzSpan="12" style='text-align: left'> &nbsp;</div>
+        </div>
 
         <div nz-row>
             <div nz-col nzSpan="6" style='text-align: left'>&nbsp;</div>
@@ -30,8 +48,9 @@
             <div nz-col nzSpan="12" style='text-align: left'>
                 <ng-container *ngIf="name.trim().length > 0">
                     <i nz-icon [nzType]="name.trim().length> 5 ? 'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
-                   </ng-container>
-                <input type="text" [disabled]="!refererIdStatus" [(ngModel)]="name" nz-input placeholder="Enter Full Name" style='width:80%' />
+                </ng-container>
+                <input type="text" [disabled]="!refererIdStatus" [(ngModel)]="name" nz-input
+                    placeholder="Enter Full Name" style='width:80%' />
             </div>
         </div>
 
@@ -45,9 +64,11 @@
             <div nz-col nzSpan="6" style='text-align: left'>Enter Password </div>
             <div nz-col nzSpan="12" style='text-align: left'>
                 <ng-container *ngIf="password.trim().length > 0">
-                    <i nz-icon [nzType]="password.trim().length> 8 ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
-                   </ng-container>
-                <input type="password" [disabled]="!refererIdStatus" [(ngModel)]="password" nz-input placeholder="Enter Password" style='width:80%' />
+                    <i nz-icon [nzType]="password.trim().length> 8 ?'check' : 'close'" nzTheme="outline"></i>
+                    &nbsp;&nbsp;
+                </ng-container>
+                <input type="password" [disabled]="!refererIdStatus" [(ngModel)]="password" nz-input
+                    placeholder="Enter Password" style='width:80%' />
             </div>
         </div>
 
@@ -62,8 +83,9 @@
             <div nz-col nzSpan="12" style='text-align: left'>
                 <ng-container *ngIf="conpassword.trim().length > 0">
                     <i nz-icon [nzType]="conpassword==password ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
-                   </ng-container>
-                <input type="password" [disabled]="!refererIdStatus" [(ngModel)]="conpassword" nz-input placeholder="Confirm Password" style='width:80%' />
+                </ng-container>
+                <input type="password" [disabled]="!refererIdStatus" [(ngModel)]="conpassword" nz-input
+                    placeholder="Confirm Password" style='width:80%' />
             </div>
         </div>
 
@@ -77,9 +99,11 @@
             <div nz-col nzSpan="6" style='text-align: left'>Enter Mobile Number </div>
             <div nz-col nzSpan="12" style='text-align: left'>
                 <ng-container *ngIf="contact.trim().length > 0">
-                    <i nz-icon [nzType]="check(contact.trim()) && contact.trim().length == 10 ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
-                   </ng-container>
-                <input type="text" [disabled]="!refererIdStatus" [(ngModel)]="contact" nz-input placeholder="Enter Mobile Number" style='width:80%' />
+                    <i nz-icon [nzType]="check(contact.trim()) && contact.trim().length == 10 ?'check' : 'close'"
+                        nzTheme="outline"></i> &nbsp;&nbsp;
+                </ng-container>
+                <input type="text" [disabled]="!refererIdStatus" [(ngModel)]="contact" nz-input
+                    placeholder="Enter Mobile Number" style='width:80%' />
             </div>
         </div>
 
@@ -93,9 +117,12 @@
             <div nz-col nzSpan="6" style='text-align: left'>Enter Email Address</div>
             <div nz-col nzSpan="12" style='text-align: left'>
                 <ng-container *ngIf="email.trim().length > 0">
-                    <i nz-icon [nzType]="email.trim().indexOf('@')==-1 || email.trim().indexOf('@') != email.trim().lastIndexOf('@') || email.trim().lastIndexOf('@') > email.trim().lastIndexOf('.')  || email.trim().endsWith('.') || email.trim().startsWith('@')  || email.trim().endsWith('@') || email.trim().startsWith('.') || email.trim().indexOf('.')==-1 ?'close' : 'check'" nzTheme="outline"></i> &nbsp;&nbsp;
-                   </ng-container>
-                <input type="text" [disabled]="!refererIdStatus" [(ngModel)]="email" nz-input placeholder="Enter Email Address" style='width:80%' />
+                    <i nz-icon
+                        [nzType]="email.trim().indexOf('@')==-1 || email.trim().indexOf('@') != email.trim().lastIndexOf('@') || email.trim().lastIndexOf('@') > email.trim().lastIndexOf('.')  || email.trim().endsWith('.') || email.trim().startsWith('@')  || email.trim().endsWith('@') || email.trim().startsWith('.') || email.trim().indexOf('.')==-1 ?'close' : 'check'"
+                        nzTheme="outline"></i> &nbsp;&nbsp;
+                </ng-container>
+                <input type="text" [disabled]="!refererIdStatus" [(ngModel)]="email" nz-input
+                    placeholder="Enter Email Address" style='width:80%' />
             </div>
         </div>
         <div nz-row>
@@ -109,11 +136,13 @@
             <div nz-col nzSpan="12" style='text-align: left'>
 
                 <ng-container *ngIf="profession.trim().length > 0">
-                    <i nz-icon [nzType]="profession.trim().length > 0 ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
-                   </ng-container>
+                    <i nz-icon [nzType]="profession.trim().length > 0 ?'check' : 'close'" nzTheme="outline"></i>
+                    &nbsp;&nbsp;
+                </ng-container>
 
-                <nz-select  [(ngModel)]="profession" [nzDisabled]="!refererIdStatus" nzPlaceHolder="Select Profession" style='width:80%'>
-                    
+                <nz-select [(ngModel)]="profession" [nzDisabled]="!refererIdStatus" nzPlaceHolder="Select Profession"
+                    style='width:80%'>
+
                     <nz-option nzValue="Student" nzLabel="Student"></nz-option>
                     <nz-option nzValue="Businessman" nzLabel="Business"></nz-option>
                     <nz-option nzValue="Self Employed" nzLabel="Self Employed"></nz-option>
@@ -121,7 +150,7 @@
                     <nz-option nzValue="Employee" nzLabel="Employee"></nz-option>
                     <nz-option nzValue="Others" nzLabel="Others"></nz-option>
 
-                  </nz-select>
+                </nz-select>
             </div>
         </div>
         <div nz-row>
@@ -135,14 +164,16 @@
             <div nz-col nzSpan="6" style='text-align: left'>Gender</div>
             <div nz-col nzSpan="12" style='text-align: left'>
                 <ng-container *ngIf="gender.trim().length > 0">
-                    <i nz-icon [nzType]="gender.trim().length > 0 ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
-                   </ng-container>
+                    <i nz-icon [nzType]="gender.trim().length > 0 ?'check' : 'close'" nzTheme="outline"></i>
+                    &nbsp;&nbsp;
+                </ng-container>
 
-                <nz-select  [(ngModel)]="gender" [nzDisabled]="!refererIdStatus" nzPlaceHolder="Select Gender" style='width:80%'>
+                <nz-select [(ngModel)]="gender" [nzDisabled]="!refererIdStatus" nzPlaceHolder="Select Gender"
+                    style='width:80%'>
                     <nz-option nzValue="Male" nzLabel="Male"></nz-option>
                     <nz-option nzValue="Female" nzLabel="Female"></nz-option>
                     <nz-option nzValue="Others" nzLabel="Others"></nz-option>
-                  </nz-select>
+                </nz-select>
             </div>
         </div>
         <div nz-row>
@@ -156,9 +187,10 @@
 
                 <ng-container *ngIf="city.trim().length > 0">
                     <i nz-icon [nzType]="city.trim().length > 0 ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
-                   </ng-container>
+                </ng-container>
 
-                <nz-select  [(ngModel)]="city" [nzDisabled]="!refererIdStatus" nzPlaceHolder="Select City" style='width:80%'>
+                <nz-select [(ngModel)]="city" [nzDisabled]="!refererIdStatus" nzPlaceHolder="Select City"
+                    style='width:80%'>
                     <nz-option nzValue="Tirupati" nzLabel="Tirupati"></nz-option>
                     <nz-option nzValue="Chittoor" nzLabel="Chittoor"></nz-option>
                     <nz-option nzValue="Ananthapur" nzLabel="Ananthapur"></nz-option>
@@ -170,10 +202,10 @@
                     <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
                     <nz-option nzValue="Ongole" nzLabel="Ongole"></nz-option>
                     <nz-option nzValue="Vijayawada" nzLabel="Vijayawada"></nz-option>
-                    
 
-                    
-                  </nz-select>
+
+
+                </nz-select>
             </div>
         </div>
         <div nz-row>
@@ -181,13 +213,12 @@
             <div nz-col nzSpan="12" style='text-align: left'> &nbsp;</div>
         </div>
 
-    
 
-    
+
+
         <div nz-row>
             <div nz-col nzSpan="24" style='text-align: center'>
-                <button nz-button nzType="primary" 
-                [disabled]="!refererIdStatus || 
+                <button nz-button nzType="primary" [disabled]="!refererIdStatus || 
                 !(name.trim().length> 5) || 
                 !(password.trim().length> 8) || 
                 !(conpassword==password) || 
@@ -196,77 +227,83 @@
                 (email.trim().indexOf('@')==-1 || email.trim().indexOf('@') != email.trim().lastIndexOf('@') || email.trim().lastIndexOf('@') > email.trim().lastIndexOf('.')  || email.trim().endsWith('.') || email.trim().startsWith('@')  || email.trim().endsWith('@') || email.trim().startsWith('.') || email.trim().indexOf('.')==-1) ||
                 !(profession.trim().length > 0) ||
                 !(gender.trim().length > 0) || 
-                !(city.trim().length > 0) || this.paying" 
-                nzDanger (click)='payment()'>Pay Rs. <s>1199</s> &nbsp; 999 </button>
+                !(city.trim().length > 0) || this.paying" nzDanger (click)='payment()'>Pay Rs. <s>1199</s> &nbsp; 999
+                </button>
             </div>
 
         </div>
-   </ng-container>
     </ng-container>
-        <br /><br />
-        
-        <nz-modal [nzVisible]="noReferralCodeVisible " [nzContent]="modalContent" [nzFooter]="null"
-        (nzOnCancel)="noReferralCodeVisible = false;">
-        <ng-template #modalContent>
-    
-            <ng-container *ngIf='confirmContacts'>
-                <div nz-row>
-                    <div nz-col nzSpan="24" style='text-align: center'>
-                <h2>Thank You for Sharing</h2> 
-                <h3>Sharing is Caring</h3>
-                Use Referral Code : <h5>{{ refererid }}</h5> 
-                </div>
-                </div>
-            </ng-container>
+</ng-container>
+<br /><br />
 
-    
-            <ng-container *ngIf='!confirmContacts'>
-            
+<nz-modal [nzVisible]="noReferralCodeVisible " [nzContent]="modalContent" [nzFooter]="null"
+    (nzOnCancel)="noReferralCodeVisible = false;">
+    <ng-template #modalContent>
+
+        <ng-container *ngIf='confirmContacts'>
+            <div nz-row>
+                <div nz-col nzSpan="24" style='text-align: center'>
+                    <h2>Thank You for Sharing</h2>
+                    <h3>Sharing is Caring</h3>
+                    Use Referral Code : <h5>{{ refererid }}</h5>
+                </div>
+            </div>
+        </ng-container>
+
+
+        <ng-container *ngIf='!confirmContacts'>
+
             <h3> We are happy to Assist you..</h3>
-           <h5>Provide Yours and Your Friends Details <br /> and Get Referral Code </h5>
-    
+            <h5>Provide Yours and Your Friends Details <br /> and Get Referral Code </h5>
+
             <nz-table #basicTable nzShowPagination=false nzBordered [nzData]="['']">
                 <thead>
                     <tr>
-    
+
                         <th>#</th>
                         <th>Name</th>
                         <th>Contact Number</th>
                     </tr>
                 </thead>
                 <tbody>
-    
+
                     <tr>
                         <td>1</td>
-                      <td> <input type="text" nz-input placeholder="Name" style='width:100%'
-                                [(ngModel)]='name1' /></td>
-                        <td><input type="text" nz-input placeholder="Contact" style='width:100%'
-                                [(ngModel)]='contact1' maxlength="10" /></td>
+                        <td> <input type="text" nz-input placeholder="Name" style='width:100%' [(ngModel)]='name1' />
+                        </td>
+                        <td><input type="text" nz-input placeholder="Contact" style='width:100%' [(ngModel)]='contact1'
+                                maxlength="10" /></td>
                     </tr>
-    
+
                     <tr>
                         <td>2</td>
-                        <td> <input type="text" nz-input placeholder="Friend1" style='width:100%' [(ngModel)]='name2' /></td>
-                        <td><input type="text" nz-input placeholder="Contact1" style='width:100%' [(ngModel)]='contact2'  maxlength="10" /></td>
+                        <td> <input type="text" nz-input placeholder="Friend1" style='width:100%' [(ngModel)]='name2' />
+                        </td>
+                        <td><input type="text" nz-input placeholder="Contact1" style='width:100%' [(ngModel)]='contact2'
+                                maxlength="10" /></td>
                     </tr>
-    
+
                     <tr>
                         <td>3</td>
-                        <td><input type="text" nz-input placeholder="Friend2" style='width:100%' [(ngModel)]='name3' /></td>
-                        <td><input type="text" nz-input placeholder="Contact2" style='width:100%' [(ngModel)]='contact3'  maxlength="10" /></td>
+                        <td><input type="text" nz-input placeholder="Friend2" style='width:100%' [(ngModel)]='name3' />
+                        </td>
+                        <td><input type="text" nz-input placeholder="Contact2" style='width:100%' [(ngModel)]='contact3'
+                                maxlength="10" /></td>
                     </tr>
                 </tbody>
             </nz-table>
-    
+
             <div nz-row> &nbsp; </div>
             <div nz-row>
                 <div nz-col nzSpan="12" style='text-align: left'>
-            <button nz-button  nzShape="round" (click)='noReferralCodeVisible=false;'  [nzLoading]='loading' > Cancel</button></div>
-            <div nz-col nzSpan="12" style='text-align: right'>
-            <button nz-button nzType="primary" nzShape="round" [nzLoading]='loading' nzDanger (click)='getContacts()'> Get Referral Code </button>
+                    <button nz-button nzShape="round" (click)='noReferralCodeVisible=false;' [nzLoading]='loading'>
+                        Cancel</button>
+                </div>
+                <div nz-col nzSpan="12" style='text-align: right'>
+                    <button nz-button nzType="primary" nzShape="round" [nzLoading]='loading' nzDanger
+                        (click)='getContacts()'> Get Referral Code </button>
+                </div>
             </div>
-            </div>
-            </ng-container>
-        </ng-template>
-    </nz-modal>
-    
+        </ng-container>
+    </ng-template>
+</nz-modal>

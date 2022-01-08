@@ -30,7 +30,7 @@
                 
                         </tr>
                     </thead>  
-                    <tbody>
+                    <tbody style='background-color: white;'>
                     <tr *ngFor="let data of basicTable.data; index as i">    
                         <td>{{ (i+1) }}</td>
                         <td>{{ data.userId }}</td>
@@ -58,19 +58,19 @@
                 
                 </tbody>
                 </nz-table>
-           </div>
+          </div>
 
 
             </nz-tab>
 
                 <nz-tab nzTitle="Wallet">
                      <h3 style='text-align: center;'>
-                    Your Wallet Amount is 0.00 <br>
+                    Your Wallet Amount is 100.00 <br>
                     Your Credited Amount is 0.00
                     </h3>
                 </nz-tab>
                 <nz-tab nzTitle="Account">
-                    <h3> In Development </h3>
+                    <app-vendoraccount [loginStatus]="loginStatus"></app-vendoraccount>
                 </nz-tab>
                 </nz-tabset>
                 </div>
