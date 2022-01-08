@@ -53,7 +53,7 @@ export class VendoraccountComponent implements OnInit {
   this.userType=this.loginStatus.userType;
     if(this.loginStatus.userType ==='Vendor')
     this.getVendorDetails();
-    else  if(this.loginStatus.userType ==='Designer' || this.loginStatus.userType ==='Investor')
+    else  if(this.loginStatus.userType ==='Designer' || this.loginStatus.userType ==='Investor' || this.loginStatus.userType ==='Executive')
     this.getDesignerDetails();
 }
 
