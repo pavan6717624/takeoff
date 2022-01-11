@@ -488,7 +488,20 @@
                         <ng-template nz-tab>
                         <!-- <ng-container *ngIf="redeemCoupon.vendorId == 10013"> -->
                             <ng-container *ngIf='qrResultString.trim().length == 0'>
-                                <zxing-scanner (scanSuccess)="onCodeResult($event)" [enable]='qrResultString.trim().length == 0'></zxing-scanner>
+                                <div nz-row>
+
+                                    <div nz-col nzSpan="6" style='text-align: center'>&nbsp;</div>
+
+                                    <div nz-col nzSpan="12" style='text-align: center'>
+
+                                        <zxing-scanner (scanSuccess)="onCodeResult($event)"
+                                            [enable]='qrResultString.trim().length == 0'></zxing-scanner>
+
+                                    </div>
+
+                                    <div nz-col nzSpan="6" style='text-align: center'>&nbsp;</div>
+
+                                </div>
 
                                
                             </ng-container>
