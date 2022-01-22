@@ -78,6 +78,13 @@ export class TakeoffComponent implements OnInit {
 
     if (this.loginStatus) {
       this.userType = this.loginStatus.userType;
+      
+      if(this.userType!='Customer')
+      {
+        this.msg.create('info', 'Logging in...');
+        this.router.navigate(['login']);
+        return;
+      }
       this.startLoading();
     }
     else {
@@ -101,7 +108,13 @@ export class TakeoffComponent implements OnInit {
       (res: any) => {
         this.loading = false;
         this.loginStatus = res;
-
+        if(this.userType!='Customer')
+        {
+          this.msg.create('info', 'Logging in...');
+          this.router.navigate(['login']);
+          return;
+        }
+        else
         this.startLoading();
       },
       (err) => {

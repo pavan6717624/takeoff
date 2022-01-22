@@ -14,8 +14,31 @@ import { Category } from 'src/app/component/uploadcoupons/uploadcoupons.componen
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  loginStatus: LoginStatus = new LoginStatus();
+  userType: string = '';
+  constructor(private uploadcouponsService: UploadcouponsService, private adminServie: AdminService, private msg: NzMessageService, private router: Router,private deviceService: DeviceDetectorService) 
+  {
 
-  constructor(private uploadcouponsService: UploadcouponsService, private adminServie: AdminService, private msg: NzMessageService, private router: Router,private deviceService: DeviceDetectorService) { }
+    const navigation = this.router.getCurrentNavigation();
+    this.loginStatus =  (navigation?.extras?.state?.loginStatus); 
+
+    if(this.loginStatus)
+    {
+
+      this.userType=this.loginStatus.userType;
+      if(this.userType!='Customer')
+      {
+        this.msg.create('error', 'Logging in...');
+        this.router.navigate(['login']);
+        return;
+      }
+    }
+
+    
+
+
+
+   }
 
   visible = false;
 

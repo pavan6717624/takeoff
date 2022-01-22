@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { LoginStatus } from '../login/login.component';
 import { Coupon, CouponType } from '../editcoupons/editcoupons.component';
 import { RedemptionDTO } from 'src/app/user/takeoff/takeoff.component';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-vendor',
@@ -35,7 +36,7 @@ export class VendorComponent implements OnInit {
   onCodeResult(resultString: string) {
     this.qrResultString = resultString;
   }
-  constructor(private router: Router, private msg: NzMessageService, private vendorService:VendorService,  private deviceService: DeviceDetectorService) 
+  constructor(private loginService: LoginService,private router: Router, private msg: NzMessageService, private vendorService:VendorService,  private deviceService: DeviceDetectorService) 
   {
     const navigation = this.router.getCurrentNavigation();
     this.loginStatus =  (navigation?.extras?.state?.loginStatus); 
@@ -43,8 +44,43 @@ export class VendorComponent implements OnInit {
     if(this.loginStatus)
     {
       this.userType=this.loginStatus.userType;
+      if(this.userType!='Vendor')
+      {
+        this.msg.create('error', 'Logging in...');
+        this.router.navigate(['login']);
+        return;
+      }
     }
+    else {
+      this.getLoginDetails();
+
+    }
+
+    
+
     console.log("Vendor login Status :: "+this.loginStatus);
+  }
+
+  getLoginDetails() {
+    this.loading = true;
+    this.loginService.getLoginDetails().subscribe(
+      (res: any) => {
+        this.loading = false;
+        this.loginStatus = res;
+        if(this.loginStatus.userType!='Vendor')
+        
+        {
+          this.loading = false; this.msg.create('info', 'Logging in...');
+          this.router.navigate(['login']);
+          return;
+        }
+      },
+      (err) => {
+        this.loading = false; this.msg.create('error', 'Session Expired. Please Login...');
+        this.router.navigate(['login']);
+        return;
+      }
+    );
   }
 
   ngOnInit(): void {
