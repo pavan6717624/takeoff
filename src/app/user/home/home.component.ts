@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     {
 
       this.userType=this.loginStatus.userType;
-alert(this.userType) ;
+ 
 
       if(this.userType!='Customer')
       {
@@ -40,7 +40,7 @@ alert(this.userType) ;
 
 
 
-   }
+   }u
 
   visible = false;
 
