@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
 
 
 
-   }u
+   }
 
   visible = false;
 
