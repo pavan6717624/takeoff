@@ -108,6 +108,7 @@ export class TakeoffComponent implements OnInit {
       (res: any) => {
         this.loading = false;
         this.loginStatus = res;
+        this.userType = this.loginStatus.userType;
         if(this.userType!='Customer')
         {
           this.msg.create('info', 'Logging in...');
