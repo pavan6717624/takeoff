@@ -26,6 +26,8 @@ export class HomeComponent implements OnInit {
     {
 
       this.userType=this.loginStatus.userType;
+alert(this.userType) ;
+
       if(this.userType!='Customer')
       {
         this.msg.create('error', 'Logging in...');
