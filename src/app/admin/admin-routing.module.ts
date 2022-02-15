@@ -19,6 +19,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { HitsRecordedComponent } from './hits-recorded/hits-recorded.component';
 import { InvestorsComponent } from './investors/investors.component';
 import { ExecutivesComponent } from './executives/executives.component';
+import { RedemHistoryComponent } from '../user/redem-history/redem-history.component';
 
 const routes: Routes = [
 
@@ -46,6 +47,7 @@ const routes: Routes = [
       { path: 'scancodes', component: ScancodeComponent },
       { path: 'contacts', component: ContactsComponent },
       { path: 'hits', component: HitsRecordedComponent },
+        { path: 'redemHistory', component: RedemHistoryComponent},
      
 
     ],
