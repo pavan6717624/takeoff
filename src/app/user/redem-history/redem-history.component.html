@@ -27,7 +27,7 @@
 
             <th> Coupon Id </th>
 
-            <ng-container *ngIf="loginStatus.userType === 'Customer'">
+            <ng-container *ngIf="loginStatus.userType === 'Customer'  || loginStatus.userType === 'Admin' ">
                 <th> Outlet Id </th>
                 <th> Outlet Name </th>
 
@@ -40,7 +40,7 @@
 
             </ng-container>
 
-            <ng-container *ngIf="loginStatus.userType === 'Vendor'">
+            <ng-container *ngIf="loginStatus.userType === 'Vendor'  || loginStatus.userType === 'Admin' ">
                 <th> Customer Id </th>
                 <th> Customer Name </th>
                 <th> Contact </th>
@@ -68,7 +68,7 @@
 
             <td>{{ (i+1) }}</td>
             <td (click)='getCoupon(data.couponId)'><b><u style='cursor: pointer;'>{{ data.couponId }}</u></b></td>
-            <ng-container *ngIf="loginStatus.userType === 'Customer'">
+            <ng-container *ngIf="loginStatus.userType === 'Customer'  || loginStatus.userType === 'Admin' ">
                 <td>{{ data.vendorId }}</td>
                 <td>{{ data.vendorName }}</td>
                 <td>{{ data.address }}</td>
@@ -83,7 +83,7 @@
 
 
 
-            <ng-container *ngIf="loginStatus.userType === 'Vendor'">
+            <ng-container *ngIf="loginStatus.userType === 'Vendor'  || loginStatus.userType === 'Admin' ">
 
                 <td>{{ data.customerId }}</td>
                 <td>{{ data. customerName }}</td>
