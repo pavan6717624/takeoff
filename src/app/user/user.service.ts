@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RedemptionDTO, SendCouponsRequest } from './takeoff/takeoff.component';
+import { RedemptionHistory } from './redem-history/redem-history.component';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,11 @@ export class UserService {
   getKYCDetails() {
     return this.http.get('https://takeoff-pavan.herokuapp.com/getKYCDetails');
   }
+
+  downloadRedemHistory(redemptionHistory: RedemptionHistory[]) {
+    return this.http.post('https://takeoff-pavan.herokuapp.com/downloadRedemHistory',redemptionHistory,{responseType: 'blob'});
+  }
+
 
 
   constructor(private http: HttpClient) { }

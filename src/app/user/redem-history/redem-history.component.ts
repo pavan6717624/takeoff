@@ -60,6 +60,22 @@ export class RedemHistoryComponent implements OnInit {
     );
   }
 
+
+  downloading=false;
+
+  download()
+  {
+    this.downloading=true;
+    this.userService.downloadRedemHistory(this.redemptionHistory).subscribe((res : any) => {
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(new Blob([res], { type: 'text/csv' }));
+      link.download = 'RedemHistory.csv';
+      link.click();
+      link.remove();
+      this.downloading=false;
+    });
+  }
+
   ngOnInit(): void {
 
     var loginButton = window.document.getElementById("loginButton")
