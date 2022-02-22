@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'executive', component: ExecutiveComponent },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: 'customer', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
+    { path: 'policy', loadChildren: () => import('./commodule/commodule.module').then(m => m.CommoduleModule) },
 
  
 
