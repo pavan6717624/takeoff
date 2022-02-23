@@ -22,6 +22,7 @@ export class SubscriptionDTO
  razorpay_signature: string="";
  message: string="";
  executiveId: string = '';
+ subscription: string = '';
 }
 
 @Component({
@@ -31,7 +32,15 @@ export class SubscriptionDTO
 })
 export class SubscriptionComponent implements OnInit {
 
-  constructor(private router: Router, private subscriptionService: SubscriptionService,private msg: NzMessageService,private notification: NzNotificationService) { }
+  constructor(private router: Router, private subscriptionService: SubscriptionService,private msg: NzMessageService,private notification: NzNotificationService) { 
+
+
+    const navigation = this.router.getCurrentNavigation();
+    if(navigation && navigation.extras && navigation.extras.state && navigation.extras.state.subscription)
+    this.subscription =  (navigation?.extras?.state?.subscription); 
+  }
+
+  subscription : string = "pay";
  orderid: string = "";
  refererIdStatus: boolean = false;
  refererStatus : string = "";
@@ -283,6 +292,7 @@ onPaymentSuccess(event: any): void {
  subscription.profession=this.profession;
  subscription.gender=this.gender;
  subscription.city=this.city;
+ subscription.subscription='Pay';
  if(this.executiveId)
  subscription.executiveId=this.executiveId;
  else
@@ -302,11 +312,39 @@ onPaymentClosed(event: any): void {
 }
 getOrderId()
 {
+  if(this.subscription === 'pay')
+{
   this.subscriptionService.getOrderId().subscribe(
  (res) => { this.orderid = res.orderId; console.log(this.orderid);},
  (err) => {this.msg.create("error","Error Occured at Sever...")}
 
   );
+}
+}
+
+
+freeSubscription()
+{
+  var subscription = new SubscriptionDTO();
+  subscription.name=this.name;
+  subscription.password=this.password;
+  subscription.refererid=this.refererid;
+  subscription.contact=this.contact;
+  subscription.email=this.email;
+  subscription.profession=this.profession;
+  subscription.gender=this.gender;
+  subscription.city=this.city;
+  subscription.subscription='free';
+  if(this.executiveId)
+  subscription.executiveId=this.executiveId;
+  else
+  subscription.executiveId='';
+ 
+  this.subscriptionService.getSubscription(subscription).subscribe(
+   (res) => {     this.router.navigate(['paymentStatus'],  { state: {statusDTO: res }}); },
+   (err) => {this.router.navigate(['paymentStatus'],  { state: {status: 'false', orderid: 404 }});}
+  
+    );    
 }
 
 }
