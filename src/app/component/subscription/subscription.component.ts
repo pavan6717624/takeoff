@@ -335,7 +335,7 @@ freeSubscription()
   subscription.profession=this.profession;
   subscription.gender=this.gender;
   subscription.city=this.city;
-  subscription.subscription='free';
+  subscription.subscription='Free';
   if(this.executiveId)
   subscription.executiveId=this.executiveId;
   else
