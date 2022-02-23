@@ -69,9 +69,11 @@ export class MainComponent implements OnInit {
     );
   }
 
-  open(): void {
-    this.router.navigate(['subscribe']);
+ open(id: number): void {	
+    if(id==1)	
+    this.router.navigate(['subscribe'],  { state: {subscription: 'free' }});	
+    else if(id==2)	
+    this.router.navigate(['subscribe'],  { state: {subscription: 'pay' }});	
   }
-
 
 }
