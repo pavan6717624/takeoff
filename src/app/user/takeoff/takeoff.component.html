@@ -58,7 +58,7 @@
 
                                 <div class="container"
                                     style='border-radius: 0px ;width:300px;height:300px;overflow:hidden;padding:0px'
-                                    (click)='viewRedemption(item)'>
+                                    (click)="(item.subscriptionType==='pay' || item.subscriptionType==='Pay')?viewRedemption(item):''">
                                     <img style=' width:300px;height:300px ;' id="image" [src]="item.image">
                                     <img [class]="item.image_align" [src]="item.logo"
                                         style='max-height: 50px;border: 1px solid  #bbb;'>
@@ -120,12 +120,16 @@
                             </div> -->
 
 
-                            <div nz-col nzSpan="24" style='width:302px;padding-left:2px' (click)='viewRedemption(item)'>
+                            <div *ngIf="item.subscriptionType==='pay' || item.subscriptionType==='Pay'" nz-col nzSpan="24" style='width:302px;padding-left:2px' (click)='viewRedemption(item)'>
                                 <p class="redeembutton"> <i class="fas fa-gifts"></i> Redeem
                                     {{item.redemptionCount>0?'('+item.redemptionCount+')':''}}</p>
                             </div>
 
-                            <div nz-col nzSpan="24">
+                            <div *ngIf="item.subscriptionType==='free' || item.subscriptionType==='Free'" nz-col nzSpan="24" style='width:302px;padding-left:2px'>
+                                <p class="redeemnoteligible"> <i class="fas fa-lock"></i> Your are NOT Eligible for Redemption of this Coupon</p>
+                            </div>
+
+                            <div nz-col nzSpan="24" *ngIf="item.subscriptionType==='pay' || item.subscriptionType==='Pay'">
                                 <div nz-row>
 
 
@@ -439,10 +443,10 @@
                         </div>
                         <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
-                        <div nz-col nzSpan="24" style='text-align: center'>
+                        <!-- <div nz-col nzSpan="24" style='text-align: center'>
                             For WhatsApp Redemption Format for Vendor is
                             <b><i>{{redeemCoupon.id}},{{loginStatus.userId}},{{code[0]+code[1]+code[2]+code[3]}}</i></b>
-                        </div>
+                        </div> -->
 
                         <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
 
