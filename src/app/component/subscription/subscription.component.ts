@@ -40,7 +40,7 @@ export class SubscriptionComponent implements OnInit {
     this.subscription =  (navigation?.extras?.state?.subscription); 
   }
 
-  subscription : string = "pay";
+  subscription : string = "Pay";
  orderid: string = "";
  refererIdStatus: boolean = false;
  refererStatus : string = "";
@@ -312,7 +312,7 @@ onPaymentClosed(event: any): void {
 }
 getOrderId()
 {
-  if(this.subscription === 'pay')
+  if(this.subscription === 'Pay')
 {
   this.subscriptionService.getOrderId().subscribe(
  (res) => { this.orderid = res.orderId; console.log(this.orderid);},
