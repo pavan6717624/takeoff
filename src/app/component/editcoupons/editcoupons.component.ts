@@ -35,7 +35,9 @@ export class Coupon {
   body_align: string = "centered-left";
   footer_align: string = "bottom-left";
 
-
+  subscriptionType: string = '';
+  
+  
   header_size: number = 10;
   body_size: number = 10;
   footer_size: number = 10;
