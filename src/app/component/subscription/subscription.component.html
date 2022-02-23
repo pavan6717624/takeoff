@@ -216,22 +216,39 @@
 
 
 
-        <div nz-row>
-            <div nz-col nzSpan="24" style='text-align: center'>
-                <button nz-button nzType="primary" [disabled]="!refererIdStatus || 
-                !(name.trim().length> 5) || 
-                !(password.trim().length> 8) || 
-                !(conpassword==password) || 
-                !(contact.trim().length == 10) || 
-                !check(contact.trim()) || 
-                (email.trim().indexOf('@')==-1 || email.trim().indexOf('@') != email.trim().lastIndexOf('@') || email.trim().lastIndexOf('@') > email.trim().lastIndexOf('.')  || email.trim().endsWith('.') || email.trim().startsWith('@')  || email.trim().endsWith('@') || email.trim().startsWith('.') || email.trim().indexOf('.')==-1) ||
-                !(profession.trim().length > 0) ||
-                !(gender.trim().length > 0) || 
-                !(city.trim().length > 0) || this.paying" nzDanger (click)='payment()'>Pay Rs. <s>1199</s> &nbsp; 999
-                </button>
-            </div>
+  <div *ngIf="subscription === 'pay' || subscription === 'Pay'" nz-row>	
+            <div nz-col nzSpan="24" style='text-align: center'>	
+                <button nz-button nzType="primary" [disabled]="!refererIdStatus || 	
+                !(name.trim().length> 5) || 	
+                !(password.trim().length> 8) || 	
+                !(conpassword==password) || 	
+                !(contact.trim().length == 10) || 	
+                !check(contact.trim()) || 	
+                (email.trim().indexOf('@')==-1 || email.trim().indexOf('@') != email.trim().lastIndexOf('@') || email.trim().lastIndexOf('@') > email.trim().lastIndexOf('.')  || email.trim().endsWith('.') || email.trim().startsWith('@')  || email.trim().endsWith('@') || email.trim().startsWith('.') || email.trim().indexOf('.')==-1) ||	
+                !(profession.trim().length > 0) ||	
+                !(gender.trim().length > 0) || 	
+                !(city.trim().length > 0) || this.paying" nzDanger (click)='payment()'>Pay Rs. <s>1199</s> &nbsp; 999	
+                </button>	
+            </div>	
+            	
+        </div>	
+        <div *ngIf="subscription === 'free' || subscription === 'Free'" nz-row>	
+            <div nz-col nzSpan="24" style='text-align: center'>	
+                <button nz-button nzType="primary" [disabled]="!refererIdStatus || 	
+                !(name.trim().length> 5) || 	
+                !(password.trim().length> 8) || 	
+                !(conpassword==password) || 	
+                !(contact.trim().length == 10) || 	
+                !check(contact.trim()) || 	
+                (email.trim().indexOf('@')==-1 || email.trim().indexOf('@') != email.trim().lastIndexOf('@') || email.trim().lastIndexOf('@') > email.trim().lastIndexOf('.')  || email.trim().endsWith('.') || email.trim().startsWith('@')  || email.trim().endsWith('@') || email.trim().startsWith('.') || email.trim().indexOf('.')==-1) ||	
+                !(profession.trim().length > 0) ||	
+                !(gender.trim().length > 0) || 	
+                !(city.trim().length > 0) || this.paying" nzDanger (click)='freeSubscription()'>Free Subscription	
+                </button>	
+            </div>	
+            	
+        </div>	
 
-        </div>
     </ng-container>
 </ng-container>
 <br /><br />
