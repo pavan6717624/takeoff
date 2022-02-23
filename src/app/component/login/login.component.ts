@@ -9,6 +9,7 @@ export class LoginStatus {
   loginStatus: boolean = false;
   loginId: string = "";
   jwt: string = '';
+   subscriptionType: string = '';
 }
 
 
