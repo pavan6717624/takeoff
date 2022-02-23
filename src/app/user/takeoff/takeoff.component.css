@@ -28,3 +28,13 @@
     
   cursor: pointer;
 }
+.redeemnoteligible {
+  margin: 0;
+    text-align: center;
+    color: red;
+    padding: 6px;
+    font-weight: bold;
+    border-radius:0 0 15px 15px;
+    background-color: rgb(215, 238, 215);
+    
+}
