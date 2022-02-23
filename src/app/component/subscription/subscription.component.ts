@@ -325,6 +325,7 @@ getOrderId()
 
 freeSubscription()
 {
+  this.paying=true;
   var subscription = new SubscriptionDTO();
   subscription.name=this.name;
   subscription.password=this.password;
@@ -341,8 +342,8 @@ freeSubscription()
   subscription.executiveId='';
  
   this.subscriptionService.getSubscription(subscription).subscribe(
-   (res) => {     this.router.navigate(['paymentStatus'],  { state: {statusDTO: res }}); },
-   (err) => {this.router.navigate(['paymentStatus'],  { state: {status: 'false', orderid: 404 }});}
+   (res) => {  this.paying=false;    this.router.navigate(['paymentStatus'],  { state: {statusDTO: res }}); },
+   (err) => {this.paying=false; this.router.navigate(['paymentStatus'],  { state: {status: 'false', orderid: 404 }});}
   
     );    
 }
