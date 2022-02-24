@@ -220,7 +220,7 @@ downloadCoupon(item:Coupon)
        alert('top');
     }*/
 
-    this.bottom=false;
+    //this.bottom=false;
 
     if (top > scrollHeight - offSetHeight - 1) {
 

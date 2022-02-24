@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { WindowRefService } from './window-ref.service';
 import { SubscriptionService } from './subscription.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as shajs from 'sha.js';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 declare var Razorpay: any;
@@ -32,12 +32,10 @@ export class SubscriptionDTO
 })
 export class SubscriptionComponent implements OnInit {
 
-  constructor(private router: Router, private subscriptionService: SubscriptionService,private msg: NzMessageService,private notification: NzNotificationService) { 
+  constructor(private route: ActivatedRoute,private router: Router, private subscriptionService: SubscriptionService,private msg: NzMessageService,private notification: NzNotificationService) { 
 
 
-    const navigation = this.router.getCurrentNavigation();
-    if(navigation && navigation.extras && navigation.extras.state && navigation.extras.state.subscription)
-    this.subscription =  (navigation?.extras?.state?.subscription); 
+    this.route.data.subscribe(v => this.subscription = v.subscription);
   }
 
   subscription : string = "Pay";

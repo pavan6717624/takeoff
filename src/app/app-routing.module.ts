@@ -15,7 +15,8 @@ import { ExecutiveComponent } from './component/executive/executive.component';
 const routes: Routes = [
   { path:'',component: MainComponent},
   //{ path: '', loadChildren: () => import('./commodule/commodule.module').then(m => m.CommoduleModule) },
-  { path: 'subscribe', component: SubscriptionComponent },
+  { path: 'subscribe', component: SubscriptionComponent , data : {subscription : 'Pay'}, },
+  { path: 'freesubscribe', component: SubscriptionComponent , data : {subscription : 'Free'}, },
   { path: 'paymentStatus', component: PaymentStatusComponent },
   { path: 'login', component: LoginComponent },
   { path: 'reference',component: ReferenceComponent},
