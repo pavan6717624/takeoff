@@ -44,7 +44,7 @@ export class VendorComponent implements OnInit {
     if(this.loginStatus)
     {
       this.userType=this.loginStatus.userType;
-      if(this.userType!='Vendor')
+      if(this.userType!='Vendor' && this.userType!='Designer')
       {
         this.msg.create('error', 'Logging in...');
         this.router.navigate(['login']);
@@ -67,7 +67,7 @@ export class VendorComponent implements OnInit {
       (res: any) => {
         this.loading = false;
         this.loginStatus = res;
-        if(this.loginStatus.userType!='Vendor')
+        if(this.loginStatus.userType!='Vendor' && this.loginStatus.userType!='Designer')
         
         {
           this.loading = false; this.msg.create('info', 'Logging in...');
