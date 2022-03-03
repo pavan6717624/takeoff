@@ -196,7 +196,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-.nav-menu .drop-down ul a {
+/* .nav-menu .drop-down ul a {
   padding: 10px 20px;
   font-size: 14px;
   font-weight: 500;
@@ -206,7 +206,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-menu .drop-down ul a:hover, .nav-menu .drop-down ul .active > a, .nav-menu .drop-down ul li:hover > a {
   color: #47b2e4;
-}
+} */
 
 .nav-menu .drop-down > a:after {
   content: "\ea99";
