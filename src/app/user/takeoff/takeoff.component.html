@@ -16,10 +16,12 @@
 
     <ng-container *ngIf='!loading'>
 
-        <div style='text-align:right'>
-            <nz-affix [nzOffsetTop]="offsetTop">
-               <button nz-button nzType="primary" (click)='filterVisible=true' [style.background] = "(vendorSelected>0 || category > 0 || subCategory > 0 || keywords.length > 0)?'#fd6951': 'light blue'">
-                    <span><i nz-icon nzType="filter" nzTheme="outline" (click)='filterVisible=true'></i></span>
+         <div style='text-align:right'>
+            <nz-affix [nzOffsetTop]="this.screenHeight-50">
+
+                
+               <button nz-button  nzType="primary" nzShape="round" (click)='filterVisible=true' [style.background] = "(vendorSelected>0 || category > 0 || subCategory > 0 || keywords.length > 0)?'#fd6951': 'light blue'">
+                    <span><i nz-icon nzType="search" nzTheme="outline" (click)='filterVisible=true'></i>  Search </span>
                 </button>
             </nz-affix>
         </div>
