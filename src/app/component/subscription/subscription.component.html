@@ -236,8 +236,7 @@
             <div nz-col nzSpan="24" style='text-align: center'>	
                 <button nz-button nzType="primary" [disabled]="!refererIdStatus || 	
                 !(name.trim().length> 5) || 	
-                !(password.trim().length> 8) || 	
-                !(conpassword==password) || 	
+
                 !(contact.trim().length == 10) || 	
                 !check(contact.trim()) || 	
                 (email.trim().indexOf('@')==-1 || email.trim().indexOf('@') != email.trim().lastIndexOf('@') || email.trim().lastIndexOf('@') > email.trim().lastIndexOf('.')  || email.trim().endsWith('.') || email.trim().startsWith('@')  || email.trim().endsWith('@') || email.trim().startsWith('.') || email.trim().indexOf('.')==-1) ||	
