@@ -59,7 +59,7 @@
             <div nz-col nzSpan="12" style='text-align: left'> &nbsp;</div>
         </div>
 
-        <div nz-row>
+        <div nz-row *ngIf="subscription!='Free'">
             <div nz-col nzSpan="6" style='text-align: left'>&nbsp;</div>
             <div nz-col nzSpan="6" style='text-align: left'>Enter Password </div>
             <div nz-col nzSpan="12" style='text-align: left'>
@@ -72,12 +72,12 @@
             </div>
         </div>
 
-        <div nz-row>
+        <div nz-row *ngIf="subscription!='Free'">
             <div nz-col nzSpan="12" style='text-align: left'>&nbsp;</div>
             <div nz-col nzSpan="12" style='text-align: left'> &nbsp;</div>
         </div>
 
-        <div nz-row>
+        <div nz-row *ngIf="subscription!='Free'">
             <div nz-col nzSpan="6" style='text-align: left'>&nbsp;</div>
             <div nz-col nzSpan="6" style='text-align: left'>Confirm Password </div>
             <div nz-col nzSpan="12" style='text-align: left'>
