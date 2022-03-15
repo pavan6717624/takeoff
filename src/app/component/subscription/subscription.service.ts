@@ -7,11 +7,11 @@ import { SubscriptionDTO } from './subscription.component';
 })
 export class SubscriptionService {
     recordHits(formData: FormData) {
-    return this.http.post( 'https://takeoff-angular.herokuapp.com/recordHits',formData );
+    return this.http.post( 'https://takeoff-pavan.herokuapp.com//recordHits',formData );
   }
   
   addContacts(formData: FormData) {
-    return this.http.post( 'https://takeoff-angular.herokuapp.com/addContacts',formData );
+    return this.http.post( 'https://takeoff-pavan.herokuapp.com//addContacts',formData );
   }
 
   constructor(private http: HttpClient) { }
@@ -19,20 +19,20 @@ export class SubscriptionService {
 
   getOrderId(): Observable<any>
   {
-    //return this.http.get( 'https://takeoff-angular.herokuapp.com/getOrderId' );
-    return this.http.get( 'https://takeoff-angular.herokuapp.com/getOrderId' );
+    //return this.http.get( 'https://takeoff-pavan.herokuapp.com//getOrderId' );
+    return this.http.get( 'https://takeoff-pavan.herokuapp.com//getOrderId' );
   }
 
   async checkRefererId(formData: FormData): Promise<any>
   {
-    // return await this.http.post( 'https://takeoff-angular.herokuapp.com/checkRefererId',formData ).toPromise();
-    return await this.http.post( 'https://takeoff-angular.herokuapp.com/checkRefererId',formData ).toPromise();
+    // return await this.http.post( 'https://takeoff-pavan.herokuapp.com//checkRefererId',formData ).toPromise();
+    return await this.http.post( 'https://takeoff-pavan.herokuapp.com//checkRefererId',formData ).toPromise();
   }
   
   getSubscription(subscription:SubscriptionDTO): Observable<any>
   {
-  // return this.http.post('https://takeoff-angular.herokuapp.com/subscribe',subscription );
-    return this.http.post('https://takeoff-angular.herokuapp.com/subscribe',subscription );
+  // return this.http.post('https://takeoff-pavan.herokuapp.com//subscribe',subscription );
+    return this.http.post('https://takeoff-pavan.herokuapp.com//subscribe',subscription );
   }
 
 }
