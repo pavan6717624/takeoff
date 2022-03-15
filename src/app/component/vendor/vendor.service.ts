@@ -7,35 +7,35 @@ import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 export class VendorService {
   
   getExecutiveCustomerAccountDetails() {
-    return this.http.get('https://takeoff-pavan.herokuapp.com/getExecutiveCustomerAccountDetails');
+    return this.http.get('http://localhost:8081/getExecutiveCustomerAccountDetails');
   }
   
   updateScanCode(formData: FormData) {
-    return this.http.post('https://takeoff-pavan.herokuapp.com/updateScanCode',formData);
+    return this.http.post('http://localhost:8081/updateScanCode',formData);
   }
 
   beforeUpload(formData: FormData) : Observable<any> {
 
-    return this.http.post('https://takeoff-pavan.herokuapp.com/getImage',formData);
+    return this.http.post('http://localhost:8081/getImage',formData);
    
   }
 
   beforeUploadStatement(formData: FormData) : Observable<any> {
 
-    return this.http.post('https://takeoff-pavan.herokuapp.com/getImageStatement',formData);
+    return this.http.post('http://localhost:8081/getImageStatement',formData);
    
   }
 
 
   upload(formData: FormData) : Observable<any> {
 
-    return this.http.post('https://takeoff-pavan.herokuapp.com/uploadCoupon',formData);
+    return this.http.post('http://localhost:8081/uploadCoupon',formData);
    
   }
   
     getInvestorCustomerAccountDetails(): Observable<any> 
   {
-  return this.http.get('https://takeoff-pavan.herokuapp.com/getInvestorCustomerAccountDetails');
+  return this.http.get('http://localhost:8081/getInvestorCustomerAccountDetails');
   }
 
 

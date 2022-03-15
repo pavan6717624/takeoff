@@ -73,7 +73,7 @@ export class TakeoffComponent implements OnInit {
 
   constructor(private notification: NzNotificationService,private modal: NzModalService,private uploadcouponsService: UploadcouponsService, private adminServie: AdminService, private loginService: LoginService, private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) {
 
-    const navigation = this.router.getCurrentNavigation();
+     const navigation = this.router.getCurrentNavigation();
     this.loginStatus = (navigation?.extras?.state?.loginStatus);
 
     if (this.loginStatus) {
@@ -455,6 +455,8 @@ vendorListLoading=true;
 
 
   startLoading() {
+
+    
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
     this.columns = Math.ceil(12 / (this.screenWidth / 350));
@@ -471,7 +473,8 @@ vendorListLoading=true;
     }
 
 
-
+    this.getNotification();
+ 
 
     var loginButton = window.document.getElementById("loginButton")
 
@@ -483,6 +486,20 @@ vendorListLoading=true;
 
     this.businessLogic();
 
+  }
+
+  getNotification()
+  {
+    this.userService.getNotification().subscribe(
+      (res : any) => {
+       
+        console.log(res);
+
+        this.notification.create('success', res.header,res.message, { nzDuration: 0 });
+
+      },
+      (err) => {  console.log(err); }
+    );
   }
 
   businessLogic() {
