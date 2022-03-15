@@ -34,6 +34,8 @@ export class RedemptionDTO {
   status: Boolean = true;
 
   message: string = '';
+
+  redemOn: string = '';
 }
 
 export class SendCouponsRequest {
@@ -333,10 +335,12 @@ downloadCoupon(item:Coupon)
 
     this.userService.customerRedemption(this.redemption).subscribe(
 
-      (res: any) => { this.redeemCancel(); this.redeemLoading = false;  if (res.status) { this.redeemCoupon.redemptionCount += 1; this.notification.create('success', 'Redemption Success','Your Redemption is Successful\nfor Coupon Id: '+res.couponId, { nzDuration: 0 }); } else { this.notification.create('error', 'Redemption Failed','Sorry! Your Redemption Failed\nfor Coupon Id: '+res.couponId, { nzDuration: 0 }); } },
+      (res: any) => { this.redeemCancel(); this.redeemLoading = false;  if (res.status) { this.redeemCoupon.redemptionCount += 1; this.successVisible=true; this.redemSuccessMessage="Coupon Id:: "+res.couponId+" Redem Time :: "+res.redemOn;} else { this.notification.create('error', 'Redemption Failed','Sorry! Your Redemption Failed\nfor Coupon Id: '+res.couponId, { nzDuration: 0 }); } },
       (err) => { this.redeemLoading = false; console.log(err); this.msg.create('error', 'Error Occured while accepting Passcode...'); this.redemption = new RedemptionDTO(); this.redeemLoading = false; }
     );
   }
+
+  redemSuccessMessage = '';
 
   redeemCancel() {
     this.redeemVisible = false;
@@ -452,7 +456,7 @@ vendorListLoading=true;
   }
 
   isLoading = false;
-
+  successVisible=false;
 
   startLoading() {
 
