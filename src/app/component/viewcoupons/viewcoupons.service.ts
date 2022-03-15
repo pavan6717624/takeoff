@@ -8,14 +8,14 @@ import { Coupon } from '../editcoupons/editcoupons.component';
 })
 export class ViewcouponsService {
   editCoupon(coupon: Coupon) {
-    return this.http.post('http://localhost:8081/editCoupon', coupon);
+    return this.http.post('https://takeoff-angular.herokuapp.com/editCoupon', coupon);
   }
 
   constructor(private http: HttpClient) { }
 
 
   getCoupons(formData: FormData): Observable<any> {
-    return this.http.post('http://localhost:8081/getCoupons', formData);
+    return this.http.post('https://takeoff-angular.herokuapp.com/getCoupons', formData);
 
   }
 }

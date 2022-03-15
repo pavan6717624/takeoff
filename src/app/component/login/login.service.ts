@@ -6,24 +6,24 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
   forgetPassword(formData: FormData) {
-    return this.http.post('http://localhost:8081/forgetPassword',formData)
+    return this.http.post('https://takeoff-angular.herokuapp.com/forgetPassword',formData)
   }
   checkPasswordOTP(formData: FormData) {
-    return this.http.post('http://localhost:8081/checkPasswordOTP',formData)
+    return this.http.post('https://takeoff-angular.herokuapp.com/checkPasswordOTP',formData)
   }
   generateMailPasscode(formData: FormData): Observable<any> {
-    return this.http.post('http://localhost:8081/generateMailPasscode',formData)
+    return this.http.post('https://takeoff-angular.herokuapp.com/generateMailPasscode',formData)
   }
   getLoginDetails() {
-    return this.http.get('http://localhost:8081/getLoginDetails')
+    return this.http.get('https://takeoff-angular.herokuapp.com/getLoginDetails')
   }
 
   constructor(private http: HttpClient) { }
 
 login(formData: FormData): Observable<any>
 {
- // return this.http.post( 'http://localhost:8081/login',formData );
-  return this.http.post('http://localhost:8081/login',formData)
+ // return this.http.post( 'https://takeoff-angular.herokuapp.com/login',formData );
+  return this.http.post('https://takeoff-angular.herokuapp.com/login',formData)
 }
 
 }
