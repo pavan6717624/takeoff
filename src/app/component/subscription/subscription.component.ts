@@ -210,7 +210,7 @@ this.loading=true;
        );
   }
 
-  
+
 
 payment()
 {
@@ -221,6 +221,24 @@ payment()
     return;
   }
  this.paying=true;
+
+ var formData = new FormData();
+ formData.set("mobileNumber",this.contact);
+ formData.set("email",this.email);
+
+ this.subscriptionService.checkCustomerDetails(formData).subscribe(
+  (res : any) => {this.paying=false; if(res.status) {  this.paymentStart(); } else { this.msg.create("error",res.message); }   },
+  (err) => { this.paying=false; this.msg.create("error","Error Occured at Sever...");}
+ 
+   );   
+
+
+
+}
+
+paymentStart()
+{
+  this.paying=true;
   var options = {
    // "key": "rzp_test_WJFhmfMmFRxETB", // Enter the Key ID generated from the Dashboard
    "key": "rzp_live_nWA6UVrzTQFr9W",
@@ -325,6 +343,21 @@ getOrderId()
 
 freeSubscription()
 {
+
+  this.paying=true;
+  var formData = new FormData();
+ formData.set("mobileNumber",this.contact);
+ formData.set("email",this.email);
+
+ this.subscriptionService.checkCustomerDetails(formData).subscribe(
+  (res : any) => {this.paying=false; if(res.status) {  this.freeSubscriptionStart(); } else { this.msg.create("error",res.message); }   },
+  (err) => { this.paying=false; this.msg.create("error","Error Occured at Sever...");}
+ 
+   );   
+
+ }
+ freeSubscriptionStart()
+ {
   this.paying=true;
   var subscription = new SubscriptionDTO();
   subscription.name=this.name;
