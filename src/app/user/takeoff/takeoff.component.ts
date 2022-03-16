@@ -499,7 +499,7 @@ vendorListLoading=true;
        
         console.log(res);
 
-        this.notification.create('success', res.header,res.message, { nzDuration: 0 });
+        this.notification.create('success', res.header,res.message, { nzDuration: 0, nzPlacement: 'bottomRight' });
 
       },
       (err) => {  console.log(err); }
