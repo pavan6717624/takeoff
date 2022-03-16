@@ -8,52 +8,52 @@ import { RedemptionHistory } from './redem-history/redem-history.component';
 })
 export class UserService {
   getNotification() {
-    return this.http.get('http://localhost:8081/getNotification');  
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getNotification');  
   }
   getCoupon(formData: FormData) {
-    return this.http.post('http://localhost:8081/getCoupon',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getCoupon',formData);
   }
   sendRedemptionCode(formData: FormData) {
-    return this.http.post('http://localhost:8081/sendRedemptionCode',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/sendRedemptionCode',formData);
   }
   updatePan(formData: FormData) {
-    return this.http.post('http://localhost:8081/updatePan',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/updatePan',formData);
   }
 
   updateKYC(formData: FormData) {
-    return this.http.post('http://localhost:8081/updateKYC',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/updateKYC',formData);
   }
   
    downloadCoupon(formData: FormData) {
-    return this.http.post('http://localhost:8081/downloadCoupon',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/downloadCoupon',formData);
   }
  
   async likeCoupon(formData: FormData) {
-    return await this.http.post('http://localhost:8081/likeCoupon',formData).toPromise();;
+    return await this.http.post('https://takeoff-pavan.herokuapp.com/likeCoupon',formData).toPromise();;
   }
 
   async disLikeCoupon(formData: FormData) {
-    return await this.http.post('http://localhost:8081/disLikeCoupon',formData).toPromise();;
+    return await this.http.post('https://takeoff-pavan.herokuapp.com/disLikeCoupon',formData).toPromise();;
   }
 
   getRedemptionHistory() {
-    return this.http.get('http://localhost:8081/getRedemptionHistory');
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getRedemptionHistory');
   }
 
   
   customerRedemption(redemption: RedemptionDTO) {
-    return this.http.post('http://localhost:8081/customerRedemption',redemption);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/customerRedemption',redemption);
   }
   generateRedemption(redemption:RedemptionDTO) {
-    return this.http.post('http://localhost:8081/generateRedemption',redemption);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/generateRedemption',redemption);
   }
 
   getKYCDetails() {
-    return this.http.get('http://localhost:8081/getKYCDetails');
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getKYCDetails');
   }
 
   downloadRedemHistory(redemptionHistory: RedemptionHistory[]) {
-    return this.http.post('http://localhost:8081/downloadRedemHistory',redemptionHistory,{responseType: 'blob'});
+    return this.http.post('https://takeoff-pavan.herokuapp.com/downloadRedemHistory',redemptionHistory,{responseType: 'blob'});
   }
 
 
@@ -63,37 +63,37 @@ export class UserService {
 
  
   getCustomerAccountDetails(formData: FormData) {
-    return this.http.post('http://localhost:8081/getCustomerAccountDetails',formData)
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getCustomerAccountDetails',formData)
   }
 
 
   getTakeOffRecommendations(sendCouponsRequest: SendCouponsRequest) {
-    return this.http.post('http://localhost:8081/getTakeOffRecommendations',sendCouponsRequest)
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getTakeOffRecommendations',sendCouponsRequest)
   }
 
   getComplimentaryCoupons(sendCouponsRequest: SendCouponsRequest) {
-    return this.http.post('http://localhost:8081/getComplimentaryCoupons',sendCouponsRequest)
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getComplimentaryCoupons',sendCouponsRequest)
   }
 
 
   getFreeCoupons(sendCouponsRequest: SendCouponsRequest) {
-    return this.http.post('http://localhost:8081/getFreeCoupons',sendCouponsRequest)
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getFreeCoupons',sendCouponsRequest)
   }
 
 
   getDailyCoupons(sendCouponsRequest: SendCouponsRequest) {
-    return this.http.post('http://localhost:8081/getDailyCoupons',sendCouponsRequest);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getDailyCoupons',sendCouponsRequest);
   }
 
   getLimitedCoupons(sendCouponsRequest: SendCouponsRequest) {
-    return this.http.post('http://localhost:8081/getLimitedCoupons',sendCouponsRequest)
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getLimitedCoupons',sendCouponsRequest)
   }
 
   getRedeemableCoupons(sendCouponsRequest: SendCouponsRequest) {
-    return this.http.post('http://localhost:8081/getRedeemableCoupons',sendCouponsRequest)
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getRedeemableCoupons',sendCouponsRequest)
   }
   getDiscountCoupons(sendCouponsRequest: SendCouponsRequest) {
-    return this.http.post('http://localhost:8081/getDiscountCoupons',sendCouponsRequest)
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getDiscountCoupons',sendCouponsRequest)
   }
   
 }

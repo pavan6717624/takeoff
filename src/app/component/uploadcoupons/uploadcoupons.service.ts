@@ -12,16 +12,16 @@ export class UploadcouponsService {
 
   getCategories(): Observable<any>
   {
-    return this.http.get('http://localhost:8081/getCategories');
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getCategories');
   }
 
   getSubCategories(formData: FormData): Observable<any>
   {
-    return this.http.post('http://localhost:8081/getSubCategories',formData);
+    return this.http.post('https://takeoff-pavan.herokuapp.com/getSubCategories',formData);
   }
   
    getVendorList(): Observable<any>
   {
-    return this.http.get('http://localhost:8081/getVendorList');
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getVendorList');
   }
 }
