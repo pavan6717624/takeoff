@@ -100,7 +100,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['user'],  { state: {loginStatus: res }}); 
         }
         else {
-          this.msg.create("error", "Invalid Credientails..");
+          this.msg.create("error", res.message);
           this.password = "";
           this.logginStatus = false;
         }
