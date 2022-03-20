@@ -4,7 +4,8 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { UserService } from 'src/app/user/user.service';
 import { LoginService } from 'src/app/component/login/login.service';
 import { LoginStatus } from 'src/app/component/login/login.component';
-
+import * as shajs from 'sha.js';
+import { VendoraccountService } from 'src/app/component/vendoraccount/vendoraccount.service';
 export class CustomerAccount
 {
 userId : number =0;
@@ -35,7 +36,7 @@ walletAmount: number =0;
 })
 export class AccountComponent implements OnInit {
 
-  constructor(private loginService: LoginService,private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) 
+  constructor( private vendoraccountService: VendoraccountService,private loginService: LoginService,private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) 
   {
     
   }
@@ -107,4 +108,41 @@ toWallet()
     );
   }
 
+  password: string = '';
+  newpassword: string = '';
+  conpassword: string = '';
+  editVisible=false;
+
+  changePassword()
+  {
+   if(!this.loginStatus)
+    {
+     // this.msg.create('error', 'Session Expired. Please Login');
+      this.router.navigate(['login']);
+      return;
+    }
+    if(this.password.length >= 8 && this.newpassword.length >= 8 && this.conpassword == this.newpassword && this.loginStatus)
+    {
+      this.password = (shajs('sha256').update(this.password).digest('hex'));
+      this.newpassword = (shajs('sha256').update(this.newpassword).digest('hex'));
+      this.conpassword = (shajs('sha256').update(this.conpassword).digest('hex'));
+  
+      var formData = new FormData();
+      formData.set("password",this.password);
+      formData.set("newpassword",this.newpassword);
+      formData.set("userId",this.loginStatus.userId);
+      this.loading=true;
+      this.editVisible=false;
+      this.vendoraccountService.changePassword(formData).subscribe(
+        (res) => { this.loading=false; if(res) this.msg.create('success','Password Changed.'); else this.msg.create('error','Invalid Current Password.'); console.log(res); },
+        (err) => { this.loading=false; console.log(err); }
+  
+      );
+  
+    }
+    else
+    {
+      this.msg.create('error', 'Invalid Password. Please provide Correct Password of atleast 8 characters.');
+    }
+  }
 }
