@@ -8,6 +8,7 @@ export class StatsDTO
   todayCount: number = 0;
   monthCount: number = 0;
   totalCount: number = 0;
+    type: string = '';
 }
 
 @Component({
