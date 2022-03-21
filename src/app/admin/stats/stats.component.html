@@ -8,6 +8,7 @@
         <tr>
             <th> # </th>
             <th> Role Name </th>
+          <th> Type </th>
             <th> Today's Count </th>
             <th> This Month Count </th>
             <th> Today </th>
@@ -19,6 +20,7 @@
         <tr *ngFor="let data of stats; index as i">
             <td>{{ (i+1) }}</td>
             <td>{{ data.roleName }}</td>
+           <td>{{ data.type }}</td>
             <td>{{ data.todayCount }}</td>
             <td>{{ data.monthCount }}</td>
             <td>{{ data.totalCount }}</td>
