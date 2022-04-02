@@ -262,11 +262,7 @@ paymentStart()
   
    "order_id": this.orderid,
    
-    "prefill": {
-        "name": this.name,
-        "email": this.email,
-        "contact": this.contact
-          },
+  
     "notes": {
         "address": "TakeOff Corporate Office"
     },

@@ -6,6 +6,9 @@ import { SubscriptionDTO } from './subscription.component';
   providedIn: 'root'
 })
 export class SubscriptionService {
+  upgradeSubscription(updateSubscription:SubscriptionDTO) {
+    return this.http.post('https://takeoff-pavan.herokuapp.com/upgradeSubscription',updateSubscription );
+  }
   checkCustomerDetails(formData: FormData) {
     return this.http.post( 'https://takeoff-pavan.herokuapp.com/checkCustomerDetails',formData );
   }

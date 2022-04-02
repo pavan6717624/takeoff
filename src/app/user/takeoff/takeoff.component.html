@@ -16,8 +16,18 @@
 
     <ng-container *ngIf='!loading'>
 
+
+
          <div style='text-align:right'>
+
+
             <nz-affix [nzOffsetTop]="this.screenHeight-50">
+                <ng-container *ngIf="customerType==='Free'">
+                <button nz-button  nzType="primary" nzShape="round" (click)='toPremium()' nzDanger>
+                    <span><i class="fas fa-plane-departure"></i> &nbsp; To Premium </span>
+                </button> &nbsp; &nbsp;
+                </ng-container>
+
 
                 
                <button nz-button  nzType="primary" nzShape="round" (click)='filterVisible=true' [style.background] = "(vendorSelected>0 || category > 0 || subCategory > 0 || keywords.length > 0)?'#fd6951': 'light blue'">

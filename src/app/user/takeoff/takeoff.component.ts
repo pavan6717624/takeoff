@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, HostListener } from '@angular/core';
 import { Coupon } from 'src/app/component/editcoupons/editcoupons.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -10,7 +10,9 @@ import { UploadcouponsService } from 'src/app/component/uploadcoupons/uploadcoup
 import { AdminService } from 'src/app/admin/admin.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-
+import { SubscriptionService } from 'src/app/component/subscription/subscription.service';
+import { SubscriptionDTO } from 'src/app/component/subscription/subscription.component';
+declare var Razorpay: any;
 export class RedemptionDTO {
 
 
@@ -73,7 +75,7 @@ export class TakeoffComponent implements OnInit {
 
   filterVisible = false;
 
-  constructor(private notification: NzNotificationService,private modal: NzModalService,private uploadcouponsService: UploadcouponsService, private adminServie: AdminService, private loginService: LoginService, private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) {
+  constructor(private subscriptionService: SubscriptionService, private notification: NzNotificationService,private modal: NzModalService,private uploadcouponsService: UploadcouponsService, private adminServie: AdminService, private loginService: LoginService, private router: Router, private route: ActivatedRoute, private msg: NzMessageService, private userService: UserService) {
 
      const navigation = this.router.getCurrentNavigation();
     this.loginStatus = (navigation?.extras?.state?.loginStatus);
@@ -492,12 +494,19 @@ vendorListLoading=true;
 
   }
 
+  customerType: string = '';
+
   getNotification()
   {
     this.userService.getNotification().subscribe(
       (res : any) => {
        
         console.log(res);
+
+        if(res.header.includes('Premium'))
+        this.customerType = 'Premium';
+        else
+        this.customerType='Free';
 
         this.notification.create('success', res.header,res.message, { nzDuration: 0, nzPlacement: 'bottomRight' });
 
@@ -836,6 +845,93 @@ vendorListLoading=true;
 
 
   }
+
+  orderid: string = '';
+
+  toPremium()
+  {
+    this.loading=true;
+    this.subscriptionService.getOrderId().subscribe(
+      (res) => { this.orderid = res.orderId; this.paymentStart(); console.log(this.orderid);},
+      (err) => {this.msg.create("error","Error Occured at Sever..."); this.loading=false;}
+     
+       );
+  }
+
+  paymentStart()
+{
+  this.loading=true;
+  var options = {
+   // "key": "rzp_test_WJFhmfMmFRxETB", // Enter the Key ID generated from the Dashboard
+   "key": "rzp_live_nWA6UVrzTQFr9W",
+   // "amount": "100", 
+   // "amount" : 119900,
+    "amount" : 99900,
+    "currency": "INR",
+    "name": "TAKEOFF",
+    "description": "Subscription to TAKEOFF",
+    "image": "https://thetakeoff.in/assets/img/logo-white.png",
+    "handler": function (response:any){
+      var event = new CustomEvent("payment.success", 
+          {
+              detail: response,
+              bubbles: true,
+              cancelable: true
+          }
+      );    
+      window.dispatchEvent(event);
+  },
+  
+   "order_id": this.orderid,
+   
+   
+    "notes": {
+        "address": "TakeOff Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    },
+    "modal": {
+      "ondismiss": function(){
+        var event = new CustomEvent("payment.closed", 
+        {
+            detail: "closed",
+            bubbles: true,
+            cancelable: true
+        }
+    );    
+    window.dispatchEvent(event);
+      }
+  }
+
+};
+
+const rzp = new Razorpay(options);
+
+rzp.open();
+
+}
+
+
+@HostListener('window:payment.success', ['$event']) 
+onPaymentSuccess(event: any): void {
+  var updateSubscription = new SubscriptionDTO();
+  updateSubscription.razorpay_payment_id = event.detail.razorpay_payment_id;
+  updateSubscription.razorpay_order_id = event.detail.razorpay_order_id;
+  updateSubscription.razorpay_signature = event.detail.razorpay_signature;
+  
+  this.subscriptionService.upgradeSubscription(updateSubscription).subscribe(
+    (res:any) => { this.loading=false;   console.log(res); if(res.status) { this.msg.success(res.message);  this.router.navigate(['login']); } else this.msg.error(res.message); },
+    (err) => { console.log(err); this.msg.error("Error Occured while connecting to Server. Try again.");this.loading=false;}
+   
+     );   
+}
+
+
+@HostListener('window:payment.closed', ['$event']) 
+onPaymentClosed(event: any): void {
+    this.loading=false;
+}
 
 }
 
