@@ -28,6 +28,10 @@ export class RedemptionHistory
   contact: string ='';
 
   customerContact: string  = '';
+  
+  category: string = '';
+
+  subCategory: string = '';
 }
 
 @Component({
