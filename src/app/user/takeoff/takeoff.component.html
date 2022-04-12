@@ -18,7 +18,7 @@
 
 
 
-         <div style='text-align:right'>
+<!--          <div style='text-align:right'>
 
 
             <nz-affix [nzOffsetTop]="this.screenHeight-50">
@@ -34,7 +34,60 @@
                     <span><i nz-icon nzType="search" nzTheme="outline" (click)='filterVisible=true'></i>  Search </span>
                 </button>
             </nz-affix>
-        </div>
+        </div> -->
+      
+      <nz-affix [nzOffsetTop]="this.screenHeight-60">
+            <!-- <ng-container *ngIf="customerType==='Free'">
+                <button nz-button nzType="primary" nzShape="round" (click)='toPremium()' nzDanger>
+                    <span><i class="fas fa-plane-departure"></i> &nbsp; To Premium </span>
+                </button> &nbsp; &nbsp;
+            </ng-container> -->
+    
+            <div class="scrollmenu" >
+                
+                <div [style.color]="(vendorSelected>0 || category > 0 || subCategory > 0 || keywords.length > 0)?'pink': 'lavenderblush'">
+                    <b><i style='font-size:20px;' nz-icon nzType="search" nzTheme="outline" (click)='filterVisible=true'></i></b>
+                    <br/><span style="font-size:xx-small"> Search </span></div>
+
+                    <ng-container *ngIf="customerType==='Free'">
+                    <div>
+                        <b ><i class="fas fa-plane-departure" (click)='toPremium()'></i></b>
+                        <br/><span style="font-size:xx-small"> Upgrade To Premium </span></div>
+                    </ng-container>
+                <div [style.color]="category == 3?'pink': 'lavenderblush'" (click)="çategory=3;filterCoupons();"><i class="fas fa-dumbbell"></i>
+                    <br/><span style="font-size:xx-small"> Beauty & Fitness </span>
+                </div>
+                <div [style.color]="category == 5?'pink': 'lavenderblush'" (click)="çategory=5;filterCoupons();"><i class="fas fa-crown"></i> 
+                    <br/><span style="font-size:xx-small"> Life Style </span>
+                </div>
+                <div [style.color]="category == 6?'pink': 'lavenderblush'" (click)="çategory=6;filterCoupons();"><i class="fas fa-utensils"></i>
+                    <br/><span style="font-size:xx-small"> Food & Beverages </span>
+                </div>
+                <div [style.color]="category == 10?'pink': 'lavenderblush'" (click)="çategory=10;filterCoupons();"><i class="fas fa-menorah"></i>
+                    <br/><span style="font-size:xx-small"> Events </span>
+                </div>
+                <div [style.color]="category == 11?'pink': 'lavenderblush'" (click)="çategory=11;filterCoupons();"><i class="fas fa-graduation-cap"></i>
+                    <br/><span style="font-size:xx-small"> Education </span>
+                </div>
+                <div [style.color]="category == 12?'pink': 'lavenderblush'" (click)="çategory=12;filterCoupons();"><i class="fas fa-dog"></i>
+                    <br/><span style="font-size:xx-small"> Pets </span>
+                </div>
+                <div [style.color]="category == 13?'pink': 'lavenderblush'" (click)="çategory=13;filterCoupons();"><i class="fas fa-futbol"></i>
+                    <br/><span style="font-size:xx-small"> Sports </span>
+                </div>
+                <div [style.color]="category == 14?'pink': 'lavenderblush'" (click)="çategory=14;filterCoupons();"><i class="fas fa-gifts"></i>
+                    <br/><span style="font-size:xx-small"> Gifts </span>
+                </div>
+                <div [style.color]="category == 15?'pink': 'lavenderblush'" (click)="çategory=15;filterCoupons();"><i class="fas fa-briefcase-medical"></i>
+                    <br/><span style="font-size:xx-small"> Medicals </span>
+                </div>
+            </div>
+    
+            <!-- <button nz-button nzType="primary" nzShape="round" (click)='filterVisible=true'
+                [style.background]="(vendorSelected>0 || category > 0 || subCategory > 0 || keywords.length > 0)?'#fd6951': 'light blue'">
+                <span><i nz-icon nzType="search" nzTheme="outline" (click)='filterVisible=true'></i> Search </span>
+            </button> -->
+        </nz-affix>
 
 
 
@@ -43,7 +96,7 @@
         </ng-container>
 
         <ng-container *ngIf='coupons.length > 0'>
-            <div class='row'>
+            <div class='row' style="margin-top:-40px">
 
                 <div class="col-lg-{{columns}}" *ngFor="let item of coupons">
 
