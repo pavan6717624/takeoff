@@ -38,3 +38,25 @@
     background-color: rgb(215, 238, 215);
     
 }
+
+div.scrollmenu {
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); 
+  color: #f1f1f1;
+  overflow: auto;
+  white-space: nowrap;
+  width:120%;
+  margin-left:-30px;
+  padding-top: 0px;
+}
+
+div.scrollmenu div {
+  display: inline-block;
+  color: pink;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  padding-top: 10px;
+}
+
+
