@@ -775,14 +775,18 @@ vendorListLoading=true;
 
     this.uploadcouponsService.getCategories().subscribe(
 
-      (res) => { this.categories = res; },
+      (res) => { this.categories = res; this.displaycategories=res;},
       (err) => { }
 
     );
   }
 
+
+  icons=["dumbbell","crown","utensils","menorah","graduation-cap","dog","futbol","gifts","briefcase-medical"];
+
   subCategories: SubCategory[] = [];
   categories: Category[] = [];
+  displaycategories: Category[] = [];
   vendorList: VendorList[]=[];
   vendorSelected : number = 0;
 
@@ -847,6 +851,28 @@ vendorListLoading=true;
   }
 
   orderid: string = '';
+
+  newFilter(id: number, i: number)
+  {
+    if(this.category == id)
+    this.category=0;
+    else
+    this.category=id;
+    this.subCategory=0;
+
+    // let cat = this.displaycategories.filter(o=>o.id==id);
+
+    // let icon = this.icons
+
+    // this.displaycategories = this.displaycategories.filter(o=>o.id!=id);
+
+    
+    // this.displaycategories.unshift(cat[0]);
+
+    this.filterCoupons();
+
+
+  }
 
   toPremium()
   {

@@ -54,33 +54,36 @@
                         <b ><i class="fas fa-plane-departure" (click)='toPremium()'></i></b>
                         <br/><span style="font-size:xx-small"> Upgrade To Premium </span></div>
                     </ng-container>
-            <div [style.color]="category == 3?'pink': 'lavenderblush'" (click)="category=3;filterCoupons();"><i class="fas fa-dumbbell"></i>
-                    <br/><span style="font-size:xx-small"> Beauty & Fitness </span>
+
+                 <ng-container  *ngFor="let item of displaycategories; index as i">  
+            <div  [style.color]="category == item.id?'pink': 'lavenderblush'" (click)="newFilter(item.id,i)"><i class="fas fa-{{icons[i]}}"></i>
+                    <br/><span style="font-size:xx-small"> {{item.categoryName}} </span>
                 </div>
-                <div [style.color]="category == 5?'pink': 'lavenderblush'" (click)="category=5;filterCoupons();"><i class="fas fa-crown"></i> 
+                </ng-container>
+                <!-- <div [style.color]="category == 5?'pink': 'lavenderblush'" (click)="newFilter(5)"><i class="fas fa-crown"></i> 
                     <br/><span style="font-size:xx-small"> Life Style </span>
                 </div>
-                <div [style.color]="category == 6?'pink': 'lavenderblush'" (click)="category=6;filterCoupons();"><i class="fas fa-utensils"></i>
+                <div [style.color]="category == 6?'pink': 'lavenderblush'" (click)="newFilter(6)"><i class="fas fa-utensils"></i>
                     <br/><span style="font-size:xx-small"> Food & Beverages </span>
                 </div>
-                <div [style.color]="category == 10?'pink': 'lavenderblush'" (click)="category=10;filterCoupons();"><i class="fas fa-menorah"></i>
+                <div [style.color]="category == 10?'pink': 'lavenderblush'" (click)="newFilter(10)"><i class="fas fa-menorah"></i>
                     <br/><span style="font-size:xx-small"> Events </span>
                 </div>
-                <div [style.color]="category == 11?'pink': 'lavenderblush'" (click)="category=11;filterCoupons();"><i class="fas fa-graduation-cap"></i>
+                <div [style.color]="category == 11?'pink': 'lavenderblush'" (click)="newFilter(11)"><i class="fas fa-graduation-cap"></i>
                     <br/><span style="font-size:xx-small"> Education </span>
                 </div>
-                <div [style.color]="category == 12?'pink': 'lavenderblush'" (click)="category=12;filterCoupons();"><i class="fas fa-dog"></i>
+                <div [style.color]="category == 12?'pink': 'lavenderblush'" (click)="newFilter(12)"><i class="fas fa-dog"></i>
                     <br/><span style="font-size:xx-small"> Pets </span>
                 </div>
-                <div [style.color]="category == 13?'pink': 'lavenderblush'" (click)="category=13;filterCoupons();"><i class="fas fa-futbol"></i>
+                <div [style.color]="category == 13?'pink': 'lavenderblush'" (click)="newFilter(13)"><i class="fas fa-futbol"></i>
                     <br/><span style="font-size:xx-small"> Sports </span>
                 </div>
-                <div [style.color]="category == 14?'pink': 'lavenderblush'" (click)="category=14;filterCoupons();"><i class="fas fa-gifts"></i>
+                <div [style.color]="category == 14?'pink': 'lavenderblush'" (click)="newFilter(14)"><i class="fas fa-gifts"></i>
                     <br/><span style="font-size:xx-small"> Gifts </span>
                 </div>
-                <div [style.color]="category == 15?'pink': 'lavenderblush'" (click)="category=15;filterCoupons();"><i class="fas fa-briefcase-medical"></i>
+                <div [style.color]="category == 15?'pink': 'lavenderblush'" (click)="newFilter(15)"><i class="fas fa-briefcase-medical"></i>
                     <br/><span style="font-size:xx-small"> Medicals </span>
-                </div>
+                </div> -->
             </div>
     
             <!-- <button nz-button nzType="primary" nzShape="round" (click)='filterVisible=true'
