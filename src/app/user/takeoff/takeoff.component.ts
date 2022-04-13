@@ -860,14 +860,17 @@ vendorListLoading=true;
     this.category=id;
     this.subCategory=0;
 
-    // let cat = this.displaycategories.filter(o=>o.id==id);
+     let cat1=this.displaycategories[0];
+    let cat2=this.displaycategories[i];
 
-    // let icon = this.icons
+    this.displaycategories[0]=cat2;
+    this.displaycategories[i]=cat1;
 
-    // this.displaycategories = this.displaycategories.filter(o=>o.id!=id);
+    let icon1=this.icons[0];
+    let icon2=this.icons[i];
 
-    
-    // this.displaycategories.unshift(cat[0]);
+    this.icons[0]=icon2;
+    this.icons[i]=icon1;
 
     this.filterCoupons();
 
