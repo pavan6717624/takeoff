@@ -48,7 +48,13 @@
           <nz-carousel nzAutoPlay>
           <div nz-carousel-content>
             <h3><br />
-              <nz-spin nzTip="Loading our Coupons..... " nzSimple [nzSize]="'large'"></nz-spin>
+              <ng-template #indicatorTemplate>
+                <span style='color:#fd6951'>
+                    <i nz-icon style='font-size:30px ; ' nzType="loading"></i>
+                    <br /> <b>Loading our Coupons..... </b> </span></ng-template>
+            <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'"></nz-spin>
+
+              <!-- <nz-spin nzTip="Loading our Coupons..... " nzSimple [nzSize]="'large'"></nz-spin> -->
             </h3>
           </div>
           </nz-carousel>
@@ -127,7 +133,13 @@
           
             <div class="container" style='text-align:center;'>
             <h3><br />
-              <nz-spin nzTip="Loading our Outlets..... " nzSimple [nzSize]="'large'"></nz-spin>
+              <ng-template #indicatorTemplate>
+                <span style='color:#fd6951'>
+                    <i nz-icon style='font-size:30px ; ' nzType="loading"></i>
+                    <br /> <b>Loading our Outlets..... </b> </span></ng-template>
+            <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'"></nz-spin>
+
+              <!-- <nz-spin nzTip="Loading our Outlets..... " nzSimple [nzSize]="'large'"></nz-spin> -->
             </h3>
             </div>
          
