@@ -782,7 +782,7 @@ vendorListLoading=true;
   }
 
 
-  icons=["dumbbell","crown","utensils","menorah","graduation-cap","dog","futbol","gifts","briefcase-medical"];
+  icons=["spa","crown","utensils","menorah","graduation-cap","dog","futbol","gifts","briefcase-medical"];
 
   subCategories: SubCategory[] = [];
   categories: Category[] = [];
