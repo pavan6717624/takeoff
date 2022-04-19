@@ -4,6 +4,7 @@
             <tr>    
                 <th> # </th>    
                 <th> User Id </th>
+               <th> Type </th>
                 <th> Name </th>
                 <th> Contact </th>
                 <th> Email </th>     
@@ -25,6 +26,7 @@
         <tr *ngFor="let data of customerDetails; index as i">    
             <td>{{ (i+1) }}</td>
             <td>{{ data.userId }}</td>
+           <td>{{ data.type }}</td>
             <td>{{ data.name }}</td>
             <td>{{ data.contact }}</td>
             <td>{{ data.email }}</td>
