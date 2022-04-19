@@ -13,7 +13,7 @@ name : string = "";
 contact: string= "";
 email: string= "";
 city: string= "";
-
+type: string = '';
 profession: string= "";
 gender	: string= "";
 razorpay_payment_id : string= "";
