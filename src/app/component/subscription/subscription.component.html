@@ -217,6 +217,29 @@
 
 
   <div *ngIf="subscription === 'pay' || subscription === 'Pay'" nz-row>	
+    
+    
+    <ng-container *ngIf="!(!refererIdStatus || 	
+    !(name.trim().length> 5) || 	
+    !(password.trim().length> 8) || 	
+    !(conpassword==password) || 	
+    !(contact.trim().length == 10) || 	
+    !check(contact.trim()) || 	
+    (email.trim().indexOf('@')==-1 || email.trim().indexOf('@') != email.trim().lastIndexOf('@') || email.trim().lastIndexOf('@') > email.trim().lastIndexOf('.')  || email.trim().endsWith('.') || email.trim().startsWith('@')  || email.trim().endsWith('@') || email.trim().startsWith('.') || email.trim().indexOf('.')==-1) ||	
+    !(profession.trim().length > 0) ||	
+    !(gender.trim().length > 0) || 	
+    !(city.trim().length > 0) || this.paying)">
+    <div nz-col nzSpan="24" style='text-align: center' >	
+        <span style="background-color: red; color: yellow; padding:4px">
+            By Clicking below Button, You agree to our Terms and that you have read our <a href='/policy'>Privacy Policy.</a>
+            </span>
+        </div>    
+
+        <div nz-col nzSpan="24" style='text-align: left'>&nbsp;</div>
+
+        </ng-container>
+    
+    
             <div nz-col nzSpan="24" style='text-align: center'>	
                 <button nz-button nzType="primary" [disabled]="!refererIdStatus || 	
                 !(name.trim().length> 5) || 	
@@ -232,7 +255,31 @@
             </div>	
             	
         </div>	
-        <div *ngIf="subscription === 'free' || subscription === 'Free'" nz-row>	
+        <div *ngIf="subscription === 'free' || subscription === 'Free'" nz-row>
+          
+          
+           <ng-container *ngIf="!(!refererIdStatus || 	
+            !(name.trim().length> 5) || 	
+            !(password.trim().length> 8) || 
+            !(conpassword==password) || 	
+            !(contact.trim().length == 10) || 	
+            !check(contact.trim()) || 	
+            (email.trim().indexOf('@')==-1 || email.trim().indexOf('@') != email.trim().lastIndexOf('@') || email.trim().lastIndexOf('@') > email.trim().lastIndexOf('.')  || email.trim().endsWith('.') || email.trim().startsWith('@')  || email.trim().endsWith('@') || email.trim().startsWith('.') || email.trim().indexOf('.')==-1) ||	
+            !(profession.trim().length > 0) ||	
+            !(gender.trim().length > 0) || 	
+            !(city.trim().length > 0) || this.paying)">
+
+
+            <div nz-col nzSpan="24" style='text-align: center' >	
+                <span style="background-color: red; color: yellow; padding:4px">
+                    By Clicking below Button, You agree to our Terms and that you have read <a href='/policy'>Privacy Policy.</a>
+                    </span>
+                </div>
+
+                </ng-container>
+
+          
+          
             <div nz-col nzSpan="24" style='text-align: center'>	
                 <button nz-button nzType="primary" [disabled]="!refererIdStatus || 	
                 !(name.trim().length> 5) || 	
