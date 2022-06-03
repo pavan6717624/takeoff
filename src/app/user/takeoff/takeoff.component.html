@@ -50,7 +50,7 @@
                 </button> &nbsp; &nbsp;
             </ng-container> -->
 
-            <div class="scrollmenu">
+            <div class="scrollmenu" *ngIf="showMenu">
 
                 <div
                     [style.color]="(vendorSelected>0 || category > 0 || subCategory > 0 || keywords.length > 0)?'pink': 'lavenderblush'">
