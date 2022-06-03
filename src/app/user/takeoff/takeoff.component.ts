@@ -557,6 +557,8 @@ vendorListLoading=true;
     }
   }
 
+  showMenu=true;
+  
   getTakeOffRecommendations() {
     if (!this.bottom)
       this.loading = true;
@@ -571,7 +573,7 @@ vendorListLoading=true;
     sendCouponsRequest.vendorSelected=this.vendorSelected;
 
 
-
+    this.showMenu=false;
     this.userService.getTakeOffRecommendations(sendCouponsRequest).subscribe(
 
       (res: any) => {
@@ -583,8 +585,9 @@ vendorListLoading=true;
             return index === arr.findIndex(obj => obj.id === value.id);
           }); console.log(this.coupons);
         } if (!this.bottom) this.loading = false;
+        this.showMenu=true;
       },
-      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
+      (err) => {  this.showMenu=true; console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
     );
   }
 
@@ -601,7 +604,7 @@ vendorListLoading=true;
     sendCouponsRequest.keywords = this.keywords;
     sendCouponsRequest.city = this.city;
     sendCouponsRequest.vendorSelected=this.vendorSelected;
-
+ this.showMenu=false;
     this.userService.getComplimentaryCoupons(sendCouponsRequest).subscribe(
 
       (res: any) => {
@@ -613,8 +616,9 @@ vendorListLoading=true;
             return index === arr.findIndex(obj => obj.id === value.id);
           }); console.log(this.coupons);
         } if (!this.bottom) this.loading = false;
+         this.showMenu=true;
       },
-      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
+      (err) => {  this.showMenu=true;console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
     );
   }
 
@@ -630,7 +634,7 @@ vendorListLoading=true;
     sendCouponsRequest.keywords = this.keywords;
     sendCouponsRequest.city = this.city;
     sendCouponsRequest.vendorSelected=this.vendorSelected;
-
+ this.showMenu=false;
     this.userService.getFreeCoupons(sendCouponsRequest).subscribe(
 
       (res: any) => {
@@ -642,8 +646,9 @@ vendorListLoading=true;
             return index === arr.findIndex(obj => obj.id === value.id);
           }); console.log(this.coupons);
         } if (!this.bottom) this.loading = false;
+         this.showMenu=true;
       },
-      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
+      (err) => {  this.showMenu=true;console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
     );
   }
 
@@ -659,7 +664,7 @@ vendorListLoading=true;
     sendCouponsRequest.keywords = this.keywords;
     sendCouponsRequest.city = this.city;
     sendCouponsRequest.vendorSelected=this.vendorSelected;
-
+ this.showMenu=false;
     this.userService.getDailyCoupons(sendCouponsRequest).subscribe(
 
       (res: any) => {
@@ -671,8 +676,9 @@ vendorListLoading=true;
             return index === arr.findIndex(obj => obj.id === value.id);
           }); console.log(this.coupons);
         } if (!this.bottom) this.loading = false;
+         this.showMenu=true;
       },
-      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
+      (err) => {  this.showMenu=true;console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
     );
   }
 
@@ -688,7 +694,7 @@ vendorListLoading=true;
     sendCouponsRequest.keywords = this.keywords;
     sendCouponsRequest.city = this.city;
     sendCouponsRequest.vendorSelected=this.vendorSelected;
-
+ this.showMenu=false;
     this.userService.getLimitedCoupons(sendCouponsRequest).subscribe(
 
       (res: any) => {
@@ -700,8 +706,9 @@ vendorListLoading=true;
             return index === arr.findIndex(obj => obj.id === value.id);
           }); console.log(this.coupons);
         } if (!this.bottom) this.loading = false;
+         this.showMenu=true;
       },
-      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
+      (err) => { this.showMenu=true; console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
     );
   }
 
@@ -718,7 +725,7 @@ vendorListLoading=true;
     sendCouponsRequest.keywords = this.keywords;
     sendCouponsRequest.city = this.city;
     sendCouponsRequest.vendorSelected=this.vendorSelected;
-
+ this.showMenu=false;
     this.userService.getRedeemableCoupons(sendCouponsRequest).subscribe(
 
       (res: any) => {
@@ -730,8 +737,9 @@ vendorListLoading=true;
             return index === arr.findIndex(obj => obj.id === value.id);
           }); console.log(this.coupons);
         } if (!this.bottom) this.loading = false;
+         this.showMenu=true;
       },
-      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
+      (err) => {  this.showMenu=true;console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
     );
   }
 
@@ -747,7 +755,7 @@ vendorListLoading=true;
     sendCouponsRequest.keywords = this.keywords;
     sendCouponsRequest.city = this.city;
     sendCouponsRequest.vendorSelected=this.vendorSelected;
-
+ this.showMenu=false;
     this.userService.getDiscountCoupons(sendCouponsRequest).subscribe(
 
       (res: any) => {
@@ -759,8 +767,9 @@ vendorListLoading=true;
             return index === arr.findIndex(obj => obj.id === value.id);
           }); console.log(this.coupons);
         } if (!this.bottom) this.loading = false;
+         this.showMenu=true;
       },
-      (err) => { console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
+      (err) => { this.showMenu=true; console.log(err); this.msg.create('error', 'Could not Connect to Server...'); this.coupons = []; if (!this.bottom) this.loading = false; }
     );
   }
   resetFilter()
