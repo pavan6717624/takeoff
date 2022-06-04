@@ -868,6 +868,7 @@ vendorListLoading=true;
     else
     this.category=id;
     this.subCategory=0;
+    this.vendorSelected = 0;
 
      let cat1=this.displaycategories[0];
     let cat2=this.displaycategories[i];
