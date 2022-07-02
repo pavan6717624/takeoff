@@ -52,8 +52,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.getCategories();
-    // this.getAllSubCategories();
+   
+    var uris=["takeoff","complimentary","redeemable","discount","daily","limited","onetimeoffers"]
+    var uri=this.router.url;
+
+    for(var i=0;i<uris.length;i++)
+    if(uri.includes(uris[i]))
+    this.selectedMenu = i+1;
 
   }
 
