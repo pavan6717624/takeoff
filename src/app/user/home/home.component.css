@@ -30,3 +30,9 @@ ul {
     color: white;
     background-color: #04AA6D;
   }
+
+
+
+  ::-webkit-scrollbar {
+    display: none;
+}
