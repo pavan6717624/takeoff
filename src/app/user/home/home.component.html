@@ -1,52 +1,46 @@
 <div style='padding-left:10px;padding-right:10px; padding-top:0px; padding-bottom:0px;width:100%;height:90%;'>
-  <div nz-row>&nbsp;</div>
-  <div nz-row>
-<!--     <div nz-col nzSpan="4">
-      <i nz-icon nzType="menu" nzTheme="outline" style="font-size: 20px;" (click)="open()"></i>
-      
-    </div>
-    <div nz-col nzSpan="20" style='text-align:left'>
+
+
+  <div>
+
+    <!-- <i nz-icon nzType="menu" nzTheme="outline" style="font-size: 20px;" (click)="open()"></i> -->
+
+    <ul style='padding-bottom: 5px;display: flex;width: 100%; height: 100%; overflow: auto; white-space: nowrap'>
+
+      <li (click)="open()"><a><i nz-icon nzType="menu" nzTheme="outline"></i></a></li>
+
+      <li (click)="close(1)"><a [class]="selectedMenu==1?'active':''" [routerLink]="['takeoff']">TakeOff
+          Recommends</a>
+      </li>
+      <li (click)="close(2)"><a [class]="selectedMenu==2?'active':''" [routerLink]="['complimentary']">Complimentary</a>
+      </li>
+      <li (click)="close(3)"><a [class]="selectedMenu==3?'active':''" [routerLink]="['redeemable']">Redeemable</a>
+      </li>
+      <li (click)="close(4)"><a [class]="selectedMenu==4?'active':''" [routerLink]="['discount']">Discount</a></li>
+      <li (click)="close(5)"><a [class]="selectedMenu==5?'active':''" [routerLink]="['daily']">Daily Deals</a></li>
+      <li (click)="close(6)"><a [class]="selectedMenu==6?'active':''" [routerLink]="['limited']">Limited</a></li>
+      <li (click)="close(7)"><a [class]="selectedMenu==7?'active':''" [routerLink]="['onetimeoffers']">FREE / One
+          Time
+          Offers</a></li>
+      <li (click)="close(8)"><a [class]="selectedMenu==8?'active':''" [routerLink]="['complimentary']">Complimentary</a>
+      </li>
+
+    </ul>
+
+
+
+  </div>
+  <!-- <div nz-col nzSpan="20" style='text-align:left'>
       <div nz-row>
-      <div nz-col nzSpan="20" style='height:20px'>
-      <h6 id='displayHeader'  style='text-align:center; color: #fd6951'> </h6> 
+        <div nz-col nzSpan="20" style='height:20px'>
+          <h6 id='displayHeader' style='text-align:center; color: #fd6951'> </h6>
+        </div>
+
       </div>
-     
-      </div>
-     
+
 
     </div> -->
-    
-    
-     <div nz-col nzSpan="24" style='padding-bottom: 2px;'>
-      <!-- <i nz-icon nzType="menu" nzTheme="outline" style="font-size: 20px;" (click)="open()"></i> -->
 
-      <ul>
-
-        <li (click)="open()"><a><i nz-icon nzType="menu" nzTheme="outline"></i></a></li>
-
-        <li (click)="close(1)"><a [class]="selectedMenu==1?'active':''" [routerLink]="['takeoff']">TakeOff
-            Recommends</a>
-        </li>
-        <li (click)="close(2)"><a [class]="selectedMenu==2?'active':''"
-            [routerLink]="['complimentary']">Complimentary</a>
-        </li>
-        <li (click)="close(3)"><a [class]="selectedMenu==3?'active':''" [routerLink]="['redeemable']">Redeemable</a>
-        </li>
-        <li (click)="close(4)"><a [class]="selectedMenu==4?'active':''" [routerLink]="['discount']">Discount</a></li>
-        <li (click)="close(5)"><a [class]="selectedMenu==5?'active':''" [routerLink]="['daily']">Daily Deals</a></li>
-        <li (click)="close(6)"><a [class]="selectedMenu==6?'active':''" [routerLink]="['limited']">Limited</a></li>
-        <li (click)="close(7)"><a [class]="selectedMenu==7?'active':''" [routerLink]="['onetimeoffers']">FREE / One Time
-            Offers</a></li>
-        <li (click)="close(8)"><a [class]="selectedMenu==8?'active':''"
-            [routerLink]="['complimentary']">Complimentary</a>
-        </li>
-
-      </ul>
-
-
-
-    </div>
-  </div>
 
   <router-outlet>
   </router-outlet>
