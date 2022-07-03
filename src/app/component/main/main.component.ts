@@ -20,12 +20,13 @@ export class MainComponent implements OnInit {
   loading=false;
   height = '40';
   maxHeight= '100';
+  isMobile = false;
   ngOnInit(): void {
     this.deviceInfo = this.deviceService.getDeviceInfo();
-    const isMobile = this.deviceService.isMobile();
+    this.isMobile = this.deviceService.isMobile();
    
     
-    if(isMobile)
+    if(this.isMobile)
     {
     this.height='16';
     this.maxHeight='150';
