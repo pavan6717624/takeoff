@@ -3,8 +3,8 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    border: 1px solid #e7e7e7;
-    background-color: #f3f3f3;
+    border: 1px solid white;
+    background-color: white;
   }
   
   li {
@@ -28,7 +28,7 @@ ul {
   
   li a.active {
     color: white;
-    background-color: #04AA6D;
+    background-color: #fd6951;
   }
 
 

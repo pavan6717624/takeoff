@@ -508,7 +508,7 @@ vendorListLoading=true;
         else
         this.customerType='Free';
 
-        this.notification.create('success', res.header,res.message, { nzDuration: 0, nzPlacement: 'bottomRight' });
+  //      this.notification.create('success', res.header,res.message, { nzDuration: 0, nzPlacement: 'bottomRight' });
 
       },
       (err) => {  console.log(err); }

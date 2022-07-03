@@ -68,6 +68,7 @@ const LANG_PROVIDERS = [{ provide: NZ_I18N, useValue: en_US }];
 
 const ngZorroConfig: NzConfig = {
   message: { nzMaxStack: 1 , nzDuration: 10000 },
+  notification: { nzMaxStack: 1},
  
 };
 

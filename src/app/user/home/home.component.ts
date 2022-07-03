@@ -7,6 +7,8 @@ import { AdminService } from 'src/app/admin/admin.service';
 import { SubCategoryDTO } from 'src/app/admin/category/category.component';
 import { UploadcouponsService } from 'src/app/component/uploadcoupons/uploadcoupons.service';
 import { Category } from 'src/app/component/uploadcoupons/uploadcoupons.component';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +18,7 @@ import { Category } from 'src/app/component/uploadcoupons/uploadcoupons.componen
 export class HomeComponent implements OnInit {
   loginStatus: LoginStatus = new LoginStatus();
   userType: string = '';
-  constructor(private uploadcouponsService: UploadcouponsService, private adminServie: AdminService, private msg: NzMessageService, private router: Router,private deviceService: DeviceDetectorService) 
+  constructor(private notification: NzNotificationService, private userService: UserService, private uploadcouponsService: UploadcouponsService, private adminServie: AdminService, private msg: NzMessageService, private router: Router,private deviceService: DeviceDetectorService) 
   {
 
     const navigation = this.router.getCurrentNavigation();
@@ -47,11 +49,33 @@ export class HomeComponent implements OnInit {
   // filterVisible=false;
 
   selectedMenu : number = 1;
+
+  customerType: string = '';
+
+  getNotification()
+  {
+    this.userService.getNotification().subscribe(
+      (res : any) => {
+       
+        console.log(res);
+
+        if(res.header.includes('Premium'))
+        this.customerType = 'Premium';
+        else
+        this.customerType='Free';
+
+        this.notification.create('success', res.header,res.message, { nzDuration: 0, nzPlacement: 'bottomRight' });
+
+      },
+      (err) => {  console.log(err); }
+    );
+  }
   
 
 
   ngOnInit(): void {
 
+    this.getNotification();
    
     var uris=["takeoff","complimentary","redeemable","discount","daily","limited","onetimeoffers"]
     var uri=this.router.url;
