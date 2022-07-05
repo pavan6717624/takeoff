@@ -17,17 +17,17 @@
     <ul style='padding-bottom: 5px;display: flex;width: 100%; height: 100%; overflow: auto; white-space: nowrap'>
 
      
-      <li (click)="close(1)"><a [class]="selectedMenu==1?'active':''" [routerLink]="['takeoff']">TakeOff
+     <li (click)="close(1)"><a [class]="selectedMenu==1?'active':''" [routerLink]="['takeoff']"><i class="fas fa-handshake"></i> TakeOff
           Recommends</a>
       </li>
-      <li (click)="close(2)"><a [class]="selectedMenu==2?'active':''" [routerLink]="['complimentary']">Complimentary</a>
+      <li (click)="close(2)"><a [class]="selectedMenu==2?'active':''" [routerLink]="['complimentary']"> <i class="fas fa-gift"></i>  Complimentary</a>
       </li>
-      <li (click)="close(6)"><a [class]="selectedMenu==6?'active':''" [routerLink]="['redeemable']">Redeemable</a>
+      <li (click)="close(3)"><a [class]="selectedMenu==3?'active':''" [routerLink]="['redeemable']"><i class="fas fa-memory"></i> Redeemable</a>
       </li>
-      <li (click)="close(7)"><a [class]="selectedMenu==7?'active':''" [routerLink]="['discount']">Discount</a></li>
-      <li (click)="close(4)"><a [class]="selectedMenu==4?'active':''" [routerLink]="['daily']">Daily Deals</a></li>
-      <li (click)="close(5)"><a [class]="selectedMenu==5?'active':''" [routerLink]="['limited']">Limited</a></li>
-      <li (click)="close(3)"><a [class]="selectedMenu==3?'active':''" [routerLink]="['onetimeoffers']">FREE / One
+      <li (click)="close(4)"><a [class]="selectedMenu==4?'active':''" [routerLink]="['discount']"> <i class="fas fa-percent"></i> Discount</a></li>
+      <li (click)="close(5)"><a [class]="selectedMenu==5?'active':''" [routerLink]="['daily']"> <i class="fas fa-calendar-check"></i> Daily Deals</a></li>
+      <li (click)="close(6)"><a [class]="selectedMenu==6?'active':''" [routerLink]="['limited']"><i class="fas fa-layer-group"></i> Limited</a></li>
+      <li (click)="close(7)"><a [class]="selectedMenu==7?'active':''" [routerLink]="['onetimeoffers']"> <i class="fas fa-bullhorn"></i> FREE / One
           Time
           Offers</a></li>
 
