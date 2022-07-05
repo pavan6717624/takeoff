@@ -73,6 +73,12 @@ export class LoginComponent implements OnInit {
       (err) => { this.logginStatus=false; }
     );
   }
+  
+    signup()
+  {
+    document.location.replace('/#pricing');
+  }
+
 
   home() {
     this.router.navigate(['']);
