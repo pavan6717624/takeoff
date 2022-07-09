@@ -137,7 +137,7 @@
 
 
 
-        <ng-container *ngIf='loading'>
+        <ng-container *ngIf='loading1'>
           
             <div class="container" style='text-align:center;'>
             <h3><br />
@@ -152,7 +152,7 @@
             </div>
          
         </ng-container>
-          <ng-container *ngIf='!loading'>
+          <ng-container *ngIf='!loading1'>
           
        <marquee behavior="scroll" direction="left" scrollamount="7">
           
@@ -160,10 +160,13 @@
               <img *ngFor="let item of logos" style='text-align:center;' [src]="item"
               [ngStyle]="{'max-height.px': maxHeight}" style='padding: 20px'> 
 
-              <div> <h1> And Many...</h1></div>
+              
            
            
           </marquee>
+
+          <div class='col-lg-12' style='text-align: center;'> <h1> And Many...</h1></div>
+
         </ng-container>
 
 

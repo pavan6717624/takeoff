@@ -18,6 +18,7 @@ export class MainComponent implements OnInit {
   constructor(private router: Router, private mainService: MainService, private deviceService: DeviceDetectorService) { }
 
   loading=false;
+  loading1=false;
   height = '40';
   maxHeight= '100';
   isMobile = false;
@@ -33,6 +34,7 @@ export class MainComponent implements OnInit {
     }
 
     this.getHomePageCoupons();
+    this.getLogos();
   }
 
   getHomePageCoupons()
@@ -68,6 +70,30 @@ export class MainComponent implements OnInit {
       },
       (err) => { this.loading=false;}
     );
+  }
+  getLogos()
+  {
+
+    this.loading1=true;
+
+   
+        this.mainService.getLogos().subscribe(
+          (res1:any) => {
+
+            this.logos=res1;
+            console.log(res1);
+
+
+          },
+          (err1) => { this.loading1=false; } 
+
+        );
+
+
+
+
+
+   
   }
 
 
