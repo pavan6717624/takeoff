@@ -47,24 +47,10 @@ export class MainComponent implements OnInit {
 
         this.coupon=res;
 
-        this.mainService.getLogos().subscribe(
-          (res1:any) => {
-
-            this.logos=res1;
-            console.log(res1);
-
-
-          },
-          (err1) => { this.loading=false; } 
-
-        )
-
-
-
-
+       
 
        this.loading=false;
-        console.log(res);
+     //   console.log(res);
 
         
       },
@@ -81,7 +67,8 @@ export class MainComponent implements OnInit {
           (res1:any) => {
 
             this.logos=res1;
-            console.log(res1);
+            this.loading1=false;
+          // console.log(res1);
 
 
           },
