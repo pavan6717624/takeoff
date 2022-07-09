@@ -13,32 +13,25 @@ import {FormsModule} from '@angular/forms';
 
 import { NzIconModule,  NZ_ICON_DEFAULT_TWOTONE_COLOR, NZ_ICONS  } from 'ng-zorro-antd/icon';
 
-import { MainComponent } from './component/main/main.component';
-import { SubscriptionComponent } from './component/subscription/subscription.component'
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzMessageModule } from 'ng-zorro-antd/message';
-import { PaymentStatusComponent } from './component/payment-status/payment-status.component';
 
-import { LoginComponent } from './component/login/login.component';
-import { DisplayComponent } from './component/display/display.component';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { IconDefinition } from '@ant-design/icons-angular';
 // Import all. NOT RECOMMENDED. ❌
 import * as AllIcons from '@ant-design/icons-angular/icons';
-import { VendorComponent } from './component/vendor/vendor.component';
-import { UserComponent } from './component/user/user.component';
+
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { UploadcouponsComponent } from './component/uploadcoupons/uploadcoupons.component';
+
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-import { EditcouponsComponent } from './component/editcoupons/editcoupons.component';
+
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
-import { ReplaceNewLinePipe } from './component/replace-new-line.pipe';
-import { VendoraccountComponent } from './component/vendoraccount/vendoraccount.component';
+
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
@@ -47,21 +40,20 @@ import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import en from '@angular/common/locales/en-IN';
 import { registerLocaleData } from '@angular/common';
-import { ViewcouponsComponent } from './component/viewcoupons/viewcoupons.component';
+
 import { UserModule } from './user/user.module';
-import { RedemptionComponent } from './component/redemption/redemption.component';
+
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { InterceptorService } from './interceptor.service';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { NzConfig, NZ_CONFIG } from 'ng-zorro-antd/core/config';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
-import { RedemHistoryComponent } from './component/redem-history/redem-history.component';
-import { ReferenceComponent } from './component/reference/reference.component';
+
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
-import { InvestorComponent } from './component/investor/investor.component';
-import { ExecutiveComponent } from './component/executive/executive.component';
-import { FranchizeComponent } from './component/franchize/franchize.component';
+
+import { AdminModule } from './admin/admin.module';
+import { ComponentModule } from './component/component.module';
 registerLocaleData(en);
 
 const LANG_PROVIDERS = [{ provide: NZ_I18N, useValue: en_US }];
@@ -80,28 +72,9 @@ const antDesignIcons = AllIcons as {
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
     
-     MainComponent,
-     SubscriptionComponent,
-     PaymentStatusComponent,
-
-     LoginComponent,
-     DisplayComponent,
-     VendorComponent,
-     UserComponent,
-     UploadcouponsComponent,
-     EditcouponsComponent,
-     ReplaceNewLinePipe,
-     VendoraccountComponent,
-
-     ViewcouponsComponent,
-     RedemptionComponent,
-     RedemHistoryComponent,
-     ReferenceComponent,
-     InvestorComponent,
-     ExecutiveComponent,
-     FranchizeComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -132,6 +105,8 @@ const antDesignIcons = AllIcons as {
     NzTableModule,
     NzDatePickerModule,
     UserModule,
+    ComponentModule,
+    AdminModule,
     NzImageModule,
     NzNotificationModule,
     NzTimePickerModule,

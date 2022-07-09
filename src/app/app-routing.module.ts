@@ -13,24 +13,10 @@ import { InvestorComponent } from './component/investor/investor.component';
 import { ExecutiveComponent } from './component/executive/executive.component';
 
 const routes: Routes = [
-  { path:'',component: MainComponent},
-  //{ path: '', loadChildren: () => import('./commodule/commodule.module').then(m => m.CommoduleModule) },
-  { path: 'subscribe', component: SubscriptionComponent , data : {subscription : 'Pay'}, },
-  { path: 'freesubscribe', component: SubscriptionComponent , data : {subscription : 'Free'}, },
-  { path: 'paymentStatus', component: PaymentStatusComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'reference',component: ReferenceComponent},
-  { path: 'user', component: UserComponent },
-  { path: 'vendor', component: VendorComponent },
-  { path: 'designer', component: VendorComponent },
-  { path: 'investor', component: InvestorComponent },
-  { path: 'executive', component: ExecutiveComponent },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
-  { path: 'customer', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
-    { path: 'policy', loadChildren: () => import('./commodule/commodule.module').then(m => m.CommoduleModule) },
+  { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
+ { path: 'website', loadChildren: () => import('./websites/websites.module').then(m => m.WebsitesModule) },
 
- 
-
+  
 ];
 
 @NgModule({

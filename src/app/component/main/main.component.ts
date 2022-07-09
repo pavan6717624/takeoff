@@ -70,11 +70,6 @@ export class MainComponent implements OnInit {
     );
   }
 
- open(id: number): void {	
-    if(id==1)	
-    this.router.navigate(['freesubscribe']);	
-    else if(id==2)	
-    this.router.navigate(['subscribe']);	
-  }
+
 
 }
