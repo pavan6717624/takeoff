@@ -26,7 +26,7 @@ export class MainComponent implements OnInit {
     this.deviceInfo = this.deviceService.getDeviceInfo();
     this.isMobile = this.deviceService.isMobile();
    
-    
+    window.document.title='TAKE % OFF';
     if(this.isMobile)
     {
     this.height='16';
