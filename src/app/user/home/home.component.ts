@@ -75,6 +75,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
+    window.document.getElementById("dropdownMenuButton").hidden=true;
+    
     this.getNotification();
    
     var uris=["takeoff","complimentary","redeemable","discount","daily","limited","onetimeoffers"]
