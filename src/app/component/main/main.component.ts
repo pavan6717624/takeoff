@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Coupon } from '../editcoupons/editcoupons.component';
 import { MainService } from './main.service';
@@ -15,7 +16,18 @@ export class MainComponent implements OnInit {
   logos: string[]=[];
   deviceInfo: any;
 
-  constructor(private router: Router, private mainService: MainService, private deviceService: DeviceDetectorService) { }
+  constructor(private router: Router, private msg: NzMessageService, private mainService: MainService, private deviceService: DeviceDetectorService) { 
+
+
+      if(localStorage.getItem('token')!=null)
+      {
+        this.msg.loading('Checking Login...', { nzDuration: 4000 });
+        this.router.navigate(['login']);
+        return;
+      }
+
+
+  }
 
   loading=false;
   loading1=false;
