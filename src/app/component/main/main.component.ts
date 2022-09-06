@@ -35,13 +35,14 @@ export class MainComponent implements OnInit {
       (res:any) => {
        
        
+       this.loginStatus=res;
         const token =    localStorage.getItem('token');
         if(this.loginStatus.loginStatus && token)
         {
         this.loginStatus.jwt=token;
-        this.router.navigate(['login'],  { state: {loginStatus: res }}); 
-        this.msg.remove(id);
+        this.router.navigate(['user'],  { state: {loginStatus: res }}); 
         }
+         this.msg.remove(id);
       },
       (err) => {  this.msg.remove(id); }
     );
