@@ -21,7 +21,7 @@ export class MainComponent implements OnInit {
   constructor(private router: Router, private loginService: LoginService, private msg: NzMessageService, private mainService: MainService, private deviceService: DeviceDetectorService) { 
 
 
-    
+     this.getLoginDetails();
 
   }
 
@@ -56,7 +56,7 @@ export class MainComponent implements OnInit {
   isMobile = false;
   ngOnInit(): void {
     
-    this.getLoginDetails();
+   
     
     this.deviceInfo = this.deviceService.getDeviceInfo();
     this.isMobile = this.deviceService.isMobile();
