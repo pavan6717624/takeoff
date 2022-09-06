@@ -39,7 +39,7 @@ export class MainComponent implements OnInit {
         if(this.loginStatus.loginStatus && token)
         {
         this.loginStatus.jwt=token;
-        this.router.navigate(['user'],  { state: {loginStatus: res }}); 
+        this.router.navigate(['login'],  { state: {loginStatus: res }}); 
         this.msg.remove(id);
         }
       },
