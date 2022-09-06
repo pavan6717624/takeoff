@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Coupon } from '../editcoupons/editcoupons.component';
+import { LoginStatus } from '../login/login.component';
+import { LoginService } from '../login/login.service';
 import { MainService } from './main.service';
 
 @Component({
@@ -16,18 +18,35 @@ export class MainComponent implements OnInit {
   logos: string[]=[];
   deviceInfo: any;
 
-  constructor(private router: Router, private msg: NzMessageService, private mainService: MainService, private deviceService: DeviceDetectorService) { 
+  constructor(private router: Router, private loginService: LoginService, private msg: NzMessageService, private mainService: MainService, private deviceService: DeviceDetectorService) { 
 
 
-      if(localStorage.getItem('token')!=null)
-      {
-        this.msg.loading('Checking Login...', { nzDuration: 4000 });
-        this.router.navigate(['login']);
-        return;
-      }
-
+    this.getLoginDetails();
 
   }
+
+  
+  loginStatus: LoginStatus = new LoginStatus(); 
+  getLoginDetails()
+  {
+    
+    const id = this.msg.loading('Checking Login...', { nzDuration: 0 }).messageId;
+    this.loginService.getLoginDetails().subscribe(
+      (res:any) => {
+       
+       
+        const token =    localStorage.getItem('token');
+        if(this.loginStatus.loginStatus && token)
+        {
+        this.loginStatus.jwt=token;
+        this.router.navigate(['user'],  { state: {loginStatus: res }}); 
+        this.msg.remove(id);
+        }
+      },
+      (err) => {  this.msg.remove(id); }
+    );
+  }
+
 
   loading=false;
   loading1=false;
