@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit {
     formData.set("email2", this.email2);
    // this.scheduling=true;
      const id = this.msg.loading('Scheduling Interview..Please Wait...', { nzDuration: 0 }).messageId;
+    this.scheduleTimeVisible=false;
     this.scheduleService(formData).subscribe((res) => 
     {
       if(res)
@@ -63,14 +64,14 @@ export class HomeComponent implements OnInit {
         this.msg.remove(id);
      this.msg.success("Your Interview Scheduled. Check your Email for more Details...");
      // this.scheduling=false;
-      this.scheduleTimeVisible=false;
+     // this.scheduleTimeVisible=false;
     }
     else{
       
       this.msg.remove(id);
       this.msg.success("Error Occured...Please Contact Administrator..");
       //this.scheduling=false;
-      this.scheduleTimeVisible=false;
+  //    this.scheduleTimeVisible=false;
 
     }
     },
