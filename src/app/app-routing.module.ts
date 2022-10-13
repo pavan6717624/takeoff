@@ -15,7 +15,7 @@ import { ExecutiveComponent } from './component/executive/executive.component';
 const routes: Routes = [
   { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
  { path: 'website', loadChildren: () => import('./websites/websites.module').then(m => m.WebsitesModule) },
-
+{ path: 'mocx', loadChildren: () => import('./websites/websites.module').then(m => m.WebsitesModule) },
   
 ];
 
