@@ -56,9 +56,11 @@
                     <img alt="example" src="assets/img/photo.jpg" />
                 </ng-template>
                 <ng-template #actionSetting>
-                    <span nz-icon nzType="field-time" style="font-size: 20px" (click)="scheduleTime(i)"></span>
+                      <span (click)="scheduleTime(i)">
+                    <span nz-icon nzType="field-time" style="font-size: 20px"></span>
                     <br/>
                     <span>Schedule</span>
+                    </span>
                 </ng-template>
                 <ng-template #actionEdit>
                     <span nz-icon nzType="like"></span>
