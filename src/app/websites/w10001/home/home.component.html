@@ -1,52 +1,121 @@
-<!-- <app-hero></app-hero>
-    <app-about></app-about>
-    <app-whyus></app-whyus>
-    <app-services></app-services>
-    <app-cta></app-cta>
-    <app-pricing></app-pricing>
-    <app-contact></app-contact>
-    <app-footer></app-footer> -->
+<br />
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<br />
 
-<section id="hero" class="d-flex align-items-center"
-    style="width:100%;background-repeat: no-repeat;background-size: cover;background-image: url('assets/img/1947-background.jpg'); box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.3);">
+<div class='container' *ngIf="!loginStatus">
+    <div nz-row>
+        <div nz-col nzSpan="4" style='text-align: left'>&nbsp;</div>
+        <div nz-col nzSpan="8" style='text-align: left'>User Name</div>
 
+        <div nz-col nzSpan="12" style='text-align: left'>
 
-    <div class="container" style='width:100%;'>
-        <div class="row"  style='width:100%;'>
-            <div class="col-lg-6 d-flex flex-column justify-content-lg-start pt-4 pt-lg-0 order-2 order-lg-1"
-                data-aos="fade-up" data-aos-delay="200"  style='width:100%;'>
+            <input type="text" nz-input placeholder="Enter User ID" style='width:60%' [(ngModel)]="username" />
 
-
-
-
-                <h1  style='width:100%;'><br />Introducing Digital Coupons in your city</h1>
-                <h2  style='width:100%;' style="color:  lightgray">A Platform creating connectivity between potential customers & local
-                    outlets offering benefits using DIGITAL
-                    COUPONS
-                    <br /><br />Hair | Skin | Spa | Makeup Studio<br /><br />
-
-                    <div class="row"  style='width:100%;'>
-                        <div class="col-lg-6"  style='width:100%;'>
-                            <a href="/pricing" class="btn-get-started scrollto"> <i class="fas fa-comments"></i> Contact
-                                Us</a>
-                        </div>
-                        <div class="col-lg-6"  style='width:100%;'>
-                            <a href="/pricing" class="btn-get-started scrollto"> <i class="fas fa-calendar-check"></i>
-                                Book Appointment</a>
-                        </div>
-                    </div>
-                    <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> Watch Video <i class="icofont-play-alt-2"></i></a> -->
-
-                </h2>
-
-            </div>
-            <div  style='width:100%;' class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-                <img  style='width:100%;' src="assets/img/1947-removebg-preview.png" class="img-fluid animated" alt="">
-            </div>
         </div>
+    </div>
+    <div nz-row>&nbsp;</div>
+    <div nz-row>
+        <div nz-col nzSpan="4" style='text-align: left'>&nbsp;</div>
+        <div nz-col nzSpan="8" style='text-align: left'>Password</div>
+
+        <div nz-col nzSpan="12" style='text-align: left'>
+
+            <input type="password" nz-input placeholder="Enter Password" style='width:60%' [(ngModel)]="password" />
+
+        </div>
+    </div>
+    <div nz-row>&nbsp;</div>
+    <div nz-col nzSpan="24" style='text-align: center'>
+        <button nz-button nzType="primary" (click)=login()
+            style='background: #fd6951;border-color: #fd6951;'>Login</button>
+
     </div>
 
 
-</section><!-- End Hero -->
+</div>
+
+<div class='container' *ngIf="loginStatus">
+
+
+    <div class="row">
+        <h3> Select Interviewers: </h3>
+    </div>
+
+    <div class="row">
+        <ng-container *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]; index as i">
+            <div class="col-lg-4" style="padding-bottom: 20px;">
+                <nz-card style="width:300px;" [nzCover]="coverTemplate"
+                    [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+                    <nz-card-meta nzTitle="Interviewer Name {{i+1}}" nzDescription="Interviewer Department"
+                        [nzAvatar]="avatarTemplate"></nz-card-meta>
+                </nz-card>
+                <ng-template #avatarTemplate>
+                    <nz-avatar nzSrc="assets/img/hero-img.png"></nz-avatar>
+                </ng-template>
+                <ng-template #coverTemplate>
+                    <img alt="example" src="assets/img/photo.jpg" />
+                </ng-template>
+                <ng-template #actionSetting>
+                    <span nz-icon nzType="field-time" style="font-size: 20px" (click)="scheduleTime(i)"></span>
+                </ng-template>
+                <ng-template #actionEdit>
+                    <span nz-icon nzType="like"></span>
+                </ng-template>
+                <ng-template #actionEllipsis>
+                    <span nz-icon nzType="dislike"></span>
+                </ng-template>
+            </div>
+        </ng-container>
+    </div>
+</div>
+<div nz-row>&nbsp;</div>
+
+<nz-modal [nzVisible]="scheduleTimeVisible " [nzContent]="modalContent" [nzFooter]="null"
+    (nzOnCancel)="scheduleTimeVisible = false;">
+    <ng-template #modalContent>
+        <ng-container *ngIf="!scheduling">
+            <h3> - Schedule Interview - </h3>
+            <div nz-row>
+                <div nz-col nzSpan="24" style='text-align: left;width:100%'>
+                    <h5>Date </h5>
+                    <nz-date-picker [(ngModel)]="date" style="width:100%"></nz-date-picker>
+                    <div nz-row>&nbsp;</div>
+                    <h5>Time </h5>
+                    <nz-time-picker style="width:100%" [(ngModel)]="time" nzFormat="HH:mm"></nz-time-picker>
+                    <div nz-row>&nbsp;</div>
+                    <h5>Duration </h5>
+                    <nz-select style="width:100%" [(ngModel)]="duration">
+                        <nz-option nzValue="1" nzLabel="1"></nz-option>
+                        <nz-option nzValue="2" nzLabel="2"></nz-option>
+
+                    </nz-select>
+                    <div nz-row>&nbsp;</div>
+                    <h5>Interviewer Email Id: (For Testing) </h5>
+                    <input type="text" nz-input placeholder="Enter User ID" style='width:100%' [(ngModel)]="email1" />
+
+                    <div nz-row>&nbsp;</div>
+                    <h5>Interviewee Email Id: (For Testing) </h5>
+                    <input type="text" nz-input placeholder="Enter User ID" style='width:100%' [(ngModel)]="email2" />
+
+                    <div nz-row>&nbsp;</div>
+                    <div nz-col nzSpan="24" style='text-align: center;width:100%'>
+                        <button nz-button nzType="primary" (click)="schedule()"
+                            style='background: #fd6951;border-color: #fd6951;'>Schedule</button>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            </ng-container>
+            <ng-container *ngIf="scheduling">
+                <div nz-col nzSpan="24" style='text-align: center;width:100%'>
+                <ng-template #indicatorTemplate><span style='color:#fd6951'><i nz-icon style='font-size:30px ; '
+                    nzType="loading"></i><br /> <b>Scheduling Interview</b> </span></ng-template>
+        <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'"></nz-spin>
+        </div>
+
+            </ng-container>
+    </ng-template>
+</nz-modal>
