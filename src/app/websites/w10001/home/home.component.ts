@@ -57,9 +57,18 @@ export class HomeComponent implements OnInit {
     this.scheduling=true;
     this.scheduleService(formData).subscribe((res) => 
     {
+      if(res)
+      {
       this.msg.success("Your Interview Scheduled. Check your Email for more Details...");
       this.scheduling=false;
       this.scheduleTimeVisible=false;
+    }
+    else{
+      this.msg.success("Error Occured...Please Contact Administrator..");
+      this.scheduling=false;
+      this.scheduleTimeVisible=false;
+
+    }
     },
 
     (err) => {
