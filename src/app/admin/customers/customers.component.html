@@ -29,7 +29,7 @@
            <td>{{ data.type }}</td>
             <td>{{ data.name }}</td>
             <td>{{ data.contact }}</td>
-            <td>{{ data.email }}</td>
+            <td>{{ data.email }} <span (click)="emailChange(data.userId, data.email)"nz-icon nzType="edit" nzTheme="outline"></span> </td>
             <td>{{ data.city }}</td>
             <td>{{ data.joinDate }}</td>
             <td>{{ data.referCode }}</td>
@@ -58,3 +58,24 @@
     </tbody>
     </nz-table>
 </div>
+
+
+<nz-modal [nzVisible]="emailEditVisible" [nzContent]="modalContentEdit" [nzFooter]="null" (nzOnCancel)="emailEditVisible = false">
+    <ng-template #modalContentEdit>
+  
+      <h3> Email Edit </h3>
+      <div nz-row class="container">
+        <div nz-col nzSpan="12" style='text-align: left'>Enter Email of {{emailUserId}}</div>
+        <div nz-col nzSpan="12" style='text-align: left'>
+          <input type="text" nz-input placeholder="Enter Email" style='width:100%' [(ngModel)]='userEmail' />
+        </div>
+      </div>
+  
+      <div nz-row> &nbsp; </div>
+      <div nz-row class="container">
+        <div nz-col nzSpan="24" style='text-align: right'>
+          <button nz-button nzType="primary" (click)='editFun()'>Edit</button>
+        </div>
+      </div>
+    </ng-template>
+  </nz-modal>

@@ -21,6 +21,48 @@ export class CustomersComponent implements OnInit {
 
   loading=false;
 
+  emailEditVisible=false;
+  emailUserId=0;
+  userEmail = "";
+  editFun()
+  {
+      var formData=new FormData();
+      formData.set("email",this.userEmail);
+      formData.set("userId",this.emailUserId+"");
+      this.emailEditVisible=false;
+      const id = this.msg.loading('Email Change in progress..', { nzDuration: 0 }).messageId;
+   
+
+      this.adminService.emailChange(formData).subscribe(
+        (res : any) => { console.log(res);
+          
+          if(res)
+          {
+          this.msg.remove(id); this.msg.success("Email changed Succesfully.");
+          this.ngOnInit();
+        }
+        else
+        {
+          this.msg.remove(id); this.msg.create('error','Error Occured at Server. Please try again.'); 
+        }
+      
+      },
+        (err) => { this.msg.remove(id); console.log(err); this.msg.create('error','Error Occured at Server. Please try again.'); }
+      
+         );
+
+  }
+
+  emailChange(userId:number, email: string)
+  {
+    this.emailUserId=userId;
+    this.userEmail=email;
+    this.emailEditVisible=true;
+
+    
+
+  }
+
   getAllCustomerAccountDetails()
   {
     this.loading=true;

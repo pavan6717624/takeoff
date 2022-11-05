@@ -9,6 +9,11 @@ import { GstDetails } from './gst/gst.component';
 })
 export class AdminService {
 
+  emailChange(formData: FormData)
+  {
+    return this.http.post('https://takeoff-pavan.herokuapp.com/emailChange', formData);
+    
+  }
   
   hitsReceivedFun() {
     return this.http.get('https://takeoff-pavan.herokuapp.com/hitsReceived');
