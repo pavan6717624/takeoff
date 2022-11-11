@@ -210,7 +210,7 @@
                 <div nz-col nzSpan="10" style='text-align: left'>
 
 
-                    <h6> {{item.name}}
+                    <h6> {{item.name}}<br/>
                         ({{item.price  | currency:'INR'}})</h6>
                 </div>
                 <div nz-col nzSpan="6" style='text-align: left'>
@@ -244,7 +244,7 @@
         <div nz-row>
 
             
-            <div nz-col nzSpan="4" style='text-align: right'>
+            <div nz-col nzSpan="2" style='text-align: right'>
                 &nbsp;
             </div>
 
@@ -252,7 +252,7 @@
                 <button nz-button nzType="primary"  style="background: #fd6951;border-color: #fd6951;" [disabled]="loading4" [nzLoading] = "loading4" (click)="payment()"> Order </button>
             </div>
 
-            <div nz-col nzSpan="8" style='text-align: right'>
+            <div nz-col nzSpan="10" style='text-align: right'>
                 <h3>{{cart.totalPrice | currency:'INR' }}</h3>
             </div>
 
