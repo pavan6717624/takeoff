@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
  { path: 'website', loadChildren: () => import('./websites/websites.module').then(m => m.WebsitesModule) },
 { path: 'mocx', loadChildren: () => import('./websites/websites.module').then(m => m.WebsitesModule) },
+{ path: 'site2', loadChildren: () => import('./websites/websites.module').then(m => m.WebsitesModule) },
   
 ];
 

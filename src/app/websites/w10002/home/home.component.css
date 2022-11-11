@@ -1,0 +1,19 @@
+.coupon {
+    border: 1px solid #aaa!important;
+    border-radius: 15px;
+    margin: 0 auto;
+  }
+
+  .highlight {
+    border: 1px solid #aaa!important;
+    border-radius: 5px;
+    color:black;
+    padding: 3px;
+  
+    margin: 0 auto;
+  }
+
+  .item {
+    
+    margin: 0 auto;
+  }
