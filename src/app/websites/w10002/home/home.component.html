@@ -1,5 +1,5 @@
 <div style="text-align:center">
-    <div class='container' *ngIf="!loginStatus">
+    <div class='container' *ngIf="!loginStatus" style="padding-top:30px;">
         <div nz-row>
             <div nz-col nzSpan="4" style='text-align: left'>&nbsp;</div>
             <div nz-col nzSpan="8" style='text-align: left'>User Name</div>
@@ -46,7 +46,7 @@
             </div>
             <div nz-col nzSpan="12" style='text-align:right;padding-top:20px; padding-bottom:10px; width:100%'
                 (click)='cartOpen()'> <span nz-icon class="highlight" nzType="shopping-cart"
-                    style="font-size: 30px"></span><br /> <span style="font-size:smaller"> <b> {{cart.totalPrice}} |
+                    style="font-size: 30px; color:#fd6951"></span><br /> <span style="font-size:smaller"> <b> {{cart.totalPrice  | currency:'INR'}} |
                         {{cart.items.length}} items </b> </span>
             </div>
 
@@ -107,7 +107,7 @@
                             <span style="font-size:smaller">
                                 <h5> {{item.name}} </h5>
 
-                                <h6> {{item.price}} </h6>
+                                <h6> {{item.price | currency:'INR'}} </h6>
 
                                 <b> Enjoy your favourite Item. <br />Add to Cart </b>
                             </span>
@@ -118,7 +118,7 @@
 
                             <img alt="example"
                                 style="width:100%; height: 80%;padding-left:3px;padding-right:2px;padding-top: 3px; border-radius: 15px;"
-                                src="https://www.oberoihotels.com/-/media/oberoi-hotels/website-images/the-oberoi-new-delhi/dining/detail/omya---indian-restaurant-1.jpg?w=724&hash=639804eb8fb6e21e117d0a44e309aa1b" />
+                                src="assets/img/all.jpg" />
                             <div
                                 style="position: absolute; bottom: -10%;  left: 50%; transform: translate(-50%, -50%);">
 
@@ -183,8 +183,8 @@
             </div>
 
             <div nz-col nzSpan="8" style='text-align:right' (click)='cartOpen()'> <span nz-icon class="highlight"
-                    nzType="shopping-cart" style="font-size: 30px"></span><br /> <span
-                    style="font-size:smaller">{{cart.totalPrice}} |
+                    nzType="shopping-cart" style="font-size: 30px;color:#fd6951"></span><br /> <span
+                    style="font-size:smaller">{{cart.totalPrice | currency:'INR'}} |
                     {{cart.items.length}} items </span></div>
 
         </div>
@@ -211,7 +211,7 @@
 
 
                     <h6> {{item.name}}
-                        ({{item.price}})</h6>
+                        ({{item.price  | currency:'INR'}})</h6>
                 </div>
                 <div nz-col nzSpan="8" style='text-align: left'>
                     <nz-button-group>
@@ -223,7 +223,7 @@
                     </nz-button-group>
                 </div>
                 <div nz-col nzSpan="4" style='text-align: right'>
-                    <h6>{{item.count * item.price}}</h6>
+                    <h6>{{(item.count * item.price) | currency:'INR' }}</h6>
                 </div>
             </div>
 
@@ -243,12 +243,19 @@
     <ng-template #cartFooter>
         <div nz-row>
 
-            <div nz-col nzSpan="3" style='text-align: left'>
-                <h3>{{cart.totalPrice}}</h3>
+            
+            <div nz-col nzSpan="6" style='text-align: right'>
+                &nbsp;
             </div>
-            <div nz-col nzSpan="20" style='text-align: right'>
-                <button nz-button nzType="primary"   [disabled]="loading4" [nzLoading] = "loading4" (click)="payment()"> Make Payment </button>
+
+            <div nz-col nzSpan="12" style='text-align: center'>
+                <button nz-button nzType="primary"  style="background: #fd6951;border-color: #fd6951;" [disabled]="loading4" [nzLoading] = "loading4" (click)="payment()"> Order </button>
             </div>
+
+            <div nz-col nzSpan="6" style='text-align: right'>
+                <h3>{{cart.totalPrice | currency:'INR' }}</h3>
+            </div>
+
         </div>
 
         <!-- <nz-select nzPlaceHolder="Select Order Type" style='width:50%' (ngModelChange)='change3()'>

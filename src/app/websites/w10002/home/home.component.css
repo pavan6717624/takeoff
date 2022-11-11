@@ -5,11 +5,11 @@
   }
 
   .highlight {
-    border: 1px solid #aaa!important;
+    border: 2px solid #fd6951!important;
     border-radius: 5px;
     color:black;
     padding: 3px;
-  
+    
     margin: 0 auto;
   }
 

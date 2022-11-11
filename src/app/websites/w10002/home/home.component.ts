@@ -101,7 +101,14 @@ export class HomeComponent implements OnInit {
     this.cartVisible=true;
     else
     {
-      this.msg.info("No Items Found in cart. Add Items to Cart.")
+      //this.msg.info("No Items Found in cart. Add Items to Cart.");
+
+      this.notification.create(
+        'info',
+        'No Items Found',
+        'Add Items to Cart',
+        { nzDuration: 0 }
+        );
     }
   
   }
