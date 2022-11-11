@@ -244,15 +244,13 @@
         <div nz-row>
 
             
-            <div nz-col nzSpan="2" style='text-align: right'>
-                &nbsp;
-            </div>
 
-            <div nz-col nzSpan="12" style='text-align: center'>
+
+            <div nz-col nzSpan="12" style='text-align: left'>
                 <button nz-button nzType="primary"  style="background: #fd6951;border-color: #fd6951;" [disabled]="loading4" [nzLoading] = "loading4" (click)="payment()"> Order </button>
             </div>
 
-            <div nz-col nzSpan="10" style='text-align: right'>
+            <div nz-col nzSpan="12" style='text-align: right'>
                 <h3>{{cart.totalPrice | currency:'INR' }}</h3>
             </div>
 
