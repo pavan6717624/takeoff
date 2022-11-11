@@ -160,7 +160,7 @@ export class HomeComponent implements OnInit {
 
 
 
-  loginStatus = true;
+  loginStatus = false;
 
  
   login()

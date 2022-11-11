@@ -247,7 +247,7 @@
                 <h3>{{cart.totalPrice}}</h3>
             </div>
             <div nz-col nzSpan="20" style='text-align: right'>
-                <button nz-button nzType="primary" (click)="payment()"> Make Payment </button>
+                <button nz-button nzType="primary"   [disabled]="loading4" [nzLoading] = "loading4" (click)="payment()"> Make Payment </button>
             </div>
         </div>
 
