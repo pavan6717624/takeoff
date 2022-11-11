@@ -175,14 +175,14 @@
     <ng-template #itemTitle>
         <div nz-row>
 
-            <div nz-col nzSpan="3" style='text-align: left'>
+            <div nz-col nzSpan="2" style='text-align: left'>
                 <i nz-icon nzType="arrow-left" nzTheme="outline" (click)='itemsClose()'></i>
             </div>
-            <div nz-col nzSpan="12" style='text-align: left'><b>{{names[selectedIndex]}}</b>
+            <div nz-col nzSpan="10" style='text-align: left'><b>{{names[selectedIndex]}}</b>
                 <br /> <span style="font-size:smaller"> Enjoy your favourite Item.</span>
             </div>
 
-            <div nz-col nzSpan="8" style='text-align:right' (click)='cartOpen()'> <span nz-icon class="highlight"
+            <div nz-col nzSpan="12" style='text-align:right' (click)='cartOpen()'> <span nz-icon class="highlight"
                     nzType="shopping-cart" style="font-size: 30px;color:#fd6951"></span><br /> <span
                     style="font-size:smaller">{{cart.totalPrice | currency:'INR'}} |
                     {{cart.items.length}} items </span></div>
