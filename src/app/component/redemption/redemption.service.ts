@@ -12,7 +12,7 @@ export class RedemptionService {
     return this.http.post('https://takeoff-pavan.herokuapp.com/vendorRedemptionProcess',redemption);
   }
   generateRedemption(redemption:RedemptionDTO) {
-    return this.http.post('https://takeoff-pavan.herokuapp.com/generateRedemption',redemption);
+    return this.http.post('http://localhost:8081/generateRedemption',redemption);
   }
 
   
