@@ -6,10 +6,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MainService {
   getLogos() {
-    return this.http.get('http://localhost:8081/getLogos')
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getLogos')
   }
   getHomePageCoupons() {
-    return this.http.get('http://localhost:8081/getHomePageCoupons')
+    return this.http.get('https://takeoff-pavan.herokuapp.com/getHomePageCoupons')
   }
 
   constructor(private http: HttpClient) { }
