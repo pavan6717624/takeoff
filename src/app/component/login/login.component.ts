@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
 
 
   userid: string = "";
+  asVendor: Boolean=false;
   passwordVisible = false;
   passwordVisible1 = false;
   passwordVisible2 = false;
@@ -88,6 +89,8 @@ export class LoginComponent implements OnInit {
    this.password = (shajs('sha256').update(this.password).digest('hex'));
 
     formData.set("password", this.password);
+formData.set("asVendor",this.asVendor+"");
+
     this.loginService.login(formData).subscribe(
       (res) => {
         this.loginStatus = res; 

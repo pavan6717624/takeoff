@@ -3,7 +3,12 @@
 
 
 
-<h3> ---- Login to TAKEOFF</h3>
+<h3> ---- Login to TAKEOFF 
+
+    <ng-container *ngIf="asVendor">
+        as Vendor
+    </ng-container>
+</h3>
 
 
 <ng-container *ngIf="logginStatus">
@@ -70,6 +75,8 @@
         <div nz-col nzSpan="24" style='text-align: center' nz-result-extra>
            <button nz-button nzType="text" (click)="home()"> <u>Sign Up</u> </button>
             <button nz-button nzType="text" (click)="passwordModalVisible=true"> <u>Forgot Password?</u> </button>
+            <button nz-button nzType="text" *ngIf="!asVendor" (click)="asVendor=true"> <u>As Vendor</u> </button>
+            <button nz-button nzType="text" *ngIf="asVendor" (click)="asVendor=false"> <u>As Customer</u> </button>
         </div>
 
 
