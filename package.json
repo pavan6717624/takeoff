@@ -7,7 +7,7 @@
     "build": "ng build --prod --aot",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "heroku-postbuild": "ng build --prod --aot --vendor-chunk --common-chunk --delete-output-path --build-optimizer"
+    "heroku-postbuild": "ng build --aot"
   },
   "private": true,
   "dependencies": {
