@@ -208,7 +208,10 @@ this.loading=true;
       (res) => {  this.refererIdStatus = res.status; 
 
        if( this.refererIdStatus)
-       this.refererStatus = "check";
+       {
+      this.msg.remove();
+      this.refererStatus = "check";
+       }
        else
        {
       this.msg.create('error','Please valid Referral Code.');

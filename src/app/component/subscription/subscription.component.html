@@ -28,11 +28,11 @@
         <div nz-col nzSpan="4" style='text-align: left'>&nbsp;</div>
         <div nz-col nzSpan="6" style='text-align: left'>Referer ID</div>
         <div nz-col nzSpan="14" style='text-align: left'>
-            <!-- <ng-container *ngIf="refererStatus.length > 0 && refererid.length > 0">
+            <ng-container *ngIf="refererStatus.length > 0 && refererid.length > 0">
                 <i nz-icon [nzType]="refererStatus" nzTheme="outline"></i> &nbsp;&nbsp;
-            </ng-container> -->
+            </ng-container>
             <input type="text" [disabled]="refererIdStatus" nz-input [(ngModel)]="refererid" placeholder="Enter Referer ID" style='width:80%'
-                 />
+              (ngModelChange)="refererStatus=''"   />
             <br /><button nz-button nzType="text" (click)='noReferralCode()'><u>No Referral Code?</u></button>
         </div>
 
