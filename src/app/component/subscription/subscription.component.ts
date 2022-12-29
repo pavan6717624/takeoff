@@ -49,6 +49,7 @@ export class SubscriptionComponent implements OnInit {
  contact: string="";
  email: string="";
  profession: string="";
+ passwordVisible = false;
  gender: string="";
  city: string="";
  paying: boolean=false;
@@ -190,8 +191,16 @@ this.loading=true;
     return isnum;
   }
   
+  
   async checkRefererId()
   {
+
+    if(this.refererid.trim().length == 0)
+    {
+      this.msg.create('error','Please valid Referral Code.');
+      return;
+    }
+
     this.refererStatus = "loading";
     var formData = new FormData();
     formData.set("refererid",this.refererid)
@@ -201,8 +210,10 @@ this.loading=true;
        if( this.refererIdStatus)
        this.refererStatus = "check";
        else
+       {
+      this.msg.create('error','Please valid Referral Code.');
        this.refererStatus = "close";
-
+       }
       console.log(res);
       },
       (err) => {this.refererStatus = "stop"; console.log(err);this.msg.create("error","Error Occured at Sever...")}
