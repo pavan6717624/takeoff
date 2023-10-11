@@ -21,7 +21,7 @@ export class LoginStatus {
 })
 export class LoginComponent implements OnInit {
 
-
+  asGuest: boolean=false;
   userid: string = "";
   asVendor: Boolean=false;
   passwordVisible = false;
@@ -86,13 +86,16 @@ export class LoginComponent implements OnInit {
     var formData = new FormData();
     formData.set("username", this.userid);
 
+    if(this.asGuest)
+    this.password=this.userid;
+
    this.password = (shajs('sha256').update(this.password).digest('hex'));
 
     formData.set("password", this.password);
 formData.set("asVendor",this.asVendor+"");
 
     this.loginService.login(formData).subscribe(
-      (res) => {
+      (res:any) => {
         this.loginStatus = res; 
         console.log(res);
         if (this.loginStatus.loginStatus) {
@@ -113,7 +116,7 @@ formData.set("asVendor",this.asVendor+"");
 
     
 
-      (err) => {  this.password = ""; this.msg.create("error", "Could not Connect to Sever. Please Try After Some Time..."); this.logginStatus = false; }
+      (err:any) => {  this.password = ""; this.msg.create("error", "Could not Connect to Sever. Please Try After Some Time..."); this.logginStatus = false; }
     );
 
   }
@@ -155,7 +158,7 @@ formData.set("asVendor",this.asVendor+"");
           this.msg.create('error', 'Provided Details are not Registered. Please provide Registered Details.');
         }
       },
-      (err) => { this.generating=false; this.msg.create('error', 'Error Occured at Server. Please try again.');}
+      (err:any) => { this.generating=false; this.msg.create('error', 'Error Occured at Server. Please try again.');}
     );
 
 

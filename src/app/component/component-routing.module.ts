@@ -16,7 +16,7 @@ import { VendorComponent } from './vendor/vendor.component';
 import { WhyUsComponent } from './why-us/why-us.component';
 
 const routes: Routes = [
-  { path:'',component: MainComponent},
+  { path:'',component: LoginComponent},
   { path:'about',component: AboutComponent},
   { path:'contact',component:ContactComponent},
   { path:'why-us',component: WhyUsComponent},

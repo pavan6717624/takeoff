@@ -30,7 +30,7 @@ export class SubscriptionService {
   }
 
   async checkRefererId(formData: FormData): Promise<any>
-  {
+  {//https:://takeoff-pavan.herokuapp.com
     // return await this.http.post( 'https://takeoff-pavan.herokuapp.com/checkRefererId',formData ).toPromise();
     return await this.http.post( 'https://takeoff-pavan.herokuapp.com/checkRefererId',formData ).toPromise();
   }
