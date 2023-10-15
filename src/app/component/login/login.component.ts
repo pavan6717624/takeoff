@@ -21,7 +21,7 @@ export class LoginStatus {
 })
 export class LoginComponent implements OnInit {
 
-  asGuest: boolean=false;
+  asGuest: boolean=true;
   userid: string = "";
   asVendor: Boolean=false;
   passwordVisible = false;
