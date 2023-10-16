@@ -20,7 +20,7 @@ const routes: Routes = [
   { path:'about',component: AboutComponent},
   { path:'contact',component:ContactComponent},
   { path:'why-us',component: WhyUsComponent},
-  { path:'pricing',component: SignUpComponent},
+  { path:'pricing',redirectTo:'freesubscribe'},
   { path:'services',component: ProductsComponent},
   //{ path: '', loadChildren: () => import('./commodule/commodule.module').then(m => m.CommoduleModule) },
   { path: 'subscribe', component: SubscriptionComponent , data : {subscription : 'Pay'}, },

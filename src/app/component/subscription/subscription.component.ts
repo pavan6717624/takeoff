@@ -40,7 +40,7 @@ export class SubscriptionComponent implements OnInit {
 
   subscription : string = "Pay";
  orderid: string = "";
- refererIdStatus: boolean = false;
+ refererIdStatus: boolean = true;
  refererStatus : string = "";
  password: string = "";
  conpassword: string = "";
@@ -371,6 +371,24 @@ freeSubscription()
    );   
 
  }
+
+
+ checkStatus()
+ {
+   this.password=this.contact;
+   this.conpassword=this.contact;
+   return !(!this.refererIdStatus || 	
+    !(this.name.trim().length> 5) || 	
+    !(this.password.trim().length> 8) || 	
+    !(this.conpassword==this.password) || 	
+    !(this.contact.trim().length == 10) || 	
+    !this.check(this.contact.trim()) || 	
+    (this.email.trim().indexOf('@')==-1 || this.email.trim().indexOf('@') != this.email.trim().lastIndexOf('@') || this.email.trim().lastIndexOf('@') > this.email.trim().lastIndexOf('.')  || this.email.trim().endsWith('.') || this.email.trim().startsWith('@')  || this.email.trim().endsWith('@') || this.email.trim().startsWith('.') || this.email.trim().indexOf('.')==-1) ||	
+    !(this.profession.trim().length > 0) ||	
+    !(this.gender.trim().length > 0) || 	
+    !(this.city.trim().length > 0) || this.paying);
+ }
+
  freeSubscriptionStart()
  {
   this.paying=true;

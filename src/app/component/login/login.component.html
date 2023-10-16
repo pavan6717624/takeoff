@@ -35,7 +35,8 @@
 
     <div nz-row>
         <div nz-col nzSpan="4" style='text-align: left'>&nbsp;</div>
-      <div nz-col nzSpan="8" style='text-align: left'>Mobile / User ID</div>
+        <div nz-col nzSpan="8" style='text-align: left' *ngIf="asGuest || !asVendor">Mobile</div>
+      <div nz-col nzSpan="8" style='text-align: left' *ngIf="!asGuest || asVendor">Mobile / User ID</div>
         <div nz-col nzSpan="12" style='text-align: left'>
 
             <input type="text" nz-input [(ngModel)]="userid" placeholder="Enter User ID" style='width:60%' />
@@ -73,7 +74,7 @@
     <div nz-row>
 
         <div nz-col nzSpan="24" style='text-align: center' nz-result-extra>
-           <button nz-button nzType="text" (click)="home()"> <u>Sign Up</u> </button>
+           <button nz-button nzType="text" (click)="router.navigate(['freesubscribe'])"> <u>Sign Up</u> </button>
             <button nz-button nzType="text" *ngIf="!asGuest || asVendor" (click)="passwordModalVisible=true"> <u>Forgot Password?</u> </button>
             <button nz-button nzType="text" *ngIf="!asGuest || asVendor" (click)="asGuest=true; asVendor=false"> <u>As Guest</u> </button>
             <button nz-button nzType="text" *ngIf="!asVendor || asGuest" (click)="asVendor=true; asGuest=false"> <u>Login As Vendor</u> </button>
@@ -84,7 +85,7 @@
 
         <div nz-col nzSpan="24" style='text-align: center' nz-result-extra>
                <button nz-button nzType="primary" (click)=login() style='background: #fd6951;border-color: #fd6951;'>Login to TakeOff</button>
-            <button nz-button (click)='home()'>Back Home</button>
+            <!-- <button nz-button (click)='home()'>Back Home</button> -->
         </div>
 
     </div>

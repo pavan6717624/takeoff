@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   confirmpassword: string ='';
 
 
-  constructor(private router: Router, private loginService: LoginService, private msg: NzMessageService) {
+  constructor(public router: Router, private loginService: LoginService, private msg: NzMessageService) {
   }
 
 
