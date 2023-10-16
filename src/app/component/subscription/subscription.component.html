@@ -59,7 +59,7 @@
 
         <div nz-row>
             <div nz-col nzSpan="4" style='text-align: left'>&nbsp;</div>
-            <div nz-col nzSpan="6" style='text-align: left'>Enter Full Name</div>
+            <div nz-col nzSpan="6" style='text-align: left'>Name</div>
             <div nz-col nzSpan="14" style='text-align: left'>
                 <ng-container *ngIf="name.trim().length > 0">
                     <i nz-icon [nzType]="name.trim().length> 5 ? 'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
@@ -128,7 +128,7 @@
 
         <div nz-row>
             <div nz-col nzSpan="4" style='text-align: left'>&nbsp;</div>
-            <div nz-col nzSpan="6" style='text-align: left'>Enter Mobile Number </div>
+            <div nz-col nzSpan="6" style='text-align: left'>Mobile</div>
             <div nz-col nzSpan="14" style='text-align: left'>
                 <ng-container *ngIf="contact.trim().length > 0">
                     <i nz-icon [nzType]="check(contact.trim()) && contact.trim().length == 10 ?'check' : 'close'"
@@ -146,7 +146,7 @@
 
         <div nz-row>
             <div nz-col nzSpan="4" style='text-align: left'>&nbsp;</div>
-            <div nz-col nzSpan="6" style='text-align: left'>Enter Email Address</div>
+            <div nz-col nzSpan="6" style='text-align: left'>Email</div>
             <div nz-col nzSpan="14" style='text-align: left'>
                 <ng-container *ngIf="email.trim().length > 0">
                     <i nz-icon
