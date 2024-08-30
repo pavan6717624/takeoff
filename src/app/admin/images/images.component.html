@@ -1,0 +1,65 @@
+<div style='padding-left:15px;padding-right:15px;overflow:auto;width:100%;text-align:center'
+    [style.height.px]='screenHeight*0.7' (scroll)="onWindowScroll()" #scrollMe>
+
+    <ng-container *ngIf='loading'>
+        <div nz-row>
+
+            &nbsp;
+        </div>
+
+        <div nz-row>
+            <div nz-col nzSpan="24" style='text-align: center'>
+                <!-- <nz-spin nzTip="Please wait....Loading Images" nzSimple [nzSize]="'large'"></nz-spin> -->
+
+
+                <ng-template #indicatorTemplate>
+                    <span style='color:#fd6951'>
+                        <i nz-icon style='font-size:30px ; ' nzType="loading"></i>
+                        <br /> <b>Please wait....Loading Images</b> </span></ng-template>
+                <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'"></nz-spin>
+
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf='!loading'>
+
+
+        <div nz-row>
+            <div nz-col *ngFor="let item of images; index as i">
+
+                <div class="container" style='overflow:hidden;width:300px;height:300px;padding:0px'>
+                    <img style="width:300px;height:300px;border: 1px solid #555;" id="image" [src]="item.image">
+               
+                        <div class='top-left'><b><i nz-icon style='background-color:white;color:black' nzType="delete"
+                                    nzTheme="outline" (click)='deleteImage(item.id)'></i></b></div>
+                   
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <ng-container *ngIf='bottom && !noMoreImages'>
+            <div nz-row>
+
+                &nbsp;
+            </div>
+
+            <div nz-row>
+                <div nz-col nzSpan="24" style='text-align: center'>
+                    <!-- <nz-spin nzTip="Please wait....Loading Images" nzSimple [nzSize]="'large'"></nz-spin> -->
+
+
+                    <ng-template #indicatorTemplate>
+                        <span style='color:#fd6951'>
+                            <i nz-icon style='font-size:30px ; ' nzType="loading"></i>
+                            <br /> <b>Please wait....Loading Images</b> </span></ng-template>
+                    <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'"></nz-spin>
+    
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+</div>

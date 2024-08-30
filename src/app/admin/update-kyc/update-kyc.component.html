@@ -1,0 +1,277 @@
+<div style='overflow:auto;width:100%;height:100%'>
+<nz-table #basicTable nzShowPagination=false nzBordered [nzData]="['']" [nzLoading]="loading">
+
+    <thead>
+        <tr>
+
+            <th>#</th>
+            <th>Customer Id</th>
+            <th>Name</th>
+            <th>E-Mail</th>
+            <th>Contact</th>
+            <th>Pan</th>
+            <th> PAN Status </th>
+
+            <th>Action on PAN</th>
+            <th> PAY </th>
+            <th>Bank Name</th>
+            <th>Name as Per Bank Account</th>
+            <th>Account Number</th>
+            <th>IFSC</th>
+            <th>Proof</th>
+            <th>Action on Bank Details</th>
+            <th> KYC Status </th>
+            <th> Wallet Amount</th>
+            <th> Credit Amount</th>
+
+
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let data of kycDetails; index as i">
+            <td>{{ i+1 }}</td>
+            <td (click)='takeOffStatement(i)'> <i class="fas fa-list"></i> {{ data.customerId }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.email }}</td>
+            <td>{{ data.contact }}</td>
+            <td>{{ data.pan }}</td>
+            <td>{{ data.panStatus }}</td>
+
+            <td>
+                <ng-container *ngIf="data.panStatus === 'Submitted'">
+                    <i nz-icon style='color:green; font-size: 25px;' nzType="check-square" nzTheme="outline"
+                        (click)="verifyPanStatus(i,data.customerId,'Approved')"></i> | <i nz-icon
+                        style='color:red; font-size: 25px;' nzType="close-square" nzTheme="outline"
+                        (click)="verifyPanStatus(i,data.customerId,'Rejected')"></i>
+                </ng-container>
+
+
+                <ng-container *ngIf="data.panStatus === 'Approved'">
+                    <i nz-icon style='color:green; font-size: 25px;' nzType="check-square" nzTheme="outline"></i>
+                </ng-container>
+
+                <ng-container *ngIf="data.panStatus === 'Rejected'">
+                    <i nz-icon style='color:red; font-size: 25px;' nzType="close-square" nzTheme="outline"></i>
+                </ng-container>
+
+
+            </td>
+
+            <td>
+                <ng-container *ngIf="data.panStatus === 'Approved'">
+                    <i style='font-size: 25px;' class="fab fa-amazon-pay"
+                        (click)='resetPayValues();selectedId=i;selectedKyc=data;payVisible=true;'></i>
+                </ng-container>
+            </td>
+
+
+
+
+
+
+            <td>{{ data.bname }}</td>
+            <td>{{ data.cname }}</td>
+            <td>{{ data.account }}</td>
+            <td>{{ data.ifsc }}</td>
+            <td>
+
+                <ng-container *ngIf="data && data.statement && data.statement.length > 30 ">
+
+                    <i nz-icon style='color:green; font-size: 25px;' nzType="link" nzTheme="outline"
+                        (click)="previewImage='data:image/jpeg;base64,'+data.statement; previewVisible=true;"></i>
+
+
+                </ng-container>
+
+            </td>
+
+            <td>
+                <ng-container *ngIf="data.kycStatus === 'Submitted'">
+                    <i nz-icon style='color:green; font-size: 25px;' nzType="check-square" nzTheme="outline"
+                        (click)="verifyKycStatus(i,data.customerId,'Approved')"></i> | <i nz-icon
+                        style='color:red; font-size: 25px;' nzType="close-square" nzTheme="outline"
+                        (click)="verifyKycStatus(i,data.customerId,'Rejected')"></i>
+                </ng-container>
+
+
+                <ng-container *ngIf="data.kycStatus === 'Approved'">
+                    <i nz-icon style='color:green; font-size: 25px;' nzType="check-square" nzTheme="outline"></i>
+                </ng-container>
+
+                <ng-container *ngIf="data.kycStatus === 'Rejected'">
+                    <i nz-icon style='color:red; font-size: 25px;' nzType="close-square" nzTheme="outline"></i>
+                </ng-container>
+            </td>
+
+            <td>{{ data.kycStatus }}</td>
+            <td>{{ data.walletAmount }}</td>
+            <td>{{ data.creditAmount }}</td>
+
+
+
+        </tr>
+    </tbody>
+
+
+
+
+</nz-table>
+</div>
+
+
+<nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+    (nzOnCancel)="previewVisible = false" nzWidth=700>
+    <ng-template #modalContent>
+        <h3> Bank Proof </h3>
+        <div style='overflow:auto;'>
+            <div class="container" style='overflow:hidden;width:600px;height:600px;padding:0px'>
+                <img [src]="previewImage" style="width:600px;height:600px;border: 1px solid #555;" />
+            </div>
+        </div>
+    </ng-template>
+</nz-modal>
+
+
+<nz-modal [nzVisible]="payVisible" [nzContent]="payContent" [nzFooter]="null" (nzOnCancel)="payVisible = false">
+    <ng-template #payContent>
+        <h3> Payment </h3>
+
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: left'>Customer Id</div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                {{selectedKyc.customerId}}
+            </div>
+        </div>
+
+        <div nz-row class="container"> &nbsp; </div>
+
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: left'>Customer Name</div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                {{selectedKyc.name}}
+            </div>
+        </div>
+
+        <div nz-row> &nbsp; </div>
+
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: left'>Wallet Amount</div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                {{selectedKyc.walletAmount}}
+            </div>
+        </div>
+
+        <div nz-row> &nbsp; </div>
+
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: left'>Credit Date</div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+
+                <nz-date-picker nzAllowClear=false nzAllowEmpty=false nzInputReadOnly=true nzFormat="yyyy-MM-dd"
+                    nzPlaceHolder='From Date' [(ngModel)]='creditDate' style='width:130px'>
+                </nz-date-picker> -
+                <!-- <nz-time-picker nzAllowEmpty=false [nzBackdrop]='true' nzPlaceHolder='Time'
+                [(ngModel)]="fromTime" nzFormat="HH:mm" style='width:80px'></nz-time-picker> -->
+
+                <nz-select [nzBackdrop]='true' style='width:100px' [nzOptionOverflowSize]='4' nzAllowClear=false
+                    [(ngModel)]="creditTime">
+
+                    <nz-option *ngFor="let time1 of time" [nzValue]="time1" [nzLabel]="time1"></nz-option>
+
+
+                </nz-select>
+
+
+
+            </div>
+        </div>
+
+        <div nz-row> &nbsp; </div>
+
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: left'>Credit Amount</div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+
+                <input nz-input type='number' [(ngModel)]='credit' style='width:100px'>
+
+            </div>
+        </div>
+
+        <div nz-row> &nbsp; </div>
+
+        <div nz-row class="container">
+            <div nz-col nzSpan="24" style='text-align: center' nz-result-extra>
+
+                <button nz-button nzType="primary" (click)='creditAmount()' [nzLoading]='crediting'>
+                    Pay Amount
+                </button> &nbsp;
+                <button nz-button (click)='payVisible = false' [nzLoading]='crediting'> Cancel</button>
+
+            </div>
+        </div>
+
+
+
+    </ng-template>
+</nz-modal>
+
+
+
+<nz-modal [nzVisible]="statmentVisible" [nzContent]="statementContent" [nzFooter]="null"
+    (nzOnCancel)="statmentVisible = false" nzWidth=700>
+    <ng-template #statementContent>
+        <h3> Take Off Statement </h3>
+        <div style='overflow:auto;'>
+<div style='overflow:auto;width:100%;height:100%'>
+            <nz-table #statementTable nzShowPagination=false nzBordered [nzData]="['']" [nzLoading]="stating">
+
+                <thead>
+                    <tr>
+
+                        <th>#</th>
+                        <th>Customer Id</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                        
+                        <th>Wallet Amount</th>
+                        <th>Credited to Bank Account</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let data of statements; index as i">
+                        <td>{{ i+1 }}</td>
+                        <td>{{ data.customerId }}</td>
+                        <td>{{ data.date }}</td>
+                        <td>{{ data.description }}</td>
+                        <ng-container *ngIf="data.description.indexOf('credited') == -1">
+                            <td>{{ data.amount }}</td>
+                            <td>0</td>
+                        </ng-container>
+                        <ng-container *ngIf="data.description.indexOf('credited') != -1">
+                            <td>0</td>
+                            <td>{{ data.amount }}</td>
+                        </ng-container>
+
+                    </tr>
+                    <tr>
+
+                    <td> &nbsp; </td>
+                    <td> &nbsp; </td>
+                    <td> &nbsp; </td>
+                    <td> Balance </td>
+                    <td> {{statementWallet}} </td>
+                        <td> {{statementCredit}} </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+          </div>
+
+           
+
+        </div>
+    </ng-template>
+</nz-modal>

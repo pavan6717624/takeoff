@@ -1,0 +1,143 @@
+<button nz-button nzType="primary" (click)='addCategoryView()'>+ Add Category</button> &nbsp;&nbsp;&nbsp;&nbsp;
+<button nz-button nzType="primary" (click)='addSubCategoryView()'>+ Add Sub Category</button>
+
+<div nz-row> &nbsp; </div>
+<div style='overflow:auto;width:100%;height:100%'>
+  <nz-table #basicTable nzShowPagination=true nzBordered [nzData]="subCategories" [nzLoading]="loading">
+    <thead>
+      <tr>
+
+        <th [nzSortFn]="sortCId">Category Id</th>
+        <th [nzSortFn]="sortCName" [nzFilters]="filterCategoryName" [nzFilterFn]="categoryNameFilterFn"
+          (nzFilterChange)='callfun($event)'>Category Name</th>
+        <th>Action</th>
+
+        <th [nzSortFn]="sortSCName" [nzFilters]="filterSubCategoryName" [nzFilterFn]="subCategoryNameFilterFn">
+          SubCategory Name</th>
+        <th [nzSortFn]="sortSCId">SubCategory Id</th>
+        <th>Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data; index as i">
+
+        <td>{{ data.categoryId }}</td>
+        <td>{{ data.categoryName }}</td>
+
+        <td>
+          <i nz-icon [nzType]="data.categoryVisibility?'eye': 'eye-invisible'" nzTheme="outline"
+            (click)="showConfirm(data.categoryVisibility?'Hide':'UnHide',data.categoryId,'Category' )"></i> &nbsp;
+          <i nz-icon nzType="edit" nzTheme="outline"
+            (click)="editId=data.categoryId; editValue=data.categoryName; editField = 'Category';editVisible=true"></i>
+          &nbsp;
+          <i nz-icon nzType="delete" nzTheme="outline" (click)="showConfirm('Delete',data.categoryId,'Category' )"></i>
+        </td>
+        <ng-container *ngIf='data.isSubCategoryDeleted == null || data.isSubCategoryDeleted == true'>
+
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+
+        </ng-container>
+
+        <ng-container *ngIf='data.isSubCategoryDeleted == false'>
+          <td>
+
+            {{ data.subCategoryName }}
+          </td>
+
+          <td>{{ data.subCategoryId }}</td>
+          <td>
+            <i nz-icon [nzType]="data.subCategoryVisibility?'eye': 'eye-invisible'" nzTheme="outline"
+              (click)="showConfirm(data.subCategoryVisibility?'Hide':'UnHide',data.subCategoryId,'Sub-Category' )"></i>
+            &nbsp;
+            <i nz-icon nzType="edit" nzTheme="outline"
+              (click)="editId=data.subCategoryId; editValue=data.subCategoryName;editField = 'Sub-Category';editVisible=true"></i>
+            &nbsp;
+            <i nz-icon nzType="delete" nzTheme="outline"
+              (click)="showConfirm('Delete', data.subCategoryId,'Sub-Category' )"></i>&nbsp;
+            <nz-switch [(ngModel)]="data.mandatoryComplimentary"
+              (ngModelChange)="mandatoryComplimentaryChange(data.subCategoryId)" [nzCheckedChildren]="checkedTemplate"
+              [nzUnCheckedChildren]="unCheckedTemplate">
+            </nz-switch>
+            <ng-template #checkedTemplate><i nz-icon nzType="check"></i></ng-template>
+            <ng-template #unCheckedTemplate><i nz-icon nzType="close"></i></ng-template>
+
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<nz-modal [nzVisible]="previewCategoryVisible || previewSubCategoryVisible" [nzContent]="modalContent" [nzFooter]="null"
+  (nzOnCancel)="previewCategoryVisible = false; previewSubCategoryVisible = false">
+  <ng-template #modalContent>
+    <ng-container *ngIf="previewCategoryVisible">
+      <h3> Category </h3>
+      <div nz-row class="container">
+        <div nz-col nzSpan="12" style='text-align: left'>Enter Category</div>
+        <div nz-col nzSpan="12" style='text-align: left'>
+          <input type="text" nz-input placeholder="Enter Category" style='width:100%' [(ngModel)]='category' />
+        </div>
+      </div>
+
+      <div nz-row> &nbsp; </div>
+      <div nz-row class="container">
+        <div nz-col nzSpan="24" style='text-align: right'>
+          <button nz-button nzType="primary" (click)='addCategory()'>Add</button>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="previewSubCategoryVisible">
+      <h3> Sub Category </h3>
+      <div nz-row class="container">
+        <div nz-col nzSpan="12" style='text-align: left'>Select Category</div>
+        <div nz-col nzSpan="12" style='text-align: left'>
+          <nz-select nzShowSearch nzPlaceHolder="Select Category" style='width: 100% ;' [(ngModel)]='category'>
+
+            <nz-option *ngFor="let cat of categories" [nzValue]="cat.id" [nzLabel]="cat.categoryName"></nz-option>
+
+          </nz-select>
+        </div>
+      </div>
+      <div nz-row> &nbsp; </div>
+      <div nz-row class="container">
+        <div nz-col nzSpan="12" style='text-align: left'>Enter Sub-Category</div>
+        <div nz-col nzSpan="12" style='text-align: left'>
+          <input type="text" nz-input placeholder="Enter Sub-Category" [(ngModel)]='subCategory' style='width:100%' />
+        </div>
+      </div>
+      <div nz-row> &nbsp; </div>
+      <div nz-row class="container">
+        <div nz-col nzSpan="24" style='text-align: right'>
+          <button nz-button nzType="primary" (click)='addSubCategory()'>Add</button>
+        </div>
+      </div>
+    </ng-container>
+
+
+  </ng-template>
+</nz-modal>
+
+<nz-modal [nzVisible]="editVisible" [nzContent]="modalContentEdit" [nzFooter]="null" (nzOnCancel)="editVisible = false">
+  <ng-template #modalContentEdit>
+
+    <h3> {{editField}} </h3>
+    <div nz-row class="container">
+      <div nz-col nzSpan="12" style='text-align: left'>Enter {{editField}}</div>
+      <div nz-col nzSpan="12" style='text-align: left'>
+        <input type="text" nz-input placeholder="Enter {{editField}}" style='width:100%' [(ngModel)]='editValue' />
+      </div>
+    </div>
+
+    <div nz-row> &nbsp; </div>
+    <div nz-row class="container">
+      <div nz-col nzSpan="24" style='text-align: right'>
+        <button nz-button nzType="primary" (click)='editFun()'>Edit</button>
+      </div>
+    </div>
+  </ng-template>
+</nz-modal>

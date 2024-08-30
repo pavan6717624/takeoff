@@ -1,0 +1,85 @@
+<nz-layout style='height: 90%;'> 
+
+  <nz-header>
+    
+    </nz-header>
+
+  <nz-sider nzCollapsible nzBreakpoint="lg" [nzCollapsedWidth]="0" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+     
+      
+   
+<br/>
+
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+            <li nz-menu-item nzSelected> <i nz-icon nzType="home"> </i><span> 
+              <a [routerLink]="['/admin']" (click)="isCollapsed = true;"> Home </a>
+      </span> </li>
+
+      <li nz-submenu nzTitle="Users" nzIcon="user">
+        <ul>
+          <li nz-menu-item><a [routerLink]="['customers']"  (click)="isCollapsed = true;">Customers</a></li>
+          <li nz-menu-item><a [routerLink]="['designers']"  (click)="isCollapsed = true;">Designers</a></li>
+          <li nz-menu-item><a [routerLink]="['vendors']"  (click)="isCollapsed = true;">Vendors</a></li>
+          <li nz-menu-item><a [routerLink]="['investors']"  (click)="isCollapsed = true;">Investors</a></li>
+   <li nz-menu-item><a [routerLink]="['executives']"  (click)="isCollapsed = true;">Executives</a></li>
+          
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Particulars" nzIcon="database">
+        <ul>
+          <li nz-menu-item><a [routerLink]="['category']"  (click)="isCollapsed = true;">Category</a></li>
+          <li nz-menu-item>  <a [routerLink]="['coupontypes']"  (click)="isCollapsed = true;">Coupon Types</a></li>
+          <li nz-menu-item>  <a [routerLink]="['images']"  (click)="isCollapsed = true;">Images</a></li>
+        </ul>
+      </li>
+
+      <li nz-menu-item> <i nz-icon nzType="apartment"> </i><span> 
+        <a [routerLink]="['display']" (click)="isCollapsed = true;"> TakeOff Structure </a>
+      </span> </li>
+      
+       <li nz-menu-item> <i nz-icon nzType="history"> </i><span> 
+        <a [routerLink]="['redemHistory']" (click)="isCollapsed = true;"> Redemption History </a>
+      </span> </li>
+
+         <li nz-menu-item (click)="isCollapsed = true;"> <i nz-icon nzType="form"> </i><span> <a [routerLink]="['verifyKYC']"> Verify KYC </a>
+      </span> </li>
+
+      <li nz-menu-item (click)="isCollapsed = true;"> <i nz-icon nzType="audit"> </i><span> <a [routerLink]="['gst']" > GST </a>
+      </span> </li>
+
+      <li nz-menu-item (click)="isCollapsed = true;"> <i nz-icon nzType="scissor"> </i><span> <a [routerLink]="['tds']" > TDS </a>
+      </span> </li>
+
+      <li nz-menu-item (click)="isCollapsed = true;"> <i nz-icon nzType="scan"> </i><span> <a [routerLink]="['scancodes']" > Scan Codes </a>
+      </span> </li>
+
+      <li nz-menu-item (click)="isCollapsed = true;"> <i nz-icon nzType="contacts"> </i><span> <a [routerLink]="['contacts']" > Contacts </a>
+      </span> </li>
+
+      <li nz-menu-item (click)="isCollapsed = true;"> <i nz-icon nzType="swap"> </i><span> <a [routerLink]="['hits']" > Hits Received </a>
+      </span> </li>
+
+    </ul>
+  </nz-sider>
+  <nz-layout >
+    <nz-header>
+      
+      <i
+        class="trigger"
+        nz-icon
+        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="isCollapsed = !isCollapsed"
+      >  </i>
+    </nz-header>
+    <nz-content style='overflow: auto;'>
+ 
+      <div  class="inner-content" >
+
+          <router-outlet>
+          </router-outlet>
+
+      </div>
+    </nz-content>
+
+  </nz-layout>
+</nz-layout>

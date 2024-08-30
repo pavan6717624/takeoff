@@ -1,0 +1,587 @@
+<ng-container *ngIf='loading'>
+    <div nz-row>
+
+        &nbsp;
+    </div>
+
+    <div nz-row>
+        <div nz-col nzSpan="24" style='text-align: center'>
+            <ng-template #indicatorTemplate>
+                <span style='color:#fd6951'>
+                    <i nz-icon style='font-size:30px ; ' nzType="loading"></i>
+                    <br /> <b>Please wait....Loading Images</b> </span></ng-template>
+            <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'"></nz-spin>
+            
+            <!-- <nz-spin nzTip="Please wait....Loading Images" nzSimple [nzSize]="'large'"></nz-spin> -->
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf='!loading'>
+    <div nz-row style='text-align:center'>
+        <div nz-col *ngFor="let item of coupons"  style='padding-left: 10px; padding-bottom: 10px;'>
+            <div class="container" style='overflow:hidden;width:300px;height:300px;padding:0px' (click)="click(item);">
+                <img style="width:300px;height:300px;border: 1px solid #555;" id="image" [src]="item.image">
+                <img [class]="item.image_align" [src]="logo" style='max-height: 50px;border: 1px solid  #bbb;'>
+                <ng-container *ngIf='item.expired'>
+                <div class='top-right' style='background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: red;'><b>Expired</b></div>
+            </ng-container>
+                <div
+                    style='text-align:center;padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
+
+
+
+                    <h5 [style.text-decoration]='item.header_decoration' [style.font-weight]='item.header_bold'
+                        style='word-wrap: break-word;' [style.font-style]='item.header_style' style='color: #f1f1f1;'>
+                        {{item.header}}</h5>
+
+                    <p [style.text-decoration]='item.body_decoration' [style.font-weight]='item.body_bold'
+                        style='word-wrap: break-word;' [style.font-style]='item.body_style'>{{item.body}}</p>
+
+                    <p [style.text-decoration]='item.footer_decoration' [style.font-weight]='item.footer_bold'
+                        style='word-wrap: break-word;' [style.font-style]='item.footer_style'>{{item.footer}}</p>
+
+
+
+                </div>
+
+            </div>
+
+
+            <div class="container" nz-col nzSpan="24" style='text-align: center; border-radius: 0 0  15px 15px; padding:0;
+            background-color: white;'>
+                        <!-- <div nz-col nzSpan="24">
+
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                            <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                            <i nz-icon nzType="line" nzTheme="outline"></i>
+                        </div> -->
+
+                        <div nz-col nzSpan="24">
+                            <div nz-row>
+
+                                <div nz-col nzSpan="2">&nbsp;</div>
+
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                    title="Redem Coupon">
+
+                                    <i nz-icon nzType="gift" nzTheme="fill" style="font-size: 20px; color: blue"
+                                        class='icon'></i><br />
+                                    {{item.redemptionCount}}
+
+                                </div>
+
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                    title="Visit Vendor Store">
+
+                                    <i nz-icon nzType="bank" nzTheme="fill" style="font-size: 20px; color: brown "
+                                        class='icon'></i>
+
+                                </div>
+
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                    title="Like Coupon">
+
+                                    <i nz-icon [nzType]="item.likeLoading?'smile':'like'"
+                                        [nzTheme]="item.likeCoupon?'fill':'outline'"
+                                        style="font-size: 20px; color:green" class='icon'
+                                        ></i><br />
+
+
+
+                                    {{item.likeCount}}
+
+                                </div>
+
+
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                    title="DisLike Coupon">
+
+                                    <i nz-icon [nzType]="item.likeLoading?'frown':'dislike'"
+                                        [nzTheme]="item.disLikeCoupon?'fill':'outline'"
+                                        style="font-size: 20px; color:red" class='icon'
+                                        ></i><br />
+                                    {{item.dislikeCount}}
+
+                                </div>
+
+                                <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                    title="Download Coupon">
+
+                                    <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;"
+                                        class='icon'></i>
+
+                                </div>
+
+                                <div nz-col nzSpan="2">&nbsp;</div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div nz-col nzSpan="24">
+                            <h6 style="font-size: 12px;color: white; margin-bottom: 0;  padding: 8px 0; background: #fd6951;
+                            border-radius: 0 0 15px 15px;"><ng-container *ngIf='item.expired'>Expired</ng-container><ng-container *ngIf='!item.expired'>Expires</ng-container> on
+                                {{item.expireTime}}</h6>
+                        </div>
+
+                    </div>
+
+        </div>
+
+
+        
+
+
+    </div>
+
+   
+
+
+</ng-container>
+
+
+
+<nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="cancel()">
+    <ng-template #modalContent>
+        <h3> Customer's View </h3>
+        <div style='overflow:auto;'>
+            <div class="container" style='overflow:hidden;width:300px;height:300px;padding:0px'>
+                <img [src]="coupon.image" style=' width:300px;height:300px;border: 1px solid #555;' />
+                <img [class]="coupon.image_align" [src]="logo" style='max-height: 50px;border: 1px solid #bbb;'>
+
+
+
+
+                <div
+                    style='text-align:center;padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
+
+
+                    <h5 [style.text-decoration]='coupon.header_decoration' [style.font-weight]='coupon.header_bold'
+                        style='word-wrap: break-word;' [style.font-style]='coupon.header_style' style='color: #f1f1f1;'>
+                        {{coupon.header}}</h5>
+
+                    <p [style.text-decoration]='coupon.body_decoration' [style.font-weight]='coupon.body_bold'
+                        style='word-wrap: break-word;' [style.font-style]='coupon.body_style'>{{coupon.body}}</p>
+
+                    <p [style.text-decoration]='coupon.footer_decoration' [style.font-weight]='coupon.footer_bold'
+                        style='word-wrap: break-word;' [style.font-style]='coupon.footer_style'>{{coupon.footer}}</p>
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <nz-tabset nzTabPosition="top" nzSize="large">
+            <nz-tab nzTitle="Content">
+
+                <nz-tabset nzTabPosition="top" nzSize="small">
+                    <nz-tab nzTitle="Header">
+
+                        <div nz-row>
+                            <div nz-col nzSpan="24" style='text-align: center'>
+                                <!-- <input type="color" [(ngModel)]="coupon.header_color"> &nbsp;&nbsp; -->
+                                <!-- <button nz-button [nzType]="coupon.header_align ==='top-left'? 'dashed' : 'text'"
+                                    (click)="coupon.header_align='top-left'" disabled='true'> <i nz-icon
+                                        nzType="align-left" nzTheme="outline"></i></button>
+                                <button nz-button [nzType]="coupon.header_align ==='top-center'? 'dashed' : 'text'"
+                                    (click)="coupon.header_align='top-center'"><i nz-icon nzType="align-center"
+                                        nzTheme="outline"></i></button>
+                                <button nz-button [nzType]="coupon.header_align ==='top-right'? 'dashed' : 'text'"
+                                    (click)="coupon.header_align='top-right'"><i nz-icon nzType="align-right"
+                                        nzTheme="outline"></i></button> -->
+                                <button nz-button [nzType]="coupon.header_bold ==='bold'? 'dashed' : 'text'"
+                                    (click)="coupon.header_bold === 'bold'? coupon.header_bold = 'normal': coupon.header_bold = 'bold'"><i
+                                        nz-icon nzType="bold" nzTheme="outline"></i></button>
+                                <button nz-button [nzType]="coupon.header_style ==='italic'? 'dashed' : 'text'"
+                                    (click)="coupon.header_style === 'italic'? coupon.header_style = 'normal': coupon.header_style = 'italic'"><i
+                                        nz-icon nzType="italic" nzTheme="outline"></i></button>
+
+
+                                <button nz-button [nzType]="coupon.header_decoration ==='underline'? 'dashed' : 'text'"
+                                    (click)="coupon.header_decoration === 'underline'? coupon.header_decoration = 'none': coupon.header_decoration = 'underline'"><i
+                                        nz-icon nzType="underline" nzTheme="outline"></i></button>
+
+                                <button nz-button
+                                    [nzType]="coupon.header_decoration ==='line-through'? 'dashed' : 'text'"
+                                    (click)="coupon.header_decoration === 'line-through'? coupon.header_decoration = 'none': coupon.header_decoration = 'line-through'"><i
+                                        nz-icon nzType="strikethrough" nzTheme="outline"></i></button>
+
+                            </div>
+                        </div>
+                        <div nz-row>
+
+                            &nbsp;
+                        </div>
+                        <!-- <div nz-row>
+                            <div nz-col nzSpan="24" style='text-align: center'>
+                                <nz-input-number [(ngModel)]="coupon.header_size" [nzMin]="1" [nzMax]="50" [nzStep]="1">
+                                </nz-input-number>&nbsp;&nbsp;
+                                <nz-select [(ngModel)]="coupon.header_font">
+                                    <nz-option nzValue="Times New Roman" nzLabel="Times New Roman"></nz-option>
+                                    <nz-option nzValue="Georgia" nzLabel="Georgia"></nz-option>
+                                    <nz-option nzValue="Garamond" nzLabel="Garamond"></nz-option>
+                                    <nz-option nzValue="Arial" nzLabel="Arial"></nz-option>
+                                    <nz-option nzValue="Verdana" nzLabel="Verdana"></nz-option>
+                                    <nz-option nzValue="Helvetica" nzLabel="Helvetica"></nz-option>
+                                    <nz-option nzValue="Courier New" nzLabel="Courier New"></nz-option>
+                                    <nz-option nzValue="Lucida Console" nzLabel="Lucida Console"></nz-option>
+                                    <nz-option nzValue="Monaco" nzLabel="Monaco"></nz-option>
+                                    <nz-option nzValue="Brush Script MT" nzLabel="Brush Script MT"></nz-option>
+                                    <nz-option nzValue="Lucida Handwriting" nzLabel="Lucida Handwriting"></nz-option>
+                                    <nz-option nzValue="Copperplate" nzLabel="Copperplate"></nz-option>
+                                    <nz-option nzValue="Papyrus" nzLabel="Papyrus"></nz-option>
+
+
+                                </nz-select>
+                            </div>
+                        </div> 
+                        <div nz-row>
+
+                            &nbsp;
+                        </div>-->
+                        <div nz-row>
+                            <div nz-col nzSpan="24" style='text-align: center'>
+                                <textarea rows="4" nz-input [(ngModel)]='coupon.header'></textarea>
+                            </div>
+                        </div>
+
+
+                    </nz-tab>
+
+                    <nz-tab nzTitle="Body">
+
+                        <div nz-row>
+                            <div nz-col nzSpan="24" style='text-align: center'>
+                                <!-- <input type="color" [(ngModel)]="coupon.body_color"> &nbsp;&nbsp;
+                                <button nz-button [nzType]="coupon.body_align ==='centered-left'? 'dashed' : 'text'"
+                                    (click)="coupon.body_align='centered-left'"> <i nz-icon nzType="align-left"
+                                        nzTheme="outline"></i></button>
+                                <button nz-button [nzType]="coupon.body_align ==='centered'? 'dashed' : 'text'"
+                                    (click)="coupon.body_align='centered'"><i nz-icon nzType="align-center"
+                                        nzTheme="outline"></i></button>
+                                <button nz-button [nzType]="coupon.body_align ==='centered-right'? 'dashed' : 'text'"
+                                    (click)="coupon.body_align='centered-right'"><i nz-icon nzType="align-right"
+                                        nzTheme="outline"></i></button> -->
+                                <button nz-button [nzType]="coupon.body_bold ==='bold'? 'dashed' : 'text'"
+                                    (click)="coupon.body_bold === 'bold'? coupon.body_bold = 'normal': coupon.body_bold = 'bold'"><i
+                                        nz-icon nzType="bold" nzTheme="outline"></i></button>
+                                <button nz-button [nzType]="coupon.body_style ==='italic'? 'dashed' : 'text'"
+                                    (click)="coupon.body_style === 'italic'? coupon.body_style = 'normal': coupon.body_style = 'italic'"><i
+                                        nz-icon nzType="italic" nzTheme="outline"></i></button>
+
+
+                                <button nz-button [nzType]="coupon.body_decoration ==='underline'? 'dashed' : 'text'"
+                                    (click)="coupon.body_decoration === 'underline'? coupon.body_decoration  = 'none': coupon.body_decoration = 'underline'"><i
+                                        nz-icon nzType="underline" nzTheme="outline"></i></button>
+
+                                <button nz-button [nzType]="coupon.body_decoration ==='line-through'? 'dashed' : 'text'"
+                                    (click)="coupon.body_decoration === 'line-through'? coupon.body_decoration  = 'none': coupon.body_decoration = 'line-through'"><i
+                                        nz-icon nzType="strikethrough" nzTheme="outline"></i></button>
+
+                            </div>
+                        </div>
+                        <div nz-row>
+
+                            &nbsp;
+                        </div>
+                        <!-- <div nz-row>
+                            <div nz-col nzSpan="24" style='text-align: center'>
+                                <nz-input-number [(ngModel)]="coupon.body_size" [nzMin]="1" [nzMax]="50" [nzStep]="1">
+                                </nz-input-number>&nbsp;&nbsp;
+                                <nz-select [(ngModel)]="coupon.body_font">
+                                    <nz-option nzValue="Times New Roman" nzLabel="Times New Roman"></nz-option>
+                                    <nz-option nzValue="Georgia" nzLabel="Georgia"></nz-option>
+                                    <nz-option nzValue="Garamond" nzLabel="Garamond"></nz-option>
+                                    <nz-option nzValue="Arial" nzLabel="Arial"></nz-option>
+                                    <nz-option nzValue="Verdana" nzLabel="Verdana"></nz-option>
+                                    <nz-option nzValue="Helvetica" nzLabel="Helvetica"></nz-option>
+                                    <nz-option nzValue="Courier New" nzLabel="Courier New"></nz-option>
+                                    <nz-option nzValue="Lucida Console" nzLabel="Lucida Console"></nz-option>
+                                    <nz-option nzValue="Monaco" nzLabel="Monaco"></nz-option>
+                                    <nz-option nzValue="Brush Script MT" nzLabel="Brush Script MT"></nz-option>
+                                    <nz-option nzValue="Lucida Handwriting" nzLabel="Lucida Handwriting"></nz-option>
+                                    <nz-option nzValue="Copperplate" nzLabel="Copperplate"></nz-option>
+                                    <nz-option nzValue="Papyrus" nzLabel="Papyrus"></nz-option>
+
+
+                                </nz-select>
+                            </div>
+                        </div>
+                        <div nz-row>
+
+                            &nbsp;
+                        </div> -->
+                        <div nz-row>
+                            <div nz-col nzSpan="24" style='text-align: center'>
+                                <textarea rows="4" nz-input [(ngModel)]='coupon.body'></textarea>
+                            </div>
+                        </div>
+
+
+
+
+                    </nz-tab>
+                    <nz-tab nzTitle="Footer">
+
+
+
+                        <div nz-row>
+                            <div nz-col nzSpan="24" style='text-align: center'>
+                                <!-- <input type="color" [(ngModel)]="coupon.footer_color"> &nbsp;&nbsp;
+                                <button nz-button [nzType]="coupon.footer_align ==='bottom-left'? 'dashed' : 'text'"
+                                    (click)="coupon.footer_align='bottom-left'"> <i nz-icon nzType="align-left"
+                                        nzTheme="outline"></i></button>
+                                <button nz-button [nzType]="coupon.footer_align ==='bottom-center'? 'dashed' : 'text'"
+                                    (click)="coupon.footer_align='bottom-center'"><i nz-icon nzType="align-center"
+                                        nzTheme="outline"></i></button>
+                                <button nz-button [nzType]="coupon.footer_align ==='bottom-right'? 'dashed' : 'text'"
+                                    (click)="coupon.footer_align='bottom-right'"><i nz-icon nzType="align-right"
+                                        nzTheme="outline"></i></button> -->
+                                <button nz-button [nzType]="coupon.footer_bold ==='bold'? 'dashed' : 'text'"
+                                    (click)="coupon.footer_bold === 'bold'? coupon.footer_bold = 'normal': coupon.footer_bold = 'bold'"><i
+                                        nz-icon nzType="bold" nzTheme="outline"></i></button>
+                                <button nz-button [nzType]="coupon.footer_style ==='italic'? 'dashed' : 'text'"
+                                    (click)="coupon.footer_style === 'italic'? coupon.footer_style = 'normal': coupon.footer_style = 'italic'"><i
+                                        nz-icon nzType="italic" nzTheme="outline"></i></button>
+
+
+                                <button nz-button [nzType]="coupon.footer_decoration ==='underline'? 'dashed' : 'text'"
+                                    (click)="coupon.footer_decoration === 'underline'? coupon.footer_decoration = 'none': coupon.footer_decoration = 'underline'"><i
+                                        nz-icon nzType="underline" nzTheme="outline"></i></button>
+
+                                <button nz-button
+                                    [nzType]="coupon.footer_decoration ==='line-through'? 'dashed' : 'text'"
+                                    (click)="coupon.footer_decoration === 'line-through'? coupon.footer_decoration = 'none': coupon.footer_decoration = 'line-through'"><i
+                                        nz-icon nzType="strikethrough" nzTheme="outline"></i></button>
+
+                            </div>
+                        </div>
+                        <div nz-row>
+
+                            &nbsp;
+                        </div>
+                        <!-- <div nz-row>
+                            <div nz-col nzSpan="24" style='text-align: center'>
+                                <nz-input-number [(ngModel)]="coupon.footer_size" [nzMin]="1" [nzMax]="50" [nzStep]="1">
+                                </nz-input-number>&nbsp;&nbsp;
+                                <nz-select [(ngModel)]="coupon.footer_font">
+                                    <nz-option nzValue="Times New Roman" nzLabel="Times New Roman"></nz-option>
+                                    <nz-option nzValue="Georgia" nzLabel="Georgia"></nz-option>
+                                    <nz-option nzValue="Garamond" nzLabel="Garamond"></nz-option>
+                                    <nz-option nzValue="Arial" nzLabel="Arial"></nz-option>
+                                    <nz-option nzValue="Verdana" nzLabel="Verdana"></nz-option>
+                                    <nz-option nzValue="Helvetica" nzLabel="Helvetica"></nz-option>
+                                    <nz-option nzValue="Courier New" nzLabel="Courier New"></nz-option>
+                                    <nz-option nzValue="Lucida Console" nzLabel="Lucida Console"></nz-option>
+                                    <nz-option nzValue="Monaco" nzLabel="Monaco"></nz-option>
+                                    <nz-option nzValue="Brush Script MT" nzLabel="Brush Script MT"></nz-option>
+                                    <nz-option nzValue="Lucida Handwriting" nzLabel="Lucida Handwriting"></nz-option>
+                                    <nz-option nzValue="Copperplate" nzLabel="Copperplate"></nz-option>
+                                    <nz-option nzValue="Papyrus" nzLabel="Papyrus"></nz-option>
+
+
+                                </nz-select>
+                            </div>
+                        </div>
+                        <div nz-row>
+
+                            &nbsp;
+                        </div> -->
+                        <div nz-row>
+                            <div nz-col nzSpan="24" style='text-align: center'>
+                                <textarea rows="4" nz-input [(ngModel)]='coupon.footer'></textarea>
+                            </div>
+                        </div>
+
+
+
+                    </nz-tab>
+                </nz-tabset>
+            </nz-tab>
+
+            <nz-tab nzTitle="Description">
+
+                <div nz-row>
+                    <div nz-col nzSpan="24" style='text-align: center'>
+                        <textarea rows="9" nz-input [(ngModel)]='coupon.description'></textarea>
+                    </div>
+                </div>
+
+            </nz-tab>
+
+
+            <nz-tab nzTitle="Details">
+
+               
+
+
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <!-- <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
+                            [(ngModel)]='result'>
+                        </nz-range-picker> -->
+
+                            From Date & Time : <br />
+
+
+                            <nz-date-picker nzAllowClear=false nzAllowEmpty = false nzInputReadOnly=true nzFormat="yyyy-MM-dd" nzPlaceHolder='From Date'
+                                [(ngModel)]='fromDate' style='width:130px'></nz-date-picker> -
+                            <!-- <nz-time-picker [nzBackdrop]='true'  nzAllowEmpty = false nzPlaceHolder='Time' [(ngModel)]="fromTime" nzFormat="HH:mm"
+                                style='width:80px'>
+                            </nz-time-picker> -->
+
+
+                            <nz-select nzAllowClear=false  style='width:100px' [nzOptionOverflowSize] = '4' [nzBackdrop]='true' [(ngModel)]="fromTime">
+                               
+                                <nz-option *ngFor="let time1 of time" [nzValue]="time1"
+                                    [nzLabel]="time1"></nz-option>
+                                  
+
+                        </nz-select>
+
+                        </div>
+                    </div>
+                    <div nz-row>
+
+                        &nbsp;
+                    </div>
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <!-- <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
+                            [(ngModel)]='result'>
+                        </nz-range-picker> -->
+
+                            To Date & Time : <br />
+                            <nz-date-picker nzAllowClear=false nzAllowEmpty = false nzInputReadOnly=true [nzDisabledDate]="disabledEndDate"
+                                nzPlaceHolder='To Date' nzFormat="yyyy-MM-dd" style='width:130px' [(ngModel)]='toDate'>
+                            </nz-date-picker> -
+                            <!-- <nz-time-picker nzAllowEmpty = false [nzBackdrop]='true' nzAllowEmpty = false nzPlaceHolder='Time' [(ngModel)]="toTime" style='width:80px'
+                                nzFormat="HH:mm">
+                            </nz-time-picker> -->
+
+                            <nz-select nzAllowClear=false style='width:100px' [nzOptionOverflowSize] = '4' [nzBackdrop]='true' [(ngModel)]="toTime">
+                               
+                                <nz-option *ngFor="let time1 of time" [nzValue]="time1"
+                                    [nzLabel]="time1"></nz-option>
+                                  
+
+                        </nz-select>
+
+                        </div>
+                    </div>
+
+                    <div nz-row>
+
+                        &nbsp;
+                    </div>
+
+
+                    <div nz-row>
+                        <!-- <div nz-col nzSpan="24" style='text-align: center'>
+
+                             Profession  <nz-select [(ngModel)]="coupon.profession" nzPlaceHolder="Target Profession"
+                                    style='width:150px'>
+                                    <nz-option nzValue="All" nzLabel="All"></nz-option>
+                                    <nz-option nzValue="Student" nzLabel="Student"></nz-option>
+                                    <nz-option nzValue="Businessman" nzLabel="Businessman"></nz-option>
+                                    <nz-option nzValue="Self Employed" nzLabel="Self Employed"></nz-option>
+                                    <nz-option nzValue="HouseWife" nzLabel="HouseWife"></nz-option>
+                                    <nz-option nzValue="Others" nzLabel="Others"></nz-option>
+
+                                </nz-select>
+
+                            </div>
+
+                            <div nz-row>
+
+                                &nbsp;
+                            </div>
+     -->
+
+                        <div nz-col nzSpan="24" style='text-align: center'>
+
+                            Gender <nz-select [(ngModel)]="coupon.gender" nzPlaceHolder="Target Gender"
+                                style='width:150px'>
+                                <nz-option nzValue="All" nzLabel="All"></nz-option>
+                                <nz-option nzValue="Male" nzLabel="Male"></nz-option>
+                                <nz-option nzValue="Female" nzLabel="Female"></nz-option>
+                                <nz-option nzValue="Others" nzLabel="Others"></nz-option>
+                            </nz-select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div nz-row>
+
+                        &nbsp;
+                    </div>
+
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            Type <nz-select nzShowSearch nzPlaceHolder="Select Coupon Type"
+                                [(ngModel)]="coupon.couponType" style='width: 150px ;'>
+
+                                <nz-option *ngFor="let cat of couponTypes" [nzValue]="cat.couponType"
+                                    [nzLabel]="cat.couponType"></nz-option>
+
+                            </nz-select>
+
+                        </div>
+
+                        <!-- Keywords  <div nz-col nzSpan="24" style='text-align: center'>
+                                <input nz-input type='text' style='width:130px' [(ngModel)]='coupon.keywords'
+                                    placeholder="Keywords (',' Separated)">
+                            </div> -->
+
+
+                            <div nz-row>
+
+                                &nbsp;
+                            </div>
+
+                             <div nz-col nzSpan="24" style='text-align: center'>
+                               Exclusive For <input nz-input type='text' style='width:200px' [(ngModel)]='coupon.exclusiveFor'
+                                    placeholder="Exclusive For">
+                            </div>
+
+
+                    </div>
+
+                    <div nz-row>
+                        <div nz-col nzSpan="24" nz-result-extra style='text-align: center'>
+                            <button nz-button [nzLoading]="loading" [disabled] = "loading" nzType="primary" (click)='editCoupons()'>Edit Coupon</button>
+                            <button nz-button [nzLoading]="loading" [disabled] = "loading" (click)='cancel()'>Cancel</button>
+                        </div>
+                    </div>
+
+
+         
+            </nz-tab>
+
+        </nz-tabset>
+
+    </ng-template>
+</nz-modal>

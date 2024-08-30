@@ -1,0 +1,13 @@
+ [nz-carousel-content] {
+        text-align: center;
+       
+        background: #eeeeee;
+        color: #fff;
+        overflow: hidden;
+      }
+
+      h3 {
+        color: #fff;
+        margin-bottom: 0;
+        user-select: none;
+      }

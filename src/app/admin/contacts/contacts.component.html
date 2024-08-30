@@ -1,0 +1,32 @@
+<div style='overflow:auto;width:100%;height:100%'>
+<nz-table #basicTable nzShowPagination=false nzBordered [nzData]="contacts" [nzLoading]="loading">
+    <thead>
+        <tr>
+
+            <th> # </th>
+            
+            <th> Name</th>
+            <th> Contact </th>
+            
+            
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let data of contacts; index as i">
+
+        <td>{{ (i+1) }}</td>
+        <td>{{ data.name }}</td>
+       
+        <td>{{ data.contact }}</td>
+        
+       
+
+    </tr>
+
+
+</tbody>
+</nz-table>
+</div>

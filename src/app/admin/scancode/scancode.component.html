@@ -1,0 +1,32 @@
+<div style='overflow:auto;width:100%;height:100%'>
+<nz-table #basicTable nzShowPagination=false nzBordered [nzData]="scanCodes" [nzLoading]="loading">
+    <thead>
+        <tr>
+
+            <th> # </th>
+            <th> Outlet Id </th>
+            <th> Outlet Name</th>
+            <th> Captured </th>
+            
+            
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let data of scanCodes; index as i">
+
+        <td>{{ (i+1) }}</td>
+        <td>{{ data.vendorId }}</td>
+        <td>{{ data.vendorName }}</td>
+        <td>{{ data.code }}</td>
+        
+       
+
+    </tr>
+
+
+</tbody>
+</nz-table>
+</div>

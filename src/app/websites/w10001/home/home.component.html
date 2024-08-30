@@ -1,0 +1,127 @@
+<br />
+
+<br />
+<div style="text-align:center">
+<div class='container' *ngIf="!loginStatus">
+    <div nz-row>
+        <div nz-col nzSpan="4" style='text-align: left'>&nbsp;</div>
+        <div nz-col nzSpan="8" style='text-align: left'>User Name</div>
+
+        <div nz-col nzSpan="12" style='text-align: left'>
+
+            <input type="text" nz-input placeholder="Enter User ID" style='width:60%' [(ngModel)]="username" />
+
+        </div>
+    </div>
+    <div nz-row>&nbsp;</div>
+    <div nz-row>
+        <div nz-col nzSpan="4" style='text-align: left'>&nbsp;</div>
+        <div nz-col nzSpan="8" style='text-align: left'>Password</div>
+
+        <div nz-col nzSpan="12" style='text-align: left'>
+
+            <input type="password" nz-input placeholder="Enter Password" style='width:60%' [(ngModel)]="password" />
+
+        </div>
+    </div>
+    <div nz-row>&nbsp;</div>
+    <div nz-col nzSpan="24" style='text-align: center'>
+        <button nz-button nzType="primary" (click)=login()
+            style='background: #fd6951;border-color: #fd6951;'>Login</button>
+
+    </div>
+
+
+</div>
+
+<div class='container' *ngIf="loginStatus">
+
+
+    <div class="row">
+        <h3> Select Interviewers: </h3>
+    </div>
+
+    <div class="row">
+        <ng-container *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]; index as i">
+            <div class="col-lg-4" style="padding-bottom: 20px;">
+                <nz-card style="width:300px;" [nzCover]="coverTemplate"
+                    [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+                    <nz-card-meta nzTitle="Interviewer Name {{i+1}}" nzDescription="Interviewer Department"
+                        [nzAvatar]="avatarTemplate"></nz-card-meta>
+                </nz-card>
+                <ng-template #avatarTemplate>
+                    <nz-avatar nzSrc="assets/img/hero-img.png"></nz-avatar>
+                </ng-template>
+                <ng-template #coverTemplate>
+                    <img alt="example" src="assets/img/photo.jpg" />
+                </ng-template>
+                <ng-template #actionSetting>
+                      <span (click)="scheduleTime(i)">
+                    <span nz-icon nzType="field-time" style="font-size: 20px"></span>
+                    <br/>
+                    <span>Schedule</span>
+                    </span>
+                </ng-template>
+                <ng-template #actionEdit>
+                    <span nz-icon nzType="like"></span>
+                    <br/><span>Like</span>
+                </ng-template>
+                <ng-template #actionEllipsis>
+                    <span nz-icon nzType="dislike"></span>
+                    <br/><span>DisLike</span>
+                </ng-template>
+            </div>
+        </ng-container>
+    </div>
+</div>
+<div nz-row>&nbsp;</div>
+</div>
+<nz-modal [nzVisible]="scheduleTimeVisible " [nzContent]="modalContent" [nzFooter]="null"
+    (nzOnCancel)="scheduleTimeVisible = false;">
+    <ng-template #modalContent>
+        <ng-container *ngIf="!scheduling">
+            <h3> - Schedule Interview - </h3>
+            <div nz-row>
+                <div nz-col nzSpan="24" style='text-align: left;width:100%'>
+                    <h5>Date </h5>
+                    <nz-date-picker [(ngModel)]="date" style="width:100%"></nz-date-picker>
+                    <div nz-row>&nbsp;</div>
+                    <h5>Time </h5>
+                    <nz-time-picker style="width:100%" [(ngModel)]="time" nzFormat="HH:mm"></nz-time-picker>
+                    <div nz-row>&nbsp;</div>
+                    <h5>Duration </h5>
+                    <nz-select style="width:100%" [(ngModel)]="duration">
+                        <nz-option nzValue="1" nzLabel="1"></nz-option>
+                        <nz-option nzValue="2" nzLabel="2"></nz-option>
+
+                    </nz-select>
+                    <div nz-row>&nbsp;</div>
+                    <h5>Interviewer Email Id: (For Testing) </h5>
+                    <input type="text" nz-input placeholder="Enter User ID" style='width:100%' [(ngModel)]="email1" />
+
+                    <div nz-row>&nbsp;</div>
+                    <h5>Interviewee Email Id: (For Testing) </h5>
+                    <input type="text" nz-input placeholder="Enter User ID" style='width:100%' [(ngModel)]="email2" />
+
+                    <div nz-row>&nbsp;</div>
+                    <div nz-col nzSpan="24" style='text-align: center;width:100%'>
+                        <button nz-button nzType="primary" (click)="schedule()"
+                            style='background: #fd6951;border-color: #fd6951;'>Schedule</button>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            </ng-container>
+            <ng-container *ngIf="scheduling">
+                <div nz-col nzSpan="24" style='text-align: center;width:100%'>
+                <ng-template #indicatorTemplate><span style='color:#fd6951'><i nz-icon style='font-size:30px ; '
+                    nzType="loading"></i><br /> <b>Scheduling Interview</b> </span></ng-template>
+        <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'"></nz-spin>
+        </div>
+
+            </ng-container>
+    </ng-template>
+</nz-modal>

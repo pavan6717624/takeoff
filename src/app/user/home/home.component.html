@@ -1,0 +1,127 @@
+<div style='padding-top:5px; padding-bottom:0px;width:100%;height:90%;'>
+
+
+  <div nz-row>
+
+    <div nz-col nzSpan="2" style='text-align:left' style="padding:0px">
+      <ul style='padding-bottom : 5px;padding-right:10px;' >
+
+      <li (click)="open()" ><a style='padding:5px'><i nz-icon nzType="menu" nzTheme="outline"></i></a></li>
+
+      </ul>
+      </div>
+
+    <div nz-col nzSpan="22" style='text-align:center'>
+    <!-- <i nz-icon nzType="menu" nzTheme="outline" style="font-size: 20px;" (click)="open()"></i> -->
+
+    <ul style='padding-bottom: 5px;display: flex;width: 100%; height: 100%; overflow: auto; white-space: nowrap'>
+
+     
+     <li (click)="close(1)"><a [class]="selectedMenu==1?'active':''" [routerLink]="['takeoff']"><i class="fas fa-handshake"></i> TakeOff
+          Recommends</a>
+      </li>
+      <li (click)="close(2)"><a [class]="selectedMenu==2?'active':''" [routerLink]="['complimentary']"> <i class="fas fa-gift"></i>  Complimentary</a>
+      </li>
+      <li (click)="close(3)"><a [class]="selectedMenu==3?'active':''" [routerLink]="['redeemable']"><i class="fas fa-memory"></i> Redeemable</a>
+      </li>
+      <li (click)="close(4)"><a [class]="selectedMenu==4?'active':''" [routerLink]="['discount']"> <i class="fas fa-percent"></i> Discount</a></li>
+      <li (click)="close(5)"><a [class]="selectedMenu==5?'active':''" [routerLink]="['daily']"> <i class="fas fa-calendar-check"></i> Daily Deals</a></li>
+      <li (click)="close(6)"><a [class]="selectedMenu==6?'active':''" [routerLink]="['limited']"><i class="fas fa-layer-group"></i> Limited</a></li>
+      <li (click)="close(7)"><a [class]="selectedMenu==7?'active':''" [routerLink]="['onetimeoffers']"> <i class="fas fa-bullhorn"></i> FREE / One
+          Time
+          Offers</a></li>
+
+
+    </ul>
+
+
+
+  </div>
+  </div>
+  <!-- <div nz-col nzSpan="20" style='text-align:left'>
+      <div nz-row>
+        <div nz-col nzSpan="20" style='height:20px'>
+          <h6 id='displayHeader' style='text-align:center; color: #fd6951'> </h6>
+        </div>
+
+      </div>
+
+
+    </div> -->
+
+
+  <router-outlet>
+  </router-outlet>
+
+</div>
+
+
+<!-- <nz-drawer [nzVisible]="filterVisible" [nzClosable]="true" nzPlacement='bottom' nzTitle="Filter" (nzOnClose)="filterVisible=false;" >
+<ng-container *nzDrawerContent>
+<div nz-row class="container" >
+  <div nz-col nzSpan="6" style='text-align: left'>Category</div>
+  <div nz-col nzSpan="18" style='text-align: left'>
+    <nz-select nzShowSearch nzPlaceHolder="Select Category" style='width: 200px ;' [(ngModel)]='category'>
+
+      <nz-option *ngFor="let cat of categories" [nzValue]="cat.id" [nzLabel]="cat.categoryName"></nz-option>
+
+    </nz-select>
+  </div>
+</div>
+<div nz-row> &nbsp; </div>
+<div nz-row class="container">
+  <div nz-col nzSpan="6" style='text-align: left'>Sub-Category</div>
+  <div nz-col nzSpan="18" style='text-align: left'>
+    <nz-select nzShowSearch nzPlaceHolder="Select Sub-Category" style='width: 200px ;' [(ngModel)]='subCategory'>
+
+      <nz-option *ngFor="let cat of subCategories" [nzValue]="cat.subCategoryId" [nzLabel]="cat.subCategoryName"></nz-option>
+
+    </nz-select>
+  </div>
+</div>
+</ng-container>
+  </nz-drawer> -->
+
+
+
+<nz-drawer [nzClosable]="false" [nzVisible]="visible" [nzPlacement]="'left'" nzTitle="Menu"
+(nzOnClose)="close(0)">
+<ng-container *nzDrawerContent>
+    <ul nz-menu nzTheme="light" nzMode="inline">
+        <li nz-menu-item [nzSelected]="selectedMenu==1?true:false"> 
+          <i nz-icon nzType="home"> </i><span> <a style='padding : 5px' [routerLink]="['takeoff']" (click)="close(1)" >TakeOff Recommends </a></span> 
+        </li>
+
+        <li nz-submenu nzTitle="Coupons" nzIcon="container" nzOpen>
+            <ul>
+                <li nz-menu-item [nzSelected]="selectedMenu==2?true:false"><a style='padding : 5px' [routerLink]="['complimentary']" (click)="close(2)">Complimentary</a></li>
+                <li nz-menu-item [nzSelected]="selectedMenu==6?true:false"><a style='padding : 5px' [routerLink]="['redeemable']" (click)="close(6)">Redeemable</a></li>
+                <li nz-menu-item [nzSelected]="selectedMenu==7?true:false"><a style='padding : 5px' [routerLink]="['discount']" (click)="close(7)">Discount</a></li>
+                <li nz-menu-item [nzSelected]="selectedMenu==4?true:false"><a style='padding : 5px' [routerLink]="['daily']" (click)="close(4)">Daily Deals</a></li>
+                <li nz-menu-item [nzSelected]="selectedMenu==5?true:false"><a style='padding : 5px' [routerLink]="['limited']" (click)="close(5)">Limited</a></li>
+                
+                <li nz-menu-item [nzSelected]="selectedMenu==3?true:false"><a style='padding : 5px' [routerLink]="['onetimeoffers']" (click)="close(3)">FREE / One Time Offers</a></li>
+                </ul>
+            </li>
+
+            <li nz-menu-item [nzSelected]="selectedMenu==11?true:false"> <i nz-icon nzType="history"> </i><span> <a style='padding : 5px' [routerLink]="['redemHistory']" (click)="close(11)"> Redemption History </a>
+            </span> </li>
+                
+            <li nz-submenu nzTitle="Account" nzIcon="account-book" nzOpen>
+              <ul>  
+                <li nz-menu-item [nzSelected]="selectedMenu==8?true:false"><a style='padding : 5px' [routerLink]="['account']" (click)="close(8)">Details</a></li>
+                <!-- <li nz-menu-item [nzSelected]="selectedMenu==9?true:false"><a style='padding : 5px' [routerLink]="['wallet']" (click)="close(9)">Wallet</a></li> -->
+
+
+            </ul>
+        </li>
+        <li nz-menu-item [nzSelected]="selectedMenu==10?true:false"> <i nz-icon nzType="apartment"> </i><span> <a style='padding : 5px' [routerLink]="['display']" (click)="close(10)"> TakeOff Structure </a>
+        </span> </li>
+
+       
+
+    </ul>
+</ng-container>
+</nz-drawer>
+
+

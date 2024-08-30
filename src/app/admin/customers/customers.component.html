@@ -1,0 +1,126 @@
+<button nz-button nzType="primary" (click)='addCustomerView()'>+ Add Customer</button>
+
+
+<div style='overflow:auto;width:100%;height:100%'>    
+<nz-table #basicTable nzShowPagination=false nzBordered [nzData]="['']" [nzLoading]="loading">
+        <thead>
+            <tr>    
+                <th> # </th>    
+                <th> User Id </th>
+               <th> Type </th>
+                <th> Name </th>
+                <th> Contact </th>
+                <th> Email </th>     
+                <th> City </th>      
+                <th> Join Date </th>    
+                <th> Login Id / ReferCode </th>
+                <th> Referer Id </th>
+                <th> Wallet Amount </th>
+                <th> Profession </th>
+                <th> Gender </th>
+                <th> Order Id </th> 
+                <th> Payment Id </th>                    
+                <th> Payment Status </th>                  
+                <th> Mapping Status </th>   
+    
+            </tr>
+        </thead>  
+        <tbody>
+        <tr *ngFor="let data of customerDetails; index as i">    
+            <td>{{ (i+1) }}</td>
+            <td>{{ data.userId }}</td>
+           <td>{{ data.type }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.contact }}</td>
+            <td>{{ data.email }} <span (click)="emailChange(data.userId, data.email)"nz-icon nzType="edit" nzTheme="outline"></span> </td>
+            <td>{{ data.city }}</td>
+            <td>{{ data.joinDate }}</td>
+            <td>{{ data.referCode }}</td>
+            <td>{{ data.refererId }}</td>
+            <td>{{ data.walletAmount }}</td>
+
+            <td>{{ data.profession }}</td>
+            <td>{{ data.gender }}</td>
+            <td>{{ data.razorpay_order_id }}</td>
+            <td>{{ data.razorpay_payment_id }}</td>
+           
+           
+           
+            <td>{{ data.paymentStatus }}</td>
+            <td>{{ data.mappingStatus }}</td>
+           
+           
+            
+           
+    
+    
+    
+        </tr>
+    
+    
+    </tbody>
+    </nz-table>
+</div>
+
+
+<nz-modal [nzVisible]="emailEditVisible" [nzContent]="modalContentEdit" [nzFooter]="null" (nzOnCancel)="emailEditVisible = false">
+    <ng-template #modalContentEdit>
+  
+      <h3> Email Edit </h3>
+      <div nz-row class="container">
+        <div nz-col nzSpan="12" style='text-align: left'>Enter Email of {{emailUserId}}</div>
+        <div nz-col nzSpan="12" style='text-align: left'>
+          <input type="text" nz-input placeholder="Enter Email" style='width:100%' [(ngModel)]='userEmail' />
+        </div>
+      </div>
+  
+      <div nz-row> &nbsp; </div>
+      <div nz-row class="container">
+        <div nz-col nzSpan="24" style='text-align: right'>
+          <button nz-button nzType="primary" (click)='editFun()'>Edit</button>
+        </div>
+      </div>
+    </ng-template>
+  </nz-modal>
+
+
+  <nz-modal [nzVisible]="customerAdd" [nzContent]="addingCustomer" [nzFooter]="null" (nzOnCancel)="customerAdd = false">
+    <ng-template #addingCustomer>
+  
+      <h3> Add Customers </h3>
+       <div nz-row> TOTAL: {{numbers.length}}</div>
+      <div nz-row class="container">
+        
+        <div nz-col nzSpan="24" style='text-align: center'>
+         
+          <textarea rows="4" nz-input [(ngModel)]="customers"></textarea>
+          </div>
+      </div>
+  
+      <div nz-row> &nbsp; </div>
+     
+      <div nz-row class="container">
+        <div nz-col nzSpan="24" style='text-align: right' >
+          <button nz-button nzType="primary" (click)="createCustomers()" *ngIf="!creating">Create</button>
+        </div>
+        <div nz-col nzSpan="24" style='text-align: right' *ngIf="creating">
+          <button nz-button nzType="primary" nzLoading>Creating</button>
+        </div>
+      </div>
+
+      <div nz-row> &nbsp; </div>
+      <div nz-row class="container">
+        <div nz-col nzSpan="11" style='text-align: center'>
+          Success:: {{successCustomers.length}}
+          <textarea rows="5" nz-input [ngModel]='JSON.stringify(successCustomers).replaceAll(",","\n").replaceAll("\"","").replaceAll("[","").replaceAll("]","")'></textarea>
+          </div>
+          <div nz-col nzSpan="2" style='text-align: center'> &nbsp;
+            </div>
+            
+          <div nz-col nzSpan="11" style='text-align: center'>
+            Failed: {{failedCustomers.length}} 
+            <textarea rows="5" nz-input [ngModel]='JSON.stringify(failedCustomers).replaceAll(",","\n").replaceAll("\"","").replaceAll("[","").replaceAll("]","")'></textarea>
+            </div>
+      </div>
+    </ng-template>
+  </nz-modal>

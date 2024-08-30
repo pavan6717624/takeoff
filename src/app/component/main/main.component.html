@@ -1,0 +1,221 @@
+<!-- <app-hero></app-hero>
+    <app-about></app-about>
+    <app-whyus></app-whyus>
+    <app-services></app-services>
+    <app-cta></app-cta>
+    <app-pricing></app-pricing>
+    <app-contact></app-contact>
+    <app-footer></app-footer> -->
+
+
+
+<section id="hero" class="d-flex align-items-center">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 d-flex flex-column justify-content-lg-start pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up"
+        data-aos-delay="200">
+
+
+        <div *ngIf="isMobile" class="d-flex justify-content-center justify-content-lg-start">
+          <a href="/pricing" class="btn-get-started scrollto">Sign Up</a>
+         <a href="https://youtu.be/6qFs64Vlr5Y" class=" btn-get-started  venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> &nbsp;&nbsp;Watch &nbsp;&nbsp;<i  style="padding-left:10px; padding-top: 0px;" class="icofont-play-alt-2"></i></a>
+        </div>
+
+        <h1><br/>Introducing Digital Coupons in your city</h1>
+        <h2>A Platform creating connectivity between potential customers & local outlets offering benefits using DIGITAL
+          COUPONS
+        <div *ngIf="!isMobile" class="d-flex justify-content-center justify-content-lg-start">
+          <a href="/pricing" class="btn-get-started scrollto">Sign Up</a>
+        <a href="https://youtu.be/6qFs64Vlr5Y" class=" btn-get-started  venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> &nbsp;&nbsp;Watch &nbsp;&nbsp;<i  style="padding-left:10px; padding-top: 0px;" class="icofont-play-alt-2"></i></a>
+        </div>
+      </h2>
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+        <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+      </div>
+    </div>
+  </div>
+
+</section><!-- End Hero -->
+
+
+<section id="coupon" class="coupon">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Our LIVE Coupons</h2>
+    </div>
+
+    <div class="row content" style='text-align:center'>
+      
+
+
+
+        <ng-container *ngIf='loading'>
+          <nz-carousel nzAutoPlay>
+          <div nz-carousel-content>
+            <h3><br />
+              <ng-template #indicatorTemplate>
+                <span style='color:#fd6951'>
+                    <i nz-icon style='font-size:30px ; ' nzType="loading"></i>
+                    <br /> <b>Loading our Coupons..... </b> </span></ng-template>
+            <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'"></nz-spin>
+
+              <!-- <nz-spin nzTip="Loading our Coupons..... " nzSimple [nzSize]="'large'"></nz-spin> -->
+            </h3>
+          </div>
+          </nz-carousel>
+        </ng-container>
+        <ng-container *ngIf='!loading'>
+         <nz-carousel nzAutoPlay nzDots=false [nzEnableSwipe]="isMobile">
+          <div nz-carousel-content *ngFor="let item of coupon" style='text-align:center;'  [style.height.px]='height'>
+            <div class="container"
+            style='border-radius: 0px ;width:300px;height:300px;overflow:hidden;padding:0px'>
+            <img style=' width:300px;height:300px ;' id="image" [src]="item.image">
+            
+
+
+
+
+          <div
+                style='text-align:center;padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
+
+
+                <h5 [style.text-decoration]='item.header_decoration'
+                    [style.font-weight]='item.header_bold'
+                    [style.font-style]='item.header_style'
+                    style='margin-bottom:0.5em;word-wrap: break-word;color: #f1f1f1;'>
+                    {{item.header}}</h5>
+
+                <h6 [style.text-decoration]='item.body_decoration'
+                    [style.font-weight]='item.body_bold' [style.font-style]='item.body_style'
+                    style='margin-bottom:0.5em;word-wrap: break-word;color: #f1f1f1;'>
+                    {{item.body}}</h6>
+
+                
+
+
+
+            </div>
+
+        </div>
+            
+          </div>
+          </nz-carousel>
+        </ng-container>
+
+
+
+    
+
+    </div>
+
+
+
+  </div>
+</section>
+
+<div class="container">
+<div class='col-lg-12' style='text-align: center;'>
+  <h5 style='color:#fd6951'>GET Free Complimentaries on First Visit!<br/>
+  Exclusive Discounts & Offers from YOUR Favourite Outlets!
+  </h5>
+</div>
+</div>
+
+
+<section id="partner" class="partner">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Our Partnered Outlets</h2>
+    </div>
+
+    <div class="row content" style='text-align:center'>
+      
+
+
+
+        <ng-container *ngIf='loading1'>
+          
+            <div class="container" style='text-align:center;'>
+            <h3><br />
+              <ng-template #indicatorTemplate>
+                <span style='color:#fd6951'>
+                    <i nz-icon style='font-size:30px ; ' nzType="loading"></i>
+                    <br /> <b>Loading our Outlets..... </b> </span></ng-template>
+            <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'"></nz-spin>
+
+              <!-- <nz-spin nzTip="Loading our Outlets..... " nzSimple [nzSize]="'large'"></nz-spin> -->
+            </h3>
+            </div>
+         
+        </ng-container>
+          <ng-container *ngIf='!loading1'>
+          
+       <marquee behavior="scroll" direction="left" scrollamount="7">
+          
+           
+              <img *ngFor="let item of logos" style='text-align:center;' [src]="item"
+              [ngStyle]="{'max-height.px': maxHeight}" style='padding: 20px'> 
+
+              
+           
+           
+          </marquee>
+
+          <div class='col-lg-12' style='text-align: center;'> <h1> And Many...</h1></div>
+
+        </ng-container>
+
+
+
+    
+
+    </div>
+
+
+
+  </div>
+</section>
+
+<app-sign-up></app-sign-up><!-- End Pricing Section -->
+
+<!-- <app-about></app-about> -->
+<!-- End About Us Section -->
+
+<!-- <app-why-us></app-why-us> -->
+<!-- End Why Us Section -->
+
+
+<!-- <app-products></app-products> -->
+<!-- End Services Section -->
+
+<!-- <section id="cta" class="cta">
+  <div class="container" data-aos="zoom-in">
+
+    <div class="row">
+      <div class="col-lg-9 text-center text-lg-start">
+        <h3>Call To Action</h3>
+        <p>Our platform provides seamless Digital Coupon allocation and issuing, and use-as-you-move. And the platform
+          has got a plethora of options for every kind of user who wants to relish their favorites. We believe in a
+          win-win situation where business can save on costs while leveraging on digital technology to engage with
+          hundreds of customers of theirs relishing products.</p>
+      </div>
+      <div class="col-lg-3 cta-btn-container text-center">
+        <a class="cta-btn align-middle" href="#contact">Call To Action</a>
+      </div>
+    </div>
+
+  </div>
+</section> -->
+
+
+
+
+<app-contact></app-contact><!-- End Contact Section -->
+
+
+
+<app-footer></app-footer>

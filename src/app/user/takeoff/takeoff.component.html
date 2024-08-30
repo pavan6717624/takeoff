@@ -1,0 +1,806 @@
+<div style='padding-left:15px;padding-right:15px;overflow:auto;width:100%;height: 90%; text-align:center'
+    (scroll)="onWindowScroll()" #scrollMe>
+
+    <ng-container *ngIf='loading'>
+        <div nz-row>
+
+            &nbsp;
+        </div>
+
+        <div nz-row>
+            <div nz-col nzSpan="24" style='text-align: center'>
+                <!-- <nz-spin nzTip="Prepare for Take OFF..... " nzSimple [nzSize]="'large'"></nz-spin> -->
+                <ng-template #indicatorTemplate>
+                    <span style='color:#fd6951'>
+                        <i nz-icon style='font-size:30px ; ' nzType="loading"></i>
+                        <br /> <b>Prepare for TAKE OFF.....</b> </span></ng-template>
+                <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'"></nz-spin>
+
+
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf='!loading'>
+
+
+
+        <!--          <div style='text-align:right'>
+
+
+            <nz-affix [nzOffsetTop]="this.screenHeight-50">
+                <ng-container *ngIf="customerType==='Free'">
+                <button nz-button  nzType="primary" nzShape="round" (click)='toPremium()' nzDanger>
+                    <span><i class="fas fa-plane-departure"></i> &nbsp; To Premium </span>
+                </button> &nbsp; &nbsp;
+                </ng-container>
+
+
+                
+               <button nz-button  nzType="primary" nzShape="round" (click)='filterVisible=true' [style.background] = "(vendorSelected>0 || category > 0 || subCategory > 0 || keywords.length > 0)?'#fd6951': 'light blue'">
+                    <span><i nz-icon nzType="search" nzTheme="outline" (click)='filterVisible=true'></i>  Search </span>
+                </button>
+            </nz-affix>
+        </div> -->
+
+        <nz-affix [nzOffsetTop]="this.screenHeight-60">
+            <!-- <ng-container *ngIf="customerType==='Free'">
+                <button nz-button nzType="primary" nzShape="round" (click)='toPremium()' nzDanger>
+                    <span><i class="fas fa-plane-departure"></i> &nbsp; To Premium </span>
+                </button> &nbsp; &nbsp;
+            </ng-container> -->
+
+            <div class="scrollmenu" *ngIf="showMenu">
+
+                <div
+                    [style.color]="(vendorSelected>0 || category > 0 || subCategory > 0 || keywords.length > 0)?'pink': 'lavenderblush'">
+                    <b><i style='font-size:20px;' nz-icon nzType="search" nzTheme="outline"
+                            (click)='filterVisible=true'></i></b>
+                    <br /><span style="font-size:xx-small"> Search </span></div>
+
+                <ng-container *ngIf="customerType==='Free'">
+                    <div>
+                        <b><i class="fas fa-plane-departure" (click)='toPremium()'></i></b>
+                        <br /><span style="font-size:xx-small"> Upgrade To Premium </span></div>
+                </ng-container>
+
+                <ng-container *ngFor="let item of displaycategories; index as i">
+                    <div [style.color]="category == item.id?'pink': 'lavenderblush'" (click)="newFilter(item.id,i)"><i
+                            class="fas fa-{{icons[i]}}"></i>
+                        <br /><span style="font-size:xx-small"> {{item.categoryName}} </span>
+                    </div>
+                </ng-container>
+                <!-- <div [style.color]="category == 5?'pink': 'lavenderblush'" (click)="newFilter(5)"><i class="fas fa-crown"></i> 
+                    <br/><span style="font-size:xx-small"> Life Style </span>
+                </div>
+                <div [style.color]="category == 6?'pink': 'lavenderblush'" (click)="newFilter(6)"><i class="fas fa-utensils"></i>
+                    <br/><span style="font-size:xx-small"> Food & Beverages </span>
+                </div>
+                <div [style.color]="category == 10?'pink': 'lavenderblush'" (click)="newFilter(10)"><i class="fas fa-menorah"></i>
+                    <br/><span style="font-size:xx-small"> Events </span>
+                </div>
+                <div [style.color]="category == 11?'pink': 'lavenderblush'" (click)="newFilter(11)"><i class="fas fa-graduation-cap"></i>
+                    <br/><span style="font-size:xx-small"> Education </span>
+                </div>
+                <div [style.color]="category == 12?'pink': 'lavenderblush'" (click)="newFilter(12)"><i class="fas fa-dog"></i>
+                    <br/><span style="font-size:xx-small"> Pets </span>
+                </div>
+                <div [style.color]="category == 13?'pink': 'lavenderblush'" (click)="newFilter(13)"><i class="fas fa-futbol"></i>
+                    <br/><span style="font-size:xx-small"> Sports </span>
+                </div>
+                <div [style.color]="category == 14?'pink': 'lavenderblush'" (click)="newFilter(14)"><i class="fas fa-gifts"></i>
+                    <br/><span style="font-size:xx-small"> Gifts </span>
+                </div>
+                <div [style.color]="category == 15?'pink': 'lavenderblush'" (click)="newFilter(15)"><i class="fas fa-briefcase-medical"></i>
+                    <br/><span style="font-size:xx-small"> Medicals </span>
+                </div> -->
+            </div>
+
+            <!-- <button nz-button nzType="primary" nzShape="round" (click)='filterVisible=true'
+                [style.background]="(vendorSelected>0 || category > 0 || subCategory > 0 || keywords.length > 0)?'#fd6951': 'light blue'">
+                <span><i nz-icon nzType="search" nzTheme="outline" (click)='filterVisible=true'></i> Search </span>
+            </button> -->
+        </nz-affix>
+
+
+
+        <ng-container *ngIf='coupons.length == 0 && !loading'>
+            <nz-empty nzNotFoundContent='No Coupons Found'></nz-empty>
+        </ng-container>
+
+        <ng-container *ngIf='coupons.length > 0'>
+            <div class='row' style="margin-top:-40px">
+
+                <div class="col-lg-{{columns}}" *ngFor="let item of coupons">
+
+
+                    <div nz-row class="coupon" style=' width:305px;height:auto;'>
+                        <div nz-col nzSpan='24'>
+                            <div class="container" nz-col nzSpan="24" style=' border-radius: 15px 15px 0 0 ; text-align: left;  padding: 2px 16px;
+                    background-color:white;'>
+
+                                <div nz-row>
+                                    <!-- <div nz-col nzSpan='2' style='padding-top:5px'>
+                                        <i style='font-size:20px; color:#fd6951' class="fas fa-map-marker-alt"
+                                            (click)='showAddress(item)'></i>
+                                    </div> -->
+
+                                    <div nz-col nzSpan='24'>
+
+                                        <h6 style='text-align:left; margin-bottom:0;'> {{item.vendorName}} </h6>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div style='overflow:auto;'>
+
+                                <div class="container"
+                                    style='border-radius: 0px ;width:300px;height:300px;overflow:hidden;padding:0px'
+                                    (click)="(item.subscriptionType==='pay' || item.subscriptionType==='Pay')?viewRedemption(item):''">
+                                    <img style=' width:300px;height:300px ;' id="image" [src]="item.image">
+                                    <img [class]="item.image_align" [src]="item.logo"
+                                        style='max-height: 50px;border: 1px solid  #bbb;'>
+
+
+
+
+                                    <div
+                                        style='text-align:center;padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; min-height: 100px; height:fit-content;max-height: 130px;'>
+
+
+                                        <h5 [style.text-decoration]='item.header_decoration'
+                                            [style.font-weight]='item.header_bold'
+                                            [style.font-style]='item.header_style'
+                                            style='margin-bottom:0.5em;word-wrap: break-word;color: #f1f1f1;'>
+                                            {{item.header}}</h5>
+
+                                        <p [style.text-decoration]='item.body_decoration'
+                                            [style.font-weight]='item.body_bold' [style.font-style]='item.body_style'
+                                            style='margin-bottom:0.5em;word-wrap: break-word;'>
+                                            {{item.body}}</p>
+
+                                        <p [style.text-decoration]='item.footer_decoration'
+                                            [style.font-weight]='item.footer_bold'
+                                            [style.font-style]='item.footer_style'
+                                            style='margin-bottom:0.5em; word-wrap:break-word;'>
+                                            {{item.footer}}</p>
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container" nz-col nzSpan="24" style='text-align: center; border-radius: 0 0  15px 15px; padding:0;
+                background-color: white;'>
+                            <!-- <div nz-col nzSpan="24">
+
+                                <i nz-icon nzType="line" nzTheme="outline"></i>
+                                <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                                <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                                <i nz-icon nzType="line" nzTheme="outline"></i>
+                                <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                                <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                                <i nz-icon nzType="line" nzTheme="outline"></i>
+                                <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                                <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                                <i nz-icon nzType="line" nzTheme="outline"></i>
+                                <i nz-icon nzType="line" nzTheme="outline"></i>&nbsp;
+                                <i nz-icon nzType="scissor" nzTheme="outline"></i>&nbsp;
+
+                                <i nz-icon nzType="line" nzTheme="outline"></i>
+                                <i nz-icon nzType="line" nzTheme="outline"></i>
+                            </div> -->
+
+
+                            <div *ngIf="item.subscriptionType==='pay' || item.subscriptionType==='Pay'" nz-col
+                                nzSpan="24" style='width:302px;padding-left:2px' (click)='viewRedemption(item)'>
+                                <p class="redeembutton"> <i class="fas fa-gifts"></i> Redeem
+                                    {{item.redemptionCount>0?'('+item.redemptionCount+')':''}}</p>
+                            </div>
+
+                            <div *ngIf="item.subscriptionType==='free' || item.subscriptionType==='Free'" nz-col
+                                nzSpan="24" style='width:302px;padding-left:2px'>
+                                <p class="redeemnoteligible"> <i class="fas fa-lock"></i> You are NOT Eligible for
+                                    Redemption of this Coupon</p>
+                            </div>
+
+                            <div nz-col nzSpan="24"
+                                *ngIf="item.subscriptionType==='pay' || item.subscriptionType==='Pay'">
+                                <div nz-row>
+
+
+                                    <div nz-col nzSpan="2">&nbsp;</div>
+                                    <!-- <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                        title="Redem Coupon">
+
+                                        <i nz-icon nzType="gift" nzTheme="fill" style="font-size: 20px; color: blue"
+                                            class='icon' (click)='viewRedemption(item)'></i><br />
+                                        {{item.redemptionCount}}
+
+                                    </div> -->
+
+                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                        title="Visit Vendor Store" style='padding-top:10px;padding-bottom:10px'>
+
+                                        <!-- <i nz-icon nzType="bank" nzTheme="fill" style="font-size: 20px; color: brown "
+                                            class='icon'></i> -->
+
+                                        <i style='font-size:20px; color:brown' class="icon fas fa-store"
+                                            (click)='visitStore(item.vendorId)'></i>
+
+                                    </div>
+
+                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                        title="Like Coupon" style='padding-top:10px;padding-bottom:10px'>
+
+                                        <!-- <i nz-icon [nzType]="item.likeLoading?'smile':'like'"
+                                            [nzTheme]="item.likeCoupon?'fill':'outline'"
+                                            style="font-size: 20px; color:green" class='icon'
+                                            (click)="like(item)"></i><br /> -->
+
+                                        <i class='icon' style='font-size:20px; color:green'
+                                            [class]="item.likeLoading?item.likeCoupon?'fas fa-smile':'far fa-smile' : item.likeCoupon?'fas fa-thumbs-up':'far fa-thumbs-up'"
+                                            (click)="like(item)"></i>
+
+
+
+                                        {{item.likeCount}}
+
+                                    </div>
+
+
+                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                        title="DisLike Coupon" style='padding-top:10px;padding-bottom:10px'>
+
+
+
+                                        <!-- <i nz-icon [nzType]="item.likeLoading?'frown':'dislike'"
+
+                                        [nzTheme]="item.disLikeCoupon?'fill':'outline'"
+
+                                        style="font-size: 20px; color:red" class='icon'
+
+                                        (click)="dislike(item)"></i><br /> -->
+
+
+
+                                        <i class='icon' style='font-size:20px; color:red'
+                                            [class]="item.likeLoading?item.disLikeCoupon?'fas fa-frown':'far fa-frown' : item.disLikeCoupon?'fas fa-thumbs-down':'far fa-thumbs-down'"
+                                            (click)="dislike(item)"></i>
+
+
+
+                                        {{item.dislikeCount}}
+
+
+
+                                    </div>
+
+                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                        title="Download Coupon" style='padding-top:10px;padding-bottom:10px'>
+
+                                        <ng-container *ngIf="item.download">
+                                            <!-- <i nz-icon nzType="loading" nzTheme="outline" style="font-size: 20px;"
+                                            class='icon'></i> -->
+
+                                            <i nz-icon [nzType]="'sync'" [nzSpin]="true" style="font-size: 20px;"></i>
+                                        </ng-container>
+                                        <ng-container *ngIf="!item.download">
+                                            <i style='font-size:20px; color:gray' class="icon fas fa-download"
+                                                (click)='downloadCoupon(item)'></i>
+                                        </ng-container>
+
+                                    </div>
+
+
+                                    <div nz-col nzSpan="4" data-toggle="tooltip" data-placement="top"
+                                        title="Download Coupon" style='padding-top:10px;padding-bottom:10px'>
+
+                                        <!-- <i nz-icon nzType="download" nzTheme="outline" style="font-size: 20px;"
+                                        class='icon'></i> -->
+
+                                        <i style='font-size:20px; color:#fd6951' class="fas fa-map-marker-alt"
+                                            (click)='showAddress(item)'></i>
+
+                                    </div>
+
+
+
+
+
+                                    <div nz-col nzSpan="2">&nbsp;</div>
+
+                                </div>
+
+
+                            </div>
+                            <ng-container *ngIf='couponDisplayId!=1'>
+                                <div nz-col nzSpan="24">
+                                    <h6 style="font-size: 12px;color: white; margin-bottom: 0;  padding: 8px 0; background: #fd6951;
+                                border-radius: 0 0 15px 15px;">Expires on
+                                        {{item.expireTime}}</h6>
+                                </div>
+                            </ng-container>
+
+                        </div>
+
+
+                    </div>
+
+                    <hr />
+
+                </div>
+            </div>
+        </ng-container>
+
+    </ng-container>
+
+    <ng-container *ngIf='bottom && !noMoreImages'>
+        <div nz-row>
+
+            &nbsp;
+        </div>
+
+        <div nz-row>
+            <div nz-col nzSpan="24" style='text-align: center'>
+                <ng-template #indicatorTemplate><span style='color:#fd6951'><i nz-icon style='font-size:30px ; '
+                            nzType="loading"></i><br /> <b>Please wait....Loading Coupons</b> </span></ng-template>
+                <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'"></nz-spin>
+
+                <!-- <nz-spin nzTip="Please wait....Loading Images" nzSimple [nzSize]="'large'"></nz-spin> -->
+            </div>
+        </div>
+    </ng-container>
+
+
+    <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="cancel()">
+        <ng-template #modalContent>
+
+
+
+            <div style='overflow:auto;'>
+                <div class="container" style='width:300px;height:300px;overflow:hidden;'>
+                    <img style=' width:300px;height:300px;' id="image" [src]="coupon.image">
+                    <img [class]="coupon.image_align" [src]="coupon.logo"
+                        style='max-height: 50px;border: 1px solid  #bbb;'>
+
+
+                    <!-- <div [class]="coupon.footer_align" [style.font-family]='coupon.footer_font'
+                        [style.color]='coupon.footer_color' [style.text-decoration]='coupon.footer_decoration'
+                        [style.font-weight]='coupon.footer_bold' [style.font-style]='coupon.footer_style'
+                        [style.font-size.px]="coupon.footer_size" [innerHTML]="coupon.footer | replaceNewLine "></div>
+
+
+
+
+
+
+
+                    <div [class]="coupon.header_align" [style.font-family]='coupon.header_font'
+                        [style.color]='coupon.header_color' [style.text-decoration]='coupon.header_decoration'
+                        [style.font-weight]='coupon.header_bold' [style.font-style]='coupon.header_style'
+                        [style.font-size.px]="coupon.header_size" [innerHTML]="coupon.header  | replaceNewLine ">
+
+
+
+                    </div>
+
+
+
+                    <div [class]="coupon.body_align" [style.font-family]='coupon.body_font'
+                        [style.color]='coupon.body_color' [style.text-decoration]='coupon.body_decoration'
+                        [style.font-weight]='coupon.body_bold' [style.font-style]="coupon.body_style"
+                        [style.font-size.px]="coupon.body_size" [innerHTML]="coupon.body  | replaceNewLine  ">
+                    </div> -->
+
+                    <div
+                        style='text-align:center;padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
+
+
+
+                        <h5 [style.text-decoration]='coupon.header_decoration' [style.font-weight]='coupon.header_bold'
+                            style='word-wrap: break-word;' [style.font-style]='coupon.header_style'
+                            style='color: #f1f1f1;'> {{coupon.header}}</h5>
+
+                        <p [style.text-decoration]='coupon.body_decoration' [style.font-weight]='coupon.body_bold'
+                            style='word-wrap: break-word;' [style.font-style]='coupon.body_style'>{{coupon.body}}</p>
+
+                        <p [style.text-decoration]='coupon.footer_decoration' [style.font-weight]='coupon.footer_bold'
+                            style='word-wrap: break-word;' [style.font-style]='coupon.footer_style'>{{coupon.footer}}
+                        </p>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+
+
+        </ng-template>
+    </nz-modal>
+
+</div>
+
+
+
+
+<nz-modal [nzVisible]="redeemVisible" [nzContent]="redeemContent" [nzFooter]="null" (nzOnCancel)="redeemCancel()">
+    <ng-template #redeemContent>
+        <h3>
+            <ng-container *ngIf='redeemChecked'>
+                <span nz-icon nzType="arrow-left" nzTheme="outline" (click)='redeemChecked=false'> </span>
+            </ng-container> Redemption
+            <ng-container *ngIf='redeemLoading'>
+                <!-- <nz-spin nzTip="Loading..." nzSimple [nzSize]="'small'" style='text-align: center'></nz-spin> -->
+
+                <ng-template #indicatorTemplate><span style='color:#fd6951'><i nz-icon style='font-size:30px ; '
+                            nzType="loading"></i><br /> <b>Fetching Details...</b> </span></ng-template>
+                <nz-spin style='text-align: center' nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'"></nz-spin>
+
+
+            </ng-container>
+        </h3>
+        <div nz-row class="container">
+            <ng-container *ngIf='!redeemChecked'>
+                <div nz-col nzSpan="24" style='text-align: left'>
+                    <nz-collapse nzAccordion>
+                        <ng-container *ngIf='redeemCoupon.description.trim().length > 0'>
+                            <nz-collapse-panel nzHeader="Coupon Description" nzActive="true" nzDisabled="false">
+                                <p> {{redeemCoupon.description}}</p>
+                            </nz-collapse-panel>
+                        </ng-container>
+                        <nz-collapse-panel nzHeader="TakeOff Terms & Conditions" nzDisabled="false">
+                            <p>-Kindly Show the Digital Coupon and ask Vendor Passcode to the Outlet Manager/Service
+                                Provider to Redeem the Coupon</p>
+                            <p>-Enter Vendor Passcode and Submit</p>
+                            <p>-Our Takeoff Services Pvt.Ltd will not Create any type of Coupons</p>
+                            <p>-Coupon Creation and Redemption are Subject to Outlets only</p>
+                            <p>-Coupons modification or Deletion are subject to Outlets only</p>
+                            <p>-Our Takeoff Services Pvt.Ltd will show Digital Coupons of Associated Outlets from our
+                                Website or App only</p>
+                            <p>-We Value Our Subscribers everytime by providing best services from our associated
+                                Outlets</p>
+                            <p>-Outlets reserves the right to change/modify/add/delete Coupons any time without notice
+                            </p>
+                        </nz-collapse-panel>
+                    </nz-collapse>
+                </div>
+                <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                <div nz-col nzSpan="24" style='text-align: center'>
+                    <label nz-checkbox [(ngModel)]="redeemChecked"
+                        (ngModelChange)='generateRedemption(redeemCoupon.id,redeemCoupon.vendorId)'>
+                        <ng-container *ngIf='redeemCoupon.description.trim().length > 0'>
+                            I have read Coupon
+                            Description and Terms & Conditions
+                        </ng-container>
+
+                        <ng-container *ngIf='redeemCoupon.description.trim().length == 0'>
+                            I have read Terms & Conditions
+                        </ng-container>
+
+                    </label>
+                </div>
+            </ng-container>
+            <ng-container *ngIf='redeemChecked'>
+
+                <nz-tabset nzTabPosition="top" nzSize="large">
+                    <nz-tab nzTitle="Manual">
+
+
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <nz-table nzSize="small" nzShowPagination=false [nzData]="['']">
+                                <thead>
+                                    <tr>
+                                        <th style='text-align:center'>Coupon ID</th>
+                                        <th style='text-align:center'>Coupon Type</th>
+                                        <th style='text-align:center'>User ID</th>
+                                        <th style='text-align:center'>Vendor ID</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style='text-align:center'>
+                                        <td>{{redeemCoupon.id}}</td>
+                                        <td>{{redeemCoupon.couponType}}</td>
+                                        <td>{{loginStatus.userId}}</td>
+                                        <td>{{redeemCoupon.vendorId}}</td>
+                                    </tr>
+                                </tbody>
+                            </nz-table>
+                        </div>
+                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+                        <div nz-col nzSpan="24" style='text-align: center'><b><i><u>Passcode To Vendor</u></i></b></div>
+
+                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[0]" />&nbsp;&nbsp;
+                            <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[1]" />&nbsp;&nbsp;
+                            <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[2]" />&nbsp;&nbsp;
+                            <input readonly nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[3]" />&nbsp;&nbsp;
+                        </div>
+                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+                        <!-- <div nz-col nzSpan="24" style='text-align: center'>
+                            For WhatsApp Redemption Format for Vendor is
+                            <b><i>{{redeemCoupon.id}},{{loginStatus.userId}},{{code[0]+code[1]+code[2]+code[3]}}</i></b>
+                        </div> -->
+
+                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+
+
+                        <div nz-col nzSpan="24" style='text-align: center'><b><i><u>Passcode From Vendor</u></i></b>
+                        </div>
+
+                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <!-- <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[4]" />&nbsp;&nbsp;
+                            <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[5]" />&nbsp;&nbsp;
+                            <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[6]" />&nbsp;&nbsp;
+                            <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                [(ngModel)]="code[7]" />&nbsp;&nbsp; -->
+
+                            <input nz-input style='width: 80px;' type="text" maxlength="4" [(ngModel)]="passcode" />
+                        </div>
+                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+                        <div nz-col nzSpan="24" style='text-align: center'>
+
+                            Passcode Valid till <b><i><u>{{redemption.validTill}}</u></i></b>
+
+                        </div>
+                        <ng-container *ngIf='!redeemLoading'>
+                            <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                            <div nz-col nzSpan="24" style='text-align: center'>
+                                <button nz-button nzType="default">HELP</button> &nbsp;
+                                <button nz-button nzType="primary" nzShape="round" nzDanger
+                                    (click)='customerRedeem()'>REDEEM</button> &nbsp;
+                                <button nz-button nzType="primary" nzShape="round"
+                                    (click)="redeemCancel()">CANCEL</button>
+                            </div>
+                        </ng-container>
+                    </nz-tab>
+                    <nz-tab nzTitle="Scan">
+                        <ng-template nz-tab>
+                            <!-- <ng-container *ngIf="redeemCoupon.vendorId == 10013"> -->
+                            <ng-container *ngIf='qrResultString.trim().length == 0'>
+                                <div nz-row>
+
+                                    <div nz-col nzSpan="6" style='text-align: center'>&nbsp;</div>
+
+                                    <div nz-col nzSpan="12" style='text-align: center'>
+
+                                        <zxing-scanner (scanSuccess)="onCodeResult($event)"
+                                            [enable]='qrResultString.trim().length == 0'></zxing-scanner>
+
+                                    </div>
+
+                                    <div nz-col nzSpan="6" style='text-align: center'>&nbsp;</div>
+
+                                </div>
+
+
+                            </ng-container>
+
+                            <ng-container *ngIf='qrResultString.trim().length > 0'>
+
+                                <ng-container *ngIf='!redeemLoading'>
+
+
+
+                                    <ng-container *ngIf='redemption && redemption.status'>
+
+                                        <div nz-col nzSpan="24" style='text-align: center'><b><i><u>Passcode From
+                                                        Vendor</u></i></b>
+                                        </div>
+
+                                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+                                        <div nz-col nzSpan="24" style='text-align: center'>
+                                            <!-- <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                            [(ngModel)]="code[4]" />&nbsp;&nbsp;
+                                        <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                            [(ngModel)]="code[5]" />&nbsp;&nbsp;
+                                        <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                            [(ngModel)]="code[6]" />&nbsp;&nbsp;
+                                        <input nz-input style='width: 40px;' type="text" maxlength="1"
+                                            [(ngModel)]="code[7]" />&nbsp;&nbsp; -->
+
+                                            <input nz-input style='width: 80px;' type="text" maxlength="4"
+                                                [(ngModel)]="passcode" />
+
+                                        </div>
+                                        <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+
+                                        <div nz-col nzSpan="24" style='text-align: center'>
+
+                                            Passcode Valid till <b><i><u>{{redemption.validTill}}</u></i></b>
+
+                                        </div>
+                                        <ng-container *ngIf='!redeemLoading'>
+                                            <div nz-col nzSpan="24" style='text-align: center'>&nbsp;</div>
+                                            <div nz-col nzSpan="24" style='text-align: center'>
+                                                <button nz-button nzType="default">HELP</button> &nbsp;
+                                                <button nz-button nzType="primary" nzShape="round" nzDanger
+                                                    (click)='customerRedeem()'>REDEEM</button> &nbsp;
+                                                <button nz-button nzType="primary" nzShape="round"
+                                                    (click)="redeemCancel()">CANCEL</button>
+                                            </div>
+                                        </ng-container>
+
+                                    </ng-container>
+                                    <ng-container *ngIf='redemption && !redemption.status'>
+
+                                        <h3> {{ redemption.message }}</h3>
+
+                                    </ng-container>
+                                </ng-container>
+
+
+                            </ng-container>
+
+
+                            <!-- </ng-container> -->
+                            <!-- <ng-container *ngIf='redeemCoupon.vendorId!=10013'>
+
+                            Only for 1947 Saloon, Will be Available to other Outlets Shortly.
+
+                        </ng-container> -->
+                        </ng-template>
+                    </nz-tab>
+                </nz-tabset>
+            </ng-container>
+        </div>
+    </ng-template>
+</nz-modal>
+
+<nz-drawer [nzVisible]="filterVisible" [nzClosable]="true" nzPlacement='bottom' nzTitle="Filter"
+    (nzOnClose)="filterVisible=false;" [nzHeight]='350'>
+    <ng-container *nzDrawerContent>
+
+        <div nz-row class="container">
+            <div nz-col nzSpan="24" style='text-align: center'>
+                <nz-select [nzOptionHeightPx]=50 nzPlaceHolder="Select Outlet" [nzBackdrop]=true style='width: 300px;'
+                    nzShowSearch=true [(ngModel)]='vendorSelected' [nzBackdrop]=true>
+                    <nz-option nzValue="0" nzLabel="ALL"></nz-option>
+                    <ng-container *ngIf="!vendorListLoading">
+                        <nz-option nzCustomContent *ngFor="let vendor of vendorList" [nzValue]="vendor.userId"
+                            [nzLabel]="vendor.name +'\n'+vendor.address">
+                            <i nz-icon nzType="caret-right" nzTheme="outline"></i><b>{{vendor.name}} <br />
+                                {{vendor.address}}</b>
+                        </nz-option>
+                    </ng-container>
+
+                    <nz-option *ngIf="vendorListLoading" nzDisabled nzCustomContent>
+                        <i nz-icon nzType="loading"></i>
+                        Loading List...
+                    </nz-option>
+
+                </nz-select>
+            </div>
+        </div>
+        <div nz-row> &nbsp; </div>
+
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: center'>Category</div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                <nz-select nzPlaceHolder="Select Category" style='width: 200px ;' [(ngModel)]='category'
+                    (ngModelChange)='getSubCategories()'>
+
+                    <nz-option nzValue="0" nzLabel="ALL"></nz-option>
+                    <nz-option *ngFor="let cat of categories" [nzValue]="cat.id" [nzLabel]="cat.categoryName">
+                    </nz-option>
+
+                </nz-select>
+            </div>
+        </div>
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: center'>Sub-Category</div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                <nz-select nzPlaceHolder="Select Sub-Category" style='width: 200px ;' [(ngModel)]='subCategory'>
+                    <nz-option nzValue="0" nzLabel="ALL"></nz-option>
+                    <ng-container *ngIf="!isLoading">
+                        <nz-option *ngFor="let cat of subCategories" [nzValue]="cat.id" [nzLabel]="cat.subCategoryName">
+                        </nz-option>
+                    </ng-container>
+
+                    <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+                        <i nz-icon nzType="loading"></i>
+                        Loading Data...
+                    </nz-option>
+
+                </nz-select>
+            </div>
+        </div>
+
+
+
+
+        <!-- <ng-container *ngIf="couponDisplayId!=1">
+            <div nz-row> &nbsp; </div>
+            <div nz-row class="container">
+                <div nz-col nzSpan="6" style='text-align: center'>City </div>
+                <div nz-col nzSpan="18" style='text-align: center'>
+
+                    <nz-select [(ngModel)]="city" style='width:200px' nzPlaceHolder="Select City">
+                        <nz-option nzValue="Tirupati" nzLabel="Tirupati"></nz-option>
+                        <nz-option nzValue="Chittoor" nzLabel="Chittoor"></nz-option>
+                        <nz-option nzValue="Ananthapur" nzLabel="Ananthapur"></nz-option>
+                        <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
+                        <nz-option nzValue="Kadapa" nzLabel="Kadapa"></nz-option>
+                        <nz-option nzValue="Kakinada" nzLabel="Kakinada"></nz-option>
+                        <nz-option nzValue="Kurnool" nzLabel="Kurnool"></nz-option>
+                        <nz-option nzValue="Nellore" nzLabel="Nellore"></nz-option>
+                        <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
+                        <nz-option nzValue="Ongole" nzLabel="Ongole"></nz-option>
+                        <nz-option nzValue="Vijayawada" nzLabel="Vijayawada"></nz-option>
+
+
+
+                    </nz-select>
+                </div>
+            </div>
+        </ng-container> -->
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: center'>Search (',' Separated) </div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                <input nz-input type='text' style='width:200px' [(ngModel)]='keywords'
+                    placeholder="Keywords (',' Separated)">
+            </div>
+        </div>
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
+            <div nz-col nzSpan="24" style='text-align: center'>
+
+                <button nz-button nzType="primary" (click)='resetFilter()'> RESET </button> &nbsp;&nbsp;
+                <button nz-button nzType="primary" (click)='filterCoupons()'> FILTER </button>&nbsp;&nbsp;
+                <button nz-button nzType="primary" (click)='filterVisible=false;'> CANCEL </button>
+
+            </div>
+        </div>
+    </ng-container>
+</nz-drawer>
+
+
+<nz-modal [nzVisible]="successVisible" [nzContent]="successContent" [nzFooter]="null"
+    (nzOnCancel)="successVisible = false">
+    <ng-template #successContent>
+        <nz-result nzStatus="success" nzTitle="Your Redemption is Successful!" nzSubTitle="{{redemSuccessMessage}}">
+
+
+
+            <div nz-result-extra>
+                <div>
+                    <img src='assets/img/tick.gif' style='width:50px;height:50px;'>
+                </div>
+                <div nz-row> &nbsp; </div>
+
+                <button nz-button (click)='successVisible=false'>Close</button>
+            </div>
+        </nz-result>
+
+
+    </ng-template>
+</nz-modal>

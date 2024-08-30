@@ -1,0 +1,176 @@
+<div nz-row> &nbsp; </div>
+
+<ng-container *ngIf="!loading && redemptionHistory && redemptionHistory.length > 0">
+    <!-- <div nz-row >
+        <div nz-col nzSpan="24" style='text-align: left'>
+    
+            <button nz-button nzType="primary" (click)='download()' [nzLoading]='downloading'>
+                Download Excel
+            </button>
+           
+    
+        </div>
+    </div> -->
+
+
+
+</ng-container>
+
+
+
+<div style='overflow:auto;width:100%;height:100%'>
+<nz-table #basicTable nzShowPagination=false nzBordered [nzData]="['']" [nzLoading]="loading">
+    <thead>
+        <tr>
+
+            <th> # </th>
+
+            <th> Coupon Id </th>
+
+            <ng-container *ngIf="loginStatus.userType === 'Customer'">
+                <th> Outlet Id </th>
+                <th> Outlet Name </th>
+
+                <th> Address </th>
+                <th> Contact </th>
+                <th> Coupon Type </th>
+                <th> Redemption On </th>
+
+
+
+            </ng-container>
+
+            <ng-container *ngIf="loginStatus.userType === 'Vendor'">
+                <th> Customer Id </th>
+                <th> Customer Name </th>
+                <th> Contact </th>
+                <th> Coupon Type </th>
+                <th> Redemption On </th>
+
+              
+               
+
+
+             
+
+
+            </ng-container>
+
+
+
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let data of redemptionHistory; index as i">
+
+            <td>{{ (i+1) }}</td>
+            <td (click)='getCoupon(data.couponId)'><b><u style='cursor: pointer;'>{{ data.couponId }}</u></b></td>
+            <ng-container *ngIf="loginStatus.userType === 'Customer'">
+                <td>{{ data.vendorId }}</td>
+                <td>{{ data.vendorName }}</td>
+                <td>{{ data.address }}</td>
+                <td>{{ data.contact }}</td>
+                <td>{{ data.couponType }}</td>
+                <td>{{ data.redemOn }}</td>
+
+
+            </ng-container>
+
+
+
+
+
+            <ng-container *ngIf="loginStatus.userType === 'Vendor'">
+
+                <td>{{ data.customerId }}</td>
+                <td>{{ data. customerName }}</td>
+                <td> {{ data.customerContact}}</td>
+                <td>{{ data.couponType }}</td>
+                <td>{{ data.redemOn }}</td>
+
+            </ng-container>
+
+
+
+
+
+
+        </tr>
+
+
+    </tbody>
+</nz-table>
+</div>
+<nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="cancel()">
+    <ng-template #modalContent>
+
+        <h3> Coupon Id: {{ coupon.id }}</h3>
+
+
+        <div style='overflow:auto;'>
+            <div class="container" style='overflow:hidden;width:300px;height:300px;padding:0px'>
+                <img style=' width:300px;height:300px;border: 1px solid #555;' id="image" [src]="coupon.image">
+                <img [class]="coupon.image_align" [src]="coupon.logo" style='max-height: 50px;border: 1px solid  #bbb;'>
+
+
+                <!-- <div [class]="coupon.footer_align" [style.font-family]='coupon.footer_font'
+                    [style.color]='coupon.footer_color' [style.text-decoration]='coupon.footer_decoration'
+                    [style.font-weight]='coupon.footer_bold' [style.font-style]='coupon.footer_style'
+                    [style.font-size.px]="coupon.footer_size" [innerHTML]="coupon.footer | replaceNewLine "></div>
+
+
+
+
+
+
+
+                <div [class]="coupon.header_align" [style.font-family]='coupon.header_font'
+                    [style.color]='coupon.header_color' [style.text-decoration]='coupon.header_decoration'
+                    [style.font-weight]='coupon.header_bold' [style.font-style]='coupon.header_style'
+                    [style.font-size.px]="coupon.header_size" [innerHTML]="coupon.header  | replaceNewLine ">
+
+
+
+                </div>
+
+
+
+                <div [class]="coupon.body_align" [style.font-family]='coupon.body_font'
+                    [style.color]='coupon.body_color' [style.text-decoration]='coupon.body_decoration'
+                    [style.font-weight]='coupon.body_bold' [style.font-style]="coupon.body_style"
+                    [style.font-size.px]="coupon.body_size" [innerHTML]="coupon.body  | replaceNewLine  ">
+                </div> -->
+
+                <div
+                    style='text-align:center;padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
+
+
+
+                    <h5 [style.text-decoration]='coupon.header_decoration' [style.font-weight]='coupon.header_bold'
+                        style='word-wrap: break-word;' [style.font-style]='coupon.header_style' style='color: #f1f1f1;'>
+                        {{coupon.header}}</h5>
+
+                    <p [style.text-decoration]='coupon.body_decoration' [style.font-weight]='coupon.body_bold'
+                        style='word-wrap: break-word;' [style.font-style]='coupon.body_style'>{{coupon.body}}</p>
+
+                    <p [style.text-decoration]='coupon.footer_decoration' [style.font-weight]='coupon.footer_bold'
+                        style='word-wrap: break-word;' [style.font-style]='coupon.footer_style'>{{coupon.footer}}
+                    </p>
+
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </ng-template>
+</nz-modal>

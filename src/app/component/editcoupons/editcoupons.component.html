@@ -1,0 +1,633 @@
+<ng-container *ngIf="loading1">
+    <div id="preloader"></div>
+
+</ng-container>
+
+
+<ng-container *ngIf='loading'>
+
+   
+
+    
+    <div nz-row>
+
+        &nbsp;
+    </div>
+
+    <div nz-row>
+        <div nz-col nzSpan="24" style='text-align: center'>
+            <!-- <nz-spin nzTip="Please wait....Loading Images" nzSimple [nzSize]="'large'"></nz-spin> -->
+            <ng-template #indicatorTemplate>
+                <span style='color:#fd6951'>
+                    <i nz-icon style='font-size:30px ; ' nzType="loading"></i>
+                    <br /> <b>Please wait....Loading Images</b> </span></ng-template>
+            <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'"></nz-spin>
+
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf='!loading'>
+
+    <div style='text-align:right'>
+        <nz-affix [nzOffsetTop]="offsetTop">
+            <button nz-button nzType="primary" (click)='filterVisible=true'>
+                <span><i nz-icon nzType="filter" nzTheme="outline" (click)='filterVisible=true'></i></span>
+            </button>
+        </nz-affix>
+    </div>
+
+    <div style='padding-left:15px;padding-right:15px;overflow:auto;width:100%;text-align:center'
+        [style.height.px]='screenHeight*0.85' (scroll)="onWindowScroll()" #scrollMe>
+
+
+        <div style='text-align:center'>
+
+            <div nz-row>
+                <div nz-col *ngFor="let item of images; index as i" style='padding-left: 10px; padding-bottom: 10px;'>
+
+                    <div class="container" style='overflow:hidden;width:300px;height:300px;padding:0px'>
+                        <img style="width:300px;height:300px;border: 1px solid #555;" id="image" [src]="item.image"
+                            (click)="click(item)">
+                        <ng-container *ngIf="loginStatus?.userId === (item.userId+'')">
+                            <div class='top-left'><b><i nz-icon style='background-color:white;color:black'
+                                        nzType="delete" nzTheme="outline" (click)='deleteImage(item.id)'></i></b></div>
+                        </ng-container>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <ng-container *ngIf='bottom && !noMoreImages'>
+                <div nz-row>
+
+                    &nbsp;
+                </div>
+
+                <div nz-row>
+                    <div nz-col nzSpan="24" style='text-align: center'>
+                        <ng-template #indicatorTemplate>
+                            <span style='color:#fd6951'>
+                                <i nz-icon style='font-size:30px ; ' nzType="loading"></i>
+                                <br /> <b>Please wait....Loading Images</b> </span></ng-template>
+                        <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'"></nz-spin>
+        
+                        <!-- <nz-spin nzTip="Please wait....Loading Images" nzSimple [nzSize]="'large'"></nz-spin> -->
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf="userType==='Designer'">
+
+    <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+        (nzOnCancel)="previewVisible = false">
+        <ng-template #modalContent>
+            <h3> View Coupon </h3>
+            <div style='overflow:auto;'>
+                <div class="container" style='overflow:hidden;width:300px;height:300px;padding:0px'>
+                    <img [src]="previewImage" style="width:300px;height:300px;border: 1px solid #555;" />
+                </div>
+            </div>
+        </ng-template>
+    </nz-modal>
+
+
+
+</ng-container>
+
+
+
+
+<ng-container *ngIf="userType==='Vendor'">
+    <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+        (nzOnCancel)="previewVisible = false">
+        <ng-template #modalContent>
+            <h3> Edit Coupon </h3>
+            <div style='overflow:auto;'>
+                <div class="container" style='overflow:hidden;width:300px;height:300px;padding:0px'>
+                    <img [src]="previewImage" style='width:300px;height:300px;border: 1px solid #555;' />
+
+                    <img class="top-left" id="image" [src]="logo" style=' max-height: 50px;border: 1px solid  #bbb;'>
+
+
+                    <!-- <div [class]="footer_align" [style.font-family]='footer_font' [style.color]='footer_color'
+                        [style.text-decoration]='footer_decoration' [style.font-weight]='footer_bold'
+                        [style.font-style]='footer_style' [style.font-size.px]="footer_size"
+                        [innerHTML]="footer | replaceNewLine"></div>
+
+
+
+
+
+
+
+                    <div [class]="header_align" [style.font-family]='header_font' [style.color]='header_color'
+                        [style.text-decoration]='header_decoration' [style.font-weight]='header_bold'
+                        [style.font-style]='header_style' [style.font-size.px]="header_size"
+                        [innerHTML]="header | replaceNewLine">
+
+
+
+                    </div>
+
+
+
+                    <div [class]="body_align" [style.font-family]='body_font' [style.color]='body_color'
+                        [style.text-decoration]='body_decoration' [style.font-weight]='body_bold'
+                        [style.font-style]='body_style' [style.font-size.px]="body_size"
+                        [innerHTML]="body | replaceNewLine">
+                    </div> -->
+
+                    <div
+                        style='text-align:center;padding: 5px;position: absolute;bottom: 0; background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.5); color: #f1f1f1; width: 300px; height: 100px'>
+
+
+                        <h5 [style.text-decoration]='header_decoration' [style.font-weight]='header_bold'
+                            style='word-wrap: break-word;' [style.font-style]='header_style' style='color: #f1f1f1;'>
+                            {{header}}</h5>
+
+                        <p [style.text-decoration]='body_decoration' [style.font-weight]='body_bold'
+                            style='word-wrap: break-word;' [style.font-style]='body_style'>{{body}}</p>
+
+                        <p [style.text-decoration]='footer_decoration' [style.font-weight]='footer_bold'
+                            style='word-wrap: break-word;' [style.font-style]='footer_style'>{{footer}}
+                        </p>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <nz-tabset nzTabPosition="top" nzSize="large">
+                <nz-tab nzTitle="Content">
+
+                    <nz-tabset nzTabPosition="top" nzSize="small">
+                        <nz-tab nzTitle="Header">
+                            <div nz-row>
+                                <div nz-col nzSpan="24" style='text-align: center'>
+                                    <!-- <input type="color" [(ngModel)]="header_color"> &nbsp;&nbsp;
+                            <button nz-button [nzType]="header_align ==='top-left'? 'dashed' : 'text'"
+                                (click)="header_align='top-left'" disabled='true'> <i nz-icon nzType="align-left"
+                                    nzTheme="outline"></i></button>
+                            <button nz-button [nzType]="header_align ==='top-center'? 'dashed' : 'text'"
+                                (click)="header_align='top-center'"><i nz-icon nzType="align-center"
+                                    nzTheme="outline"></i></button>
+                            <button nz-button [nzType]="header_align ==='top-right'? 'dashed' : 'text'"
+                                (click)="header_align='top-right'"><i nz-icon nzType="align-right"
+                                    nzTheme="outline"></i></button> -->
+                                    <button nz-button [nzType]="header_bold ==='bold'? 'dashed' : 'text'"
+                                        (click)="header_bold === 'bold'? header_bold = 'normal': header_bold = 'bold'"><i
+                                            nz-icon nzType="bold" nzTheme="outline"></i></button>
+                                    <button nz-button [nzType]="header_style ==='italic'? 'dashed' : 'text'"
+                                        (click)="header_style === 'italic'? header_style = 'normal': header_style = 'italic'"><i
+                                            nz-icon nzType="italic" nzTheme="outline"></i></button>
+
+
+                                    <button nz-button [nzType]="header_decoration ==='underline'? 'dashed' : 'text'"
+                                        (click)="header_decoration === 'underline'? header_decoration = 'none': header_decoration = 'underline'"><i
+                                            nz-icon nzType="underline" nzTheme="outline"></i></button>
+
+                                    <button nz-button [nzType]="header_decoration ==='line-through'? 'dashed' : 'text'"
+                                        (click)="header_decoration === 'line-through'? header_decoration = 'none': header_decoration = 'line-through'"><i
+                                            nz-icon nzType="strikethrough" nzTheme="outline"></i></button>
+
+                                </div>
+                            </div>
+                            <div nz-row>
+
+                                &nbsp;
+                            </div>
+                            <!-- <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <nz-input-number [(ngModel)]="header_size" [nzMin]="1" [nzMax]="50" [nzStep]="1">
+                            </nz-input-number>&nbsp;&nbsp;
+                            <nz-select [(ngModel)]="header_font">
+                                <nz-option nzValue="Times New Roman" nzLabel="Times New Roman"></nz-option>
+                                <nz-option nzValue="Georgia" nzLabel="Georgia"></nz-option>
+                                <nz-option nzValue="Garamond" nzLabel="Garamond"></nz-option>
+                                <nz-option nzValue="Arial" nzLabel="Arial"></nz-option>
+                                <nz-option nzValue="Verdana" nzLabel="Verdana"></nz-option>
+                                <nz-option nzValue="Helvetica" nzLabel="Helvetica"></nz-option>
+                                <nz-option nzValue="Courier New" nzLabel="Courier New"></nz-option>
+                                <nz-option nzValue="Lucida Console" nzLabel="Lucida Console"></nz-option>
+                                <nz-option nzValue="Monaco" nzLabel="Monaco"></nz-option>
+                                <nz-option nzValue="Brush Script MT" nzLabel="Brush Script MT"></nz-option>
+                                <nz-option nzValue="Lucida Handwriting" nzLabel="Lucida Handwriting"></nz-option>
+                                <nz-option nzValue="Copperplate" nzLabel="Copperplate"></nz-option>
+                                <nz-option nzValue="Papyrus" nzLabel="Papyrus"></nz-option>
+
+
+                            </nz-select>
+                        </div>
+                    </div>
+                    <div nz-row>
+
+                        &nbsp;
+                    </div> -->
+                            <div nz-row>
+                                <div nz-col nzSpan="24" style='text-align: center'>
+                                    <textarea rows="4" nz-input [(ngModel)]='header'></textarea>
+                                </div>
+                            </div>
+
+
+                        </nz-tab>
+
+                        <nz-tab nzTitle="Body">
+
+                            <div nz-row>
+                                <div nz-col nzSpan="24" style='text-align: center'>
+                                    <!-- <input type="color" [(ngModel)]="body_color"> &nbsp;&nbsp;
+                            <button nz-button [nzType]="body_align ==='centered-left'? 'dashed' : 'text'"
+                                (click)="body_align='centered-left'"> <i nz-icon nzType="align-left"
+                                    nzTheme="outline"></i></button>
+                            <button nz-button [nzType]="body_align ==='centered'? 'dashed' : 'text'"
+                                (click)="body_align='centered'"><i nz-icon nzType="align-center"
+                                    nzTheme="outline"></i></button>
+                            <button nz-button [nzType]="body_align ==='centered-right'? 'dashed' : 'text'"
+                                (click)="body_align='centered-right'"><i nz-icon nzType="align-right"
+                                    nzTheme="outline"></i></button> -->
+                                    <button nz-button [nzType]="body_bold ==='bold'? 'dashed' : 'text'"
+                                        (click)="body_bold === 'bold'? body_bold = 'normal': body_bold = 'bold'"><i
+                                            nz-icon nzType="bold" nzTheme="outline"></i></button>
+                                    <button nz-button [nzType]="body_style ==='italic'? 'dashed' : 'text'"
+                                        (click)="body_style === 'italic'? body_style = 'normal': body_style = 'italic'"><i
+                                            nz-icon nzType="italic" nzTheme="outline"></i></button>
+
+
+                                    <button nz-button [nzType]="body_decoration ==='underline'? 'dashed' : 'text'"
+                                        (click)="body_decoration === 'underline'? body_decoration  = 'none': body_decoration = 'underline'"><i
+                                            nz-icon nzType="underline" nzTheme="outline"></i></button>
+
+                                    <button nz-button [nzType]="body_decoration ==='line-through'? 'dashed' : 'text'"
+                                        (click)="body_decoration === 'line-through'? body_decoration  = 'none': body_decoration = 'line-through'"><i
+                                            nz-icon nzType="strikethrough" nzTheme="outline"></i></button>
+
+                                </div>
+                            </div>
+                            <div nz-row>
+
+                                &nbsp;
+                            </div>
+                            <!-- <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <nz-input-number [(ngModel)]="body_size" [nzMin]="1" [nzMax]="50" [nzStep]="1">
+                            </nz-input-number>&nbsp;&nbsp;
+                            <nz-select [(ngModel)]="body_font">
+                                <nz-option nzValue="Times New Roman" nzLabel="Times New Roman"></nz-option>
+                                <nz-option nzValue="Georgia" nzLabel="Georgia"></nz-option>
+                                <nz-option nzValue="Garamond" nzLabel="Garamond"></nz-option>
+                                <nz-option nzValue="Arial" nzLabel="Arial"></nz-option>
+                                <nz-option nzValue="Verdana" nzLabel="Verdana"></nz-option>
+                                <nz-option nzValue="Helvetica" nzLabel="Helvetica"></nz-option>
+                                <nz-option nzValue="Courier New" nzLabel="Courier New"></nz-option>
+                                <nz-option nzValue="Lucida Console" nzLabel="Lucida Console"></nz-option>
+                                <nz-option nzValue="Monaco" nzLabel="Monaco"></nz-option>
+                                <nz-option nzValue="Brush Script MT" nzLabel="Brush Script MT"></nz-option>
+                                <nz-option nzValue="Lucida Handwriting" nzLabel="Lucida Handwriting"></nz-option>
+                                <nz-option nzValue="Copperplate" nzLabel="Copperplate"></nz-option>
+                                <nz-option nzValue="Papyrus" nzLabel="Papyrus"></nz-option>
+
+
+                            </nz-select>
+                        </div>
+                    </div>
+                    <div nz-row>
+
+                        &nbsp;
+                    </div> -->
+                            <div nz-row>
+                                <div nz-col nzSpan="24" style='text-align: center'>
+                                    <textarea rows="4" nz-input [(ngModel)]='body'></textarea>
+                                </div>
+                            </div>
+
+
+
+
+                        </nz-tab>
+                        <nz-tab nzTitle="Footer">
+
+
+
+                            <div nz-row>
+                                <div nz-col nzSpan="24" style='text-align: center'>
+                                    <!-- <input type="color" [(ngModel)]="footer_color"> &nbsp;&nbsp;
+                            <button nz-button [nzType]="footer_align ==='bottom-left'? 'dashed' : 'text'"
+                                (click)="footer_align='bottom-left'"> <i nz-icon nzType="align-left"
+                                    nzTheme="outline"></i></button>
+                            <button nz-button [nzType]="footer_align ==='bottom-center'? 'dashed' : 'text'"
+                                (click)="footer_align='bottom-center'"><i nz-icon nzType="align-center"
+                                    nzTheme="outline"></i></button>
+                            <button nz-button [nzType]="footer_align ==='bottom-right'? 'dashed' : 'text'"
+                                (click)="footer_align='bottom-right'"><i nz-icon nzType="align-right"
+                                    nzTheme="outline"></i></button> -->
+                                    <button nz-button [nzType]="footer_bold ==='bold'? 'dashed' : 'text'"
+                                        (click)="footer_bold === 'bold'? footer_bold = 'normal': footer_bold = 'bold'"><i
+                                            nz-icon nzType="bold" nzTheme="outline"></i></button>
+                                    <button nz-button [nzType]="footer_style ==='italic'? 'dashed' : 'text'"
+                                        (click)="footer_style === 'italic'? footer_style = 'normal': footer_style = 'italic'"><i
+                                            nz-icon nzType="italic" nzTheme="outline"></i></button>
+
+
+                                    <button nz-button [nzType]="footer_decoration ==='underline'? 'dashed' : 'text'"
+                                        (click)="footer_decoration === 'underline'? footer_decoration = 'none': footer_decoration = 'underline'"><i
+                                            nz-icon nzType="underline" nzTheme="outline"></i></button>
+
+                                    <button nz-button [nzType]="footer_decoration ==='line-through'? 'dashed' : 'text'"
+                                        (click)="footer_decoration === 'line-through'? footer_decoration = 'none': footer_decoration = 'line-through'"><i
+                                            nz-icon nzType="strikethrough" nzTheme="outline"></i></button>
+
+                                </div>
+                            </div>
+                            <div nz-row>
+
+                                &nbsp;
+                            </div>
+                            <!-- <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <nz-input-number [(ngModel)]="footer_size" [nzMin]="1" [nzMax]="50" [nzStep]="1">
+                            </nz-input-number>&nbsp;&nbsp;
+                            <nz-select [(ngModel)]="footer_font">
+                                <nz-option nzValue="Times New Roman" nzLabel="Times New Roman"></nz-option>
+                                <nz-option nzValue="Georgia" nzLabel="Georgia"></nz-option>
+                                <nz-option nzValue="Garamond" nzLabel="Garamond"></nz-option>
+                                <nz-option nzValue="Arial" nzLabel="Arial"></nz-option>
+                                <nz-option nzValue="Verdana" nzLabel="Verdana"></nz-option>
+                                <nz-option nzValue="Helvetica" nzLabel="Helvetica"></nz-option>
+                                <nz-option nzValue="Courier New" nzLabel="Courier New"></nz-option>
+                                <nz-option nzValue="Lucida Console" nzLabel="Lucida Console"></nz-option>
+                                <nz-option nzValue="Monaco" nzLabel="Monaco"></nz-option>
+                                <nz-option nzValue="Brush Script MT" nzLabel="Brush Script MT"></nz-option>
+                                <nz-option nzValue="Lucida Handwriting" nzLabel="Lucida Handwriting"></nz-option>
+                                <nz-option nzValue="Copperplate" nzLabel="Copperplate"></nz-option>
+                                <nz-option nzValue="Papyrus" nzLabel="Papyrus"></nz-option>
+
+
+                            </nz-select>
+                        </div>
+                    </div>
+                    <div nz-row>
+
+                        &nbsp;
+                    </div> -->
+                            <div nz-row>
+                                <div nz-col nzSpan="24" style='text-align: center'>
+                                    <textarea rows="4" nz-input [(ngModel)]='footer'></textarea>
+                                </div>
+                            </div>
+
+
+
+
+                        </nz-tab>
+                    </nz-tabset>
+                </nz-tab>
+
+
+                <nz-tab nzTitle="Description">
+
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <textarea rows="9" nz-input [(ngModel)]='description'></textarea>
+                        </div>
+                    </div>
+
+                </nz-tab>
+
+
+
+
+
+                <nz-tab nzTitle="Details">
+
+
+
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <!-- <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
+                                [(ngModel)]='result'>
+                            </nz-range-picker> -->
+
+                            From Date & Time : <br />
+
+
+                            <nz-date-picker nzAllowClear=false nzAllowEmpty=false nzInputReadOnly=true
+                                nzFormat="yyyy-MM-dd" nzPlaceHolder='From Date' [(ngModel)]='fromDate'
+                                style='width:130px'>
+                            </nz-date-picker> -
+                            <!-- <nz-time-picker nzAllowEmpty=false [nzBackdrop]='true' nzPlaceHolder='Time'
+                                [(ngModel)]="fromTime" nzFormat="HH:mm" style='width:80px'></nz-time-picker> -->
+
+                            <nz-select [nzBackdrop]='true' style='width:100px' [nzOptionOverflowSize]='4'
+                                nzAllowClear=false [(ngModel)]="fromTime">
+
+                                <nz-option *ngFor="let time1 of time" [nzValue]="time1" [nzLabel]="time1"></nz-option>
+
+
+                            </nz-select>
+                        </div>
+                    </div>
+                    <div nz-row>
+
+                        &nbsp;
+                    </div>
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                            <!-- <nz-range-picker  [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm"
+                                [(ngModel)]='result'>
+                            </nz-range-picker> -->
+
+                            To Date & Time : <br />
+                            <nz-date-picker nzAllowClear=false nzAllowEmpty=false nzInputReadOnly=true
+                                [nzDisabledDate]="disabledEndDate" nzPlaceHolder='To Date' nzFormat="yyyy-MM-dd"
+                                style='width:130px' [(ngModel)]='toDate'>
+                            </nz-date-picker>
+                            -
+                            <!-- <nz-time-picker nzAllowEmpty=false [nzBackdrop]='true' nzPlaceHolder='Time'
+                                [(ngModel)]="toTime" style='width:80px' nzFormat="HH:mm"></nz-time-picker> -->
+
+                            <nz-select [nzBackdrop]='true' style='width:100px' [nzOptionOverflowSize]='4'
+                                nzAllowClear=false [(ngModel)]="toTime">
+
+                                <nz-option *ngFor="let time1 of time" [nzValue]="time1" [nzLabel]="time1"></nz-option>
+
+
+                            </nz-select>
+                        </div>
+                    </div>
+                    <div nz-row>
+
+                        &nbsp;
+                    </div>
+
+                    <div nz-row>
+                        <!-- <div nz-col nzSpan="24" style='text-align: center'>
+
+                                   Profession <nz-select [(ngModel)]="profession" nzPlaceHolder="Target Profession"
+                                        style='width:200px'>
+                                        <nz-option nzValue="All" nzLabel="All"></nz-option>
+                                        <nz-option nzValue="Student" nzLabel="Student"></nz-option>
+                                        <nz-option nzValue="Businessman" nzLabel="Businessman"></nz-option>
+                                        <nz-option nzValue="Self Employed" nzLabel="Self Employed"></nz-option>
+                                        <nz-option nzValue="HouseWife" nzLabel="HouseWife"></nz-option>
+                                        <nz-option nzValue="Others" nzLabel="Others"></nz-option>
+
+                                    </nz-select>
+
+                                </div> -->
+
+                        <div nz-col nzSpan="24" style='text-align: center'>
+
+                            Gender <nz-select [(ngModel)]="gender" nzPlaceHolder="Target Gender" style='width:200px'>
+                                <nz-option nzValue="All" nzLabel="All"></nz-option>
+                                <nz-option nzValue="Male" nzLabel="Male"></nz-option>
+                                <nz-option nzValue="Female" nzLabel="Female"></nz-option>
+                                <nz-option nzValue="Others" nzLabel="Others"></nz-option>
+                            </nz-select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div nz-row>
+
+                        &nbsp;
+                    </div>
+
+                    <div nz-row>
+                        <div nz-col nzSpan="24" style='text-align: center'>
+                        Type  <nz-select nzShowSearch nzPlaceHolder="Select Coupon Type" [(ngModel)]="couponType"
+                                style='width: 200px ;'>
+
+                                <nz-option *ngFor="let cat of couponTypes" [nzValue]="cat.couponType"
+                                    [nzLabel]="cat.couponType"></nz-option>
+
+                            </nz-select>
+
+                        </div>
+
+                        <!-- <div nz-col nzSpan="12" style='text-align: center'>
+                                    <input nz-input type='text' style='width:200px' [(ngModel)]='keywords'
+                                        placeholder="Keywords (',' Separated)">
+                                </div> -->
+                                <div nz-row>
+
+                                    &nbsp;
+                                </div>
+
+                                 <div nz-col nzSpan="24" style='text-align: center'>
+                                   Exclusive For <input nz-input type='text' style='width:200px' [(ngModel)]='exclusiveFor'
+                                        placeholder="Exclusive For">
+                                </div>
+
+                    </div>
+
+                    <div nz-row>
+                        <div nz-col nzSpan="24" nz-result-extra style='text-align: center'>
+                            <button nz-button nzType="primary" (click)='createCoupon()'>Create Coupon</button>
+                            <button nz-button (click)='previewVisible = false'>Cancel</button>
+                        </div>
+                    </div>
+
+
+
+                </nz-tab>
+
+            </nz-tabset>
+
+        </ng-template>
+    </nz-modal>
+</ng-container>
+
+<nz-drawer [nzVisible]="filterVisible" [nzClosable]="true" nzPlacement='bottom' nzTitle="Filter"
+    (nzOnClose)="filterVisible=false;" [nzHeight]='350'>
+    <ng-container *nzDrawerContent>
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: center'>Category</div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                <nz-select nzPlaceHolder="Select Category" style='width: 200px ;' [(ngModel)]='category'
+                    (ngModelChange)='getSubCategories()'>
+
+                    <nz-option nzValue="0" nzLabel="ALL"></nz-option>
+                    <nz-option *ngFor="let cat of categories" [nzValue]="cat.id" [nzLabel]="cat.categoryName">
+                    </nz-option>
+
+                </nz-select>
+            </div>
+        </div>
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: center'>Sub-Category</div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                <nz-select nzPlaceHolder="Select Sub-Category" style='width: 200px ;' [(ngModel)]='subCategory'>
+                    <nz-option nzValue="0" nzLabel="ALL"></nz-option>
+                    <ng-container *ngIf="!isLoading">
+                        <nz-option *ngFor="let cat of subCategories" [nzValue]="cat.id" [nzLabel]="cat.subCategoryName">
+                        </nz-option>
+                    </ng-container>
+
+                    <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+                        <i nz-icon nzType="loading"></i>
+                        Loading Data...
+                    </nz-option>
+
+                </nz-select>
+            </div>
+        </div>
+        <!-- <ng-container *ngIf="couponDisplayId!=1">
+            <div nz-row> &nbsp; </div>
+            <div nz-row class="container">
+                <div nz-col nzSpan="6" style='text-align: center'>City </div>
+                <div nz-col nzSpan="18" style='text-align: center'>
+
+                    <nz-select [(ngModel)]="city" style='width:200px' nzPlaceHolder="Select City">
+                        <nz-option nzValue="Tirupati" nzLabel="Tirupati"></nz-option>
+                        <nz-option nzValue="Chittoor" nzLabel="Chittoor"></nz-option>
+                        <nz-option nzValue="Ananthapur" nzLabel="Ananthapur"></nz-option>
+                        <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
+                        <nz-option nzValue="Kadapa" nzLabel="Kadapa"></nz-option>
+                        <nz-option nzValue="Kakinada" nzLabel="Kakinada"></nz-option>
+                        <nz-option nzValue="Kurnool" nzLabel="Kurnool"></nz-option>
+                        <nz-option nzValue="Nellore" nzLabel="Nellore"></nz-option>
+                        <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
+                        <nz-option nzValue="Ongole" nzLabel="Ongole"></nz-option>
+                        <nz-option nzValue="Vijayawada" nzLabel="Vijayawada"></nz-option>
+
+
+
+                    </nz-select>
+                </div>
+            </div>
+        </ng-container> -->
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
+            <div nz-col nzSpan="6" style='text-align: center'>Search (',' Separated) </div>
+            <div nz-col nzSpan="18" style='text-align: center'>
+                <input nz-input type='text' style='width:200px' [(ngModel)]='keywords'
+                    placeholder="Keywords (',' Separated)">
+            </div>
+        </div>
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
+            <div nz-col nzSpan="24" style='text-align: center'>
+
+                <button nz-button nzType="primary" (click)='resetFilter()'> RESET </button> &nbsp;&nbsp;
+                <button nz-button nzType="primary" (click)='filterCoupons()'> FILTER </button>&nbsp;&nbsp;
+                <button nz-button nzType="primary" (click)='filterVisible=false;'> CANCEL </button>
+
+            </div>
+        </div>
+    </ng-container>
+</nz-drawer>

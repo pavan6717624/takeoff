@@ -1,0 +1,34 @@
+<div nz-row class="container">
+    <div nz-col nzSpan="24" style='text-align: Center'><h3>Wallet Balance - {{walletBalance}}</h3></div>
+    <div nz-col nzSpan="24">&nbsp;</div>
+</div>
+<div style='overflow:auto;width:100%;height:100%'>
+<nz-table #basicTable nzShowPagination=false nzBordered [nzData]="['']" [nzLoading]="loading">
+    <thead>
+        <tr>
+            <th> # </th>
+            <th> Role Name </th>
+          <th> Type </th>
+            <th> Today's Count </th>
+            <th> This Month Count </th>
+            <th> Total </th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of stats; index as i">
+            <td>{{ (i+1) }}</td>
+            <td>{{ data.roleName }}</td>
+           <td>{{ data.type }}</td>
+            <td>{{ data.todayCount }}</td>
+            <td>{{ data.monthCount }}</td>
+            <td>{{ data.totalCount }}</td>
+        </tr>
+
+
+    </tbody>
+</nz-table>
+ </div>
+
+

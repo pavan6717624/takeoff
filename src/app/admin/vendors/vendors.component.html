@@ -1,0 +1,159 @@
+<button nz-button nzType="primary" (click)='addVendorView()'>+ Add Vendor</button>
+<div nz-row> &nbsp; </div>
+<div style='overflow:auto;width:100%;height:100%'>
+    <nz-table #basicTable nzShowPagination=true nzBordered [nzData]="vendors" [nzLoading]="loading">
+        <thead>
+            <tr>
+
+                <th [nzSortFn]="sortDId">Id</th>
+                <th>Login Id</th>
+                <th [nzSortFn]="sortDName">Shop Name</th>
+                    <th>Contact Number</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th [nzSortFn]="sortDCity">City</th>
+                    <th >Logo</th>
+                    <th> Action </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data; index as i">
+
+                <td>{{ data.vendorId }}</td>
+                <td>{{ data.loginId }}</td>
+                <td>{{ data.name }}</td>
+                <td>{{ data.contact }}</td>
+                <td>{{ data.email }}</td>
+                <td>{{ data.address }}</td> 
+               <td>{{ data.city }}</td> 
+               <td><img class="img-thumbnail" src='{{ data.logo }}' style='max-height:50px'></td> 
+               <td>
+
+                <i nz-icon [nzType]="data.isDisabled?'eye-invisible': 'eye'" nzTheme="outline"
+                (click)="showConfirm(data.isDisabled?'Enable':'Disable',data.vendorId )"></i> &nbsp;
+              <i nz-icon nzType="edit" nzTheme="outline"
+                (click)="edit(data);previewVendorVisible=true;editVisible=true"></i>
+              &nbsp;
+              <i nz-icon nzType="delete" nzTheme="outline" (click)="showConfirm('Delete',data.vendorId )"></i>
+            
+
+               </td>
+
+               
+            </tr>
+        </tbody>
+    </nz-table>
+</div>
+
+<nz-modal [nzVisible]="previewVendorVisible" [nzContent]="modalContent" [nzFooter]="null"
+    (nzOnCancel)="previewVendorVisible = false;editVisible=false;">
+    <ng-template #modalContent>
+        <h3> Vendor </h3>
+        <div nz-row class="container">
+            <div nz-col nzSpan="8" style='text-align: left'>Shop Name</div>
+            <div nz-col nzSpan="4" style='text-align: right'>
+            <ng-container *ngIf="name.trim().length > 0">
+                <i nz-icon [nzType]="name.trim().length> 5 ? 'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
+               </ng-container>
+            </div>
+            <div nz-col nzSpan="12" style='text-align: left'>
+                <input type="text" nz-input placeholder="Enter Name" style='width:100%'
+                [(ngModel)]='name' />
+            </div>
+        </div>
+
+        <div nz-row> &nbsp; </div>
+
+        <div nz-row class="container">
+            <div nz-col nzSpan="8" style='text-align: left'>Contact Number</div>
+            <div nz-col nzSpan="4" style='text-align: right'>
+            <ng-container *ngIf="contact.trim().length > 0">
+                <i nz-icon [nzType]="adminService.isContactNumber(contact) ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
+               </ng-container>
+            </div>
+
+            <div nz-col nzSpan="12" style='text-align: left'>
+                <input type="text" nz-input placeholder="Enter Contact Number" style='width:100%'
+                [(ngModel)]='contact' />
+            </div>
+        </div>
+
+        <div nz-row> &nbsp; </div>
+
+        <div nz-row class="container">
+            <div nz-col nzSpan="8" style='text-align: left'>Email Address</div>
+            <div nz-col nzSpan="4" style='text-align: right'>
+            <ng-container *ngIf="email.trim().length > 0">
+                <i nz-icon [nzType]="email.trim().indexOf('@')==-1 || email.trim().indexOf('@') != email.trim().lastIndexOf('@') || email.trim().lastIndexOf('@') > email.trim().lastIndexOf('.')  || email.trim().endsWith('.') || email.trim().startsWith('@')  || email.trim().endsWith('@') || email.trim().startsWith('.') || email.trim().indexOf('.')==-1 ?'close' : 'check'" nzTheme="outline"></i> &nbsp;&nbsp;
+               </ng-container>
+            </div>
+
+            <div nz-col nzSpan="12" style='text-align: left'>
+                <input type="text" nz-input placeholder="Enter Email Address" style='width:100%'
+                [(ngModel)]='email' />
+            </div>
+        </div>
+
+        <div nz-row> &nbsp; </div>
+        <div nz-row class="container">
+            <div nz-col nzSpan="8" style='text-align: left'>Address</div>
+            <div nz-col nzSpan="4" style='text-align: right'>
+            <ng-container *ngIf="address.trim().length > 0">
+                <i nz-icon [nzType]="address.trim().length> 5 ? 'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
+               </ng-container>
+            </div>
+            <div nz-col nzSpan="12" style='text-align: left'>
+                <input type="text" nz-input placeholder="Enter Address" style='width:100%'
+                [(ngModel)]='address' />
+            </div>
+        </div>
+
+  
+
+        <div nz-row> &nbsp; </div>
+
+        <div nz-row class="container">
+            <div nz-col nzSpan="8" style='text-align: left'>City</div>
+            <div nz-col nzSpan="4" style='text-align: right'>
+            <ng-container *ngIf="city.trim().length > 0">
+                <i nz-icon [nzType]="city.trim().length > 0 ?'check' : 'close'" nzTheme="outline"></i> &nbsp;&nbsp;
+               </ng-container>
+            </div>
+            <div nz-col nzSpan="12" style='text-align: left'>
+                <nz-select  [(ngModel)]="city" nzPlaceHolder="Select City" style='width:100%'>
+                    <nz-option nzValue="Tirupati" nzLabel="Tirupati"></nz-option>
+<!--                     <nz-option nzValue="Chittoor" nzLabel="Chittoor"></nz-option>
+                    <nz-option nzValue="Ananthapur" nzLabel="Ananthapur"></nz-option>
+                    <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
+                    <nz-option nzValue="Kadapa" nzLabel="Kadapa"></nz-option>
+                    <nz-option nzValue="Kakinada" nzLabel="Kakinada"></nz-option>
+                    <nz-option nzValue="Kurnool" nzLabel="Kurnool"></nz-option>
+                    <nz-option nzValue="Nellore" nzLabel="Nellore"></nz-option>
+                    <nz-option nzValue="Guntur" nzLabel="Guntur"></nz-option>
+                    <nz-option nzValue="Ongole" nzLabel="Ongole"></nz-option>
+                    <nz-option nzValue="Vijayawada" nzLabel="Vijayawada"></nz-option> -->
+                   <nz-option nzValue="Ongole" nzLabel="Ongole"></nz-option>
+                    
+
+                    
+                  </nz-select>
+            </div>
+        </div>
+
+
+        <div nz-row> &nbsp; </div>
+        
+        <div nz-row class="container">
+            <div nz-col nzSpan="24" style='text-align: right'>
+                <ng-container *ngIf="!editVisible">
+                <button nz-button nzType="primary" (click)='addVendor()'>Add</button>
+            </ng-container>
+            <ng-container *ngIf="editVisible">
+                <button nz-button nzType="primary" (click)='editVendor()'>Edit</button>
+            </ng-container>
+            </div>
+        </div>
+    </ng-template>
+</nz-modal>
+
